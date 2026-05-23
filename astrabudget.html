@@ -308,35 +308,13 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left
 // REVEAL
 document.querySelectorAll('.rev').forEach(el=>{new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.1}).observe(el);});
 
-// Оновлені шляхи до всіх PDF
-const PDF_PP = {
-  en: 'privacy-policy/pp-en.pdf',
-  uk: 'privacy-policy/pp-uk.pdf',
-  es: 'privacy-policy/pp-es.pdf',
-  pt: 'privacy-policy/pp-pt.pdf',
-  de: 'privacy-policy/pp-de.pdf',
-  fr: 'privacy-policy/pp-fr.pdf',
-  it: 'privacy-policy/pp-it.pdf',
-  nl: 'privacy-policy/pp-nl.pdf',
-  pl: 'privacy-policy/pp-pl.pdf',
-  tr: 'privacy-policy/pp-tr.pdf'
-};
-const PDF_TOS = {
-  en: 'tos/tos-en.pdf',
-  uk: 'tos/tos-uk.pdf',
-  es: 'tos/tos-es.pdf',
-  pt: 'tos/tos-pt.pdf',
-  de: 'tos/tos-de.pdf',
-  fr: 'tos/tos-fr.pdf',
-  it: 'tos/tos-it.pdf',
-  nl: 'tos/tos-nl.pdf',
-  pl: 'tos/tos-pl.pdf',
-  tr: 'tos/tos-tr.pdf'
-};
-
+// Оновлена логіка для PDF: українська або англійська (для всіх інших)
 function updatePDFLinks(l){
-  const pp=PDF_PP[l]||PDF_PP.en;
-  const tos=PDF_TOS[l]||PDF_TOS.en;
+  const docLang = (l === 'uk') ? 'uk' : 'en';
+  
+  const pp = `privacy-policy/pp-${docLang}.pdf`;
+  const tos = `tos/tos-${docLang}.pdf`;
+  
   document.getElementById('pp-frame').src=pp;
   document.getElementById('pp-download').href=pp;
   document.getElementById('pp-fallback-link').href=pp;
