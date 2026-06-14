@@ -60,7 +60,7 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 18px rgba(170,170,170,.3);}
 .nlinks{display:flex;gap:2.3rem;list-style:none;}
 .nlinks a{color:var(--silver);text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
-.nlinks a::after{content:'absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--lum);transition:width .3s;box-shadow:0 0 8px var(--lum);}
+.nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--lum);transition:width .3s;box-shadow:0 0 8px var(--lum);}
 .nlinks a:hover,.nlinks a.active{color:var(--white);}
 .nlinks a:hover::after,.nlinks a.active::after{width:100%;}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;}
