@@ -81,8 +81,8 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 /* hero-stage is centered correctly from provided file */
 .hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;pointer-events:none;z-index:0;}
 
-/* Degraded Gothic Spires Background (Blurred & degraded layer) */
-.gothic-spires{position:absolute;inset:0;width:100%;height:100%;opacity:0.3;z-index:0; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)) blur(1px); overflow: visible;}
+/* Degraded Geometric Spires Background (Blurred & degraded layer) */
+.gothic-spires{position:absolute;inset:0;width:100%;height:100%;opacity:0.35;z-index:0; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)) blur(1px); overflow: visible;}
 
 /* Glass Mosaic Cross (Rotating) */
 .cross-cluster{position:absolute;top:50%;left:50%;width:500px;height:500px;margin-top:-250px;margin-left:-250px;animation:spin-cross 60s linear infinite;z-index:1;}
@@ -105,23 +105,42 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M10,0 L0,10 L0,0 Z' fill='rgba(0,0,0,0.05)'/%3E%3Cpath d='M20,10 L10,20 L10,10 Z' fill='rgba(0,0,0,0.05)'/%3E%3Cpath d='M0,30 L10,40 L0,40 Z' fill='rgba(0,0,0,0.03)'/%3E%3Cpath d='M30,30 L40,40 L30,40 L20,30 Z' fill='rgba(0,0,0,0.03)'/%3E%3Cpath d='M50,0 Q60,10 50,20' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M70,80 Q90,90 80,100' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M0,80 L10,90' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3C path d='M90,20 L100,30' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
 }
 
-/* Vertical body of the cross - Stained glass colors */
-.s1 { top: 8%; left: 45%; width: 10%; height: 18%; background-color: rgba(25, 10, 40, 0.6); }
-.s2 { top: 27%; left: 44%; width: 12%; height: 12%; background-color: rgba(10, 5, 20, 0.8); border-color: rgba(150, 80, 220, 0.5); border-width: 3px;}
-.s3 { top: 52%; left: 43%; width: 14%; height: 18%; background-color: rgba(30, 12, 45, 0.5); }
-.s4 { top: 71%; left: 46%; width: 8%; height: 20%; background-color: rgba(15, 8, 25, 0.7); }
-/* Center overlap - Glares & highlights */
-.s5 { top: 40%; left: 41%; width: 18%; height: 11%; background-color: rgba(40, 15, 60, 0.65); transform: rotate(5deg); z-index: 2; box-shadow: 0 0 50px rgba(130, 60, 200, 0.5), inset 0 0 20px rgba(255,255,255,0.1); border-color: rgba(160, 90, 230, 0.6);}
+/* Stained Glass Shards Reassembling a Cross */
+/* Core Highlight / Center Convergence */
+.s5 { top: 43%; left: 43%; width: 14%; height: 14%; background-color: rgba(40, 15, 60, 0.65); transform: rotate(15deg); z-index: 3; box-shadow: 0 0 60px rgba(150, 70, 220, 0.6), inset 0 0 20px rgba(255,255,255,0.15); border-color: rgba(180, 100, 240, 0.7); border-radius: 50% 10% 50% 10%; }
+.s12 { top: 40%; left: 45%; width: 10%; height: 10%; background-color: rgba(60, 25, 90, 0.8); transform: rotate(-30deg); z-index: 2; border-color: rgba(200, 120, 255, 0.5); }
+.s13 { top: 46%; left: 40%; width: 12%; height: 8%; background-color: rgba(80, 30, 120, 0.7); transform: rotate(45deg); z-index: 2; }
 
-/* Horizontal arms - Fragmented glass */
-.s6 { top: 42%; left: 15%; width: 14%; height: 8%; background-color: rgba(12, 6, 20, 0.8); }
-.s7 { top: 39%; left: 30%; width: 12%; height: 12%; background-color: rgba(35, 15, 55, 0.5); transform: rotate(-3deg); }
-.s8 { top: 41%; left: 58%; width: 15%; height: 10%; background-color: rgba(20, 10, 30, 0.7); }
-.s9 { top: 44%; left: 74%; width: 12%; height: 6%; background-color: rgba(10, 5, 15, 0.9); }
+/* Upper Arm (Vertical) */
+.s1 { top: 15%; left: 46%; width: 8%; height: 12%; background-color: rgba(25, 10, 40, 0.6); transform: rotate(-10deg); }
+.s14 { top: 22%; left: 42%; width: 6%; height: 10%; background-color: rgba(15, 5, 25, 0.9); transform: rotate(20deg); border-width: 3px; }
+.s15 { top: 28%; left: 48%; width: 9%; height: 14%; background-color: rgba(30, 12, 50, 0.7); transform: rotate(5deg); }
+.s16 { top: 10%; left: 44%; width: 5%; height: 7%; background-color: rgba(50, 20, 80, 0.5); transform: rotate(-45deg); }
 
-/* Extra fractured pieces */
-.s10 { top: 20%; left: 48%; width: 5%; height: 6%; background-color: rgba(50, 20, 80, 0.4); transform: rotate(15deg); border-width: 1.5px; }
-.s11 { top: 68%; left: 42%; width: 6%; height: 8%; background-color: rgba(60, 25, 90, 0.3); transform: rotate(-10deg); border-width: 1.5px; }
+/* Lower Arm (Vertical) */
+.s3 { top: 56%; left: 44%; width: 10%; height: 16%; background-color: rgba(30, 12, 45, 0.5); transform: rotate(-5deg); }
+.s4 { top: 70%; left: 47%; width: 7%; height: 15%; background-color: rgba(15, 8, 25, 0.7); transform: rotate(12deg); }
+.s17 { top: 62%; left: 41%; width: 8%; height: 12%; background-color: rgba(20, 5, 30, 0.85); transform: rotate(-20deg); border-width: 3px; }
+.s18 { top: 78%; left: 43%; width: 6%; height: 9%; background-color: rgba(45, 18, 70, 0.6); transform: rotate(35deg); }
+.s19 { top: 85%; left: 46%; width: 4%; height: 6%; background-color: rgba(10, 5, 20, 0.9); transform: rotate(-15deg); }
+
+/* Left Arm (Horizontal) */
+.s6 { top: 44%; left: 22%; width: 14%; height: 7%; background-color: rgba(12, 6, 20, 0.8); transform: rotate(8deg); }
+.s7 { top: 41%; left: 32%; width: 10%; height: 10%; background-color: rgba(35, 15, 55, 0.5); transform: rotate(-15deg); }
+.s20 { top: 47%; left: 16%; width: 8%; height: 6%; background-color: rgba(25, 10, 40, 0.7); transform: rotate(-25deg); border-width: 1px; }
+.s21 { top: 38%; left: 28%; width: 7%; height: 8%; background-color: rgba(15, 5, 25, 0.9); transform: rotate(30deg); }
+
+/* Right Arm (Horizontal) */
+.s8 { top: 42%; left: 56%; width: 12%; height: 9%; background-color: rgba(20, 10, 30, 0.7); transform: rotate(-8deg); }
+.s9 { top: 45%; left: 66%; width: 14%; height: 7%; background-color: rgba(10, 5, 15, 0.9); transform: rotate(12deg); }
+.s22 { top: 40%; left: 78%; width: 8%; height: 5%; background-color: rgba(30, 12, 45, 0.6); transform: rotate(-5deg); border-width: 1px; }
+.s23 { top: 48%; left: 60%; width: 9%; height: 8%; background-color: rgba(40, 15, 60, 0.5); transform: rotate(25deg); }
+
+/* Orbiting Anomaly Dust (Very small scattered shards) */
+.s2 { top: 32%; left: 35%; width: 4%; height: 4%; background-color: rgba(10, 5, 20, 0.8); transform: rotate(45deg); border-width: 1px; }
+.s10 { top: 25%; left: 55%; width: 3%; height: 5%; background-color: rgba(50, 20, 80, 0.4); transform: rotate(-30deg); border-width: 1px; }
+.s11 { top: 60%; left: 33%; width: 5%; height: 4%; background-color: rgba(60, 25, 90, 0.3); transform: rotate(15deg); border-width: 1px; }
+.s24 { top: 58%; left: 58%; width: 4%; height: 6%; background-color: rgba(20, 8, 30, 0.7); transform: rotate(-60deg); border-width: 1px; }
 
 /* Pulsing Divine Logo */
 .hero-logo-wrap { position: relative; z-index: 2; margin-bottom: 2.2rem; display: inline-flex; align-items: center; justify-content: center; }
@@ -350,7 +369,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 
 <nav>
   <a href="index.html" class="nlogo">
-    <img src="logo.png" alt="AstraCoreNova">
+    <img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'">
     <span class="nlogo-t">AstraCoreNova</span>
   </a>
   <ul class="nlinks">
@@ -373,102 +392,117 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 <div class="hero">
   <div class="hero-stage">
     
+    <!-- Abstract Geometric Cathedral Matrix -->
     <svg class="gothic-spires" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke-width="1.5">
+      <g fill="none">
         
-        <path d="M0,900 L1000,900 M0,950 L1000,950 M0,850 L1000,850" stroke="#222" stroke-width="1"/>
-        <path d="M100,800 L100,1000 M300,800 L300,1000 M500,800 L500,1000 M700,800 L700,1000 M900,800 L900,1000" stroke="#222" stroke-width="1"/>
-
-        <g stroke="#666">
-          <polyline points="200,900 500,100 800,900" stroke-width="2.5"/>
-          
-          <polyline points="200,900 350,650 500,900 650,650 800,900"/>
-          <polyline points="350,650 500,400 650,650"/>
-          <polyline points="500,400 500,100"/>
-          
-          <line x1="275" y1="775" x2="725" y2="775"/>
-          <line x1="350" y1="650" x2="650" y2="650"/>
-          <line x1="425" y1="525" x2="575" y2="525"/>
-          <line x1="500" y1="400" x2="500" y2="900"/>
-
-          <circle cx="500" cy="525" r="80"/>
-          <circle cx="500" cy="525" r="60" stroke-dasharray="8 8"/>
-          <polyline points="500,445 440,565 580,565 500,445" stroke="#BBB"/>
-          <polyline points="500,605 560,485 440,485 500,605" stroke="#BBB"/>
-          <path d="M500,445 Q580,525 500,605 Q420,525 500,445"/>
-          
-          <line x1="500" y1="100" x2="500" y2="900" stroke="#BBB" stroke-width="2"/>
-        </g>
-
-        <g stroke="#444">
-          <polyline points="50,900 250,300 350,550 400,900" stroke-width="2"/>
-          <line x1="150" y1="600" x2="350" y2="600"/>
-          <line x1="250" y1="300" x2="250" y2="900"/>
-          <polyline points="50,900 150,750 250,900 350,750 400,900"/>
-          
-          <circle cx="150" cy="750" r="10"/>
-          <circle cx="250" cy="600" r="10" fill="none" stroke="#666"/>
-          <circle cx="350" cy="750" r="10"/>
-        </g>
-
-        <g stroke="#444">
-          <polyline points="950,900 750,300 650,550 600,900" stroke-width="2"/>
-          <line x1="850" y1="600" x2="650" y2="600"/>
-          <line x1="750" y1="300" x2="750" y2="900"/>
-          <polyline points="950,900 850,750 750,900 650,750 600,900"/>
-
-          <circle cx="850" cy="750" r="10"/>
-          <circle cx="750" cy="600" r="10" fill="none" stroke="#666"/>
-          <circle cx="650" cy="750" r="10"/>
+        <!-- Deep background chaotic web -->
+        <g stroke="#222" stroke-width="1.5">
+          <path d="M0,1000 L500,50 L1000,1000" />
+          <path d="M100,1000 L250,200 L500,1000" />
+          <path d="M900,1000 L750,200 L500,1000" />
+          <path d="M-100,500 L1100,500" />
+          <path d="M250,-100 L250,1100" />
+          <path d="M750,-100 L750,1100" />
+          <path d="M-100,-100 L1100,1100" />
+          <path d="M1100,-100 L-100,1100" />
         </g>
         
-        <g stroke="#888" stroke-dasharray="10 10">
-          <path d="M250,300 Q500,200 750,300" stroke-width="1.5"/>
-          <path d="M350,550 Q500,450 650,550"/>
-          <line x1="400" y1="900" x2="600" y2="900"/>
+        <!-- Sacred Geometry Occult Circles -->
+        <g stroke="#333" stroke-width="1.5">
+          <circle cx="500" cy="500" r="350" />
+          <circle cx="500" cy="500" r="280" stroke-dasharray="4 12" stroke-width="2" />
+          <circle cx="500" cy="500" r="140" />
+          <circle cx="250" cy="400" r="180" />
+          <circle cx="750" cy="400" r="180" />
+          <circle cx="500" cy="150" r="90" />
         </g>
         
-        <g stroke="#222" stroke-width="1">
-          <line x1="100" y1="800" x2="200" y2="700"/>
-          <line x1="300" y1="800" x2="400" y2="700"/>
-          <line x1="600" y1="800" x2="700" y2="700"/>
-          <line x1="800" y1="800" x2="900" y2="700"/>
-          <line x1="200" y1="700" x2="350" y2="600"/>
-          <line x1="500" y1="100" x2="550" y2="50"/>
-          <line x1="500" y1="100" x2="450" y2="50"/>
+        <!-- Fractured geometric spires -->
+        <g stroke="#555" stroke-width="2">
+          <!-- Center Spire Anomalies -->
+          <polygon points="500,50 420,320 500,450 580,320" />
+          <polygon points="500,180 380,480 500,600 620,480" />
+          <polygon points="500,280 320,650 500,780 680,650" />
+          
+          <!-- Left Spire Anomalies -->
+          <polygon points="250,200 180,420 250,550 320,420" />
+          <polygon points="250,320 120,580 250,720 380,580" />
+          
+          <!-- Right Spire Anomalies -->
+          <polygon points="750,200 680,420 750,550 820,420" />
+          <polygon points="750,320 620,580 750,720 880,580" />
         </g>
         
-        <g stroke="#AAA">
-          <circle cx="500" cy="100" r="5" fill="#AAA"/>
-          <circle cx="350" cy="650" r="5" fill="#AAA"/>
-          <circle cx="650" cy="650" r="5" fill="#AAA"/>
-          <circle cx="500" cy="400" r="5" fill="#AAA"/>
-          <circle cx="200" y="900" r="5" fill="#AAA"/>
-          <circle cx="800" cy="900" r="5" fill="#AAA"/>
+        <!-- Intense geometric intersections & connections -->
+        <g stroke="#777" stroke-width="1.5" stroke-dasharray="10 6">
+          <path d="M500,50 L250,200 L500,450 L750,200 Z" />
+          <path d="M250,200 L250,750 L500,950 L750,750 L750,200" />
+          <path d="M420,320 L180,420 L320,650 L500,780" />
+          <path d="M580,320 L820,420 L680,650 L500,780" />
+        </g>
+        
+        <!-- Sharp core highlights (The mathematical "Vaults") -->
+        <g stroke="#999" stroke-width="2.5">
+          <path d="M500,380 L440,550 L500,720 L560,550 Z" />
+          <path d="M500,450 L470,550 L500,650 L530,550 Z" />
+          <line x1="500" y1="20" x2="500" y2="1000" stroke="#bbb" stroke-width="4" stroke-dasharray="20 10 5 10"/>
         </g>
 
+        <!-- Extra ambient brutalist vectors -->
+        <g stroke="#444" stroke-width="1">
+          <line x1="100" y1="800" x2="300" y2="600" />
+          <line x1="900" y1="800" x2="700" y2="600" />
+          <line x1="300" y1="800" x2="500" y2="600" />
+          <line x1="700" y1="800" x2="500" y2="600" />
+          <line x1="200" y1="950" x2="400" y2="750" />
+          <line x1="800" y1="950" x2="600" y2="750" />
+        </g>
       </g>
     </svg>
 
+    <!-- The Cross is now an abstract floating shattered anomaly -->
     <div class="cross-cluster">
+      <!-- Core highlights -->
+      <div class="shard s5"></div>
+      <div class="shard s12"></div>
+      <div class="shard s13"></div>
+      
+      <!-- Upper arm -->
       <div class="shard s1"></div>
-      <div class="shard s2"></div>
+      <div class="shard s14"></div>
+      <div class="shard s15"></div>
+      <div class="shard s16"></div>
+
+      <!-- Lower arm -->
       <div class="shard s3"></div>
       <div class="shard s4"></div>
-      <div class="shard s5"></div>
-      
+      <div class="shard s17"></div>
+      <div class="shard s18"></div>
+      <div class="shard s19"></div>
+
+      <!-- Left arm -->
       <div class="shard s6"></div>
       <div class="shard s7"></div>
+      <div class="shard s20"></div>
+      <div class="shard s21"></div>
+
+      <!-- Right arm -->
       <div class="shard s8"></div>
       <div class="shard s9"></div>
+      <div class="shard s22"></div>
+      <div class="shard s23"></div>
 
+      <!-- Orbiting dust -->
+      <div class="shard s2"></div>
       <div class="shard s10"></div>
       <div class="shard s11"></div>
+      <div class="shard s24"></div>
     </div>
   </div>
 
   <div class="hero-logo-wrap">
-    <img src="logo.png" alt="AstraCoreNova" class="hero-logo">
+    <img src="logo.png" alt="AstraCoreNova" class="hero-logo" onerror="this.style.display='none'">
   </div>
   
   <span class="hero-badge"><span class="dot"></span><span data-i="h_badge">Private AI · Every Platform</span></span>
@@ -631,7 +665,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 </section>
 
 <footer>
-  <a href="index.html" class="flogo"><img src="logo.png" alt="AstraCoreNova"><span class="flogo-t">AstraCoreNova</span></a>
+  <a href="index.html" class="flogo"><img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'"><span class="flogo-t">AstraCoreNova</span></a>
   <ul class="flinks">
     <li><a href="apps.html" data-i="nav_apps">Apps</a></li>
     <li><a href="astrabudget.html#privacy-policy" data-i="f_pp">Privacy Policy</a></li>
