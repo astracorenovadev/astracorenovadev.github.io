@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --void:#020202;--abyss:#050505;--deep:#0a0a0a;--panel:#111111;
+  --void:#060606;--abyss:#0a0a0a;--deep:#121212;--panel:#161616;
   --purple:#4a4a4a;--glow:#666666;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
   --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.55);--white:#e5e5e5;
   --line:rgba(255,255,255,.08);--line-bright:rgba(255,255,255,.25);
@@ -23,18 +23,18 @@ body{background:var(--void);color:var(--silver);font-family:'Syne',sans-serif;ov
 
 /* ── base atmosphere: brutal desaturated dark void ── */
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
-  radial-gradient(ellipse 70% 50% at 50% 38%,rgba(30,25,35,.5),transparent 60%),
-  radial-gradient(ellipse 90% 60% at 80% 70%,rgba(15,15,20,.4),transparent 65%),
-  radial-gradient(circle at 18% 80%,rgba(10,10,15,.6),transparent 55%),
-  linear-gradient(160deg,#050505 0%,#010101 45%,#000 100%);}
+  radial-gradient(ellipse 70% 50% at 50% 38%,rgba(30,30,35,.5),transparent 60%),
+  radial-gradient(ellipse 90% 60% at 80% 70%,rgba(20,20,25,.4),transparent 65%),
+  radial-gradient(circle at 18% 80%,rgba(15,15,20,.5),transparent 55%),
+  linear-gradient(160deg,#0a0a0a 0%,#030303 45%,#000 100%);}
 
 /* ── vignette: heavy black corners to simulate bad lens ── */
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
-  radial-gradient(ellipse 110% 80% at 50% 50%,transparent 30%,rgba(2,2,2,.85) 75%,rgba(0,0,0,1) 100%);}
+  radial-gradient(ellipse 110% 80% at 50% 50%,transparent 30%,rgba(2,2,2,.8) 75%,rgba(0,0,0,1) 100%);}
 
-/* ── film grain: EXTREME NOISE ── */
-.grain{position:fixed;inset:-150%;width:400%;height:400%;z-index:9990;pointer-events:none;opacity:0.98;mix-blend-mode:color-dodge;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 0.12s steps(2) infinite; filter: contrast(350%) brightness(40%);}
-@keyframes grain{0%{transform:translate(0,0);}50%{transform:translate(-1%,2.5%);}100%{transform:translate(1.5%,-1%);}}
+/* ── film grain: EXTREME degradation & noise ── */
+.grain{position:fixed;inset:-150%;width:400%;height:400%;z-index:9990;pointer-events:none;opacity:0.95;mix-blend-mode:color-dodge;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 0.2s steps(2) infinite; filter: contrast(250%) brightness(60%);}
+@keyframes grain{0%{transform:translate(0,0);}50%{transform:translate(-1.5%,2%);}100%{transform:translate(1.5%,-1.5%);}}
 
 /* ── cursor ── */
 #cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--lum);}
@@ -68,25 +68,20 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .mobile-menu a:hover{color:var(--lum);}
 
 /* ── hero ── */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:12rem 2rem 4rem;z-index:3; overflow:hidden;}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3;}
+.hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;pointer-events:none;z-index:0;}
 
-/* FIX: Absolute stage covering entire viewport perfectly */
-.hero-stage{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+/* Complex Abstract Gothic Geometry Background (No Crosses) */
+.gothic-spires{position:absolute;inset:0;width:100%;height:100%;opacity:0.22;z-index:0; filter: drop-shadow(0 0 40px rgba(0,0,0,1));}
 
-/* HEAVY, SCARY Gothic Cathedral (Fills viewport) */
-.gothic-spires{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) scale(0.65);min-width:100vw;min-height:100vh;opacity:0.35;z-index:0; filter: drop-shadow(0 0 60px rgba(0,0,0,1)); object-fit:cover;}
-
-/* Stained Glass Classic Latin Cross */
-.cross-cluster{position:absolute;top:50%;left:50%;width:400px;height:400px;transform:translate(-50%, -50%);z-index:1; filter: drop-shadow(0 0 60px rgba(60,10,90,0.8));}
-.cross-rotator{width:100%;height:100%;animation:spin-cw 90s linear infinite;}
-
-@keyframes spin-cw{from{transform:rotate(0);}to{transform:rotate(360deg);}}
-@keyframes spin-ccw{from{transform:rotate(0);}to{transform:rotate(-360deg);}}
+/* True Glass Mosaic Cross (Rotating) */
+.cross-cluster{position:absolute;top:50%;left:50%;width:500px;height:500px;margin-top:-250px;margin-left:-250px;animation:spin-cross 70s linear infinite;z-index:1; filter: drop-shadow(0 0 40px rgba(40,10,60,0.8));}
+@keyframes spin-cross{from{transform:rotate(0);}to{transform:rotate(360deg);}}
 
 .mosaic-cross { width: 100%; height: 100%; overflow: visible; }
-.mosaic-cross polygon, .mosaic-cross path {
-  stroke: rgba(5,2,10,0.95); /* Heavy lead lines */
-  stroke-width: 4;
+.mosaic-cross polygon {
+  stroke: #030108; /* Dark lead lines */
+  stroke-width: 3.5;
   stroke-linejoin: round;
 }
 
@@ -94,16 +89,16 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .hero-logo-wrap { position: relative; z-index: 2; margin-bottom: 2.2rem; display: inline-flex; align-items: center; justify-content: center; }
 .hero-logo-wrap::after {
   content: ''; position: absolute; top: 50%; left: 50%;
-  width: 100px; height: 100px; transform: translate(-50%, -50%);
+  width: 120px; height: 120px; transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 40%, transparent 80%);
   border-radius: 50%; z-index: -1; pointer-events: none;
-  animation: holy-glare 1s ease-in-out infinite alternate;
+  animation: holy-glare 1.8s ease-in-out infinite alternate;
 }
 @keyframes holy-glare {
-  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); filter: blur(30px); }
-  100% { opacity: 1; transform: translate(-50%, -50%) scale(2.8); filter: blur(50px); }
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); filter: blur(20px); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.8); filter: blur(35px); }
 }
-.hero-logo{height:160px;width:auto; position:relative; z-index:2; filter:drop-shadow(0 0 30px rgba(0,0,0,1)); animation:rise 1.1s .1s both;}
+.hero-logo{height:160px;width:auto; position:relative; z-index:2; filter:drop-shadow(0 0 20px rgba(0,0,0,0.9)); animation:rise 1.1s .1s both;}
 
 .hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--lum);border:1px solid var(--line-bright);padding:.4rem 1.2rem;border-radius:2rem;margin-bottom:2.4rem;background:rgba(255,255,255,.03);backdrop-filter:blur(6px);animation:rise 1.1s .3s both;position:relative;z-index:2;}
 .hero-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--lum);box-shadow:0 0 8px var(--lum);}
@@ -154,7 +149,7 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 .sol-list li{color:var(--silver);font-size:.85rem;padding:.4rem 0 .4rem 1.4rem;position:relative;font-weight:400;}
 .sol-list li::before{content:'◆';position:absolute;left:0;top:.5rem;color:var(--lum);font-size:.5rem;}
 
-/* ── Brutalist Occult AI Core ── */
+/* ── Complex AI Star Core ── */
 .ai-band{position:relative;z-index:2;margin:0 auto;max-width:1180px;padding:5.5rem 3rem;}
 .ai-inner{padding:3.4rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;}
 .ai-points{list-style:none;margin-top:1.8rem;}
@@ -164,47 +159,58 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 
 .ai-star-wrapper {
   position: relative;
-  width: 280px; height: 280px;
+  width: 260px; height: 260px;
   display: flex; align-items: center; justify-content: center;
+  filter: drop-shadow(0 0 20px rgba(120, 50, 200, 0.6));
 }
-
-/* Outer Circle (Clockwise) - NO NEON */
-.ai-orbit-circle {
-  position: absolute; inset: 0;
-  border: 2px solid rgba(80, 80, 80, 0.6);
-  border-top: 2px solid rgba(160, 160, 160, 0.8); /* Highlight edge instead of spark */
-  border-bottom: 2px solid rgba(160, 160, 160, 0.4);
+.ai-star-ring-1 {
+  position: absolute; inset: 10px;
   border-radius: 50%;
-  animation: spin-cw 15s linear infinite;
+  border: 1px dashed rgba(160, 90, 240, 0.5);
+  animation: spin-slow 40s linear infinite;
+}
+.ai-star-ring-2 {
+  position: absolute; inset: -20px;
+  border: 1px solid rgba(100, 50, 150, 0.2);
+  border-radius: 50%;
+  animation: spin-slow-reverse 30s linear infinite;
 }
 
-/* Inner Pentacle (Counter-Clockwise) - NO NEON */
-.ai-star-rotating {
-  position: absolute; inset: 20px;
-  animation: spin-ccw 20s linear infinite;
-  z-index: 1;
-}
-.ai-star-rotating svg {
-  width: 100%; height: 100%;
-}
-.ai-star-rotating polygon {
-  fill: rgba(15, 15, 15, 0.95);
-  stroke: rgba(120, 120, 120, 0.8);
-  stroke-width: 2;
-  stroke-linejoin: round;
-}
-
-/* Static Text - NO NEON */
-.ai-star-text {
-  position: absolute;
-  z-index: 10;
+/* 8-pointed star clip-path */
+.ai-star-core {
+  background: radial-gradient(circle at 50% 50%, rgba(40, 10, 60, 0.95), rgba(10, 5, 15, 0.98));
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+  width: 220px; height: 220px;
   display: flex; align-items: center; justify-content: center;
+  position: relative;
+  z-index: 2;
+  animation: pulse-star 3s ease-in-out infinite alternate;
 }
-.ai-star-text span {
-  font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 900;
+/* Inner structural star lines */
+.ai-star-core::before {
+  content: ''; position: absolute; inset: 0;
+  background: 
+    linear-gradient(45deg, transparent 49%, rgba(180, 100, 250, 0.3) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(180, 100, 250, 0.3) 50%, transparent 51%),
+    linear-gradient(to right, transparent 49.5%, rgba(180, 100, 250, 0.5) 50%, transparent 50.5%),
+    linear-gradient(to bottom, transparent 49.5%, rgba(180, 100, 250, 0.5) 50%, transparent 50.5%);
+  pointer-events: none;
+}
+
+.ai-star-core span {
+  font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 900;
   color: var(--white);
-  letter-spacing: 0.25em; text-align: center; line-height: 1.5;
+  text-shadow: 0 0 10px rgba(255,255,255,1), 0 0 30px rgba(180,100,250,1);
+  letter-spacing: 0.25em; text-align: center; line-height: 1.6;
   text-transform: uppercase;
+  z-index: 3;
+}
+
+@keyframes spin-slow { 100% { transform: rotate(360deg); } }
+@keyframes spin-slow-reverse { 100% { transform: rotate(-360deg); } }
+@keyframes pulse-star {
+  0% { transform: scale(0.95); opacity: 0.85; }
+  100% { transform: scale(1.05); opacity: 1; }
 }
 
 /* ── values ── */
@@ -272,7 +278,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   .hamburger{display:flex;}
   .nlogo-t{font-size:.9rem;}
   .nlogo img{height:30px;}
-  .hero{padding:10rem 1.3rem 3.5rem;min-height:100svh;}
+  .hero{padding:6rem 1.3rem 3.5rem;min-height:100svh;}
   .hero-logo{height:108px;}
   .hero-h{font-size:clamp(1.9rem,8vw,3rem);}
   .hero-sub{font-size:.92rem;margin-bottom:2.2rem;}
@@ -334,92 +340,78 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 <div class="hero">
   <div class="hero-stage">
     
-    <svg class="gothic-spires" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <pattern id="brick" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M0,20 L40,20 M20,0 L20,40 M0,0 L40,40 M40,0 L0,40" stroke="rgba(30,30,30,0.3)" stroke-width="0.5"/>
-        </pattern>
-      </defs>
-      <rect width="1000" height="1000" fill="url(#brick)" />
-      
-      <polygon points="500,-100 800,400 800,1100 200,1100 200,400" fill="rgba(6,6,8,0.9)"/>
-      <polygon points="100,100 350,500 350,1100 -100,1100 -100,500" fill="rgba(4,4,6,0.85)"/>
-      <polygon points="900,100 650,500 650,1100 1100,1100 1100,500" fill="rgba(4,4,6,0.85)"/>
-
-      <g stroke="rgba(80,80,80,0.8)" fill="none" stroke-width="2">
-        <path d="M-200,-200 Q500,600 1200,-200" stroke-width="6" stroke="rgba(60,60,60,0.7)"/>
-        <path d="M0,0 Q500,700 1000,0" stroke-width="5" stroke="rgba(50,50,50,0.6)"/>
-        <line x1="0" y1="0" x2="1000" y2="1000" stroke="rgba(50,50,50,0.5)" stroke-width="4"/>
-        <line x1="1000" y1="0" x2="0" y2="1000" stroke="rgba(50,50,50,0.5)" stroke-width="4"/>
-        <line x1="500" y1="-100" x2="500" y2="1100" stroke="rgba(70,70,70,0.6)" stroke-width="5"/>
+    <svg class="gothic-spires" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+      <g stroke="rgba(100,100,100,0.6)" fill="none" stroke-width="1.5">
         
-        <path d="M100,-100 L500,400 L900,-100" stroke-width="3" stroke="rgba(90,90,90,0.4)"/>
-        <path d="M200,-100 L500,300 L800,-100" stroke-width="3" stroke="rgba(90,90,90,0.4)"/>
-
-        <path d="M50,1100 L50,500 Q500,-100 950,500 L950,1100" stroke-width="8" stroke="rgba(40,40,40,0.95)"/>
-        <path d="M150,1100 L150,600 Q500,50 850,600 L850,1100" stroke-width="6" stroke="rgba(50,50,50,0.9)"/>
-        <path d="M250,1100 L250,700 Q500,200 750,700 L750,1100" stroke-width="5" stroke="rgba(70,70,70,0.8)"/>
-        <path d="M350,1100 L350,800 Q500,350 650,800 L650,1100" stroke-width="4" stroke="rgba(90,90,90,0.7)"/>
-
-        <rect x="50" y="500" width="100" height="600" fill="rgba(8,8,10,0.95)" stroke-width="4"/>
-        <rect x="850" y="500" width="100" height="600" fill="rgba(8,8,10,0.95)" stroke-width="4"/>
-        <line x1="100" y1="500" x2="100" y2="1100" stroke="rgba(120,120,120,0.3)"/>
-        <line x1="900" y1="500" x2="900" y2="1100" stroke="rgba(120,120,120,0.3)"/>
+        <path d="M100,1000 Q500,-200 900,1000" stroke="rgba(80,80,80,0.3)" stroke-width="3"/>
+        <path d="M200,1000 Q500,0 800,1000" stroke="rgba(100,100,100,0.4)" stroke-width="2"/>
+        <path d="M300,1000 Q500,200 700,1000" stroke="rgba(120,120,120,0.5)" stroke-width="1"/>
         
-        <polygon points="50,500 100,50 150,500" fill="rgba(12,12,12,0.95)"/>
-        <polygon points="850,500 900,50 950,500" fill="rgba(12,12,12,0.95)"/>
-        <polygon points="150,600 200,150 250,600" fill="rgba(18,18,18,0.85)"/>
-        <polygon points="750,600 800,150 850,600" fill="rgba(18,18,18,0.85)"/>
+        <circle cx="500" cy="450" r="180" stroke="rgba(140,140,140,0.3)" stroke-width="1"/>
+        <circle cx="500" cy="450" r="140" stroke="rgba(160,160,160,0.4)" stroke-width="1.5" stroke-dasharray="10 15"/>
+        <circle cx="500" cy="450" r="100" stroke="rgba(180,180,180,0.5)" stroke-width="2"/>
+        <circle cx="500" cy="450" r="40" fill="rgba(15,15,15,0.8)"/>
         
-        <path d="M100,50 L100,-100 M900,50 L900,-100" stroke-width="4"/>
-        <path d="M200,150 L200,-50 M800,150 L800,-50" stroke-width="3"/>
+        <path d="M500,350 C540,350 560,400 500,450 C440,400 460,350 500,350 Z" stroke="rgba(150,150,150,0.5)"/>
+        <path d="M500,550 C540,550 560,500 500,450 C440,500 460,550 500,550 Z" stroke="rgba(150,150,150,0.5)"/>
+        <path d="M400,450 C400,410 450,390 500,450 C450,510 400,490 400,450 Z" stroke="rgba(150,150,150,0.5)"/>
+        <path d="M600,450 C600,410 550,390 500,450 C550,510 600,490 600,450 Z" stroke="rgba(150,150,150,0.5)"/>
+        
+        <line x1="0" y1="0" x2="350" y2="300" stroke="rgba(90,90,90,0.4)"/>
+        <line x1="1000" y1="0" x2="650" y2="300" stroke="rgba(90,90,90,0.4)"/>
+        <line x1="0" y1="1000" x2="350" y2="600" stroke="rgba(90,90,90,0.4)"/>
+        <line x1="1000" y1="1000" x2="650" y2="600" stroke="rgba(90,90,90,0.4)"/>
+
+        <polygon points="450,1000 470,200 500,50 530,200 550,1000" fill="rgba(10,10,10,0.6)" stroke-width="2"/>
+        <line x1="500" y1="50" x2="500" y2="1000" stroke="rgba(150,150,150,0.6)"/>
+        
+        <polygon points="200,1000 240,400 260,150 280,400 320,1000" fill="rgba(12,12,12,0.5)"/>
+        <line x1="260" y1="150" x2="260" y2="1000" stroke="rgba(120,120,120,0.5)"/>
+
+        <polygon points="800,1000 760,400 740,150 720,400 680,1000" fill="rgba(12,12,12,0.5)"/>
+        <line x1="740" y1="150" x2="740" y2="1000" stroke="rgba(120,120,120,0.5)"/>
+
+        <path d="M320,600 Q380,550 450,700" stroke-width="3"/>
+        <path d="M320,750 Q380,700 450,850" stroke-width="3"/>
+        <path d="M680,600 Q620,550 550,700" stroke-width="3"/>
+        <path d="M680,750 Q620,700 550,850" stroke-width="3"/>
+        
       </g>
     </svg>
 
     <div class="cross-cluster">
-      <div class="cross-rotator">
-        <svg class="mosaic-cross" viewBox="0 0 500 500">
-          <path d="M200,50 L300,50 L300,150 L450,150 L450,250 L300,250 L300,450 L200,450 L200,250 L50,250 L50,150 L200,150 Z" fill="rgba(10,5,20,0.6)" stroke="rgba(0,0,0,0.9)" stroke-width="8" stroke-linejoin="round"/>
-          
-          <polygon points="200,50 300,50 250,100" fill="rgba(40,15,65,0.85)"/>
-          <polygon points="200,50 250,100 200,150" fill="rgba(25,10,45,0.9)"/>
-          <polygon points="300,50 300,150 250,100" fill="rgba(55,20,80,0.7)"/>
-          <polygon points="200,150 300,150 250,100" fill="rgba(70,25,95,0.8)"/>
+      <svg class="mosaic-cross" viewBox="0 0 500 500">
+        <polygon points="250,210 270,250 250,290 230,250" fill="rgba(50,20,80,0.85)"/>
+        <polygon points="250,210 230,250 210,210 230,170" fill="rgba(80,30,120,0.7)"/>
+        <polygon points="250,210 270,250 290,210 270,170" fill="rgba(40,15,60,0.9)"/>
+        <polygon points="230,250 210,290 230,330 250,290" fill="rgba(60,25,90,0.6)"/>
+        <polygon points="270,250 290,290 270,330 250,290" fill="rgba(70,20,100,0.8)"/>
+        
+        <polygon points="230,170 270,170 260,110 240,90" fill="rgba(30,10,50,0.85)"/>
+        <polygon points="240,90 260,110 250,50 235,50" fill="rgba(55,20,85,0.6)"/>
+        <polygon points="210,210 230,170 215,120 195,160" fill="rgba(45,15,70,0.75)"/>
+        <polygon points="290,210 270,170 285,120 305,160" fill="rgba(25,8,45,0.9)"/>
 
-          <polygon points="50,150 150,150 100,200" fill="rgba(35,10,55,0.8)"/>
-          <polygon points="50,150 100,200 50,250" fill="rgba(50,15,75,0.9)"/>
-          <polygon points="150,150 150,250 100,200" fill="rgba(20,5,30,0.95)"/>
-          <polygon points="50,250 150,250 100,200" fill="rgba(65,20,90,0.7)"/>
-          
-          <polygon points="150,150 200,150 150,200" fill="rgba(45,12,65,0.8)"/>
-          <polygon points="150,250 200,250 150,200" fill="rgba(80,30,120,0.6)"/>
-          <polygon points="200,150 200,250 150,200" fill="rgba(30,8,45,0.9)"/>
+        <polygon points="230,330 270,330 265,390 235,400" fill="rgba(60,20,100,0.65)"/>
+        <polygon points="235,400 265,390 255,450 240,460" fill="rgba(20,5,35,0.9)"/>
+        <polygon points="210,290 230,330 220,380 200,340" fill="rgba(70,25,110,0.5)"/>
+        <polygon points="290,290 270,330 280,380 300,340" fill="rgba(40,12,65,0.8)"/>
+        
+        <polygon points="210,210 210,290 150,280 130,250" fill="rgba(50,15,80,0.7)"/>
+        <polygon points="150,280 130,250 90,240 100,270" fill="rgba(35,10,55,0.85)"/>
+        <polygon points="130,250 210,210 160,200 110,220" fill="rgba(80,30,130,0.6)"/>
+        <polygon points="110,220 90,240 50,230 60,200" fill="rgba(20,8,30,0.9)"/>
 
-          <polygon points="350,150 450,150 400,200" fill="rgba(60,20,85,0.75)"/>
-          <polygon points="350,150 400,200 350,250" fill="rgba(25,8,40,0.95)"/>
-          <polygon points="450,150 450,250 400,200" fill="rgba(40,10,60,0.85)"/>
-          <polygon points="350,250 450,250 400,200" fill="rgba(75,25,100,0.65)"/>
+        <polygon points="290,210 290,290 350,280 370,250" fill="rgba(45,15,75,0.75)"/>
+        <polygon points="350,280 370,250 410,240 400,270" fill="rgba(25,5,40,0.9)"/>
+        <polygon points="370,250 290,210 340,200 390,220" fill="rgba(65,20,100,0.6)"/>
+        <polygon points="390,220 410,240 450,230 440,200" fill="rgba(80,25,120,0.5)"/>
 
-          <polygon points="300,150 350,150 350,200" fill="rgba(35,10,50,0.9)"/>
-          <polygon points="300,250 350,250 350,200" fill="rgba(55,15,75,0.8)"/>
-          <polygon points="300,150 300,250 350,200" fill="rgba(85,35,130,0.55)"/>
-
-          <polygon points="200,150 300,150 250,200" fill="rgba(90,40,140,0.6)"/>
-          <polygon points="200,150 250,200 200,250" fill="rgba(45,15,70,0.85)"/>
-          <polygon points="300,150 300,250 250,200" fill="rgba(20,5,30,0.95)"/>
-          <polygon points="200,250 300,250 250,200" fill="rgba(65,20,95,0.75)"/>
-
-          <polygon points="200,250 300,250 250,300" fill="rgba(40,10,60,0.8)"/>
-          <polygon points="200,250 250,300 200,350" fill="rgba(70,25,105,0.7)"/>
-          <polygon points="300,250 300,350 250,300" fill="rgba(25,5,40,0.95)"/>
-          <polygon points="200,350 300,350 250,300" fill="rgba(55,20,80,0.8)"/>
-
-          <polygon points="200,350 300,350 250,400" fill="rgba(35,10,55,0.9)"/>
-          <polygon points="200,350 250,400 200,450" fill="rgba(80,30,120,0.6)"/>
-          <polygon points="300,350 300,450 250,400" fill="rgba(45,15,70,0.85)"/>
-          <polygon points="200,450 300,450 250,400" fill="rgba(60,20,90,0.75)"/>
-        </svg>
-      </div>
+        <polygon points="170,120 185,130 175,150 160,140" fill="rgba(90,40,150,0.4)"/>
+        <polygon points="310,130 325,110 340,125 320,145" fill="rgba(40,10,70,0.7)"/>
+        <polygon points="140,330 160,320 170,350 150,360" fill="rgba(60,20,90,0.5)"/>
+        <polygon points="330,340 350,330 365,360 345,370" fill="rgba(30,5,50,0.8)"/>
+      </svg>
     </div>
   </div>
 
@@ -510,15 +502,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
     <div class="ai-visual">
       
       <div class="ai-star-wrapper">
-        <div class="ai-orbit-circle"></div>
-        
-        <div class="ai-star-rotating">
-          <svg viewBox="0 0 100 100">
-            <polygon points="50,5 20,90 95,38 5,38 80,90" fill="rgba(20,20,20,0.9)" stroke="rgba(140,140,140,0.8)" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
-
-        <div class="ai-star-text">
+        <div class="ai-star-ring-1"></div>
+        <div class="ai-star-ring-2"></div>
+        <div class="ai-star-core">
           <span data-i="ai_orb">Local<br>AI<br>Core</span>
         </div>
       </div>
@@ -637,7 +623,7 @@ pt:{nav_home:'Início',nav_plat:'Plataformas',nav_sol:'Soluções',nav_apps:'App
 de:{nav_home:'Start',nav_plat:'Plattformen',nav_sol:'Lösungen',nav_apps:'Apps',nav_con:'Kontakt',h_badge:'Private KI · Jede Plattform',h1:'Wir bauen Software, die nur',h1b:'Ihnen verpflichtet ist',hsub:'AstraCoreNova entwickelt KI-Apps für Menschen und Unternehmen — für Android, Linux, macOS, Windows und iOS. Lokale KI auf Ihrer Hardware. Ihre Daten bleiben ohne Ihr Wort, wo sie sind.',hcta1:'Apps entdecken',hcta2:'Was wir bauen',pf_tag:'Reichweite',pf_title:'Ein Handwerk. Jede Plattform.',pf_lead:'Wir entwickeln Software in nativer Qualität, wo Sie arbeiten — Handy, Desktop oder Server. Ein geteilter Kern, auf jedes System abgestimmt.',pf_and:'Apps & KI auf dem Gerät',pf_lin:'Desktop- & Edge-Tools',pf_apl:'Apple-Ökosystem',pf_win:'Desktop & Business',pf_note:'Plattformübergreifend mit Kotlin Multiplatform & Compose — ein Kern, überall nativ.',sol_tag:'Was wir bauen',sol_title:'Persönliche Software. Business-Systeme.',sol_lead:'Von der Finanz-App, die still auf Ihrem Handy lebt, bis zu KI-Tools im Firmen-Workflow — wir bauen beides mit derselben Privacy-First-Disziplin.',sol1_tag:'Für Menschen',sol1_h:'Persönliche Apps',sol1_d:'Fokussierte, schöne Tools, die eine Sache perfekt machen und Sie als Mensch respektieren — nicht als Datenquelle. Alles läuft standardmäßig auf Ihrem Gerät.',sol1_a:'Finanzen, Produktivität & KI-Begleiter',sol1_b:'Verarbeitung auf dem Gerät, kein Tracking',sol1_c:'Lokalisiert für 25+ Länder',sol2_tag:'Für Unternehmen',sol2_h:'Maßgeschneiderte Software & KI',sol2_d:'Maßgeschneiderte Software — Desktop, Mobil, Server — für Teams, mit lokaler KI in Ihrer Infrastruktur, damit sensible Daten im Haus bleiben.',sol2_a:'Plattformübergreifende Desktop- & Mobil-Builds',sol2_b:'On-Premise- & Private-Cloud-KI',sol2_c:'Workflow-Automatisierung & Integrationen',ai_tag:'Lokale Intelligenz',ai_title:'KI, die läuft, wo Ihre Daten leben',ai_lead:'Wir integrieren KI-Modelle, die auf Ihrem Gerät oder Server laufen — schnell, offline und privat. Wenn die Cloud wirklich hilft, ist sie opt-in und transparent.',ai_a:'Modelle auf dem Gerät für volle Offline-Privatsphäre',ai_b:'Optionale Cloud-KI — immer opt-in, nie heimlich',ai_c:'Wir erklären, was die KI tut und warum — keine Black Boxes',ai_orb:'Lokaler<br>KI-<br>Kern',v_tag:'Warum AstraCoreNova',v_title:'Technologie, der Sie vertrauen können',v1t:'Privacy by Design',v1d:'Datenschutz ist kein Feature — er ist das Fundament. Ihre Daten verlassen das Gerät nie ohne ausdrückliche Erlaubnis.',v2t:'KI auf Ihrer Seite',v2d:'KI als Werkzeug — leistungsstark, nützlich, transparent. Wir erklären, was sie tut und warum. Keine Black Boxes.',v3t:'Minimalismus & Tempo',v3d:'Apps, die eine Sache — perfekt — tun. Keine überflüssigen Rechte, kein Ballast. Nur das Nötige.',v4t:'Transparenz',v4d:'Klare Datenschutzrichtlinien für jede App. Keine versteckten Klauseln — verständliche Sprache.',p_tag:'Unsere Philosophie',p_title:'Datenschutz ist ein Recht, kein Privileg',p1:'In einer Welt, in der Daten zur Währung wurden, gehen wir einen anderen Weg. Wir respektieren den Menschen — nicht die Datenquelle.',p2:'Jede App durchläuft vor dem Release ein Datenschutz-Audit. Wir sammeln nicht, was wir nicht brauchen. Wir verkaufen nicht, was wir haben.',pi1:'Datenverkäufe',pi2:'Transparenz',pi3num:'Lokal',pi3:'KI-Verarbeitung',co_tag:'Kontakt',co_title:'Bauen Sie mit uns',co_sub:'Fragen zu Apps, einem Business-Projekt oder lokaler KI-Integration? Melden Sie sich — wir antworten schnell.',co_name:'Ihr Name',co_email:'E-Mail',co_msg:'Nachricht...',co_send:'Nachricht senden',f_pp:'Datenschutz',f_copy:'© 2026 AstraCoreNova. Alle Rechte vorbehalten.'},
 fr:{nav_home:'Accueil',nav_plat:'Plateformes',nav_sol:'Solutions',nav_apps:'Applications',nav_con:'Contact',h_badge:'IA Privée · Toute Plateforme',h1:'Nous créons un logiciel qui ne répond',h1b:"qu'à vous",hsub:"AstraCoreNova crée des apps IA pour les particuliers et les entreprises — sur Android, Linux, macOS, Windows et iOS. IA locale sur votre matériel. Vos données ne partent jamais sans votre accord.",hcta1:'Découvrir les apps',hcta2:'Ce que nous faisons',pf_tag:'Portée',pf_title:'Un savoir-faire. Toute plateforme.',pf_lead:'Nous concevons un logiciel de qualité native là où vous travaillez — mobile, bureau ou serveur. Un cœur partagé, ajusté à chaque système.',pf_and:'Apps & IA sur l\'appareil',pf_lin:'Outils bureau & edge',pf_apl:'Écosystème Apple',pf_win:'Bureau & entreprise',pf_note:'Multiplateforme avec Kotlin Multiplatform & Compose — un cœur, natif partout.',sol_tag:'Ce que nous faisons',sol_title:'Logiciel personnel. Systèmes pro.',sol_lead:"D'une app de finances discrète sur votre mobile aux outils IA intégrés au flux d'une entreprise — nous faisons les deux, avec la même rigueur privacy-first.",sol1_tag:'Pour les particuliers',sol1_h:'Apps personnelles',sol1_d:"Des outils ciblés et soignés qui font une chose à la perfection et vous respectent en tant que personne — pas comme source de données. Tout tourne sur votre appareil par défaut.",sol1_a:'Finances, productivité & compagnons IA',sol1_b:'Traitement local, sans suivi',sol1_c:'Localisé pour 25+ pays',sol2_tag:'Pour les entreprises',sol2_h:'Logiciel & IA sur mesure',sol2_d:"Logiciel sur mesure — bureau, mobile, serveur — pour les équipes, avec une IA locale intégrée à votre infrastructure, pour que les données sensibles ne sortent jamais.",sol2_a:'Builds multiplateformes bureau & mobile',sol2_b:'IA on-premise & cloud privé',sol2_c:'Automatisation des flux & intégrations',ai_tag:'Intelligence locale',ai_title:'Une IA qui tourne où vivent vos données',ai_lead:"Nous intégrons des modèles IA qui tournent sur votre appareil ou serveur — rapides, hors ligne et privés. Quand le cloud aide vraiment, c'est opt-in et transparent.",ai_a:'Modèles sur l\'appareil pour une confidentialité hors ligne totale',ai_b:'IA cloud optionnelle — toujours opt-in, jamais en silence',ai_c:"Nous expliquons ce que fait l'IA et pourquoi — pas de boîtes noires",ai_orb:'Cœur<br>IA<br>Local',v_tag:'Pourquoi AstraCoreNova',v_title:'Une technologie de confiance',v1t:'Privacy by Design',v1d:"La confidentialité n'est pas une option — c'est le fondement. Vos données ne quittent jamais l'appareil sans accord explicite.",v2t:"L'IA de votre côté",v2d:"L'IA comme outil — puissante, utile, transparente. Nous expliquons ce qu'elle fait et pourquoi. Pas de boîtes noires.",v3t:'Minimalisme & vitesse',v3d:'Des apps qui font une chose — parfaitement. Aucune permission superflue. Juste le nécessaire.',v4t:'Transparence',v4d:'Des politiques de confidentialité claires. Aucune clause cachée — un langage simple.',p_tag:'Notre philosophie',p_title:'La confidentialité est un droit, pas un privilège',p1:'Dans un monde où les données sont devenues monnaie, nous choisissons une autre voie. Nous respectons la personne — pas la source de données.',p2:"Chaque app passe un audit de confidentialité. Nous ne collectons pas l'inutile. Nous ne vendons pas ce que nous avons.",pi1:'ventes de données',pi2:'transparence',pi3num:'Local',pi3:'traitement IA',co_tag:'Contact',co_title:'Construisons ensemble',co_sub:"Des questions sur nos apps, un projet d'entreprise ou l'intégration d'IA locale ? Écrivez-nous — réponse rapide.",co_name:'Votre nom',co_email:'Email',co_msg:'Message...',co_send:'Envoyer',f_pp:'Confidentialité',f_copy:'© 2026 AstraCoreNova. Tous droits réservés.'},
 it:{nav_home:'Home',nav_plat:'Piattaforme',nav_sol:'Soluzioni',nav_apps:'Applicazioni',nav_con:'Contatti',h_badge:'IA Privata · Ogni Piattaforma',h1:'Creiamo software che risponde',h1b:'solo a te',hsub:'AstraCoreNova crea app con IA per persone e aziende — su Android, Linux, macOS, Windows e iOS. IA locale sul tuo hardware. I tuoi dati non escono senza il tuo consenso.',hcta1:'Esplora le App',hcta2:'Cosa facciamo',pf_tag:'Portata',pf_title:'Un mestiere. Ogni piattaforma.',pf_lead:'Progettiamo software di qualità nativa dove lavori — telefono, desktop o server. Un nucleo condiviso, calibrato su ogni sistema.',pf_and:'App e IA sul dispositivo',pf_lin:'Strumenti desktop & edge',pf_apl:'Ecosistema Apple',pf_win:'Desktop e business',pf_note:'Multipiattaforma con Kotlin Multiplatform e Compose — un nucleo, nativo ovunque.',sol_tag:'Cosa facciamo',sol_title:'Software personale. Sistemi aziendali.',sol_lead:"Da un'app di finanza che vive nel tuo telefono a strumenti IA integrati nel flusso di un'azienda — facciamo entrambi, con la stessa disciplina privacy-first.",sol1_tag:'Per le persone',sol1_h:'App personali',sol1_d:'Strumenti mirati e curati che fanno una cosa alla perfezione e ti rispettano come persona — non come fonte di dati. Tutto gira sul tuo dispositivo per impostazione predefinita.',sol1_a:'Finanza, produttività e compagni IA',sol1_b:'Elaborazione locale, nessun tracciamento',sol1_c:'Localizzato per 25+ paesi',sol2_tag:'Per le aziende',sol2_h:'Software e IA su misura',sol2_d:"Software su misura — desktop, mobile e server — per i team, con IA locale integrata nella tua infrastruttura, così i dati sensibili non escono.",sol2_a:'Build multipiattaforma desktop e mobile',sol2_b:'IA on-premise e cloud privato',sol2_c:'Automazione dei flussi e integrazioni',ai_tag:'Intelligenza locale',ai_title:'IA che gira dove vivono i tuoi dati',ai_lead:"Integriamo modelli IA che girano sul tuo dispositivo o server — veloci, offline e privati. Quando il cloud aiuta davvero, è opt-in e trasparente.",ai_a:'Modelli sul dispositivo per piena privacy offline',ai_b:'IA cloud opzionale — sempre opt-in, mai in silenzio',ai_c:"Spieghiamo cosa fa l'IA e perché — niente scatole nere",ai_orb:'Nucleo<br>IA<br>Locale',v_tag:'Perché AstraCoreNova',v_title:'Tecnologia di cui fidarti',v1t:'Privacy by Design',v1d:"La privacy non è una funzione — è il fondamento. I tuoi dati non lasciano mai il dispositivo senza permesso esplicito.",v2t:"L'IA dalla tua parte",v2d:"L'IA come strumento — potente, utile, trasparente. Spieghiamo cosa fa e perché. Niente scatole nere.",v3t:'Minimalismo e velocità',v3d:'App che fanno una cosa — alla perfezione. Nessun permesso superfluo. Solo il necessario.',v4t:'Trasparenza',v4d:'Informative privacy chiare. Nessuna clausola nascosta — linguaggio semplice.',p_tag:'La nostra filosofia',p_title:'La privacy è un diritto, non un privilegio',p1:'In un mondo dove i dati sono moneta, scegliamo un percorso diverso. Rispettiamo la persona — non la fonte di dati.',p2:'Ogni app passa un audit sulla privacy. Non raccogliamo ciò che non serve. Non vendiamo ciò che abbiamo.',pi1:'vendite di dati',pi2:'trasparenza',pi3num:'Locale',pi3:'elaborazione IA',co_tag:'Contatti',co_title:'Costruiamo insieme',co_sub:"Domande sulle app, un progetto aziendale o l'integrazione di IA locale? Scrivici — rispondiamo in fretta.",co_name:'Il tuo nome',co_email:'Email',co_msg:'Messaggio...',co_send:'Invia',f_pp:'Privacy',f_copy:'© 2026 AstraCoreNova. Tutti i diritti riservati.'},
-nl:{nav_home:'Home',nav_plat:'Platforms',nav_sol:'Oplossingen',nav_apps:'Apps',nav_con:'Contact',h_badge:'Private AI · Elk Platform',h1:'Wij bouwen software die alleen',h1b:'aan u verantwoording aflegt',hsub:'AstraCoreNova maakt AI-apps voor mensen en bedrijven — voor Android, Linux, macOS, Windows en iOS. Lokale AI op uw eigen hardware. Uw gegevens blijven zonder uw woord waar ze zijn.',hcta1:'Ontdek Apps',hcta2:'Wat we bouwen',pf_tag:'Bereik',pf_title:'Eén vak. Elk platform.',pf_lead:'We ontwerpen software van native kwaliteit waar u werkt — telefoon, desktop of server. Een gedeelde kern, afgestemd op elk systeem.',pf_and:'Apps & AI op het toestel',pf_lin:'Desktop- & edge-tools',pf_apl:'Apple-ecosysteem',pf_win:'Desktop & zakelijk',pf_note:'Cross-platform met Kotlin Multiplatform & Compose — één kern, overal native.',sol_tag:'Wat we bouwen',sol_title:'Persoonlijke software. Zakelijke systemen.',sol_lead:'Van een financiële app die stil op uw telefoon leeft tot AI-tools in de workflow van een bedrijf — we bouwen beide, met dezelfde privacy-first discipline.',sol1_tag:'Voor mensen',sol1_h:'Persoonlijke apps',sol1_d:'Gerichte, mooie tools die één ding perfect doen en u als mens respecteren — niet als gegevensbron. Alles draait standaard op uw toestel.',sol1_a:'Financiën, productiviteit & AI-metgezellen',sol1_b:'Verwerking op het toestel, geen tracking',sol1_c:'Gelokaliseerd voor 25+ landen',sol2_tag:'Voor bedrijven',sol2_h:'Maatwerksoftware & AI',sol2_d:'Maatwerksoftware — desktop, mobiel en server — voor teams, met lokale AI geïntegreerd in uw eigen infrastructuur, zodat gevoelige data binnen blijft.',sol2_a:'Cross-platform desktop- & mobiel-builds',sol2_b:'On-premise & private-cloud AI',sol2_c:'Workflow-automatisering & integraties',ai_tag:'Lokale intelligentie',ai_title:'AI die draait waar uw data leeft',ai_lead:'We integreren AI-modellen die op uw eigen toestel of server draaien — snel, offline en privé. Wanneer de cloud écht helpt, is het opt-in en transparant.',ai_a:'Modellen op het toestel voor volledige offline privacy',ai_b:'Optionele cloud-AI — altijd opt-in, nooit stil',ai_c:'We leggen uit wat de AI doet en waarom — geen black boxes',ai_orb:'Lokale<br>AI-<br>Kern',v_tag:'Waarom AstraCoreNova',v_title:'Technologie die u kunt vertrouwen',v1t:'Privacy by Design',v1d:'Privacy is geen functie — het is het fundament. Uw gegevens verlaten het toestel nooit zonder uitdrukkelijke toestemming.',v2t:'AI aan uw kant',v2d:'AI als gereedschap — krachtig, nuttig, transparant. We leggen uit wat het doet en waarom. Geen black boxes.',v3t:'Minimalisme & snelheid',v3d:'Apps die één ding — perfect — doen. Geen overbodige rechten, geen ballast. Alleen wat u nodig hebt.',v4t:'Transparantie',v4d:'Heldere privacybeleidsregels voor elke app. Geen verborgen clausules — gewone taal.',p_tag:'Onze filosofie',p_title:'Privacy is een recht, geen voorrecht',p1:'In een wereld waar data valuta werd, kiezen wij een ander pad. We respecteren de mens — niet de gegevensbron.',p2:'Elke app ondergaat een privacy-audit vóór release. We verzamelen niet wat we niet nodig hebben. We verkopen niet wat we hebben.',pi1:'dataverkoop',pi2:'transparantie',pi3num:'Lokaal',pi3:'AI-verwerking',co_tag:'Contact',co_title:'Bouw met ons',co_sub:'Vragen over apps, een zakelijk project of lokale AI-integratie? Neem contact op — we reageren snel.',co_name:'Uw naam',co_email:'E-mail',co_msg:'Bericht...',co_send:'Verzenden',f_pp:'Privacybeleid',f_copy:'© 2026 AstraCoreNova. Alle rechten voorbehouden.'},
+nl:{nav_home:'Home',nav_plat:'Platforms',nav_sol:'Oplossingen',nav_apps:'Apps',nav_con:'Contact',h_badge:'Private AI · Elk Platform',h1:'Wij bouwen software die alleen',h1b:'aan u verantwoording aflegt',hsub:'AstraCoreNova maakt AI-apps voor mensen en bedrijven — voor Android, Linux, macOS, Windows en iOS. Lokale AI op uw eigen hardware. Uw gegevens blijven zonder uw woord waar ze zijn.',hcta1:'Ontdek Apps',hcta2:'Wat we bouwen',pf_tag:'Bereik',pf_title:'Eén vak. Elk platform.',pf_lead:'We ontwerpen software van native kwaliteit waar u werkt — telefoon, desktop of server. Een gedeelde kern, afgestemd op elk systeem.',pf_and:'Apps & AI op het toestel',pf_lin:'Desktop- & edge-tools',pf_apl:'Apple-ecosysteem',pf_win:'Desktop & zakelijk',pf_note:'Cross-platform met Kotlin Multiplatform & Compose — één kern, overal native.',sol_tag:'Wat we bouwen',sol_title:'Persoonlijke software. Zakelijke systemen.',sol_lead:'Van een financiële app die stil op uw telefoon leeft tot AI-tools in de workflow van een bedrijf — we bouwen beide, met dezelfde privacy-first discipline.',sol1_tag:'Voor mensen',sol1_h:'Persoonlijke apps',sol1_d:'Gerichte, mooie tools die één ding perfect doen en u als mens respecteren — niet als gegevensbron. Alles draait standaard op uw toestel.',sol1_a:'Financiën, productiviteit & AI-metgezellen',sol1_b:'Verwerking op het toestel, geen tracking',sol1_c:'Gelokaliseerd voor 25+ landen',sol2_tag:'Voor bedrijven',sol2_h:'Maatwerksoftware & AI',sol2_d:'Maatwerksoftware — desktop, mobiel en server — voor teams, met lokale AI geïntegreerd in uw eigen infrastructuur, zodat gevoelige data binnen blijft.',sol2_a:'Cross-platform desktop- & mobiel-builds',sol2_b:'On-premise & private-cloud AI',sol2_c:'Workflow-automatisering & integraties',ai_tag:'Lokale intelligentie',ai_title:'AI die draait waar uw data leeft',ai_lead:'We integreren AI-modellen die op uw eigen toestel of server draaien — snel, offline en privé. Wanneer de cloud écht helpt, is het opt-in en transparant.',ai_a:'Modellen op het toestel voor volledige offline privacy',ai_b:'Optionele cloud-AI — altijd opt-in, nooit stil',ai_c:'We leggen uit wat de AI doet en waarom — geen black boxes',ai_orb:'Lokale<br>AI-<br>Kern',v_tag:'Waarom AstraCoreNova',v_title:'Technologie die u kunt vertrouwen',v1t:'Privacy by Design',v1d:'Privacy is geen functie — het is het fundament. Uw gegevens verlaten het toestel nooit zonder uitdrukkelijke toestemming.',v2t:'AI aan uw kant',v2d:'AI als gereedschap — krachtig, nuttig, transparant. We leggen uit wat het doet en waarom. Geen black boxes.',v3t:'Minimalisme & snelheid',v3d:'Apps die één ding — perfect — doen. Geen overbodige rechten, geen ballast. Alleen wat u nodig hebt.',v4t:'Transparenz',v4d:'Heldere privacybeleidsregels voor elke app. Geen verborgen clausules — gewone taal.',p_tag:'Onze filosofie',p_title:'Privacy is een recht, geen voorrecht',p1:'In een wereld waar data valuta werd, kiezen wij een ander pad. We respecteren de mens — niet de gegevensbron.',p2:'Elke app ondergaat een privacy-audit vóór release. We verzamelen niet wat we niet nodig hebben. We verkopen niet wat we hebben.',pi1:'dataverkoop',pi2:'transparantie',pi3num:'Lokaal',pi3:'AI-verwerking',co_tag:'Contact',co_title:'Bouw met ons',co_sub:'Vragen over apps, een zakelijk project of lokale AI-integratie? Neem contact op — we reageren snel.',co_name:'Uw naam',co_email:'E-mail',co_msg:'Bericht...',co_send:'Verzenden',f_pp:'Privacybeleid',f_copy:'© 2026 AstraCoreNova. Alle rechten voorbehouden.'},
 pl:{nav_home:'Główna',nav_plat:'Platformy',nav_sol:'Rozwiązania',nav_apps:'Aplikacje',nav_con:'Kontakt',h_badge:'Prywatne AI · Każda Platforma',h1:'Tworzymy oprogramowanie odpowiedzialne',h1b:'tylko przed Tobą',hsub:'AstraCoreNova tworzy aplikacje AI dla ludzi i firm — na Androida, Linux, macOS, Windows i iOS. Lokalne AI na Twoim sprzęcie. Twoje dane nie wychodzą bez Twojej zgody.',hcta1:'Poznaj aplikacje',hcta2:'Co tworzymy',pf_tag:'Zasięg',pf_title:'Jedno rzemiosło. Każda platforma.',pf_lead:'Projektujemy oprogramowanie natywnej jakości tam, gdzie pracujesz — telefon, desktop czy serwer. Wspólny rdzeń, dopasowany do każdego systemu.',pf_and:'Aplikacje i AI na urządzeniu',pf_lin:'Narzędzia desktop i edge',pf_apl:'Ekosystem Apple',pf_win:'Desktop i biznes',pf_note:'Wieloplatformowo z Kotlin Multiplatform i Compose — jeden rdzeń, natywnie wszędzie.',sol_tag:'Co tworzymy',sol_title:'Oprogramowanie osobiste. Systemy biznesowe.',sol_lead:'Od aplikacji finansowej żyjącej cicho w telefonie po narzędzia AI wpięte w procesy firmy — robimy oba, z tą samą dyscypliną privacy-first.',sol1_tag:'Dla ludzi',sol1_h:'Aplikacje osobiste',sol1_d:'Skupione, piękne narzędzia, które robią jedną rzecz perfekcyjnie i szanują Cię jako człowieka — nie jako źródło danych. Wszystko działa domyślnie na Twoim urządzeniu.',sol1_a:'Finanse, produktywność i towarzysze AI',sol1_b:'Przetwarzanie lokalne, bez śledzenia',sol1_c:'Lokalizacja dla 25+ krajów',sol2_tag:'Dla firm',sol2_h:'Oprogramowanie i AI na zamówienie',sol2_d:'Oprogramowanie na miarę — desktop, mobile i serwer — dla zespołów, z lokalnym AI zintegrowanym z Twoją infrastrukturą, by wrażliwe dane nie opuszczały firmy.',sol2_a:'Wieloplatformowe buildy desktop i mobile',sol2_b:'AI on-premise i chmura prywatna',sol2_c:'Automatyzacja procesów i integracje',ai_tag:'Lokalna inteligencja',ai_title:'AI działające tam, gdzie żyją Twoje dane',ai_lead:'Integrujemy modele AI działające na Twoim urządzeniu lub serwerze — szybko, offline i prywatnie. Gdy chmura naprawdę pomaga — jest opt-in i przejrzysta.',ai_a:'Modele na urządzeniu dla pełnej prywatności offline',ai_b:'Opcjonalne AI w chmurze — zawsze opt-in, nigdy po cichu',ai_c:'Wyjaśniamy, co robi AI i dlaczego — żadnych czarnych skrzynek',ai_orb:'Lokalny<br>rdzeń<br>AI',v_tag:'Dlaczego AstraCoreNova',v_title:'Technologia, której możesz zaufać',v1t:'Privacy by Design',v1d:'Prywatność to nie funkcja — to fundament. Twoje dane nigdy nie opuszczają urządzenia bez wyraźnej zgody.',v2t:'AI po Twojej stronie',v2d:'AI jako narzędzie — potężne, użyteczne, przejrzyste. Wyjaśniamy, co robi i dlaczego. Żadnych czarnych skrzynek.',v3t:'Minimalizm i szybkość',v3d:'Aplikacje, które robią jedną rzecz — perfekcyjnie. Bez zbędnych uprawnień. Tylko to, czego potrzebujesz.',v4t:'Przejrzystość',v4d:'Jasne polityki prywatności dla każdej aplikacji. Bez ukrytych klauzul — prosty język.',p_tag:'Nasza filozofia',p_title:'Prywatność to prawo, nie przywilej',p1:'W świecie, gdzie dane stały się walutą, wybieramy inną drogę. Szanujemy człowieka — nie źródło danych.',p2:'Każda aplikacja przechodzi audyt prywatności przed wydaniem. Nie zbieramy zbędnego. Nie sprzedajemy tego, co mamy.',pi1:'sprzedaży danych',pi2:'przejrzystości',pi3num:'Lokalnie',pi3:'przetwarzanie AI',co_tag:'Kontakt',co_title:'Twórzmy razem',co_sub:'Pytania o aplikacje, projekt biznesowy czy integrację lokalnego AI? Napisz — odpowiadamy szybko.',co_name:'Twoje imię',co_email:'Email',co_msg:'Wiadomość...',co_send:'Wyślij',f_pp:'Polityka prywatności',f_copy:'© 2026 AstraCoreNova. Wszelkie prawa zastrzeżone.'},
 tr:{nav_home:'Ana Sayfa',nav_plat:'Platformlar',nav_sol:'Çözümler',nav_apps:'Uygulamalar',nav_con:'İletişim',h_badge:'Özel Yapay Zeka · Her Platform',h1:'Yalnızca size hesap veren',h1b:'yazılım üretiyoruz',hsub:'AstraCoreNova, bireyler ve işletmeler için yapay zeka uygulamaları geliştirir — Android, Linux, macOS, Windows ve iOS\'ta. Kendi donanımınızda yerel yapay zeka. Verileriniz izniniz olmadan hiçbir yere gitmez.',hcta1:'Uygulamaları Keşfet',hcta2:'Ne yapıyoruz',pf_tag:'Erişim',pf_title:'Tek zanaat. Her platform.',pf_lead:'Çalıştığınız her yerde — telefon, masaüstü ya da sunucu — yerel kalitede yazılım tasarlarız. Ortak bir çekirdek, her sisteme göre ayarlanmış.',pf_and:'Uygulamalar & cihazda yapay zeka',pf_lin:'Masaüstü & edge araçları',pf_apl:'Apple ekosistemi',pf_win:'Masaüstü & işletme',pf_note:'Kotlin Multiplatform & Compose ile çapraz platform — tek çekirdek, her yerde yerel.',sol_tag:'Ne yapıyoruz',sol_title:'Kişisel yazılım. İşletme sistemleri.',sol_lead:'Telefonunuzda sessizce yaşayan bir finans uygulamasından bir şirketin iş akışına entegre yapay zeka araçlarına kadar — ikisini de aynı gizlilik-öncelikli disiplinle yaparız.',sol1_tag:'Bireyler için',sol1_h:'Kişisel uygulamalar',sol1_d:'Tek bir işi kusursuz yapan ve sizi bir veri kaynağı değil, bir insan olarak gören odaklı, zarif araçlar. Her şey varsayılan olarak cihazınızda çalışır.',sol1_a:'Finans, üretkenlik ve yapay zeka dostları',sol1_b:'Cihazda işleme, izleme yok',sol1_c:'25+ ülke için yerelleştirildi',sol2_tag:'İşletmeler için',sol2_h:'Özel yazılım & yapay zeka',sol2_d:'Ekipler için özel yazılım — masaüstü, mobil ve sunucu — hassas verilerin dışarı çıkmaması için kendi altyapınıza entegre yerel yapay zeka ile.',sol2_a:'Çapraz platform masaüstü & mobil derlemeler',sol2_b:'Şirket içi & özel bulut yapay zeka',sol2_c:'İş akışı otomasyonu & entegrasyonlar',ai_tag:'Yerel zeka',ai_title:'Verilerinizin yaşadığı yerde çalışan yapay zeka',ai_lead:'Kendi cihazınızda veya sunucunuzda çalışan yapay zeka modelleri entegre ederiz — hızlı, çevrimdışı ve özel. Bulut gerçekten faydalı olduğunda, opt-in ve şeffaftır.',ai_a:'Tam çevrimdışı gizlilik için cihazda modeller',ai_b:'İsteğe bağlı bulut yapay zeka — her zaman opt-in, asla sessizce değil',ai_c:'Yapay zekanın ne yaptığını ve nedenini açıklarız — kara kutu yok',ai_orb:'Yerel<br>YZ<br>Çekirdek',v_tag:'Neden AstraCoreNova',v_title:'Güvenebileceğiniz teknoloji',v1t:'Tasarım gereği gizlilik',v1d:'Gizlilik bir özellik değil — temeldir. Verileriniz açık izniniz olmadan cihazınızdan asla ayrılmaz.',v2t:'Yanınızda yapay zeka',v2d:'Bir araç olarak yapay zeka — güçlü, faydalı, şeffaf. Ne yaptığını ve nedenini açıklarız. Kara kutu yok.',v3t:'Sadelik & hız',v3d:'Tek bir işi — kusursuz — yapan uygulamalar. Gereksiz izin yok, şişkinlik yok. Yalnızca ihtiyacınız olan.',v4t:'Şeffaflık',v4d:'Her uygulama için net gizlilik politikaları. Gizli madde yok — anlaşılır dil.',p_tag:'Felsefemiz',p_title:'Gizlilik bir ayrıcalık değil, bir haktır',p1:'Verinin para birimi olduğu bir dünyada farklı bir yol seçiyoruz. Veri kaynağına değil, insana saygı duyarız.',p2:'Her uygulama yayından önce gizlilik denetiminden geçer. İhtiyacımız olmayanı toplamayız. Sahip olduğumuzu satmayız.',pi1:'veri satışı',pi2:'şeffaflık',pi3num:'Yerel',pi3:'YZ işleme',co_tag:'İletişim',co_title:'Birlikte inşa edelim',co_sub:'Uygulamalar, bir işletme projesi veya yerel yapay zeka entegrasyonu hakkında sorular mı var? Yazın — hızlı yanıt veririz.',co_name:'Adınız',co_email:'E-posta',co_msg:'Mesaj...',co_send:'Mesaj gönder',f_pp:'Gizlilik Politikası',f_copy:'© 2026 AstraCoreNova. Tüm hakları saklıdır.'}
 };
