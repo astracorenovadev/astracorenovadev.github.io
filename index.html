@@ -10,59 +10,62 @@
 <style>
 :root{
   --void:#020202;--abyss:#050505;--deep:#0a0a0a;--panel:#111111;
-  --purple:#2a1133;--glow:#4a2b54;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
+  /* Richer, more expressive Catholic Purple - Amethyst and Wine */
+  --purple:#3a1055;--glow:#7126a1;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
   --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.55);--white:#e5e5e5;
   --line:rgba(255,255,255,.05);--line-bright:rgba(255,255,255,.15);
-  /* Deep, heavy Catholic Glassmorphism - No neon */
-  --glass:rgba(12, 5, 15, 0.75);
-  --glass-edge:rgba(45, 15, 55, 0.4);
+  /* HEAVY, DEEP Glassmorphism for Purple Elements */
+  --glass:rgba(25, 8, 35, 0.9);
+  --glass-edge:rgba(90, 30, 130, 0.4);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--void);color:var(--silver);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
 
-/* ── base atmosphere: heavy noir void ── */
+/* ── base atmosphere: heavily blurred lo-fi void ── */
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
-  radial-gradient(ellipse 70% 50% at 50% 38%,rgba(15,8,20,.6),transparent 60%),
-  radial-gradient(ellipse 90% 60% at 80% 70%,rgba(10,5,15,.5),transparent 65%),
-  radial-gradient(circle at 18% 80%,rgba(5,2,8,.7),transparent 55%),
-  linear-gradient(160deg,#030303 0%,#010101 45%,#000 100%);}
-.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite;}
-.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(30,10,40,.15),rgba(15,5,20,.1) 45%,transparent 70%);filter:blur(70px);top:-200px;left:50%;transform:translateX(-50%);opacity:.6;}
-.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(40,15,50,.1),transparent 68%);filter:blur(90px);top:38%;left:-180px;animation-delay:-10s;opacity:.5;}
-.neb3{width:620px;height:680px;background:radial-gradient(ellipse,rgba(25,10,30,.15),transparent 70%);filter:blur(100px);bottom:-200px;right:-160px;animation-delay:-18s;opacity:.45;}
+  radial-gradient(ellipse 70% 50% at 50% 38%,rgba(35,10,60,.4),transparent 60%),
+  radial-gradient(ellipse 90% 60% at 80% 70%,rgba(20,5,30,.3),transparent 65%),
+  linear-gradient(160deg,#030303 0%,#010101 45%,#000 100%);
+  /* Maximum Blur for the "Shit Quality" photo vibe */
+  filter: blur(120px) contrast(85%) sepia(10%);}
+
+.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite; opacity:.5;}
+.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(60,20,90,.1),transparent 70%);filter:blur(80px);top:-200px;left:50%;transform:translateX(-50%);}
+.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(50,15,70,.08),transparent 68%);filter:blur(100px);top:38%;left:-180px;animation-delay:-10s;}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-26px) scale(1.1);}}
-#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.3;}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.15;filter: blur(1px);}
 
-/* ── vignette: heavy noir corners ── */
+/* ── vignette: heavy lo-fi corners ── */
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
-  radial-gradient(ellipse 100% 80% at 50% 45%,transparent 35%,rgba(2,1,3,.8) 75%,rgba(0,0,0,1) 100%);}
+  radial-gradient(ellipse 100% 80% at 50% 45%,transparent 25%,rgba(2,1,4,.85) 70%,rgba(0,0,0,1) 100%);}
 
-/* ── Pure CSS Static Noise (No VHS, No SVG) ── */
-.grain{position:fixed;inset:-50%;width:200%;height:200%;z-index:9990;pointer-events:none;opacity:0.1;mix-blend-mode:overlay;
+/* ── Pure CSS Static Noise: Amplified to Maximum ── */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;z-index:9990;pointer-events:none;opacity:0.22;mix-blend-mode:overlay;
   background-image:
-    repeating-linear-gradient(45deg, #000 1px, transparent 2px, transparent 3px),
-    repeating-linear-gradient(-45deg, #000 1px, transparent 2px, transparent 3px),
-    repeating-radial-gradient(circle at 50% 50%, #fff 1px, transparent 2px, transparent 3px);
-  animation: css-grain 0.15s steps(2) infinite; filter: contrast(150%);}
-@keyframes css-grain{0%{transform:translate(0,0);}50%{transform:translate(-1%,1%);}100%{transform:translate(1%,-1%);}}
+    repeating-linear-gradient(45deg, #000 1px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(-45deg, #000 1px, transparent 2px, transparent 4px),
+    repeating-radial-gradient(circle at 50% 50%, #fff 1px, transparent 1.5px, transparent 3px);
+  background-size: 8px 8px;
+  animation: css-grain 0.1s steps(1) infinite; filter: contrast(180%) brightness(110%);}
+@keyframes css-grain{0%{transform:translate(0,0);}50%{transform:translate(-0.5%,0.5%);}100%{transform:translate(0.5%,-0.5%);}}
 
 /* ── cursor ── */
 #cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(170,170,170,.5);}
 #cur2{position:fixed;width:30px;height:30px;border:1px solid rgba(170,170,170,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
 
 /* ── lang bar ── */
-.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(5,2,8,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
+.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(5,2,10,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
 .lb{background:none;border:1px solid transparent;color:var(--silver-dim);font-family:'Syne',sans-serif;font-size:.66rem;letter-spacing:.12em;padding:.2rem .55rem;cursor:none;transition:all .2s;border-radius:2px;}
 .lb:hover{color:var(--silver);border-color:var(--line-bright);}
-.lb.on{color:var(--lum);border-color:var(--line-bright);background:rgba(255,255,255,.03);}
+.lb.on{color:var(--white);border-color:rgba(120,40,160,.4);background:rgba(60,20,90,.15);text-shadow:0 0 10px var(--white);}
 
 /* ── nav ── */
-nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(5,2,8,.95),transparent);}
+nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(5,2,10,.95),transparent);}
 .nlogo{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
-.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 8px rgba(100,100,100,.3));transition:filter .3s;}
-.nlogo:hover img{filter:drop-shadow(0 0 15px rgba(150,150,150,.5));}
-.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 15px rgba(100,100,100,.2);}
+.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 10px rgba(100,100,100,.3));transition:filter .3s;}
+.nlogo:hover img{filter:drop-shadow(0 0 20px rgba(150,150,150,.5));}
+.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 20px rgba(120,40,160,.3);}
 .nlinks{display:flex;gap:2.3rem;list-style:none;}
 .nlinks a{color:var(--silver);text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
 .nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--lum);transition:width .3s;box-shadow:0 0 5px var(--lum);}
@@ -73,7 +76,7 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,2,8,.98);backdrop-filter:blur(12px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,2,12,.99);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{color:var(--silver);text-decoration:none;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
 .mobile-menu a:hover{color:var(--lum);}
@@ -82,84 +85,123 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3;}
 .hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;pointer-events:none;z-index:0;}
 
-/* ── Pure CSS Complex Gothic Cathedral (No SVG) ── */
-.css-cathedral { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.15; filter: drop-shadow(0 15px 40px #000) blur(1.5px); z-index: 0; }
-.c-spire { position: absolute; background: linear-gradient(to bottom, #020103, #0a050d); border: 2px solid #111; border-bottom: none; }
-.c-spire-1 { left: 46%; width: 8%; bottom: 20%; height: 85%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: linear-gradient(to bottom, #040206, #0e0712); }
-.c-spire-2 { left: 22%; width: 6%; bottom: 0; height: 65%; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-.c-spire-3 { left: 72%; width: 6%; bottom: 0; height: 65%; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-.c-spire-4 { left: 34%; width: 4%; bottom: 10%; height: 50%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #08040a; }
-.c-spire-5 { left: 62%; width: 4%; bottom: 10%; height: 50%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #08040a; }
-.c-base { position: absolute; left: 10%; right: 10%; bottom: 0; height: 35%; background: #060308; border-top: 3px solid #15101a; clip-path: polygon(0 100%, 5% 0, 20% 20%, 50% 5%, 80% 20%, 95% 0, 100% 100%); }
-.c-rosette { position: absolute; left: 50%; bottom: 35%; transform: translateX(-50%); width: 160px; height: 160px; border-radius: 50%; border: 10px double #0a050d; background: repeating-conic-gradient(from 0deg, #030104 0deg 12deg, #0e0712 12deg 24deg); box-shadow: inset 0 0 40px #000; }
-.c-arch { position: absolute; bottom: 0; width: 70px; height: 120px; background: #010002; border: 3px solid #111; border-bottom: none; border-radius: 60px 60px 0 0; }
+/* ── Pure CSS Complex Gothic Cathedral (Now Visible & Scary) ── */
+.css-cathedral { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.6; filter: drop-shadow(0 20px 40px #000); z-index: 0; }
+.c-spire { position: absolute; background: linear-gradient(to bottom, #010002, #07030a); border: 2px solid #1a0b22; border-bottom: none; }
+/* Central massive spires */
+.c-spire-1 { left: 45%; width: 10%; bottom: 20%; height: 85%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: linear-gradient(to bottom, #020104, #100618); }
+.c-spire-1::after { content:''; position:absolute; left:48%; top:10%; width:4%; height:110%; background:#050208; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+/* Side Spires */
+.c-spire-2 { left: 20%; width: 7%; bottom: 0; height: 65%; clip-path: polygon(50% 0, 100% 100%, 0 100%); border-width: 1px;}
+.c-spire-3 { left: 73%; width: 7%; bottom: 0; height: 65%; clip-path: polygon(50% 0, 100% 100%, 0 100%); border-width: 1px;}
+/* Complex internal structure */
+.c-spire-4 { left: 32%; width: 4%; bottom: 10%; height: 50%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #08040a; }
+.c-spire-5 { left: 64%; width: 4%; bottom: 10%; height: 50%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #08040a; }
+/* Flying Buttresses */
+.c-buttress { position: absolute; width: 6px; background: #111; bottom: 0; }
+.c-buttress-1 { left: 28%; height: 40%; transform: rotate(-10deg); border-top: 2px solid #1a0b22;}
+.c-buttress-2 { right: 28%; height: 40%; transform: rotate(10deg); border-top: 2px solid #1a0b22;}
+/* Base Complex Geometry */
+.c-base { position: absolute; left: 10%; right: 10%; bottom: 0; height: 35%; background: #060308; border-top: 3px solid #1a0e28; clip-path: polygon(0 100%, 3% 0, 10% 20%, 18% 5%, 35% 25%, 50% 5%, 65% 25%, 82% 5%, 90% 20%, 97% 0, 100% 100%); }
+.c-rosette { position: absolute; left: 50%; bottom: 35%; transform: translateX(-50%); width: 160px; height: 160px; border-radius: 50%; border: 12px double #1a0b22; background: repeating-conic-gradient(from 0deg, #030104 0deg 12deg, #100618 12deg 24deg); box-shadow: inset 0 0 50px #000, 0 0 20px rgba(100,40,150,0.2); }
+/* scary pitch black arches */
+.c-arch { position: absolute; bottom: 0; width: 70px; height: 120px; background: #010002; border: 3px solid #1a0b22; border-bottom: none; border-radius: 60px 60px 0 0; }
 .c-arch-1 { left: 25%; }
 .c-arch-2 { right: 25%; }
 .c-arch-3 { left: 50%; transform: translateX(-50%); width: 90px; height: 150px; border-radius: 80px 80px 0 0; }
 
-/* Glass Mosaic Cross (Rotating) */
+/* Rotating Cluster */
 .cross-cluster{position:absolute;top:50%;left:50%;width:500px;height:500px;margin-top:-250px;margin-left:-250px;animation:spin-cross 70s linear infinite;z-index:1;}
 @keyframes spin-cross{from{transform:rotate(0);}to{transform:rotate(360deg);}}
 
-/* ── Pure CSS Stained Glass Shards ── */
+/* ── Pure CSS Heavy Stained Glass Shards ── */
 .shard{position:absolute;
-  /* Thick black lead framing */
-  border: 4px solid #030303; 
-  /* Heavy inner glass reflection and outer shadow */
-  box-shadow: inset 2px 2px 6px rgba(255,255,255,0.05), inset -3px -3px 12px rgba(0,0,0,0.9), 0 8px 25px rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px) contrast(140%);
-  /* Diagonal glass light sweep */
-  background-image: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 45%, rgba(0,0,0,0.6) 100%);
+  /* Massive pitch black lead framing */
+  border: 7px solid #010101; 
+  /* Heavy inner glass reflection and deep shadow */
+  box-shadow: inset 2px 2px 5px rgba(255,255,255,0.08), inset -4px -4px 15px rgba(0,0,0,0.95), 0 10px 30px rgba(0,0,0,0.8);
+  backdrop-filter: blur(18px) contrast(160%) saturate(220%);
   border-radius: 1px;
+  /* Glass internal texture */
+  background-image: 
+    linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%, rgba(0,0,0,0.7) 100%),
+    repeating-linear-gradient(30deg, transparent 0px 5px, rgba(0,0,0,0.2) 5px 6px);
+  mask-image: linear-gradient(135deg, black 60%, transparent 100%);
 }
 
-/* Deep Catholic Stained Glass Colors */
-.s1 { top: 8%; left: 45%; width: 10%; height: 18%; background-color: rgba(35, 10, 45, 0.7); }
-.s2 { top: 27%; left: 44%; width: 12%; height: 12%; background-color: rgba(20, 5, 25, 0.85); border-color: #000; }
-.s3 { top: 52%; left: 43%; width: 14%; height: 18%; background-color: rgba(45, 15, 55, 0.6); }
-.s4 { top: 71%; left: 46%; width: 8%; height: 20%; background-color: rgba(15, 5, 20, 0.8); }
-/* Center overlap - Crown jewel */
-.s5 { top: 40%; left: 41%; width: 18%; height: 11%; background-color: rgba(60, 15, 75, 0.7); transform: rotate(5deg); z-index: 2; box-shadow: 0 0 40px rgba(50, 10, 60, 0.5), inset 0 0 20px #000; border: 5px solid #050208;}
+/* AI Elements integration: very subtle digital pattern over cross */
+.cross-cluster::after {
+  content:''; position:absolute; inset: 20%;
+  background-image:
+    linear-gradient(90deg, transparent 0, transparent 49%, rgba(180,180,180,0.1) 49%, rgba(180,180,180,0.1) 51%, transparent 51%),
+    linear-gradient(0deg, transparent 0, transparent 49%, rgba(180,180,180,0.1) 49%, rgba(180,180,180,0.1) 51%, transparent 51%);
+  background-size: 50px 50px;
+  z-index: -1;
+  mask-image: radial-gradient(circle, #fff 0%, transparent 70%);
+  mix-blend-mode: color-dodge;
+  animation: ai-grid-pulse 5s infinite alternate;
+}
+@keyframes ai-grid-pulse {
+  0% { opacity: 0.1; } 100% { opacity: 0.4; }
+}
+
+/* Expressive Catholic Stained Glass Colors */
+.s1 { top: 8%; left: 45%; width: 10%; height: 18%; background-color: rgba(90, 20, 140, 0.7); } /* Dark Amethyst */
+.s2 { top: 27%; left: 44%; width: 12%; height: 12%; background-color: rgba(40, 10, 60, 0.85); border-color: #000; } /* Wine */
+.s3 { top: 52%; left: 43%; width: 14%; height: 18%; background-color: rgba(120, 30, 160, 0.6); } /* Rich Amethyst */
+.s4 { top: 71%; left: 46%; width: 8%; height: 20%; background-color: rgba(60, 10, 40, 0.8); } /* Deep Rose */
+
+/* Center overlap - Crown jewel - The AI core */
+.s5 { top: 40%; left: 41%; width: 18%; height: 11%; background-color: rgba(140, 30, 180, 0.8); transform: rotate(5deg); z-index: 2; box-shadow: 0 0 60px rgba(100, 20, 140, 0.6), inset 0 0 30px #000; border: 5px solid #050208;}
+/* AI core node over center */
+.s5::after {
+  content: ''; position: absolute; inset: 20%;
+  background: repeating-conic-gradient(from 0deg, rgba(255,255,255,0.05) 0deg 20deg, transparent 20deg 40deg);
+  border-radius: 50%;
+  mix-blend-mode: plus-lighter;
+  animation: ai-core-spin 10s linear infinite;
+}
+@keyframes ai-core-spin { 100% { transform: rotate(360deg); } }
 
 /* Horizontal arms */
-.s6 { top: 42%; left: 15%; width: 14%; height: 8%; background-color: rgba(15, 5, 25, 0.85); }
-.s7 { top: 39%; left: 30%; width: 12%; height: 12%; background-color: rgba(40, 10, 50, 0.6); transform: rotate(-3deg); }
-.s8 { top: 41%; left: 58%; width: 15%; height: 10%; background-color: rgba(25, 8, 35, 0.75); }
-.s9 { top: 44%; left: 74%; width: 12%; height: 6%; background-color: rgba(10, 2, 15, 0.95); }
+.s6 { top: 42%; left: 15%; width: 14%; height: 8%; background-color: rgba(40, 10, 60, 0.85); }
+.s7 { top: 39%; left: 30%; width: 12%; height: 12%; background-color: rgba(100, 20, 140, 0.6); transform: rotate(-3deg); }
+.s8 { top: 41%; left: 58%; width: 15%; height: 10%; background-color: rgba(70, 15, 100, 0.75); }
+.s9 { top: 44%; left: 74%; width: 12%; height: 6%; background-color: rgba(30, 5, 45, 0.95); }
 
 /* Extra fractured pieces */
-.s10 { top: 20%; left: 48%; width: 5%; height: 6%; background-color: rgba(55, 15, 65, 0.5); transform: rotate(15deg); border-width: 3px; }
-.s11 { top: 68%; left: 42%; width: 6%; height: 8%; background-color: rgba(45, 10, 55, 0.4); transform: rotate(-10deg); border-width: 3px; }
+.s10 { top: 20%; left: 48%; width: 5%; height: 6%; background-color: rgba(160, 40, 200, 0.5); transform: rotate(15deg); border-width: 3px; }
+.s11 { top: 68%; left: 42%; width: 6%; height: 8%; background-color: rgba(120, 20, 140, 0.4); transform: rotate(-10deg); border-width: 3px; }
 
-/* Pulsing Divine Logo */
+/* Pulsing Holy Logo Wrap */
 .hero-logo-wrap { position: relative; z-index: 2; margin-bottom: 2.2rem; display: inline-flex; align-items: center; justify-content: center; }
 .hero-logo-wrap::after {
   content: ''; position: absolute; top: 50%; left: 50%;
-  width: 140px; height: 140px; transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.1) 30%, transparent 70%);
+  width: 150px; height: 150px; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(120,40,160,0.1) 30%, transparent 70%);
   border-radius: 50%; z-index: -1; pointer-events: none;
   animation: holy-glare 2.5s ease-in-out infinite alternate;
 }
 @keyframes holy-glare {
-  0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); filter: blur(20px); }
-  100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.4); filter: blur(30px); }
+  0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); filter: blur(25px); }
+  100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.4); filter: blur(35px); }
 }
-.hero-logo{height:160px;width:auto; position:relative; z-index:2; filter:drop-shadow(0 0 20px rgba(0,0,0,0.9)); animation:rise 1.1s .1s both;}
+.hero-logo{height:160px;width:auto; position:relative; z-index:2; filter:drop-shadow(0 0 25px rgba(0,0,0,0.95)); animation:rise 1.1s .1s both;}
 
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--lum);border:1px solid rgba(100,100,100,.3);padding:.4rem 1.2rem;border-radius:2rem;margin-bottom:2.4rem;background:rgba(0,0,0,.3);backdrop-filter:blur(6px);animation:rise 1.1s .3s both;position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--white);border:1px solid rgba(120,40,160,.4);padding:.4rem 1.2rem;border-radius:2rem;margin-bottom:2.4rem;background:rgba(40,10,60,.3);backdrop-filter:blur(10px);animation:rise 1.1s .3s both;position:relative;z-index:2;box-shadow: 0 0 15px rgba(60,20,90,.3), inset 0 0 10px rgba(0,0,0,.5);}
 .hero-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--lum);box-shadow:0 0 5px var(--lum);}
-.hero-h{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2.3rem,6vw,4.7rem);line-height:1.08;margin-bottom:1.6rem;color:var(--white);animation:rise 1.1s .5s both;position:relative;z-index:2;text-wrap:balance;text-shadow:0 5px 15px rgba(0,0,0,.8);}
-.hero-h .em{background:linear-gradient(135deg,var(--white),#888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero-sub{max-width:600px;color:var(--silver);font-size:1.02rem;line-height:1.9;font-weight:400;margin-bottom:3rem;animation:rise 1.1s .7s both;position:relative;z-index:2;}
+.hero-h{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2.3rem,6vw,4.7rem);line-height:1.08;margin-bottom:1.6rem;color:var(--white);animation:rise 1.1s .5s both;position:relative;z-index:2;text-wrap:balance;text-shadow:0 5px 25px rgba(0,0,0,.9);}
+.hero-h .em{background:linear-gradient(135deg,var(--white),#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{max-width:600px;color:var(--silver);font-size:1.02rem;line-height:1.9;font-weight:400;margin-bottom:3rem;animation:rise 1.1s .7s both;position:relative;z-index:2;text-shadow: 0 2px 10px #000;}
 .hero-cta{display:flex;gap:1rem;animation:rise 1.1s .9s both;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;}
 @keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
 
-/* ── buttons: deep catholic purple glass ── */
+/* ── buttons: DEEP CATHOLIC GLASSMORPHISM ── */
 .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 2.1rem;font-family:'Cinzel',serif;font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;border-radius:6px;text-decoration:none;cursor:none;transition:all .3s;}
-.btn-p{background:linear-gradient(135deg,rgba(40,15,50,.95),rgba(15,5,20,.95));color:#fff;border:1px solid rgba(80,25,90,.4);box-shadow:0 0 20px rgba(40,10,50,.4);}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(60,15,70,.5);border-color:rgba(100,30,110,.6);}
-.btn-g{border:1px solid rgba(60,20,70,.4);color:var(--silver);background:rgba(15,5,25,.5);backdrop-filter:blur(6px);}
-.btn-g:hover{border-color:rgba(90,25,100,.6);color:var(--white);background:rgba(30,10,45,.7);}
+.btn-p{background:linear-gradient(135deg,rgba(60,20,90,.97),rgba(30,10,40,.98));color:#fff;border:1px solid rgba(120,40,160,.3);box-shadow:0 10px 30px rgba(0,0,0,.8),inset 0 0 15px rgba(120,40,160,.2);}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 15px 45px rgba(0,0,0,1),inset 0 0 20px rgba(160,60,200,.3);border-color:rgba(160,60,200,.5);}
+.btn-g{border:1px solid rgba(100,30,130,.3);color:var(--silver);background:rgba(30,10,50,.5);backdrop-filter:blur(10px);box-shadow:0 5px 20px rgba(0,0,0,.6);}
+.btn-g:hover{border-color:rgba(130,40,170,.5);color:var(--white);background:rgba(50,15,70,.7);}
 
 /* ── section frame ── */
 .div{width:100%;max-width:1180px;margin:0 auto;height:1px;background:linear-gradient(to right,transparent,var(--line-bright),transparent);position:relative;z-index:2;}
@@ -169,14 +211,14 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 .slead{max-width:620px;color:var(--silver);font-size:.96rem;line-height:1.85;font-weight:400;}
 
 /* ── dark-purple glass card primitive ── */
-.glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:4px;position:relative;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.8),inset 0 0 20px rgba(45,15,55,.15);}
-.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(90,25,100,.3),transparent);}
-.glass::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(60,20,75,.08),transparent 60%);pointer-events:none;}
+.glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:4px;position:relative;overflow:hidden;box-shadow:0 15px 50px rgba(0,0,0,.9),inset 0 0 30px rgba(45,15,55,.2);}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(130,40,170,.4),transparent);}
+.glass::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(90,30,130,.12),transparent 60%);pointer-events:none;}
 
 /* ── platforms ── */
 .pf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem;}
 .pf{padding:2.2rem 1.6rem;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;}
-.pf:hover{transform:translateY(-6px);border-color:rgba(90,25,100,.5);box-shadow:0 15px 50px rgba(0,0,0,.9),inset 0 0 25px rgba(60,15,70,.25);}
+.pf:hover{transform:translateY(-6px);border-color:rgba(120,40,160,.6);box-shadow:0 20px 60px rgba(0,0,0,1),inset 0 0 35px rgba(90,30,130,.3);}
 .pf svg{width:42px;height:42px;margin-bottom:1.2rem;fill:var(--lum);filter:drop-shadow(0 0 10px rgba(100,100,100,.2));}
 .pf .emoji-icon{font-size:38px;line-height:1;margin-bottom:1.2rem;display:inline-block;filter:grayscale(100%) contrast(150%) brightness(90%);}
 .pf-name{font-family:'Cinzel',serif;font-size:.92rem;letter-spacing:.1em;color:var(--white);margin-bottom:.45rem;}
@@ -187,7 +229,7 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 /* ── solutions split ── */
 .sol-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:3.5rem;}
 .sol{padding:2.8rem;transition:border-color .35s;}
-.sol:hover{border-color:rgba(90,25,100,.5);}
+.sol:hover{border-color:rgba(120,40,160,.6);}
 .sol-tag{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--lum);margin-bottom:1rem;display:block;}
 .sol-h{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--white);margin-bottom:1rem;}
 .sol-d{color:var(--silver);font-size:.9rem;line-height:1.8;font-weight:400;margin-bottom:1.6rem;}
@@ -211,52 +253,52 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 .ai-orb-ring-1 {
   position: absolute; inset: 0;
   border-radius: 50%;
-  border: 1px dashed rgba(80, 20, 90, 0.4);
+  border: 1px dashed rgba(120, 40, 160, 0.4);
   animation: spin-slow 30s linear infinite;
 }
 .ai-orb-ring-2 {
   position: absolute; inset: 20px;
-  border: 2px solid rgba(60, 15, 70, 0.2);
+  border: 2px solid rgba(90, 30, 130, 0.2);
   transform: rotate(45deg);
   animation: spin-slow-reverse 20s linear infinite;
-  box-shadow: 0 0 25px rgba(40, 10, 50, 0.3);
+  box-shadow: 0 0 35px rgba(60, 20, 90, 0.4);
 }
 .ai-orb-ring-3 {
   position: absolute; inset: 40px;
   border: 1px solid rgba(100, 100, 100, 0.1);
   border-radius: 50%;
-  border-left-color: rgba(100, 30, 110, 0.7);
+  border-left-color: rgba(140, 60, 200, 0.7);
   animation: spin-slow 10s linear infinite;
 }
 .ai-orb-core {
-  background: radial-gradient(circle at 40% 40%, rgba(45, 10, 55, 0.9), rgba(10, 2, 15, 0.95));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(90, 25, 100, 0.5);
+  background: radial-gradient(circle at 40% 40%, rgba(60, 20, 90, 0.95), rgba(15, 5, 25, 0.98));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(130, 40, 170, 0.5);
   width: 140px; height: 140px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 40px rgba(60, 15, 70, 0.5), inset 0 0 25px rgba(0, 0, 0, 0.95);
+  box-shadow: 0 0 50px rgba(100, 30, 140, 0.6), inset 0 0 30px rgba(0, 0, 0, 0.98);
   z-index: 2;
   animation: pulse-core 4s ease-in-out infinite alternate;
 }
 .ai-orb-core span {
   font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 900;
   color: var(--white);
-  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  text-shadow: 0 0 15px rgba(255,255,255,0.6);
   letter-spacing: 0.2em; text-align: center; line-height: 1.5;
   text-transform: uppercase;
 }
 @keyframes spin-slow { 100% { transform: rotate(360deg); } }
 @keyframes spin-slow-reverse { 100% { transform: rotate(-360deg); } }
 @keyframes pulse-core {
-  0% { box-shadow: 0 0 25px rgba(60, 15, 70, 0.4), inset 0 0 25px rgba(0, 0, 0, 0.95); }
-  100% { box-shadow: 0 0 55px rgba(80, 20, 90, 0.6), inset 0 0 15px rgba(0, 0, 0, 0.8); }
+  0% { box-shadow: 0 0 30px rgba(100, 30, 140, 0.4), inset 0 0 30px rgba(0, 0, 0, 0.98); }
+  100% { box-shadow: 0 0 65px rgba(120, 40, 160, 0.7), inset 0 0 15px rgba(0, 0, 0, 0.9); }
 }
 
 /* ── values ── */
 .vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:3.5rem;}
 .vcard{padding:2.4rem;transition:transform .35s,border-color .35s;}
-.vcard:hover{transform:translateY(-4px);border-color:rgba(90,25,100,.5);}
+.vcard:hover{transform:translateY(-4px);border-color:rgba(120,40,160,0.6);}
 .vicon{width:34px;height:34px;margin-bottom:1.3rem;fill:none;stroke:var(--lum);stroke-width:1.5;}
 .vtitle{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.04em;color:var(--white);margin-bottom:.7rem;}
 .vtext{color:var(--silver);font-size:.86rem;line-height:1.75;font-weight:400;}
@@ -266,18 +308,18 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 .phil .stitle{margin-left:auto;margin-right:auto;}
 .pmani{max-width:680px;margin:0 auto 3.5rem;}
 .pmani p{color:var(--silver);font-size:.95rem;line-height:2;font-weight:400;margin-bottom:1rem;}
-.ppillars{display:flex;justify-content:center;gap:4.5rem;flex-wrap:wrap;}
-.pnum{font-family:'Cinzel',serif;font-size:2.8rem;font-weight:700;color:var(--lum);display:block;line-height:1;text-shadow:0 0 15px rgba(100,100,100,.2);}
+.ppillars{display:flex;justify(center;gap:4.5rem;flex-wrap:wrap;}
+.pnum{font-family:'Cinzel',serif;font-size:2.8rem;font-weight:700;color:var(--lum);display:block;line-height:1;text-shadow:0 0 20px rgba(100,100,100,.3);}
 .plabel{color:var(--silver-dim);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;margin-top:.6rem;display:block;}
 
 /* ── contact ── */
 .cwrap{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start;}
 .cinfo p{color:var(--silver);line-height:1.85;font-weight:400;margin-bottom:1.8rem;}
-.cemail{display:inline-flex;align-items:center;gap:.7rem;color:var(--lum);text-decoration:none;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.06em;padding:.95rem 1.5rem;border:1px solid rgba(60,20,70,.4);border-radius:4px;transition:all .3s;cursor:none;background:rgba(15,5,20,.4);}
-.cemail:hover{background:rgba(30,10,40,.6);border-color:rgba(90,25,100,.6);}
+.cemail{display:inline-flex;align-items:center;gap:.7rem;color:var(--white);text-decoration:none;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.06em;padding:.95rem 1.5rem;border:1px solid rgba(120,40,160,.4);border-radius:4px;transition:all .3s;cursor:none;background:rgba(40,10,60,.4);box-shadow: 0 5px 15px rgba(0,0,0,0.5);}
+.cemail:hover{background:rgba(60,20,90,.6);border-color:rgba(160,60,200,.6);transform:translateY(-2px);}
 .cform{display:flex;flex-direction:column;gap:.9rem;}
-.inp{background:rgba(8,2,12,.5);border:1px solid rgba(50,15,60,.4);color:var(--white);padding:.95rem 1.2rem;font-family:'Syne',sans-serif;font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s;border-radius:4px;box-shadow:inset 0 2px 10px rgba(0,0,0,.5);}
-.inp:focus{border-color:rgba(90,25,100,.6);box-shadow:0 0 15px rgba(60,15,70,.3),inset 0 2px 10px rgba(0,0,0,.5);}
+.inp{background:rgba(10,3,15,.6);border:1px solid rgba(90,30,130,.4);color:var(--white);padding:.95rem 1.2rem;font-family:'Syne',sans-serif;font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s;border-radius:4px;box-shadow:inset 0 3px 12px rgba(0,0,0,0.7);}
+.inp:focus{border-color:rgba(160,60,200,.6);box-shadow:0 0 20px rgba(90,30,130,.4),inset 0 3px 12px rgba(0,0,0,0.7);}
 .inp::placeholder{color:var(--silver-dim);}
 textarea.inp{resize:none;height:120px;}
 
@@ -297,7 +339,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:var(--void);}
-::-webkit-scrollbar-thumb{background:var(--glow);}
+::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px;}
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;}
@@ -336,7 +378,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 </style>
 </head>
 <body>
-<div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
+<div class="neb neb1"></div><div class="neb neb2"></div>
 <canvas id="cv"></canvas>
 <div class="vignette"></div>
 <div class="grain"></div>
@@ -386,6 +428,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
       <div class="c-spire c-spire-3"></div>
       <div class="c-spire c-spire-4"></div>
       <div class="c-spire c-spire-5"></div>
+      <div class="c-buttress c-buttress-1"></div>
+      <div class="c-buttress c-buttress-2"></div>
       <div class="c-arch c-arch-1"></div>
       <div class="c-arch c-arch-2"></div>
       <div class="c-arch c-arch-3"></div>
@@ -562,7 +606,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
       <p class="rev" data-i="co_sub">Questions about our apps, a business project, or local AI integration? Reach out — we respond quickly.</p>
       <a href="mailto:astra.core.nova.dev@gmail.com" class="cemail rev">✉ astra.core.nova.dev@gmail.com</a>
     </div>
-    <div class="cform rev glass" style="padding: 2.2rem; border-color: rgba(60,20,70,.2);">
+    <div class="cform rev glass" style="padding: 2.2rem; border-color: rgba(90,30,130,.3);">
       <input type="text" class="inp" data-ph="co_name" placeholder="Your name">
       <input type="email" class="inp" data-ph="co_email" placeholder="Email">
       <textarea class="inp" data-ph="co_msg" placeholder="Message..."></textarea>
@@ -613,7 +657,7 @@ const T={
 en:{nav_home:'Home',nav_plat:'Platforms',nav_sol:'Solutions',nav_apps:'Apps',nav_con:'Contact',h_badge:'Private AI · Every Platform',h1:'We build software that answers',h1b:'to you alone',hsub:'AstraCoreNova crafts AI-powered apps for people and for business — across Android, Linux, macOS, Windows and iOS. Local AI on your own hardware. Your data never leaves without your word.',hcta1:'Explore Apps',hcta2:'What we build',pf_tag:'Reach',pf_title:'One craft. Every platform.',pf_lead:'We design and ship native-grade software wherever you work — phone, desktop or server. A shared core, tuned to each system.',pf_and:'Apps & on-device AI',pf_lin:'Desktop & edge tools',pf_apl:'Apple ecosystem',pf_win:'Desktop & business',pf_note:'Built cross-platform with Kotlin Multiplatform & Compose — one core, native everywhere.',sol_tag:'What we build',sol_title:'Personal software. Business systems.',sol_lead:"From a finance app that lives quietly on your phone to AI tools wired into a company's workflow — we ship both, with the same privacy-first discipline.",sol1_tag:'For people',sol1_h:'Personal apps',sol1_d:'Focused, beautiful tools that do one thing flawlessly and respect you as a person — not a data source. Everything runs on your device by default.',sol1_a:'Finance, productivity & AI companions',sol1_b:'On-device processing, no tracking',sol1_c:'Localized for 25+ countries',sol2_tag:'For business',sol2_h:'Custom software & AI',sol2_d:'Bespoke desktop, mobile and server software for teams — with local AI integrated into your own infrastructure, so sensitive data never leaves the building.',sol2_a:'Cross-platform desktop & mobile builds',sol2_b:'On-premise & private-cloud AI',sol2_c:'Workflow automation & integrations',ai_tag:'Local intelligence',ai_title:'AI that runs where your data lives',ai_lead:"We integrate AI models that run on your own device or server — fast, offline, and private. When the cloud genuinely helps, it's opt-in and transparent.",ai_a:'On-device models for full offline privacy',ai_b:'Optional cloud AI — always opt-in, never silent',ai_c:'We explain what the AI does and why — no black boxes',ai_orb:'Local<br>AI<br>Core',v_tag:'Why AstraCoreNova',v_title:'Technology you can trust',v1t:'Privacy by design',v1d:'Privacy isn\'t a feature — it\'s the foundation. Your data never leaves your device without explicit permission.',v2t:'AI on your side',v2d:'AI as a tool — powerful, useful, transparent. We explain what it does and why. No black boxes.',v3t:'Minimalism & speed',v3d:'Apps that do one thing — flawlessly. No excess permissions, no bloat. Only what you need.',v4t:'Transparency',v4d:'Clear privacy policies for every app. No hidden clauses — just plain language you understand.',p_tag:'Our philosophy',p_title:'Privacy is a right, not a privilege',p1:'In a world where data became currency, we chose a different path. AstraCoreNova builds AI tools that respect you as a person — not a data source.',p2:"Every app passes a privacy audit before release. We don't collect what we don't need. We don't sell what we hold.",pi1:'data sales',pi2:'transparency',pi3num:'Local',pi3:'AI processing',co_tag:'Get in touch',co_title:'Build with us',co_sub:'Questions about our apps, a business project, or local AI integration? Reach out — we respond quickly.',co_name:'Your name',co_email:'Email',co_msg:'Message...',co_send:'Send Message',f_pp:'Privacy Policy',f_copy:'© 2026 AstraCoreNova. All rights reserved.'},
 uk:{nav_home:'Головна',nav_plat:'Платформи',nav_sol:'Рішення',nav_apps:'Додатки',nav_con:'Контакт',h_badge:'Приватний AI · Будь-яка платформа',h1:'Ми створюємо софт, що підзвітний',h1b:'лише вам',hsub:'AstraCoreNova робить AI-додатки для людей і для бізнесу — під Android, Linux, macOS, Windows та iOS. Локальний AI на вашому залізі. Дані не йдуть нікуди без вашого слова.',hcta1:'Переглянути додатки',hcta2:'Що ми робимо',pf_tag:'Охоплення',pf_title:'Одна майстерність. Кожна платформа.',pf_lead:'Створюємо софт нативної якості там, де ви працюєте — телефон, десктоп чи сервер. Спільне ядро, заточене під кожну систему.',pf_and:'Додатки та AI на пристрої',pf_lin:'Десктоп та edge-інструменти',pf_apl:'Екосистема Apple',pf_win:'Десктоп та бізнес',pf_note:'Кросплатформа на Kotlin Multiplatform та Compose — одне ядро, нативно всюди.',sol_tag:'Що ми робимо',sol_title:'Персональний софт. Бізнес-системи.',sol_lead:'Від фінансового додатку, що тихо живе у вашому телефоні, до AI-інструментів, вшитих у робочі процеси компанії — робимо і те, і те з однаковою privacy-first дисципліною.',sol1_tag:'Для людей',sol1_h:'Персональні додатки',sol1_d:'Сфокусовані, красиві інструменти, що роблять одну річ бездоганно і поважають вас як людину — а не джерело даних. Усе працює на вашому пристрої за замовчуванням.',sol1_a:'Фінанси, продуктивність та AI-компаньйони',sol1_b:'Обробка на пристрої, без стеження',sol1_c:'Локалізація для 25+ країн',sol2_tag:'Для бізнесу',sol2_h:'Кастомний софт та AI',sol2_d:'Софт під замовлення — десктоп, мобайл, сервер — для команд. Локальний AI, інтегрований у вашу інфраструктуру, тож чутливі дані не залишають будівлю.',sol2_a:'Кросплатформні десктоп- та мобайл-збірки',sol2_b:'On-premise та приватно-хмарний AI',sol2_c:'Автоматизація процесів та інтеграції',ai_tag:'Локальний інтелект',ai_title:'AI, що працює там, де ваші дані',ai_lead:'Інтегруємо AI-моделі, що працюють на вашому пристрої чи сервері — швидко, офлайн і приватно. Коли хмара справді корисна — вона opt-in і прозора.',ai_a:'Моделі на пристрої для повної офлайн-приватності',ai_b:'Опційний хмарний AI — завжди за згодою, ніколи потай',ai_c:'Пояснюємо, що робить AI і чому — ніяких чорних скриньок',ai_orb:'Локальне<br>AI<br>ядро',v_tag:'Чому AstraCoreNova',v_title:'Технологія, якій можна довіряти',v1t:'Privacy by design',v1d:'Приватність — не фіча, а основа. Дані не залишають пристрій без прямого дозволу.',v2t:'AI на вашому боці',v2d:'AI як інструмент — потужний, корисний, прозорий. Пояснюємо, що він робить і чому. Без чорних скриньок.',v3t:'Мінімалізм і швидкість',v3d:'Додатки, що роблять одну річ — бездоганно. Жодних зайвих дозволів і роздуття. Лише потрібне.',v4t:'Прозорість',v4d:'Чіткі політики конфіденційності для кожного додатку. Без прихованих умов — звичайна зрозуміла мова.',p_tag:'Наша філософія',p_title:'Приватність — це право, а не привілей',p1:'У світі, де дані стали валютою, ми обрали інший шлях. AstraCoreNova робить AI-інструменти, що поважають вас як людину — а не джерело даних.',p2:'Кожен додаток проходить аудит приватності перед релізом. Не збираємо зайвого. Не продаємо того, що маємо.',pi1:'продажів даних',pi2:'прозорості',pi3num:'Локально',pi3:'обробка AI',co_tag:"Зв'язок",co_title:'Будуймо разом',co_sub:'Питання про наші додатки, бізнес-проєкт чи інтеграцію локального AI? Пишіть — відповідаємо швидко.',co_name:"Ваше ім'я",co_email:'Email',co_msg:'Повідомлення...',co_send:'Надіслати',f_pp:'Політика конфіденційності',f_copy:'© 2026 AstraCoreNova. Всі права захищені.'},
 es:{nav_home:'Inicio',nav_plat:'Plataformas',nav_sol:'Soluciones',nav_apps:'Apps',nav_con:'Contacto',h_badge:'IA Privada · Toda Plataforma',h1:'Creamos software que responde',h1b:'solo ante ti',hsub:'AstraCoreNova crea apps con IA para personas y empresas — en Android, Linux, macOS, Windows e iOS. IA local en tu propio hardware. Tus datos no salen sin tu permiso.',hcta1:'Explorar Apps',hcta2:'Qué hacemos',pf_tag:'Alcance',pf_title:'Un oficio. Toda plataforma.',pf_lead:'Diseñamos software de calidad nativa donde trabajas — móvil, escritorio o servidor. Un núcleo compartido, afinado a cada sistema.',pf_and:'Apps e IA en el dispositivo',pf_lin:'Herramientas de escritorio y edge',pf_apl:'Ecosistema Apple',pf_win:'Escritorio y empresa',pf_note:'Multiplataforma con Kotlin Multiplatform y Compose — un núcleo, nativo en todo.',sol_tag:'Qué hacemos',sol_title:'Software personal. Sistemas empresariales.',sol_lead:'Desde una app de finanzas que vive en tu móvil hasta herramientas de IA integradas en una empresa — hacemos ambas con la misma disciplina privacy-first.',sol1_tag:'Para personas',sol1_h:'Apps personales',sol1_d:'Herramientas enfocadas y hermosas que hacen una cosa a la perfección y te respetan como persona — no como fuente de datos. Todo corre en tu dispositivo por defecto.',sol1_a:'Finanzas, productividad y compañeros de IA',sol1_b:'Procesamiento local, sin rastreo',sol1_c:'Localizado para 25+ países',sol2_tag:'Para empresas',sol2_h:'Software e IA a medida',sol2_d:'Software a medida — escritorio, móvil y servidor — para equipos, con IA local integrada en tu infraestructura, para que los datos sensibles no salgan.',sol2_a:'Builds multiplataforma de escritorio y móvil',sol2_b:'IA on-premise y nube privada',sol2_c:'Automatización de flujos e integraciones',ai_tag:'Inteligencia local',ai_title:'IA que corre donde viven tus datos',ai_lead:'Integramos modelos de IA que corren en tu dispositivo o servidor — rápidos, offline y privados. Cuando la nube ayuda de verdad, es opt-in y transparente.',ai_a:'Modelos en dispositivo para privacidad offline total',ai_b:'IA en la nube opcional — siempre opt-in, nunca en silencio',ai_c:'Explicamos qué hace la IA y por qué — sin cajas negras',ai_orb:'Núcleo<br>IA<br>Local',v_tag:'Por qué AstraCoreNova',v_title:'Tecnología en la que confiar',v1t:'Privacidad por diseño',v1d:'La privacidad no es una función — es la base. Tus datos nunca salen sin permiso explícito.',v2t:'IA de tu lado',v2d:'IA como herramienta — potente, útil, transparente. Explicamos qué hace y por qué. Sin cajas negras.',v3t:'Minimalismo y velocidad',v3d:'Apps que hacen una cosa — perfectamente. Sin permisos excesivos. Solo lo que necesitas.',v4t:'Transparencia',v4d:'Políticas de privacidad claras. Sin cláusulas ocultas — lenguaje sencillo.',p_tag:'Nuestra filosofía',p_title:'La privacidad es un derecho, no un privilegio',p1:'En un mundo donde los datos son moneda, elegimos otro camino. Respetamos a la persona, no la fuente de datos.',p2:'Cada app pasa una auditoría de privacidad. No recopilamos lo que no necesitamos. No vendemos lo que tenemos.',pi1:'venta de datos',pi2:'transparencia',pi3num:'Local',pi3:'procesamiento IA',co_tag:'Contacto',co_title:'Construyamos juntos',co_sub:'¿Dudas sobre apps, un proyecto empresarial o integración de IA local? Escríbenos — respondemos rápido.',co_name:'Tu nombre',co_email:'Email',co_msg:'Mensaje...',co_send:'Enviar mensaje',f_pp:'Privacidad',f_copy:'© 2026 AstraCoreNova. Todos los derechos reservados.'},
-pt:{nav_home:'Início',nav_plat:'Plataformas',nav_sol:'Soluções',nav_apps:'Apps',nav_con:'Contato',h_badge:'IA Privada · Toda Plataforma',h1:'Criamos software que responde',h1b:'só a você',hsub:'A AstraCoreNova cria apps com IA para pessoas e empresas — em Android, Linux, macOS, Windows e iOS. IA local no seu próprio hardware. Seus dados não saem sem sua permissão.',hcta1:'Explorar Apps',hcta2:'O que fazemos',pf_tag:'Alcance',pf_title:'Um ofício. Toda plataforma.',pf_lead:'Projetamos software de qualidade nativa onde você trabalha — celular, desktop ou servidor. Um núcleo compartido, afinado a cada sistema.',pf_and:'Apps e IA no dispositivo',pf_lin:'Ferramentas de desktop e edge',pf_apl:'Ecossistema Apple',pf_win:'Desktop e negócios',pf_note:'Multiplataforma com Kotlin Multiplatform e Compose — um núcleo, nativo em tudo.',sol_tag:'O que fazemos',sol_title:'Software pessoal. Sistemas empresariais.',sol_lead:'De um app de finanças no seu celular a ferramentas de IA integradas a uma empresa — fazemos ambos com a mesma disciplina privacy-first.',sol1_tag:'Para pessoas',sol1_h:'Apps pessoais',sol1_d:'Ferramentas focadas e bonitas que fazem uma coisa com perfeição e respeitam você como pessoa — não como fonte de datos. Tudo roda no seu dispositivo por padrão.',sol1_a:'Finanças, produtividade e companheiros de IA',sol1_b:'Processamento local, sem rastreamento',sol1_c:'Localizado para 25+ países',sol2_tag:'Para empresas',sol2_h:'Software e IA sob medida',sol2_d:'Software sob medida — desktop, mobile e servidor — para equipes, con IA local integrada à sua infraestrutura, para dados sensíveis não saírem.',sol2_a:'Builds multiplataforma desktop e mobile',sol2_b:'IA on-premise e nuvem privada',sol2_c:'Automação de fluxos e integrações',ai_tag:'Inteligência local',ai_title:'IA que roda onde seus dados vivem',ai_lead:'Integramos modelos de IA que rodam no seu dispositivo ou servidor — rápidos, offline e privados. Quando a nuvem ajuda de verdade, é opt-in e transparente.',ai_a:'Modelos no dispositivo para privacidade offline total',ai_b:'IA na nuvem opcional — sempre opt-in, nunca em silêncio',ai_c:'Explicamos o que a IA faz e por quê — sem caixas-pretas',ai_orb:'Núcleo<br>IA<br>Local',v_tag:'Por que AstraCoreNova',v_title:'Tecnologia em que confiar',v1t:'Privacidade por design',v1d:'Privacidade não é recurso — é a base. Seus dados nunca saem sem permissão explícita.',v2t:'IA do seu lado',v2d:'IA como ferramenta — poderosa, útil, transparente. Explicamos o que faz e por quê. Sem caixas-pretas.',v3t:'Minimalismo e velocidade',v3d:'Apps que fazem uma coisa — com perfeição. Sem permissões excessivas. Só o necessário.',v4t:'Transparência',v4d:'Políticas de privacidade claras. Sem cláusulas ocultas — linguagem simples.',p_tag:'Nossa filosofia',p_title:'Privacidade é um direito, não um privilégio',p1:'Num mundo onde dados são moeda, escolhemos outro caminho. Respeitamos a pessoa, no a fonte de dados.',p2:'Cada app passa por auditoria de privacidade. Não coletamos o que não precisamos. Não vendemos o que temos.',pi1:'venda de datos',pi2:'transparância',pi3num:'Local',pi3:'processamento IA',co_tag:'Contato',co_title:'Vamos construir juntos',co_sub:'Dúvidas sobre apps, um projeto empresarial ou integração de IA local? Fale conosco — respondemos rápido.',co_name:'Seu nome',co_email:'Email',co_msg:'Mensagem...',co_send:'Enviar mensagem',f_pp:'Privacidade',f_copy:'© 2026 AstraCoreNova. Todos os direitos reservados.'},
+pt:{nav_home:'Início',nav_plat:'Plataformas',nav_sol:'Soluções',nav_apps:'Apps',nav_con:'Contato',h_badge:'IA Privada · Toda Plataforma',h1:'Criamos software que responde',h1b:'só a você',hsub:'A AstraCoreNova cria apps com IA para pessoas e empresas — em Android, Linux, macOS, Windows e iOS. IA local no seu próprio hardware. Seus dados não saem sem sua permissão.',hcta1:'Explorar Apps',hcta2:'O que fazemos',pf_tag:'Alcance',pf_title:'Um ofício. Toda plataforma.',pf_lead:'Projetamos software de qualidade nativa onde você trabalha — celular, desktop ou servidor. Um núcleo compartido, afinado a cada sistema.',pf_and:'Apps e IA no dispositivo',pf_lin:'Ferramentas de desktop e edge',pf_apl:'Ecossistema Apple',pf_win:'Desktop e negócios',pf_note:'Multiplataforma com Kotlin Multiplatform e Compose — um núcleo, nativo em tudo.',sol_tag:'O que fazemos',sol_title:'Software pessoal. Sistemas empresariais.',sol_lead:'De um app de finanças no seu celular a ferramentas de IA integradas a uma empresa — fazemos ambos com a mesma disciplina privacy-first.',sol1_tag:'Para pessoas',sol1_h:'Apps pessoais',sol1_d:'Ferramentas focadas e bonitas que fazem uma coisa com perfeição e respeitam você como pessoa — não como fonte de datos. Tudo roda no seu dispositivo por padrão.',sol1_a:'Finanças, produtividade e companheiros de IA',sol1_b:'Processamento local, sem rastreamento',sol1_c:'Localizado para 25+ países',sol2_tag:'Para empresas',sol2_h:'Software e IA sob medida',sol2_d:'Software sob medida — desktop, mobile e servidor — para equipes, con IA local integrada à sua infraestrutura, para dados sensíveis não saírem.',sol2_a:'Builds multiplataforma desktop e mobile',sol2_b:'IA on-premise e nuvem privada',sol2_c:'Automação de fluxos e integrações',ai_tag:'Inteligência local',ai_title:'IA que roda onde seus dados vivem',ai_lead:'Integramos modelos de IA que rodam no seu dispositivo ou servidor — rápidos, offline e privados. Quando a nuvem ajuda de verdade, é opt-in e transparente.',ai_a:'Modelos no dispositivo para privacidade offline total',ai_b:'IA na nuvem opcional — sempre opt-in, nunca em silêncio',ai_c:'Explicamos o que a IA faz e por quê — sem caixas-pretas',ai_orb:'Núcleo<br>IA<br>Local',v_tag:'Por que AstraCoreNova',v_title:'Tecnologia em que confiar',v1t:'Privacidade por design',v1d:'Privacidade não é recurso — é a base. Seus dados nunca saem sem permissão explícita.',v2t:'IA do seu lado',v2d:'IA como ferramenta — poderosa, útil, transparente. Explicamos o que faz e por quê. Sem caixas-pretas.',v3t:'Minimalismo e velocidade',v3d:'Apps que fazem uma coisa — com perfeição. Sem permissões excessivas. Só o necessário.',v4t:'Transparência',v4d:'Políticas de privacidade claras. Sem cláusulas ocultas — linguagem simples.',p_tag:'Nuestra filosofía',p_title:'Privacidade é um direito, não um privilégio',p1:'Num mundo onde dados são moeda, escolhemos outro caminho. Respeitamos a pessoa, no a fonte de dados.',p2:'Cada app passa por auditoria de privacidade. No coletamos o que não precisamos. No vendemos o que temos.',pi1:'venda de datos',pi2:'transparência',pi3num:'Local',pi3:'processamento IA',co_tag:'Contato',co_title:'Vamos construir juntos',co_sub:'Dúvidas sobre apps, um projeto empresarial ou integração de IA local? Fale conosco — respondemos rápido.',co_name:'Seu nome',co_email:'Email',co_msg:'Mensagem...',co_send:'Enviar mensagem',f_pp:'Privacidade',f_copy:'© 2026 AstraCoreNova. Todos os direitos reservados.'},
 de:{nav_home:'Start',nav_plat:'Plattformen',nav_sol:'Lösungen',nav_apps:'Apps',nav_con:'Kontakt',h_badge:'Private KI · Jede Plattform',h1:'Wir bauen Software, die nur',h1b:'Ihnen verpflichtet ist',hsub:'AstraCoreNova entwickelt KI-Apps für Menschen und Unternehmen — für Android, Linux, macOS, Windows und iOS. Lokale KI auf Ihrer Hardware. Ihre Daten bleiben ohne Ihr Wort, wo sie sind.',hcta1:'Apps entdecken',hcta2:'Was wir bauen',pf_tag:'Reichweite',pf_title:'Ein Handwerk. Jede Plattform.',pf_lead:'Wir entwickeln Software in nativer Qualität, wo Sie arbeiten — Handy, Desktop oder Server. Ein geteilter Kern, auf jedes System abgestimmt.',pf_and:'Apps & KI auf dem Gerät',pf_lin:'Desktop- & Edge-Tools',pf_apl:'Apple-Ökosystem',pf_win:'Desktop & Business',pf_note:'Plattformübergreifend mit Kotlin Multiplatform & Compose — ein Kern, überall nativ.',sol_tag:'Was wir bauen',sol_title:'Persönliche Software. Business-Systeme.',sol_lead:'Von der Finanz-App, die still auf Ihrem Handy lebt, bis zu KI-Tools im Firmen-Workflow — wir bauen beides mit derselben Privacy-First-Disziplin.',sol1_tag:'Für Menschen',sol1_h:'Persönliche Apps',sol1_d:'Fokussierte, schöne Tools, die eine Sache perfekt machen und Sie als Mensch respektieren — nicht als Datenquelle. Alles läuft standardmäßig auf Ihrem Gerät.',sol1_a:'Finanzen, Produktivität & KI-Begleiter',sol1_b:'Verarbeitung auf dem Gerät, kein Tracking',sol1_c:'Lokalisiert für 25+ Länder',sol2_tag:'Für Unternehmen',sol2_h:'Maßgeschneiderte Software & KI',sol2_d:'Maßgeschneiderte Software — Desktop, Mobil, Server — für Teams, mit lokaler KI in Ihrer Infrastruktur, damit sensible Daten im Haus bleiben.',sol2_a:'Plattformübergreifende Desktop- & Mobil-Builds',sol2_b:'On-Premise- & Private-Cloud-KI',sol2_c:'Workflow-Automatisierung & Integrationen',ai_tag:'Lokale Intelligenz',ai_title:'KI, die läuft, wo Ihre Daten leben',ai_lead:'Wir integrieren KI-Modelle, die auf Ihrem Gerät oder Server laufen — schnell, offline und privat. Wenn die Cloud wirklich hilft, ist sie opt-in und transparent.',ai_a:'Modelle auf dem Gerät für volle Offline-Privatsphäre',ai_b:'Optionale Cloud-KI — immer opt-in, nie heimlich',ai_c:'Wir erklären, was die KI tut und warum — keine Black Boxes',ai_orb:'Lokaler<br>KI-<br>Kern',v_tag:'Warum AstraCoreNova',v_title:'Technologie, der Sie vertrauen können',v1t:'Privacy by Design',v1d:'Datenschutz ist kein Feature — er ist das Fundament. Ihre Daten verlassen das Gerät nie ohne ausdrückliche Erlaubnis.',v2t:'KI auf Ihrer Seite',v2d:'KI als Werkzeug — leistungsstark, nützlich, transparent. Wir erklären, was sie tut und warum. Keine Black Boxes.',v3t:'Minimalismus & Tempo',v3d:'Apps, die eine Sache — perfekt — tun. Keine überflüssigen Rechte, kein Ballast. Nur das Nötige.',v4t:'Transparenz',v4d:'Klare Datenschutzrichtlinien für jede App. Keine versteckten Klauseln — verständliche Sprache.',p_tag:'Unsere Philosophie',p_title:'Datenschutz ist ein Recht, kein Privileg',p1:'In einer Welt, in der Daten zur Währung wurden, gehen wir einen anderen Weg. Wir respektieren den Menschen — nicht die Datenquelle.',p2:'Jede App durchläuft vor dem Release ein Datenschutz-Audit. Wir sammeln nicht, was wir nicht brauchen. Wir verkaufen nicht, was wir haben.',pi1:'Datenverkäufe',pi2:'Transparenz',pi3num:'Lokal',pi3:'KI-Verarbeitung',co_tag:'Kontakt',co_title:'Bauen Sie mit uns',co_sub:'Fragen zu Apps, einem Business-Projekt oder lokaler KI-Integration? Melden Sie sich — wir antworten schnell.',co_name:'Ihr Name',co_email:'E-Mail',co_msg:'Nachricht...',co_send:'Nachricht senden',f_pp:'Datenschutz',f_copy:'© 2026 AstraCoreNova. Alle Rechte vorbehalten.'},
 fr:{nav_home:'Accueil',nav_plat:'Plateformes',nav_sol:'Solutions',nav_apps:'Applications',nav_con:'Contact',h_badge:'IA Privée · Toute Plateforme',h1:'Nous créons un logiciel qui ne répond',h1b:"qu'à vous",hsub:"AstraCoreNova crée des apps IA pour les particuliers et les entreprises — sur Android, Linux, macOS, Windows et iOS. IA locale sur votre matériel. Vos données ne partent jamais sans votre accord.",hcta1:'Découvrir les apps',hcta2:'Ce que nous faisons',pf_tag:'Portée',pf_title:'Un savoir-faire. Toute plateforme.',pf_lead:'Nous concevons un logiciel de qualité native là où vous travaillez — mobile, bureau ou serveur. Un cœur partagé, ajusté à chaque système.',pf_and:'Apps & IA sur l\'appareil',pf_lin:'Outils bureau & edge',pf_apl:'Écosystème Apple',pf_win:'Bureau & entreprise',pf_note:'Multiplateforme avec Kotlin Multiplatform & Compose — un cœur, natif partout.',sol_tag:'Ce que nous faisons',sol_title:'Logiciel personnel. Systèmes pro.',sol_lead:"D'une app de finances discrète sur votre mobile aux outils IA intégrés au flux d'une entreprise — nous faisons les deux, avec la même rigueur privacy-first.",sol1_tag:'Pour les particuliers',sol1_h:'Apps personnelles',sol1_d:"Des outils ciblés et soignés qui font une chose à la perfection et vous respectent en tant que personne — pas comme source de données. Tout tourne sur votre appareil par défaut.",sol1_a:'Finances, productivité & compagnons IA',sol1_b:'Traitement local, sans suivi',sol1_c:'Localisé pour 25+ pays',sol2_tag:'Pour les entreprises',sol2_h:'Logiciel & IA sur mesure',sol2_d:"Logiciel sur mesure — bureau, mobile, serveur — pour les équipes, avec une IA locale intégrée à votre infrastructure, pour que les données sensibles ne sortent jamais.",sol2_a:'Builds multiplateformes bureau & mobile',sol2_b:'IA on-premise & cloud privé',sol2_c:'Automatisation des flux & intégrations',ai_tag:'Intelligence locale',ai_title:'Une IA qui tourne où vivent vos données',ai_lead:"Nous intégrons des modèles IA qui tournent sur votre appareil ou serveur — rapides, hors ligne et privés. Quand le cloud aide vraiment, c'est opt-in et transparent.",ai_a:'Modèles sur l\'appareil pour une confidentialité hors ligne totale',ai_b:'IA cloud optionnelle — toujours opt-in, jamais en silence',ai_c:"Nous expliquons ce que fait l'IA et pourquoi — pas de boîtes noires",ai_orb:'Cœur<br>IA<br>Local',v_tag:'Pourquoi AstraCoreNova',v_title:'Une technologie de confiance',v1t:'Privacy by Design',v1d:"La confidentialité n'est pas une option — c'est le fondement. Vos données ne quittent jamais l'appareil sans accord explicite.",v2t:"L'IA de votre côté",v2d:"L'IA comme outil — puissante, utile, transparente. Nous expliquons ce qu'elle fait et pourquoi. Pas de boîtes noires.",v3t:'Minimalisme & vitesse',v3d:'Des apps qui font une chose — parfaitement. Aucune permission superflue. Juste le nécessaire.',v4t:'Transparence',v4d:'Des politiques de confidentialité claires. Aucune clause cachée — un langage simple.',p_tag:'Notre philosophie',p_title:'La confidentialité est un droit, pas un privilège',p1:'Dans un monde où les données sont devenues monnaie, nous choisissons une autre voie. Nous respectons la personne — pas la source de données.',p2:"Chaque app passe un audit de confidentialité. Nous ne collectons pas l'inutile. Nous ne vendons pas ce que nous avons.",pi1:'ventes de données',pi2:'transparence',pi3num:'Local',pi3:'traitement IA',co_tag:'Contact',co_title:'Construisons ensemble',co_sub:"Des questions sur nos apps, un projet d'entreprise ou l'intégration d'IA locale ? Écrivez-nous — réponse rapide.",co_name:'Votre nom',co_email:'Email',co_msg:'Message...',co_send:'Envoyer',f_pp:'Confidentialité',f_copy:'© 2026 AstraCoreNova. Tous droits réservés.'},
 it:{nav_home:'Home',nav_plat:'Piattaforme',nav_sol:'Soluzioni',nav_apps:'Applicazioni',nav_con:'Contatti',h_badge:'IA Privata · Ogni Piattaforma',h1:'Creiamo software che risponde',h1b:'solo a te',hsub:'AstraCoreNova crea app con IA per persone e aziende — su Android, Linux, macOS, Windows e iOS. IA locale sul tuo hardware. I tuoi dati non escono senza il tuo consenso.',hcta1:'Esplora le App',hcta2:'Cosa facciamo',pf_tag:'Portata',pf_title:'Un mestiere. Ogni piattaforma.',pf_lead:'Progettiamo software di qualità nativa dove lavori — telefono, desktop o server. Un nucleo condiviso, calibrato su ogni sistema.',pf_and:'App e IA sul dispositivo',pf_lin:'Strumenti desktop & edge',pf_apl:'Ecosistema Apple',pf_win:'Desktop e business',pf_note:'Multipiattaforma con Kotlin Multiplatform e Compose — un nucleo, nativo ovunque.',sol_tag:'Cosa facciamo',sol_title:'Software personale. Sistemi aziendali.',sol_lead:"Da un'app di finanza che vive nel tuo telefono a strumenti IA integrati nel flusso di un'azienda — facciamo entrambi, con la stessa disciplina privacy-first.",sol1_tag:'Per le persone',sol1_h:'App personali',sol1_d:'Strumenti mirati e curati che fanno una cosa alla perfezione e ti rispettano como persona — non como fonte di dati. Tutto gira sul tuo dispositivo per impostazione predefinita.',sol1_a:'Finanza, produttività e compagni IA',sol1_b:'Elaborazione locale, nessun tracciamento',sol1_c:'Localizzato per 25+ paesi',sol2_tag:'Per le aziende',sol2_h:'Software e IA su misura',sol2_d:"Software su misura — desktop, mobile e server — per i team, con IA locale integrata nella tua infrastruttura, così i dati sensibili non escono.",sol2_a:'Build multipiattaforma desktop e mobile',sol2_b:'IA on-premise e cloud privato',sol2_c:'Automazione dei flussi e integrazioni',ai_tag:'Intelligenza locale',ai_title:'IA che gira dove vivono i tuoi dati',ai_lead:"Integriamo modelli IA che girano sul tuo dispositivo o server — veloci, offline e privati. Quando il cloud aiuta davvero, è opt-in e trasparente.",ai_a:'Modelli sul dispositivo per piena privacy offline',ai_b:'IA cloud opzionale — sempre opt-in, mai in silenzio',ai_c:"Spieghiamo cosa fa l'IA e perché — niente scatole nere",ai_orb:'Nucleo<br>IA<br>Locale',v_tag:'Perché AstraCoreNova',v_title:'Tecnologia di cui fidarti',v1t:'Privacy by Design',v1d:"La privacy non è una funzione — è il fondamento. I tuoi dati non lasciano mai il dispositivo senza permesso esplicito.",v2t:"L'IA dalla tua parte",v2d:"L'IA come strumento — potente, utile, trasparente. Spieghiamo cosa fa e perché. Niente scatole nere.",v3t:'Minimalismo e velocità',v3d:'App che fanno una cosa — alla perfezione. Nessun permesso superfluo. Solo il necessario.',v4t:'Trasparenza',v4d:'Informative privacy chiare. Nessuna clausola nascosta — linguaggio semplice.',p_tag:'La nostra filosofia',p_title:'La privacy è un derecho, non un privilegio',p1:'In un mondo dove i dati sono moneta, scegliamo un percorso diverso. Rispettiamo la persona — non la fonte di dati.',p2:'Ogni app passa un audit sulla privacy. Non raccogliamo ciò che non serve. Non vendiamo ciò che abbiamo.',pi1:'vendite di dati',pi2:'trasparenza',pi3num:'Locale',pi3:'elaborazione IA',co_tag:'Contatti',co_title:'Costruiamo insieme',co_sub:"Domande sulle app, un progetto aziendale o l'integrazione di IA locale? Scrivici — rispondiamo in fretta.",co_name:'Il tuo nome',co_email:'Email',co_msg:'Messaggio...',co_send:'Invia',f_pp:'Privacy',f_copy:'© 2026 AstraCoreNova. Tutti i diritti riservati.'},
