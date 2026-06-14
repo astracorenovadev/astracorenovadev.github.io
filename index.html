@@ -32,7 +32,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
   radial-gradient(ellipse 110% 80% at 50% 50%,transparent 30%,rgba(2,2,2,.85) 75%,rgba(0,0,0,1) 100%);}
 
-/* ── film grain: METAPHORICALLY BROKEN quality ── */
+/* ── film grain: EXTREME NOISE ── */
 .grain{position:fixed;inset:-150%;width:400%;height:400%;z-index:9990;pointer-events:none;opacity:0.98;mix-blend-mode:color-dodge;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 0.12s steps(2) infinite; filter: contrast(350%) brightness(40%);}
 @keyframes grain{0%{transform:translate(0,0);}50%{transform:translate(-1%,2.5%);}100%{transform:translate(1.5%,-1%);}}
 
@@ -69,20 +69,24 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 
 /* ── hero ── */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3; overflow:hidden;}
-.hero-stage{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:center;}
 
-/* Abstract Metaphorical Data-Cathedral */
-.gothic-spires{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.35;z-index:0; filter: drop-shadow(0 0 60px rgba(0,0,0,1)); object-fit:cover;}
+/* FIX: Absolute stage covering entire viewport perfectly */
+.hero-stage{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 
-/* Shattered Mosaic Convergence (Abstract Cross) */
-.cross-cluster{position:relative;width:600px;height:600px;animation:spin-cw 90s linear infinite;z-index:1; filter: drop-shadow(0 0 60px rgba(60,10,90,0.8));}
+/* HEAVY, SCARY Gothic Cathedral (Fills viewport) */
+.gothic-spires{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);min-width:100vw;min-height:100vh;opacity:0.35;z-index:0; filter: drop-shadow(0 0 60px rgba(0,0,0,1)); object-fit:cover;}
+
+/* Stained Glass Classic Latin Cross */
+.cross-cluster{position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%, -50%);z-index:1; filter: drop-shadow(0 0 60px rgba(60,10,90,0.8));}
+.cross-rotator{width:100%;height:100%;animation:spin-cw 90s linear infinite;}
+
 @keyframes spin-cw{from{transform:rotate(0);}to{transform:rotate(360deg);}}
 @keyframes spin-ccw{from{transform:rotate(0);}to{transform:rotate(-360deg);}}
 
 .mosaic-cross { width: 100%; height: 100%; overflow: visible; }
 .mosaic-cross polygon, .mosaic-cross path {
-  stroke: rgba(0,0,0,0.9); /* Heavy lead matrix */
-  stroke-width: 3.5;
+  stroke: rgba(5,2,10,0.95); /* Heavy lead lines */
+  stroke-width: 4;
   stroke-linejoin: round;
 }
 
@@ -150,7 +154,7 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 .sol-list li{color:var(--silver);font-size:.85rem;padding:.4rem 0 .4rem 1.4rem;position:relative;font-weight:400;}
 .sol-list li::before{content:'◆';position:absolute;left:0;top:.5rem;color:var(--lum);font-size:.5rem;}
 
-/* ── Abstract Metaphorical AI Core ── */
+/* ── Brutalist Occult AI Core ── */
 .ai-band{position:relative;z-index:2;margin:0 auto;max-width:1180px;padding:5.5rem 3rem;}
 .ai-inner{padding:3.4rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;}
 .ai-points{list-style:none;margin-top:1.8rem;}
@@ -162,44 +166,35 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
   position: relative;
   width: 280px; height: 280px;
   display: flex; align-items: center; justify-content: center;
-  filter: drop-shadow(0 0 40px rgba(120, 20, 200, 0.8));
 }
 
-/* Orbiting Outer Ring with spark */
-.ai-orbit-ring {
+/* Outer Circle (Clockwise) - NO NEON */
+.ai-orbit-circle {
   position: absolute; inset: 0;
+  border: 2px solid rgba(80, 80, 80, 0.6);
+  border-top: 2px solid rgba(160, 160, 160, 0.8); /* Highlight edge instead of spark */
+  border-bottom: 2px solid rgba(160, 160, 160, 0.4);
   border-radius: 50%;
-  border: 2px solid rgba(130, 60, 200, 0.3);
-  border-left: 2px solid rgba(200, 100, 255, 0.8);
-  animation: spin-ccw 4s linear infinite;
-  box-shadow: inset 0 0 25px rgba(60, 20, 100, 0.6);
-}
-.ai-orbit-ring::after {
-  content: ''; position: absolute;
-  top: 50%; left: -6px; transform: translateY(-50%);
-  width: 14px; height: 14px; background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 25px #fff, 0 0 50px rgba(220, 150, 255, 1);
+  animation: spin-cw 15s linear infinite;
 }
 
-/* Metaphorical Abstract Star (Rotating Clockwise) */
+/* Inner Pentacle (Counter-Clockwise) - NO NEON */
 .ai-star-rotating {
-  position: absolute; inset: 15px;
-  animation: spin-cw 35s linear infinite;
+  position: absolute; inset: 20px;
+  animation: spin-ccw 20s linear infinite;
   z-index: 1;
 }
 .ai-star-rotating svg {
   width: 100%; height: 100%;
-  filter: drop-shadow(0 0 20px rgba(150,50,220,0.8));
 }
 .ai-star-rotating polygon {
-  fill: rgba(30, 10, 50, 0.8);
-  stroke: rgba(180, 100, 250, 0.7);
-  stroke-width: 1.5;
+  fill: rgba(15, 15, 15, 0.95);
+  stroke: rgba(120, 120, 120, 0.8);
+  stroke-width: 2;
   stroke-linejoin: round;
 }
 
-/* Static Center Text */
+/* Static Text - NO NEON */
 .ai-star-text {
   position: absolute;
   z-index: 10;
@@ -208,7 +203,6 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
 .ai-star-text span {
   font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 900;
   color: var(--white);
-  text-shadow: 0 0 10px rgba(255,255,255,1), 0 0 30px rgba(180,100,250,1), 0 0 50px rgba(100,20,180,1);
   letter-spacing: 0.25em; text-align: center; line-height: 1.5;
   text-transform: uppercase;
 }
@@ -341,57 +335,91 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   <div class="hero-stage">
     
     <svg class="gothic-spires" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-      <g stroke="rgba(110,110,120,0.4)" fill="none" stroke-width="1.5">
+      <defs>
+        <pattern id="brick" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0,20 L40,20 M20,0 L20,40 M0,0 L40,40 M40,0 L0,40" stroke="rgba(30,30,30,0.3)" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="1000" height="1000" fill="url(#brick)" />
+      
+      <polygon points="500,-100 800,400 800,1100 200,1100 200,400" fill="rgba(6,6,8,0.9)"/>
+      <polygon points="100,100 350,500 350,1100 -100,1100 -100,500" fill="rgba(4,4,6,0.85)"/>
+      <polygon points="900,100 650,500 650,1100 1100,1100 1100,500" fill="rgba(4,4,6,0.85)"/>
+
+      <g stroke="rgba(80,80,80,0.8)" fill="none" stroke-width="2">
+        <path d="M-200,-200 Q500,600 1200,-200" stroke-width="6" stroke="rgba(60,60,60,0.7)"/>
+        <path d="M0,0 Q500,700 1000,0" stroke-width="5" stroke="rgba(50,50,50,0.6)"/>
+        <line x1="0" y1="0" x2="1000" y2="1000" stroke="rgba(50,50,50,0.5)" stroke-width="4"/>
+        <line x1="1000" y1="0" x2="0" y2="1000" stroke="rgba(50,50,50,0.5)" stroke-width="4"/>
+        <line x1="500" y1="-100" x2="500" y2="1100" stroke="rgba(70,70,70,0.6)" stroke-width="5"/>
         
-        <polygon points="460,1000 485,250 500,50 515,250 540,1000" fill="rgba(10,10,12,0.8)" stroke="rgba(150,150,160,0.5)"/>
-        <line x1="500" y1="50" x2="500" y2="1000" stroke="rgba(180,180,190,0.6)" stroke-width="2"/>
+        <path d="M100,-100 L500,400 L900,-100" stroke-width="3" stroke="rgba(90,90,90,0.4)"/>
+        <path d="M200,-100 L500,300 L800,-100" stroke-width="3" stroke="rgba(90,90,90,0.4)"/>
+
+        <path d="M50,1100 L50,500 Q500,-100 950,500 L950,1100" stroke-width="8" stroke="rgba(40,40,40,0.95)"/>
+        <path d="M150,1100 L150,600 Q500,50 850,600 L850,1100" stroke-width="6" stroke="rgba(50,50,50,0.9)"/>
+        <path d="M250,1100 L250,700 Q500,200 750,700 L750,1100" stroke-width="5" stroke="rgba(70,70,70,0.8)"/>
+        <path d="M350,1100 L350,800 Q500,350 650,800 L650,1100" stroke-width="4" stroke="rgba(90,90,90,0.7)"/>
+
+        <rect x="50" y="500" width="100" height="600" fill="rgba(8,8,10,0.95)" stroke-width="4"/>
+        <rect x="850" y="500" width="100" height="600" fill="rgba(8,8,10,0.95)" stroke-width="4"/>
+        <line x1="100" y1="500" x2="100" y2="1100" stroke="rgba(120,120,120,0.3)"/>
+        <line x1="900" y1="500" x2="900" y2="1100" stroke="rgba(120,120,120,0.3)"/>
         
-        <line x1="0" y1="1000" x2="500" y2="350" stroke="rgba(80,80,90,0.3)" stroke-width="3"/>
-        <line x1="1000" y1="1000" x2="500" y2="350" stroke="rgba(80,80,90,0.3)" stroke-width="3"/>
-
-        <path d="M50,1000 Q500,-150 950,1000" stroke-width="4" stroke="rgba(60,60,70,0.5)"/>
-        <path d="M150,1000 Q500,-50 850,1000" stroke-width="3" stroke="rgba(70,70,80,0.6)"/>
-        <path d="M250,1000 Q500,100 750,1000" stroke-width="2" stroke="rgba(80,80,90,0.7)"/>
-        <path d="M350,1000 Q500,300 650,1000" stroke-width="2" stroke="rgba(90,90,100,0.8)"/>
-
-        <circle cx="500" cy="420" r="280" stroke="rgba(100,100,110,0.2)" stroke-width="2"/>
-        <circle cx="500" cy="420" r="220" stroke="rgba(120,120,130,0.3)" stroke-dasharray="10 20"/>
-        <circle cx="500" cy="420" r="160" stroke="rgba(140,140,150,0.4)" stroke-width="3"/>
-        <circle cx="500" cy="420" r="80" fill="rgba(5,5,8,0.9)" stroke="rgba(200,200,210,0.5)"/>
-
-        <polygon points="150,1000 220,500 240,250 260,500 300,1000" fill="rgba(12,12,15,0.7)"/>
-        <line x1="240" y1="250" x2="240" y2="1000" stroke="rgba(130,130,140,0.5)"/>
-        <polygon points="850,1000 780,500 760,250 740,500 700,1000" fill="rgba(12,12,15,0.7)"/>
-        <line x1="760" y1="250" x2="760" y2="1000" stroke="rgba(130,130,140,0.5)"/>
-
-        <path d="M240,400 L500,420 L760,400" stroke="rgba(150,150,160,0.4)"/>
-        <path d="M300,600 L500,420 L700,600" stroke="rgba(150,150,160,0.4)"/>
+        <polygon points="50,500 100,50 150,500" fill="rgba(12,12,12,0.95)"/>
+        <polygon points="850,500 900,50 950,500" fill="rgba(12,12,12,0.95)"/>
+        <polygon points="150,600 200,150 250,600" fill="rgba(18,18,18,0.85)"/>
+        <polygon points="750,600 800,150 850,600" fill="rgba(18,18,18,0.85)"/>
+        
+        <path d="M100,50 L100,-100 M900,50 L900,-100" stroke-width="4"/>
+        <path d="M200,150 L200,-50 M800,150 L800,-50" stroke-width="3"/>
       </g>
     </svg>
 
     <div class="cross-cluster">
-      <svg class="mosaic-cross" viewBox="0 0 500 500">
-        <polygon points="230,50 270,40 260,140 240,150" fill="rgba(30,10,50,0.85)"/>
-        <polygon points="260,140 280,120 270,220 250,230" fill="rgba(55,20,85,0.7)"/>
-        <polygon points="240,150 250,230 230,220 210,130" fill="rgba(40,12,65,0.9)"/>
-        
-        <polygon points="250,230 270,220 290,320 260,340" fill="rgba(70,25,110,0.6)"/>
-        <polygon points="230,220 250,230 240,330 210,310" fill="rgba(45,15,70,0.8)"/>
+      <div class="cross-rotator">
+        <svg class="mosaic-cross" viewBox="0 0 500 500">
+          <path d="M200,50 L300,50 L300,150 L450,150 L450,250 L300,250 L300,450 L200,450 L200,250 L50,250 L50,150 L200,150 Z" fill="rgba(10,5,20,0.6)" stroke="rgba(0,0,0,0.9)" stroke-width="8" stroke-linejoin="round"/>
+          
+          <polygon points="200,50 300,50 250,100" fill="rgba(40,15,65,0.85)"/>
+          <polygon points="200,50 250,100 200,150" fill="rgba(25,10,45,0.9)"/>
+          <polygon points="300,50 300,150 250,100" fill="rgba(55,20,80,0.7)"/>
+          <polygon points="200,150 300,150 250,100" fill="rgba(70,25,95,0.8)"/>
 
-        <polygon points="260,340 280,310 270,450 240,460" fill="rgba(20,5,35,0.95)"/>
-        <polygon points="240,330 260,340 240,460 220,440" fill="rgba(50,15,80,0.7)"/>
+          <polygon points="50,150 150,150 100,200" fill="rgba(35,10,55,0.8)"/>
+          <polygon points="50,150 100,200 50,250" fill="rgba(50,15,75,0.9)"/>
+          <polygon points="150,150 150,250 100,200" fill="rgba(20,5,30,0.95)"/>
+          <polygon points="50,250 150,250 100,200" fill="rgba(65,20,90,0.7)"/>
+          
+          <polygon points="150,150 200,150 150,200" fill="rgba(45,12,65,0.8)"/>
+          <polygon points="150,250 200,250 150,200" fill="rgba(80,30,120,0.6)"/>
+          <polygon points="200,150 200,250 150,200" fill="rgba(30,8,45,0.9)"/>
 
-        <polygon points="60,240 160,220 180,260 80,270" fill="rgba(45,15,75,0.8)"/>
-        <polygon points="160,220 230,220 250,250 180,260" fill="rgba(25,5,40,0.9)"/>
-        
-        <polygon points="270,220 340,210 360,250 290,260" fill="rgba(80,25,120,0.6)"/>
-        <polygon points="340,210 440,190 450,240 360,250" fill="rgba(50,20,80,0.85)"/>
+          <polygon points="350,150 450,150 400,200" fill="rgba(60,20,85,0.75)"/>
+          <polygon points="350,150 400,200 350,250" fill="rgba(25,8,40,0.95)"/>
+          <polygon points="450,150 450,250 400,200" fill="rgba(40,10,60,0.85)"/>
+          <polygon points="350,250 450,250 400,200" fill="rgba(75,25,100,0.65)"/>
 
-        <polygon points="190,160 210,150 200,180 180,190" fill="rgba(90,40,150,0.5)"/>
-        <polygon points="290,160 310,140 320,170 300,180" fill="rgba(65,20,100,0.7)"/>
-        <polygon points="170,300 190,290 180,330 160,340" fill="rgba(80,30,130,0.5)"/>
-        <polygon points="310,310 330,300 340,340 320,350" fill="rgba(40,10,70,0.8)"/>
-      </svg>
+          <polygon points="300,150 350,150 350,200" fill="rgba(35,10,50,0.9)"/>
+          <polygon points="300,250 350,250 350,200" fill="rgba(55,15,75,0.8)"/>
+          <polygon points="300,150 300,250 350,200" fill="rgba(85,35,130,0.55)"/>
+
+          <polygon points="200,150 300,150 250,200" fill="rgba(90,40,140,0.6)"/>
+          <polygon points="200,150 250,200 200,250" fill="rgba(45,15,70,0.85)"/>
+          <polygon points="300,150 300,250 250,200" fill="rgba(20,5,30,0.95)"/>
+          <polygon points="200,250 300,250 250,200" fill="rgba(65,20,95,0.75)"/>
+
+          <polygon points="200,250 300,250 250,300" fill="rgba(40,10,60,0.8)"/>
+          <polygon points="200,250 250,300 200,350" fill="rgba(70,25,105,0.7)"/>
+          <polygon points="300,250 300,350 250,300" fill="rgba(25,5,40,0.95)"/>
+          <polygon points="200,350 300,350 250,300" fill="rgba(55,20,80,0.8)"/>
+
+          <polygon points="200,350 300,350 250,400" fill="rgba(35,10,55,0.9)"/>
+          <polygon points="200,350 250,400 200,450" fill="rgba(80,30,120,0.6)"/>
+          <polygon points="300,350 300,450 250,400" fill="rgba(45,15,70,0.85)"/>
+          <polygon points="200,450 300,450 250,400" fill="rgba(60,20,90,0.75)"/>
+        </svg>
+      </div>
     </div>
   </div>
 
@@ -482,14 +510,11 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
     <div class="ai-visual">
       
       <div class="ai-star-wrapper">
-        <div class="ai-orbit-circle">
-          <div class="ai-orbit-ring"></div>
-        </div>
+        <div class="ai-orbit-circle"></div>
         
         <div class="ai-star-rotating">
           <svg viewBox="0 0 100 100">
-            <polygon points="50,5 63,37 95,50 63,63 50,95 37,63 5,50 37,37" fill="rgba(30, 10, 50, 0.85)" stroke="rgba(180, 100, 250, 0.8)" stroke-width="1.5" stroke-linejoin="round"/>
-            <polygon points="50,18 72,28 82,50 72,72 50,82 28,72 18,50 28,28" fill="none" stroke="rgba(100, 50, 150, 0.5)" stroke-width="1"/>
+            <polygon points="50,5 20,90 95,38 5,38 80,90" fill="rgba(20,20,20,0.9)" stroke="rgba(140,140,140,0.8)" stroke-width="1.5" stroke-linejoin="round"/>
           </svg>
         </div>
 
