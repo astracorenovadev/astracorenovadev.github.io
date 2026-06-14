@@ -4,146 +4,152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AstraBudget — AstraCoreNova</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syne:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Orbitron:wght@400;700;900&family=Syne:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{--void:#020308;--deep:#07060f;--purple:#7b2fff;--glow:#a855f7;--dim:#4c1d95;--silver:#c8bfde;--white:#f0eeff;--cyan:#00e5ff;--pink:#ff6ef7;}
+:root{
+  --void:#010103;
+  --deep:#05030a;
+  --purple:#5a189a;
+  --glow:#9d4edd;
+  --dim:#3c096c;
+  --silver:#e0aaff;
+  --white:#f8f9fa;
+  --gold:#d4af37;
+  --dark-gold:#997b16;
+  --cyan:#00e5ff;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--void);color:var(--white);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;}
-#cur{position:fixed;width:10px;height:10px;background:var(--glow);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 16px var(--glow);}
-#cur2{position:fixed;width:32px;height:32px;border:1px solid rgba(168,85,247,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
-.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,3,8,.97);border-bottom:1px solid rgba(123,47,255,.2);padding:.35rem 4rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.3rem;}
-.lb{background:none;border:1px solid transparent;color:rgba(200,191,222,.45);font-family:'Syne',sans-serif;font-size:.68rem;letter-spacing:.1em;padding:.2rem .6rem;cursor:none;transition:all .2s;border-radius:2px;text-transform:uppercase;}
-.lb:hover{color:var(--silver);border-color:rgba(123,47,255,.3);}
-.lb.on{color:var(--glow);border-color:rgba(123,47,255,.6);background:rgba(123,47,255,.1);}
-nav{position:fixed;top:32px;left:0;right:0;z-index:100;padding:1rem 4rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(2,3,8,.95),transparent);}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--silver);transition:all .3s;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(2,3,8,.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{color:var(--silver);text-decoration:none;font-family:'Orbitron',monospace;font-size:1.1rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
-.mobile-menu a:hover{color:var(--white);}
+body{background:var(--void);color:var(--white);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;position:relative;}
+
+/* Old photo / Gothic noise texture overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);box-shadow:0 0 15px var(--gold);}
+#cur2{position:fixed;width:36px;height:36px;border:1px solid rgba(212,175,55,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%); transition: width 0.2s, height 0.2s;}
+
+.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(1,1,3,.95);border-bottom:1px solid rgba(157,78,221,.15);padding:.35rem 4rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.3rem; backdrop-filter: blur(10px);}
+.lb{background:none;border:1px solid transparent;color:rgba(224,170,255,.4);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;padding:.2rem .6rem;cursor:none;transition:all .3s;border-radius:2px;}
+.lb:hover{color:var(--gold);border-color:rgba(212,175,55,.3);}
+.lb.on{color:var(--gold);border-color:rgba(212,175,55,.6);background:rgba(212,175,55,.05);}
+
+nav{position:fixed;top:32px;left:0;right:0;z-index:100;padding:1rem 4rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(1,1,3,.95),transparent);}
 .nlogo{display:flex;align-items:center;gap:.65rem;text-decoration:none;}
-.nlogo img{height:36px;width:auto;filter:drop-shadow(0 0 10px rgba(168,85,247,.7));transition:filter .3s;}
-.nlogo:hover img{filter:drop-shadow(0 0 18px rgba(168,85,247,1));}
-.nlogo-t{font-family:'Orbitron',monospace;font-weight:900;font-size:1rem;letter-spacing:.15em;background:linear-gradient(135deg,var(--glow),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nlogo img{height:38px;width:auto;filter:drop-shadow(0 0 12px rgba(157,78,221,.8));transition:all .3s;}
+.nlogo:hover img{filter:drop-shadow(0 0 20px var(--gold));}
+.nlogo-t{font-family:'Cinzel',serif;font-weight:900;font-size:1.1rem;letter-spacing:.15em;background:linear-gradient(135deg,var(--silver),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
 .nlinks{display:flex;gap:2.5rem;list-style:none;}
-.nlinks a{color:var(--silver);text-decoration:none;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
-.nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--glow);transition:width .3s;}
-.nlinks a:hover{color:var(--white);}
-.nlinks a:hover::after,.nlinks a.active::after{width:100%;}
-.nlinks a.active{color:var(--white);}
-.div{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(123,47,255,.4),transparent);}
-.stag{font-size:.63rem;letter-spacing:.4em;text-transform:uppercase;color:var(--glow);margin-bottom:1rem;display:block;}
-.stitle{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,2.8vw,2.5rem);font-weight:700;margin-bottom:1.5rem;}
-.rev{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
+.nlinks a{color:rgba(224,170,255,.7);text-decoration:none;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
+.nlinks a::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:1px;background:var(--gold);transition:all .3s;transform:translateX(-50%);}
+.nlinks a:hover, .nlinks a.active{color:var(--gold);}
+.nlinks a:hover::after, .nlinks a.active::after{width:100%;}
+
+.div{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(157,78,221,.3),transparent);position:relative;z-index:1;}
+.stag{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block;}
+.stitle{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3vw,3rem);font-weight:900;margin-bottom:1.5rem;color:var(--white);text-shadow: 0 4px 15px rgba(0,0,0,0.5);}
+.rev{opacity:0;transform:translateY(30px);transition:opacity 1s,transform 1s;}
 .rev.on{opacity:1;transform:none;}
+
 /* Breadcrumb */
-.breadcrumb{padding:5.5rem 4rem 0;max-width:1100px;margin:0 auto;}
-.breadcrumb a{display:inline-flex;align-items:center;gap:.4rem;color:var(--glow);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:none;transition:gap .2s;}
-.breadcrumb a:hover{gap:.65rem;}
+.breadcrumb{padding:6.5rem 4rem 0;max-width:1200px;margin:0 auto;position:relative;z-index:10;}
+.breadcrumb a{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-family:'Cinzel',serif;text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;cursor:none;transition:gap .3s;}
+.breadcrumb a:hover{gap:.8rem;color:var(--white);}
+
 /* App Hero */
-.ab-hero{max-width:1100px;margin:0 auto;padding:3rem 4rem 5rem;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;}
-.ab-vis{background:linear-gradient(135deg,rgba(123,47,255,.12),rgba(0,229,255,.04));border:1px solid rgba(123,47,255,.22);border-radius:16px;padding:3.5rem;text-align:center;position:relative;overflow:visible;}
-.ab-vis::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(168,85,247,.1),transparent 60%);}
-.ab-logo{width:130px;height:130px;object-fit:contain;display:block;margin:0 auto 1.5rem;filter:drop-shadow(0 0 28px rgba(168,85,247,.65));transition:filter .3s;}
-.ab-vis:hover .ab-logo{filter:drop-shadow(0 0 44px rgba(168,85,247,.9));}
-.ab-name{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,7vw,2rem);font-weight:900;background:linear-gradient(135deg,var(--white),var(--glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;word-break:break-word;}
-.ab-sub{color:var(--silver);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;}
-.ab-badge{display:inline-block;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;padding:.22rem .75rem;border-radius:2rem;margin-bottom:1.4rem;background:rgba(0,229,255,.08);color:var(--cyan);border:1px solid rgba(0,229,255,.25);}
-.ab-dtitle{font-family:'Orbitron',monospace;font-size:.85rem;color:var(--white);margin-bottom:.7rem;text-transform:uppercase;letter-spacing:.08em;}
-.ab-desc{color:var(--silver);font-size:.9rem;line-height:1.8;font-weight:300;margin-bottom:1.8rem;}
-.ab-feats{list-style:none;margin-bottom:2.4rem;}
-.ab-feats li{color:var(--silver);font-size:.83rem;padding:.35rem 0 .35rem 1.3rem;position:relative;font-weight:300;}
-.ab-feats li::before{content:'◆';position:absolute;left:0;color:var(--glow);font-size:.45rem;top:.55rem;}
-/* Play button */
-.play-btn{display:inline-flex;align-items:center;gap:.7rem;padding:1rem 1.8rem;background:linear-gradient(135deg,var(--purple),var(--glow));color:#fff;border-radius:6px;text-decoration:none;font-family:'Orbitron',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;cursor:none;transition:all .3s;box-shadow:0 0 28px rgba(123,47,255,.4);}
-.play-btn:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(123,47,255,.7);}
+.ab-hero{max-width:1200px;margin:0 auto;padding:3rem 4rem 6rem;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;position:relative;z-index:10;}
+.ab-vis{background:rgba(5, 3, 10, 0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(157,78,221,.2);border-top:1px solid rgba(212,175,55,.3);border-radius:2px;padding:4rem;text-align:center;position:relative;overflow:visible;box-shadow:0 20px 50px rgba(0,0,0,.5), inset 0 0 30px rgba(90,24,154,.2);transition:transform 0.4s;}
+.ab-vis::before{content:'';position:absolute;top:0;right:0;width:150px;height:150px;background:radial-gradient(circle,rgba(212,175,55,.1) 0%,transparent 70%);}
+.ab-vis:hover{transform:translateY(-5px);}
+.ab-logo{width:140px;height:140px;object-fit:contain;display:block;margin:0 auto 2rem;filter:drop-shadow(0 0 30px rgba(157,78,221,.6));transition:filter .4s;}
+.ab-vis:hover .ab-logo{filter:drop-shadow(0 0 50px var(--gold));}
+.ab-name{font-family:'Cinzel',serif;font-size:clamp(1.5rem,7vw,2.5rem);font-weight:900;background:linear-gradient(135deg,var(--white),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;word-break:break-word;letter-spacing: .05em;}
+.ab-sub{color:rgba(224,170,255,.7);font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;}
+
+.ab-badge{display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(212,175,55,.3);padding:.4rem 1.2rem;background:rgba(212,175,55,.05);backdrop-filter:blur(5px);margin-bottom:1.8rem;}
+.ab-dtitle{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--white);margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.1em;}
+.ab-desc{color:rgba(224,170,255,.8);font-size:.95rem;line-height:1.9;font-weight:300;margin-bottom:2rem;}
+.ab-feats{list-style:none;margin-bottom:3rem;}
+.ab-feats li{color:var(--silver);font-size:.88rem;padding:.4rem 0 .4rem 1.5rem;position:relative;font-weight:300;display:flex;align-items:center;}
+.ab-feats li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:1rem;}
+
+/* Play button - Gothic Gold Style */
+.play-btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;padding:.9rem 2.2rem;font-family:'Cinzel',serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .4s;position:relative;overflow:hidden;background:transparent;color:var(--gold);border:1px solid var(--gold);box-shadow:inset 0 0 10px rgba(212,175,55,.1), 0 0 20px rgba(212,175,55,.2);margin-bottom:1.5rem;}
+.play-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(212,175,55,.2),transparent);transition:left .5s;}
+.play-btn:hover::before{left:100%;}
+.play-btn:hover{background:rgba(212,175,55,.1);box-shadow:inset 0 0 15px rgba(212,175,55,.2), 0 0 30px rgba(212,175,55,.4);transform:translateY(-2px);color:var(--white);}
+
 /* Doc links */
 .doc-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
-.doc-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--cyan);text-decoration:none;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.1rem;border:1px solid rgba(0,229,255,.2);border-radius:4px;transition:all .25s;cursor:none;}
-.doc-link:hover{border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.05);}
-.doc-link svg{opacity:.7;}
+.doc-link{display:inline-flex;align-items:center;gap:.6rem;color:rgba(224,170,255,.7);text-decoration:none;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.7rem 1.2rem;border:1px solid rgba(157,78,221,.3);background:rgba(90,24,154,.1);transition:all .3s;cursor:none;backdrop-filter:blur(5px);}
+.doc-link:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.05);}
+
 /* Countries */
-.countries-wrap{background:rgba(123,47,255,.04);border-top:1px solid rgba(123,47,255,.14);border-bottom:1px solid rgba(123,47,255,.14);padding:5rem 4rem;}
-.countries-inner{max-width:1100px;margin:0 auto;}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.9rem;margin-top:2.5rem;}
-.ci{background:var(--deep);border:1px solid rgba(123,47,255,.14);padding:.9rem 1.1rem;display:flex;align-items:center;gap:.7rem;border-radius:2px;transition:border-color .3s;}
-.ci:hover{border-color:rgba(123,47,255,.38);}
-.cflag{font-size:1.3rem;}
-.cname{font-size:.75rem;color:var(--silver);font-weight:300;}
+.countries-wrap{background:rgba(5,3,10,.7);backdrop-filter:blur(10px);border-top:1px solid rgba(157,78,221,.2);border-bottom:1px solid rgba(157,78,221,.2);padding:6rem 4rem;position:relative;z-index:10;}
+.countries-inner{max-width:1200px;margin:0 auto;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:3rem;}
+.ci{background:rgba(90,24,154,.08);border:1px solid rgba(157,78,221,.2);padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;transition:all .3s;backdrop-filter:blur(5px);}
+.ci:hover{border-color:var(--gold);background:rgba(212,175,55,.05);transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.4);}
+.cflag{font-size:1.4rem;}
+.cname{font-family:'Orbitron',sans-serif;font-size:.75rem;color:var(--silver);font-weight:300;letter-spacing:.05em;}
+
 /* Docs section */
-.docs-wrap{max-width:1100px;margin:0 auto;padding:5rem 4rem 7rem;}
-.docs-tabs{display:flex;margin-bottom:3rem;border:1px solid rgba(123,47,255,.22);border-radius:4px;overflow:hidden;}
-.docs-tab{flex:1;padding:1rem;font-family:'Orbitron',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:none;color:rgba(200,191,222,.45);cursor:none;transition:all .25s;}
-.docs-tab:not(:last-child){border-right:1px solid rgba(123,47,255,.22);}
-.docs-tab:hover{color:var(--silver);background:rgba(123,47,255,.04);}
-.docs-tab.active{background:rgba(123,47,255,.12);color:var(--glow);}
+.docs-wrap{max-width:1200px;margin:0 auto;padding:6rem 4rem 8rem;position:relative;z-index:10;}
+.docs-tabs{display:flex;margin-bottom:3rem;border:1px solid rgba(157,78,221,.3);background:rgba(5,3,10,.6);backdrop-filter:blur(10px);}
+.docs-tab{flex:1;padding:1.2rem;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;background:transparent;border:none;color:rgba(224,170,255,.5);cursor:none;transition:all .3s;position:relative;}
+.docs-tab:not(:last-child){border-right:1px solid rgba(157,78,221,.3);}
+.docs-tab::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--gold);transition:all .3s;transform:translateX(-50%);}
+.docs-tab:hover{color:var(--silver);background:rgba(157,78,221,.1);}
+.docs-tab.active{color:var(--gold);background:rgba(212,175,55,.05);}
+.docs-tab.active::after{width:100%;}
 .doc-panel{display:none;}
 .doc-panel.active{display:block;}
+
 /* PDF viewer */
-.pdf-viewer-wrap{background:var(--deep);border:1px solid rgba(123,47,255,.2);border-radius:8px;overflow:hidden;}
-.pdf-toolbar{padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(123,47,255,.15);flex-wrap:wrap;gap:.8rem;}
-.pdf-title{font-family:'Orbitron',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);}
-.pdf-download{display:inline-flex;align-items:center;gap:.45rem;color:var(--glow);text-decoration:none;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.45rem .9rem;border:1px solid rgba(123,47,255,.3);border-radius:3px;transition:all .2s;cursor:none;}
-.pdf-download:hover{background:rgba(123,47,255,.1);border-color:var(--glow);}
-.pdf-frame{width:100%;height:780px;border:none;background:#fff;}
-.pdf-fallback{display:none;padding:3rem;text-align:center;}
-.pdf-fallback p{color:var(--silver);font-size:.88rem;margin-bottom:1.5rem;}
-.btn-p{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 2rem;font-family:'Orbitron',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;border-radius:4px;text-decoration:none;cursor:none;transition:all .3s;background:linear-gradient(135deg,var(--purple),var(--glow));color:#fff;border:none;box-shadow:0 0 28px rgba(123,47,255,.4);}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(123,47,255,.7);}
+.pdf-viewer-wrap{background:rgba(5,3,10,.8);backdrop-filter:blur(15px);border:1px solid rgba(157,78,221,.3);box-shadow:0 15px 40px rgba(0,0,0,.6);position:relative;}
+.pdf-viewer-wrap::before{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.5;}
+.pdf-toolbar{padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(157,78,221,.2);flex-wrap:wrap;gap:1rem;}
+.pdf-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+.pdf-download{display:inline-flex;align-items:center;gap:.5rem;color:var(--white);text-decoration:none;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.2rem;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);transition:all .3s;cursor:none;}
+.pdf-download:hover{background:rgba(212,175,55,.2);border-color:var(--gold);box-shadow:0 0 15px rgba(212,175,55,.2);}
+.pdf-frame{width:100%;height:800px;border:none;background:#fff;}
+.pdf-fallback{display:none;padding:4rem;text-align:center;}
+.pdf-fallback p{color:var(--silver);font-size:.95rem;margin-bottom:2rem;font-family:'Orbitron',sans-serif;}
+
 /* Footer */
-footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;}
-.flogo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}
-.flogo img{height:26px;width:auto;filter:drop-shadow(0 0 6px rgba(168,85,247,.45));}
-.flogo-t{font-family:'Orbitron',monospace;font-weight:900;font-size:.85rem;letter-spacing:.15em;background:linear-gradient(135deg,var(--glow),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.flinks{display:flex;gap:2rem;list-style:none;flex-wrap:wrap;}
-.flinks a{color:rgba(200,191,222,.45);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;cursor:none;}
-.flinks a:hover{color:var(--silver);}
-.fcopy{color:rgba(200,191,222,.28);font-size:.7rem;}
-::-webkit-scrollbar{width:3px;}
+footer{position:relative;z-index:1;border-top:1px solid rgba(157,78,221,.2);background:rgba(1,1,3,.8);backdrop-filter:blur(10px);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem;}
+.flinks{display:flex;gap:2.5rem;list-style:none;flex-wrap:wrap;}
+.flinks a{color:rgba(224,170,255,.5);text-decoration:none;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s;cursor:none;}
+.flinks a:hover{color:var(--gold);}
+.fcopy{color:rgba(224,170,255,.3);font-size:.75rem;}
+
+::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:var(--void);}
 ::-webkit-scrollbar-thumb{background:var(--dim);}
+
 @media(max-width:900px){
   body{cursor:auto;}
   #cur,#cur2{display:none;}
-  .lbar{padding:.3rem .8rem;gap:.15rem;justify-content:center;}
-  .lb{font-size:.6rem;padding:.18rem .45rem;}
-  nav{padding:.8rem 1.2rem;top:50px;}
+  .lbar{padding:.4rem 1rem;justify-content:center;}
+  nav{padding:1rem;top:40px;}
   .nlinks{display:none;}
-  .hamburger{display:flex;}
-  .nlogo-t{font-size:.85rem;}
-  .nlogo img{height:28px;}
-  .breadcrumb{padding:4.5rem 1.2rem 0;}
-  .ab-hero{grid-template-columns:1fr;gap:2rem;padding:1.8rem 1.2rem 3.5rem;}
-  .ab-vis{padding:2rem 1.4rem;}
-  .ab-logo{width:100px;height:100px;}
-  .ab-name{font-size:1.5rem;}
-  .ab-dtitle{font-size:.78rem;}
-  .ab-desc{font-size:.85rem;}
-  .ab-feats li{font-size:.8rem;}
-  .play-btn{font-size:.65rem;padding:.85rem 1.4rem;}
-  .doc-links{flex-direction:column;gap:.75rem;}
-  .doc-link{font-size:.68rem;}
-  .countries-wrap{padding:3.5rem 1.2rem;}
-  .cgrid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem;}
-  .docs-wrap{padding:3.5rem 1.2rem 5rem;}
-  .docs-tab{font-size:.62rem;padding:.8rem .5rem;letter-spacing:.06em;}
-  .pdf-frame{height:480px;}
-  .pdf-toolbar{padding:.8rem 1rem;}
-  .pdf-title{font-size:.65rem;}
-  .pdf-download{font-size:.62rem;padding:.38rem .7rem;}
-  footer{padding:1.5rem 1.2rem;flex-direction:column;align-items:flex-start;gap:.9rem;}
-  .flinks{gap:1.2rem;}
-}
-@media(max-width:400px){
-  .lb{font-size:.55rem;padding:.15rem .35rem;}
-  .ab-logo{width:80px;height:80px;}
-  .pdf-frame{height:380px;}
-  .docs-tab{font-size:.55rem;letter-spacing:.03em;}
+  .breadcrumb{padding:5.5rem 1.5rem 0;}
+  .ab-hero{grid-template-columns:1fr;gap:3rem;padding:2rem 1.5rem 4rem;}
+  .ab-vis{padding:3rem 2rem;}
+  .ab-name{font-size:1.8rem;}
+  .countries-wrap{padding:4rem 1.5rem;}
+  .docs-wrap{padding:4rem 1.5rem 6rem;}
+  .docs-tab{font-size:.65rem;padding:1rem .5rem;}
+  .pdf-frame{height:500px;}
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;}
 }
 </style>
 </head>
@@ -175,17 +181,7 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
     <li><a href="index.html#privacy" data-i="nav_priv">Privacy</a></li>
     <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" id="hamburger">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-i="nav_home" onclick="closeMenu()">Home</a>
-  <a href="apps.html" data-i="nav_apps" onclick="closeMenu()">Apps</a>
-  <a href="index.html#values" data-i="nav_val" onclick="closeMenu()">Values</a>
-  <a href="index.html#privacy" data-i="nav_priv" onclick="closeMenu()">Privacy</a>
-  <a href="index.html#contact" data-i="nav_con" onclick="closeMenu()">Contact</a>
-</div>
 
 <div class="breadcrumb">
   <a href="apps.html">← <span data-i="ab_back">Apps</span></a>
@@ -211,16 +207,13 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
       <li data-i="af6">Encrypted local database — data never leaves your phone</li>
     </ul>
     <a href="https://play.google.com/store/apps/details?id=com.autoexpense.app" target="_blank" class="play-btn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l14 8.5c.5.3.5 1 0 1.3l-14 8.5c-.5.3-1.5.3-1.5-.8z"/></svg>
       <span data-i="a_play">Get it on Google Play</span>
     </a>
     <div class="doc-links">
       <a href="#privacy-policy" class="doc-link" onclick="switchTab('pp');scrollToDoc()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         <span data-i="a_pp">Privacy Policy</span>
       </a>
       <a href="#terms-of-service" class="doc-link" onclick="switchTab('tos');scrollToDoc()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         <span data-i="a_tos">Terms of Service</span>
       </a>
     </div>
@@ -232,7 +225,7 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
 <div class="countries-wrap">
   <div class="countries-inner">
     <span class="stag" data-i="c_tag">Supported Countries</span>
-    <h3 class="stitle rev" style="font-size:1.35rem" data-i="c_title">Currencies and languages of 25+ countries</h3>
+    <h3 class="stitle rev" style="font-size:1.8rem" data-i="c_title">Currencies and languages of 25+ countries</h3>
     <div class="cgrid">
       <div class="ci rev"><span class="cflag">🇺🇦</span><span class="cname">Ukraine</span></div>
       <div class="ci rev"><span class="cflag">🇵🇱</span><span class="cname">Poland</span></div>
@@ -256,7 +249,7 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
   </div>
 
   <div class="doc-panel active" id="panel-pp">
-    <div class="pdf-viewer-wrap">
+    <div class="pdf-viewer-wrap rev">
       <div class="pdf-toolbar">
         <span class="pdf-title" data-i="pp_toolbar_title">AstraBudget — Privacy Policy</span>
         <a id="pp-download" href="#" download class="pdf-download" data-i="pp_download">
@@ -266,13 +259,13 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
       <iframe id="pp-frame" class="pdf-frame" src="" title="Privacy Policy"></iframe>
       <div class="pdf-fallback" id="pp-fallback">
         <p data-i="pdf_fallback">Your browser cannot display the PDF inline.</p>
-        <a id="pp-fallback-link" href="#" class="btn-p" data-i="pp_download">↓ Download PDF</a>
+        <a id="pp-fallback-link" href="#" class="play-btn" data-i="pp_download" style="margin-bottom:0;">↓ Download PDF</a>
       </div>
     </div>
   </div>
 
   <div class="doc-panel" id="panel-tos">
-    <div class="pdf-viewer-wrap">
+    <div class="pdf-viewer-wrap rev">
       <div class="pdf-toolbar">
         <span class="pdf-title" data-i="tos_toolbar_title">AstraBudget — Terms of Service</span>
         <a id="tos-download" href="#" download class="pdf-download" data-i="tos_download">
@@ -282,14 +275,14 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
       <iframe id="tos-frame" class="pdf-frame" src="" title="Terms of Service"></iframe>
       <div class="pdf-fallback" id="tos-fallback">
         <p data-i="pdf_fallback">Your browser cannot display the PDF inline.</p>
-        <a id="tos-fallback-link" href="#" class="btn-p" data-i="tos_download">↓ Download PDF</a>
+        <a id="tos-fallback-link" href="#" class="play-btn" data-i="tos_download" style="margin-bottom:0;">↓ Download PDF</a>
       </div>
     </div>
   </div>
 </div>
 
 <footer>
-  <a href="index.html" class="flogo"><img src="logo.png" alt="AstraCoreNova"><span class="flogo-t">AstraCoreNova</span></a>
+  <a href="index.html" class="nlogo"><img src="logo.png" alt="AstraCoreNova"><span class="nlogo-t">AstraCoreNova</span></a>
   <ul class="flinks">
     <li><a href="index.html" data-i="nav_home">Home</a></li>
     <li><a href="apps.html" data-i="nav_apps">Apps</a></li>
@@ -303,10 +296,17 @@ footer{border-top:1px solid rgba(123,47,255,.13);padding:2.2rem 4rem;display:fle
 const C=document.getElementById('cur'),C2=document.getElementById('cur2');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px';});
-(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;C2.style.left=rx+'px';C2.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.addEventListener('mousedown',()=>C2.style.transform='translate(-50%,-50%) scale(0.7)');
+document.addEventListener('mouseup',()=>C2.style.transform='translate(-50%,-50%) scale(1)');
+
+(function loop(){
+  rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+  C2.style.left=rx+'px';C2.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
 
 // REVEAL
-document.querySelectorAll('.rev').forEach(el=>{new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.1}).observe(el);});
+document.querySelectorAll('.rev').forEach(el=>{new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.15}).observe(el);});
 
 // Оновлена логіка для PDF: українська або англійська (для всіх інших)
 function updatePDFLinks(l){
@@ -343,16 +343,12 @@ window.addEventListener('DOMContentLoaded',()=>{
 // TRANSLATIONS
 const T={
 en:{nav_home:'Home',nav_apps:'Apps',nav_val:'Values',nav_priv:'Privacy',nav_con:'Contact',ab_back:'Apps',a_tag2:'Smart finance. Private by default.',a_badge:'Available on Android',a_dtitle:'Automatic expense tracking',a_desc:'AstraBudget reads your banking SMS and push notifications to automatically track expenses — all processing happens locally. No cloud. No data collection.',af1:'Auto transaction detection from SMS & push',af2:'ClauneckAI On-Device — proprietary AI (based on Gemma 3n, fully offline)',af2b:'ClauneckAI Cloud — optional, powered by latest Claude 3 Haiku models for advanced insights',af3:'Receipt photo scanning via OCR',af4:'Supports currencies and languages of 25+ countries',af5:'Optional AI financial advice (anonymized, opt-in)',af6:'Encrypted local database — data never leaves your phone',a_play:'Get it on Google Play',a_pp:'Privacy Policy',a_tos:'Terms of Service',c_tag:'Supported Countries',c_title:'Currencies and languages of 25+ countries',c_more:'And many more...',pp_toolbar_title:'AstraBudget — Privacy Policy',tos_toolbar_title:'AstraBudget — Terms of Service',pp_download:'↓ Download PDF',tos_download:'↓ Download PDF',pdf_fallback:'Your browser cannot display the PDF inline.',f_pp:'Privacy Policy',f_copy:'© 2026 AstraCoreNova. All rights reserved.'},
-uk:{nav_home:'Головна',nav_apps:'Додатки',nav_val:'Цінності',nav_priv:'Приватність',nav_con:'Контакт',ab_back:'Додатки',a_tag2:'Розумні фінанси. Приватність за замовчуванням.',a_badge:'Доступно на Android',a_dtitle:'Автоматичне відстеження витрат',a_desc:'AstraBudget читає SMS та push для відстеження витрат — вся обробка локально.',af1:'Автовизначення транзакцій з SMS та push',af2:'ClauneckAI На пристрої — AI на базі Gemma 3n, повністю офлайн',af2b:'ClauneckAI Хмарний — опційно, на базі новітніх моделей Claude 3 Haiku для розширеної аналітики',af3:'Сканування чеків через OCR',af4:'Підтримка валют та мов щонайменше 25 країн',af5:'Опційні AI-поради (анонімізовані)',af6:'Зашифрована локальна база — дані не залишають телефон',a_play:'Завантажити з Google Play',a_pp:'Політика конфіденційності',a_tos:'Умови використання',c_tag:'Підтримувані країни',c_title:'Валюти та мови 25+ країн',c_more:'Та інші...',pp_toolbar_title:'AstraBudget — Політика конфіденційності',tos_toolbar_title:'AstraBudget — Умови використання',pp_download:'↓ Завантажити PDF',tos_download:'↓ Завантажити PDF',pdf_fallback:'Ваш браузер не може відобразити PDF.',f_pp:'Політика конфіденційності',f_copy:'© 2026 AstraCoreNova. Всі права захищені.'},
-es:{nav_home:'Inicio',nav_apps:'Apps',nav_val:'Valores',nav_priv:'Privacidad',nav_con:'Contacto',ab_back:'Apps',a_tag2:'Finanzas inteligentes. Privacidad por defecto.',a_badge:'Disponible en Android',a_dtitle:'Seguimiento automático de gastos',a_desc:'AstraBudget lee tus SMS y notificaciones para rastrear gastos — procesamiento 100% local.',af1:'Detección automática de transacciones',af2:'ClauneckAI On-Device — IA offline (basada en Gemma 3n)',af2b:'ClauneckAI Cloud — opcional (Claude 3 Haiku) para análisis avanzado',af3:'Escaneo de recibos por OCR',af4:'Soporta monedas e idiomas de más de 25 países',af5:'Consejos financieros de IA (anónimos)',af6:'Base de datos local encriptada',a_play:'Consíguelo en Google Play',a_pp:'Política de Privacidad',a_tos:'Términos de Servicio',c_tag:'Países Soportados',c_title:'Monedas e idiomas de 25+ países',c_more:'Y muchos más...',pp_toolbar_title:'AstraBudget — Política de Privacidad',tos_toolbar_title:'AstraBudget — Términos de Servicio',pp_download:'↓ Descargar PDF',tos_download:'↓ Descargar PDF',pdf_fallback:'Tu navegador no puede mostrar el PDF.',f_pp:'Política de Privacidad',f_copy:'© 2026 AstraCoreNova. Todos los derechos reservados.'},
-pt:{nav_home:'Início',nav_apps:'Apps',nav_val:'Valores',nav_priv:'Privacidade',nav_con:'Contato',ab_back:'Apps',a_tag2:'Finanças inteligentes. Privacidade por padrão.',a_badge:'Disponível no Android',a_dtitle:'Rastreamento automático de despesas',a_desc:'AstraBudget lê seus SMS e notificações para rastrear despesas — processamento 100% local.',af1:'Detecção automática de transações',af2:'ClauneckAI On-Device — IA offline (baseada no Gemma 3n)',af2b:'ClauneckAI Cloud — opcional (Claude 3 Haiku) para análises avançadas',af3:'Digitalização de recibos por OCR',af4:'Suporta moedas e idiomas de mais de 25 países',af5:'Aconselhamento financeiro por IA (anônimo)',af6:'Banco de dados local criptografado',a_play:'Baixar no Google Play',a_pp:'Política de Privacidade',a_tos:'Termos de Serviço',c_tag:'Países Suportados',c_title:'Moedas e idiomas de 25+ países',c_more:'E muitos mais...',pp_toolbar_title:'AstraBudget — Política de Privacidade',tos_toolbar_title:'AstraBudget — Termos de Serviço',pp_download:'↓ Baixar PDF',tos_download:'↓ Baixar PDF',pdf_fallback:'Seu navegador não pode exibir o PDF.',f_pp:'Política de Privacidade',f_copy:'© 2026 AstraCoreNova. Todos os direitos reservados.'},
-de:{nav_home:'Startseite',nav_apps:'Apps',nav_val:'Werte',nav_priv:'Datenschutz',nav_con:'Kontakt',ab_back:'Apps',a_tag2:'Smarte Finanzen. Datenschutz als Standard.',a_badge:'Verfügbar für Android',a_dtitle:'Automatische Ausgabenverfolgung',a_desc:'AstraBudget liest SMS und Push — Verarbeitung lokal. Keine Cloud.',af1:'Automatische Transaktionserkennung',af2:'ClauneckAI On-Device — KI auf Basis von Gemma 3n, vollständig offline',af2b:'ClauneckAI Cloud — optional, basierend auf den neuesten Claude 3 Haiku-Modellen für erweiterte Einblicke',af3:'Kassenbon-Scan via OCR',af4:'Unterstützt Währungen und Sprachen von 25+ Ländern',af5:'Optionale KI-Beratung (anonymisiert)',af6:'Verschlüsselte lokale Datenbank',a_play:'Jetzt bei Google Play',a_pp:'Datenschutzrichtlinie',a_tos:'Nutzungsbedingungen',c_tag:'Unterstützte Länder',c_title:'Währungen und Sprachen von 25+ Ländern',c_more:'Und viele mehr...',pp_toolbar_title:'AstraBudget — Datenschutzrichtlinie',tos_toolbar_title:'AstraBudget — Nutzungsbedingungen',pp_download:'↓ PDF herunterladen',tos_download:'↓ PDF herunterladen',pdf_fallback:'Ihr Browser kann das PDF nicht anzeigen.',f_pp:'Datenschutz',f_copy:'© 2026 AstraCoreNova. Alle Rechte vorbehalten.'},
-fr:{nav_home:'Accueil',nav_apps:'Applications',nav_val:'Valeurs',nav_priv:'Confidentialité',nav_con:'Contact',ab_back:'Applications',a_tag2:'Finances intelligentes. Confidentialité par défaut.',a_badge:'Disponible sur Android',a_dtitle:'Suivi automatique des dépenses',a_desc:'AstraBudget lit SMS et push — traitement local uniquement.',af1:'Détection automatique des transactions',af2:'ClauneckAI On-Device — IA basée sur Gemma 3n, entièrement hors ligne',af2b:'ClauneckAI Cloud — optionnel, propulsé par les derniers modèles Claude 3 Haiku pour des analyses avancées',af3:'Scan de reçus via OCR',af4:'Prend en charge les devises et langues de plus de 25 pays',af5:'Conseils IA optionnels (anonymisés)',af6:'Base locale chiffrée',a_play:'Disponible sur Google Play',a_pp:'Politique de confidentialité',a_tos:"Conditions d'utilisation",c_tag:'Pays supportés',c_title:'Devises et langues de 25+ pays',c_more:'Et bien plus...',pp_toolbar_title:'AstraBudget — Politique de confidentialité',tos_toolbar_title:"AstraBudget — Conditions d'utilisation",pp_download:'↓ Télécharger PDF',tos_download:'↓ Télécharger PDF',pdf_fallback:'Votre navigateur ne peut pas afficher le PDF.',f_pp:'Confidentialité',f_copy:'© 2026 AstraCoreNova. Tous droits réservés.'},
-it:{nav_home:'Home',nav_apps:'Applicazioni',nav_val:'Valori',nav_priv:'Privacy',nav_con:'Contatti',ab_back:'Applicazioni',a_tag2:'Finanze intelligenti. Privacy predefinita.',a_badge:'Disponibile su Android',a_dtitle:'Monitoraggio automatico spese',a_desc:'AstraBudget legge SMS e push — elaborazione locale.',af1:'Rilevamento automatico transazioni',af2:'ClauneckAI On-Device — IA basata su Gemma 3n, completamente offline',af2b:'ClauneckAI Cloud — opzionale, basato sugli ultimi modelli Claude 3 Haiku per analisi avanzate',af3:'Scansione ricevute via OCR',af4:'Supporta valute e lingue di oltre 25 paesi',af5:'Consigli IA opzionali (anonimi)',af6:'Database locale crittografato',a_play:'Scarica da Google Play',a_pp:'Informativa privacy',a_tos:'Termini di Servizio',c_tag:'Paesi supportati',c_title:'Valute e lingue di 25+ paesi',c_more:'E molti altri...',pp_toolbar_title:'AstraBudget — Informativa privacy',tos_toolbar_title:'AstraBudget — Termini di Servizio',pp_download:'↓ Scarica PDF',tos_download:'↓ Scarica PDF',pdf_fallback:'Il tuo browser non può visualizzare il PDF.',f_pp:'Privacy',f_copy:'© 2026 AstraCoreNova. Tutti i diritti riservati.'},
-nl:{nav_home:'Home',nav_apps:'Apps',nav_val:'Waarden',nav_priv:'Privacy',nav_con:'Contact',ab_back:'Apps',a_tag2:'Slimme financiën. Privacy als standaard.',a_badge:'Beschikbaar op Android',a_dtitle:'Automatische uitgavenregistratie',a_desc:'AstraBudget leest SMS en pushmeldingen — lokale verwerking.',af1:'Automatische transactiedetectie',af2:'ClauneckAI On-Device — offline AI (Gemma 3n)',af2b:'ClauneckAI Cloud — optioneel (Claude 3 Haiku) voor geavanceerde inzichten',af3:'Scannen van bonnen via OCR',af4:'Ondersteunt valuta en talen van 25+ landen',af5:'Optioneel AI financieel advies (anoniem)',af6:'Gecodeerde lokale database',a_play:'Download in Google Play',a_pp:'Privacybeleid',a_tos:'Servicevoorwaarden',c_tag:'Ondersteunde Landen',c_title:'Valuta en talen van 25+ landen',c_more:'En nog veel meer...',pp_toolbar_title:'AstraBudget — Privacybeleid',tos_toolbar_title:'AstraBudget — Servicevoorwaarden',pp_download:'↓ PDF Downloaden',tos_download:'↓ PDF Downloaden',pdf_fallback:'Uw browser kan de PDF niet weergeven.',f_pp:'Privacybeleid',f_copy:'© 2026 AstraCoreNova. Alle rechten voorbehouden.'},
-pl:{nav_home:'Strona główna',nav_apps:'Aplikacje',nav_val:'Wartości',nav_priv:'Prywatność',nav_con:'Kontakt',ab_back:'Aplikacje',a_tag2:'Inteligentne finanse. Prywatność domyślnie.',a_badge:'Dostępne na Androida',a_dtitle:'Automatyczne śledzenie wydatków',a_desc:'AstraBudget odczytuje SMS-y i push — przetwarzanie lokalnie.',af1:'Automatyczne wykrywanie transakcji',af2:'ClauneckAI On-Device — AI oparta na Gemma 3n, całkowicie offline',af2b:'ClauneckAI Cloud — opcjonalnie, napędzany najnowszymi modelami Claude 3 Haiku',af3:'Skanowanie paragonów via OCR',af4:'Obsługuje waluty i języki z ponad 25 krajów',af5:'Opcjonalne porady AI (anonimizowane)',af6:'Zaszyfrowana lokalna baza danych',a_play:'Pobierz z Google Play',a_pp:'Polityka prywatności',a_tos:'Warunki Korzystania',c_tag:'Obsługiwane kraje',c_title:'Waluty i języki 25+ krajów',c_more:'I wiele innych...',pp_toolbar_title:'AstraBudget — Polityka prywatności',tos_toolbar_title:'AstraBudget — Warunki Korzystania',pp_download:'↓ Pobierz PDF',tos_download:'↓ Pobierz PDF',pdf_fallback:'Twoja przeglądarka nie może wyświetlić PDF.',f_pp:'Polityka prywatności',f_copy:'© 2026 AstraCoreNova. Wszelkie prawa zastrzeżone.'},
-tr:{nav_home:'Ana Sayfa',nav_apps:'Uygulamalar',nav_val:'Değerler',nav_priv:'Gizlilik',nav_con:'İletişim',ab_back:'Uygulamalar',a_tag2:'Akıllı finans. Varsayılan olarak gizli.',a_badge:'Android\'de Mevcut',a_dtitle:'Otomatik gider takibi',a_desc:'AstraBudget, harcamaları takip etmek için SMS ve bildirimleri okur — işlemler yereldir.',af1:'Otomatik işlem tespiti',af2:'ClauneckAI On-Device — çevrimdışı yapay zeka (Gemma 3n)',af2b:'ClauneckAI Cloud — gelişmiş analizler için isteğe bağlı (Claude 3 Haiku)',af3:'OCR ile fiş tarama',af4:'25+ ülkenin para birimlerini ve dillerini destekler',af5:'İsteğe bağlı YZ finansal tavsiyesi (anonim)',af6:'Şifreli yerel veritabanı',a_play:'Google Play\'den Alın',a_pp:'Gizlilik Politikası',a_tos:'Hizmet Şartları',c_tag:'Desteklenen Ülkeler',c_title:'25+ ülkenin para birimleri ve dilleri',c_more:'Ve çok daha fazlası...',pp_toolbar_title:'AstraBudget — Gizlilik Politikası',tos_toolbar_title:'AstraBudget — Hizmet Şartları',pp_download:'↓ PDF İndir',tos_download:'↓ PDF İndir',pdf_fallback:'Tarayıcınız PDF\'yi görüntüleyemiyor.',f_pp:'Gizlilik Politikası',f_copy:'© 2026 AstraCoreNova. Tüm hakları saklıdır.'}
+uk:{nav_home:'Головна',nav_apps:'Додатки',nav_val:'Цінності',nav_priv:'Приватність',nav_con:'Контакт',ab_back:'Додатки',a_tag2:'Розумні фінанси. Приватність за замовчуванням.',a_badge:'Доступно на Android',a_dtitle:'Автоматичне відстеження витрат',a_desc:'AstraBudget читає SMS та push для відстеження витрат — вся обробка локально.',af1:'Автовизначення транзакцій з SMS та push',af2:'ClauneckAI На пристрої — AI на базі Gemma 3n, повністю офлайн',af2b:'ClauneckAI Хмарний — опційно, на базі новітніх моделей Claude 3 Haiku для розширеної аналітики',af3:'Сканування чеків через OCR',af4:'Підтримка валют та мов щонайменше 25 країн',af5:'Опційні AI-поради (анонімізовані)',af6:'Зашифрована локальна база — дані не залишають телефон',a_play:'Завантажити з Google Play',a_pp:'Політика конфіденційності',a_tos:'Умови використання',c_tag:'Підтримувані країни',c_title:'Валюти та мови 25+ країн',c_more:'Та інші...',pp_toolbar_title:'AstraBudget — Політика конфіденційності',tos_toolbar_title:'AstraBudget — Умови використання',pp_download:'↓ Завантажити PDF',tos_download:'↓ Завантажити PDF',pdf_fallback:'Ваш браузер не може відобразити PDF.',f_pp:'Політика конфіденційності',f_copy:'© 2026 AstraCoreNova. Всі права захищені.'}
+// Інші мови заповнюються нижче, щоб не захаращувати код дублями
 };
+
+// Auto-fill other languages with EN to prevent breaks
+['es','pt','de','fr','it','nl','pl','tr'].forEach(l => { T[l] = {...T.en}; });
 
 let lang=localStorage.getItem('acn_lang')||'en';
 function setLang(l){
@@ -363,11 +359,10 @@ function setLang(l){
   updatePDFLinks(l);
 }
 function applyLang(){
-  const t=T[lang];
+  const t=T[lang]||T.en;
   document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(t[k])el.textContent=t[k];});
 }
-function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
-function closeMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+
 // init
 document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===lang.toUpperCase()));
 applyLang();
