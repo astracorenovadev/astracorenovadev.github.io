@@ -68,16 +68,16 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .mobile-menu a:hover{color:var(--lum);}
 
 /* ── hero ── */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3; overflow:hidden;}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:12rem 2rem 4rem;z-index:3; overflow:hidden;}
 
 /* FIX: Absolute stage covering entire viewport perfectly */
 .hero-stage{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 
 /* HEAVY, SCARY Gothic Cathedral (Fills viewport) */
-.gothic-spires{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);min-width:100vw;min-height:100vh;opacity:0.35;z-index:0; filter: drop-shadow(0 0 60px rgba(0,0,0,1)); object-fit:cover;}
+.gothic-spires{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) scale(0.65);min-width:100vw;min-height:100vh;opacity:0.35;z-index:0; filter: drop-shadow(0 0 60px rgba(0,0,0,1)); object-fit:cover;}
 
 /* Stained Glass Classic Latin Cross */
-.cross-cluster{position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%, -50%);z-index:1; filter: drop-shadow(0 0 60px rgba(60,10,90,0.8));}
+.cross-cluster{position:absolute;top:50%;left:50%;width:400px;height:400px;transform:translate(-50%, -50%);z-index:1; filter: drop-shadow(0 0 60px rgba(60,10,90,0.8));}
 .cross-rotator{width:100%;height:100%;animation:spin-cw 90s linear infinite;}
 
 @keyframes spin-cw{from{transform:rotate(0);}to{transform:rotate(360deg);}}
@@ -272,7 +272,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   .hamburger{display:flex;}
   .nlogo-t{font-size:.9rem;}
   .nlogo img{height:30px;}
-  .hero{padding:6rem 1.3rem 3.5rem;min-height:100svh;}
+  .hero{padding:10rem 1.3rem 3.5rem;min-height:100svh;}
   .hero-logo{height:108px;}
   .hero-h{font-size:clamp(1.9rem,8vw,3rem);}
   .hero-sub{font-size:.92rem;margin-bottom:2.2rem;}
