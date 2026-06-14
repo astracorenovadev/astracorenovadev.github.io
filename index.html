@@ -38,9 +38,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
   radial-gradient(ellipse 110% 80% at 50% 42%,transparent 28%,rgba(4,4,4,.6) 68%,rgba(2,2,2,.95) 100%);}
 
-/* ── film grain: MAXIMUM CRAPPY QUALITY ── */
-.grain{position:fixed;inset:-100%;width:300%;height:300%;z-index:9990;pointer-events:none;opacity:0.95;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 0.3s steps(2) infinite;}
-@keyframes grain{0%{transform:translate(0,0);}25%{transform:translate(-5%,3%);}50%{transform:translate(4%,-6%);}75%{transform:translate(-3%,-4%);}100%{transform:translate(6%,4%);}}
+/* ── film grain: MAXIMUM TERRIBLE QUALITY ── */
+.grain{position:fixed;inset:-100%;width:300%;height:300%;z-index:9990;pointer-events:none;opacity:0.95;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 0.4s steps(3) infinite;}
+@keyframes grain{0%{transform:translate(0,0);}33%{transform:translate(-4%,3%);}66%{transform:translate(3%,-4%);}100%{transform:translate(-2%,2%);}}
 
 /* ── cursor ── */
 #cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--lum);}
@@ -77,41 +77,52 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3;}
 .hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;pointer-events:none;z-index:0;}
 
-/* Gothic Spires Sigil */
-.sigil{position:absolute;top:50%;left:50%;margin-top:-300px;margin-left:-300px;width:600px;height:600px;opacity:0.35;animation:sig-reverse 60s linear infinite;}
-@keyframes sig-reverse{from{transform:rotate(360deg);}to{transform:rotate(0);}}
+/* Static Gothic Cathedral Spires */
+.sigil{position:absolute;top:50%;left:50%;margin-top:-300px;margin-left:-300px;width:600px;height:600px;opacity:0.25;}
 
-/* Fragmented Rotating Cross Container */
-.gothic-cross {
-  position:absolute;
-  top:50%; left:50%;
-  width:400px; height:400px;
-  margin-top:-200px; margin-left:-200px;
-  animation:spin-cross 40s linear infinite;
-  transform-origin:center;
+/* Rotating Glassmorphism Block Cross */
+.cross-rig {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 500px; height: 500px;
+  margin-top: -250px; margin-left: -250px;
+  animation: holy-spin 50s linear infinite;
 }
-@keyframes spin-cross{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes holy-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Cross Glass Fragments (Asymmetrical, Blocky) */
-.plate{position:absolute;background:rgba(14, 6, 22, 0.45);border:1px solid rgba(120, 60, 180, 0.3);backdrop-filter:blur(10px);box-shadow:inset 0 0 15px rgba(0,0,0,.9), 0 0 35px rgba(40,10,60,.5);border-radius:4px;}
-/* Vertical elements (Offset to X=140px, W=70px) */
-.c-v1 { width: 70px; height: 120px; top: 0px; left: 140px; }
-.c-v2 { width: 70px; height: 70px; top: 130px; left: 140px; }
-.c-v3 { width: 70px; height: 180px; top: 210px; left: 140px; }
-/* Horizontal elements (Intersecting at Y=130px, H=70px) */
-.c-h1 { width: 120px; height: 70px; top: 130px; left: 10px; }
-.c-h2 { width: 170px; height: 70px; top: 130px; left: 220px; }
-
-/* Pulsating Logo */
-.hero-logo{
-  height:160px;width:auto;margin-bottom:2.2rem;
-  position:relative;z-index:2;
-  /* Chaining animations: one for the entrance, one for the endless white pulse */
-  animation: rise 1.1s 0.1s both, white-pulse 2.5s 1.2s ease-in-out infinite alternate;
+/* Base Plate Style for Cross Blocks */
+.plate {
+  position: absolute;
+  background: rgba(14, 6, 22, 0.4);
+  border: 1px solid rgba(120, 60, 180, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 0 20px rgba(0,0,0,.8), 0 5px 30px rgba(30,5,50,.6);
+  border-radius: 6px;
 }
-@keyframes white-pulse {
-  0% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)); }
-  100% { filter: drop-shadow(0 0 50px rgba(255, 255, 255, 1)); }
+/* Horizontal blocks */
+.ph1 { width: 360px; height: 110px; top: 40%; left: 14%; }
+.ph2 { width: 260px; height: 60px; top: 44%; left: 24%; border-color: rgba(150,80,220,.4); background: rgba(25, 10, 40, 0.5); z-index: 2; }
+/* Vertical blocks (offset to the right) */
+.pv1 { width: 130px; height: 400px; top: 10%; left: 60%; }
+.pv2 { width: 90px; height: 280px; top: 22%; left: 64%; z-index: 3; background: rgba(20, 8, 35, 0.6); }
+.pv3 { width: 150px; height: 150px; top: 35%; left: 58%; border-radius: 12px; z-index: 1; opacity: 0.7; }
+
+/* Pulsating White Logo */
+.hero-logo-wrap {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2.2rem;
+  animation: rise 1.1s .1s both;
+}
+.hero-logo {
+  height: 160px;
+  width: auto;
+  animation: pulse-white 2.5s ease-in-out infinite alternate;
+}
+@keyframes pulse-white {
+  0% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
+  100% { filter: drop-shadow(0 0 55px rgba(255, 255, 255, 1)); }
 }
 
 .hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--lum);border:1px solid var(--line-bright);padding:.4rem 1.2rem;border-radius:2rem;margin-bottom:2.4rem;background:rgba(255,255,255,.03);backdrop-filter:blur(6px);animation:rise 1.1s .3s both;position:relative;z-index:2;}
@@ -240,9 +251,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   .nlogo-t{font-size:.9rem;}
   .nlogo img{height:30px;}
   .sigil{width:330px;height:330px;}
-  .gothic-cross{width:330px;height:330px;margin-top:-165px;margin-left:-165px;transform:scale(0.8);}
   .hero{padding:6rem 1.3rem 3.5rem;min-height:100svh;}
-  .hero-logo{height:108px;margin-bottom:1.6rem;}
+  .hero-logo-wrap{margin-bottom:1.6rem;}
+  .hero-logo{height:108px;}
   .hero-h{font-size:clamp(1.9rem,8vw,3rem);}
   .hero-sub{font-size:.92rem;margin-bottom:2.2rem;}
   .hero-cta{flex-direction:column;align-items:center;gap:.75rem;width:100%;}
@@ -304,31 +315,30 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   <div class="hero-stage">
     
     <svg class="sigil" viewBox="0 0 600 600">
-      <circle cx="300" cy="300" r="260" fill="none" stroke="rgba(150,80,220,.2)" stroke-width="1"/>
-      <circle cx="300" cy="300" r="220" fill="none" stroke="rgba(150,80,220,.3)" stroke-width="2" stroke-dasharray="10 20"/>
-      <path d="M300 40 L280 120 L320 120 Z
-               M300 560 L280 480 L320 480 Z
-               M40 300 L120 280 L120 320 Z
-               M560 300 L480 280 L480 320 Z" 
-            fill="none" stroke="rgba(150,80,220,.5)" stroke-width="1.5"/>
-      <path d="M116 116 L172 144 L144 172 Z
-               M484 116 L428 144 L456 172 Z
-               M116 484 L172 456 L144 428 Z
-               M484 484 L428 456 L456 428 Z" 
-            fill="none" stroke="rgba(150,80,220,.4)" stroke-width="1"/>
-      <path d="M300 160 L320 240 L440 240 L340 280 L380 400 L300 320 L220 400 L260 280 L160 240 L280 240 Z" fill="none" stroke="rgba(150,80,220,.3)" stroke-width="1"/>
+      <path d="M300 50 L350 250 L350 600 L250 600 L250 250 Z" fill="none" stroke="rgba(150,80,220,.5)" stroke-width="2"/>
+      <path d="M300 50 L300 600" stroke="rgba(150,80,220,.3)" stroke-width="1"/>
+      <path d="M150 150 L180 300 L180 600 L120 600 L120 300 Z" fill="none" stroke="rgba(150,80,220,.4)" stroke-width="2"/>
+      <path d="M450 150 L480 300 L480 600 L420 600 L420 300 Z" fill="none" stroke="rgba(150,80,220,.4)" stroke-width="2"/>
+      <path d="M250 350 Q300 250 350 350" fill="none" stroke="rgba(150,80,220,.6)" stroke-width="2"/>
+      <path d="M120 400 Q150 320 180 400" fill="none" stroke="rgba(150,80,220,.5)" stroke-width="2"/>
+      <path d="M420 400 Q450 320 480 400" fill="none" stroke="rgba(150,80,220,.5)" stroke-width="2"/>
+      <circle cx="300" cy="400" r="40" fill="none" stroke="rgba(150,80,220,.5)" stroke-width="2" stroke-dasharray="10 5"/>
+      <circle cx="300" cy="400" r="20" fill="none" stroke="rgba(150,80,220,.7)" stroke-width="1"/>
     </svg>
 
-    <div class="gothic-cross">
-      <div class="plate c-v1"></div>
-      <div class="plate c-v2"></div>
-      <div class="plate c-v3"></div>
-      <div class="plate c-h1"></div>
-      <div class="plate c-h2"></div>
+    <div class="cross-rig">
+      <div class="plate ph1"></div>
+      <div class="plate ph2"></div>
+      <div class="plate pv1"></div>
+      <div class="plate pv2"></div>
+      <div class="plate pv3"></div>
     </div>
   </div>
+
+  <div class="hero-logo-wrap">
+    <img src="logo.png" alt="AstraCoreNova" class="hero-logo">
+  </div>
   
-  <img src="logo.png" alt="AstraCoreNova" class="hero-logo">
   <span class="hero-badge"><span class="dot"></span><span data-i="h_badge">Private AI · Every Platform</span></span>
   <h1 class="hero-h"><span data-i="h1">We build software that answers</span> <span class="em" data-i="h1b">to you alone</span></h1>
   <p class="hero-sub" data-i="hsub">AstraCoreNova crafts AI-powered apps for people and for business — across Android, Linux, macOS, Windows and iOS. Local AI on your own hardware. Your data never leaves without your word.</p>
