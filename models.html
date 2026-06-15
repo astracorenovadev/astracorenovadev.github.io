@@ -76,7 +76,7 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:10rem 3rem 5rem;}
 .eyebrow{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(200,80,255,1);margin-bottom:1.1rem;display:block;text-align:center;}
 .ptitle{font-family:'Cinzel',serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:700;color:var(--white);text-align:center;margin-bottom:1.2rem;text-wrap:balance;}
-.psub{text-align:center;color:var(--silver);font-size:1.02rem;line-height:1.9;max-width:640px;margin:0 auto 5rem; font-weight:400;}
+.psub{text-align:center;color:var(--silver);font-size:1.02rem;line-height:1.9;max-width:680px;margin:0 auto 5rem; font-weight:400;}
 
 /* ── intense purple glass card primitive ── */
 .glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:12px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.8),inset 0 0 15px rgba(160,30,255,.1);}
@@ -101,8 +101,8 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 @keyframes sigil-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes sigil-spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 @keyframes core-pulse {
-  0% { r: 3; fill: rgba(255,255,255,0.6); filter: drop-shadow(0 0 2px rgba(255,255,255,0.5)); }
-  100% { r: 6; fill: rgba(255,255,255,1); filter: drop-shadow(0 0 12px rgba(255,255,255,1)); }
+  0% { opacity: 0.5; filter: drop-shadow(0 0 2px rgba(255,255,255,0.5)); }
+  100% { opacity: 1; filter: drop-shadow(0 0 12px rgba(255,255,255,1)); }
 }
 
 .m-info{flex:1; margin-top: 10px;}
@@ -187,29 +187,21 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);paddi
 </div>
 
 <div class="wrap">
-  <span class="eyebrow rev" data-i="m_tag">The Pantheon</span>
-  <h1 class="ptitle rev" data-i="m_title">Specialized Intelligence Core</h1>
-  <p class="psub rev" data-i="m_sub">Our proprietary on-device AI models. Named after the Goetia, built for absolute privacy and domain mastery.</p>
+  <span class="eyebrow rev" data-i="m_tag">The Vanguard</span>
+  <h1 class="ptitle rev" data-i="m_title">Specialized AI Models</h1>
+  <p class="psub rev" data-i="m_sub">Exclusive, highly specialized artificial intelligence running locally on your devices, which we can train for your specific needs.</p>
 
   <div class="models-grid">
     
-    <!-- Clauneck (Finance - Wallet & Coin) -->
     <div class="model-card glass rev">
       <div class="model-header">
         <div class="sigil">
           <svg viewBox="0 0 200 200">
-            <!-- Rotating target ring -->
-            <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(190,40,255,0.3)" stroke-width="2" stroke-dasharray="4 12" class="spin-slow"/>
-            <!-- Wallet Body -->
-            <path d="M 40,140 L 160,140 L 160,80 L 40,80 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
-            <!-- Wallet Flap (Open) -->
-            <path d="M 40,80 L 100,35 L 160,80" fill="rgba(20,5,30,0.5)" stroke="rgba(160,30,255,0.8)" stroke-width="2"/>
-            <!-- Inner Pocket Detail -->
-            <line x1="40" y1="100" x2="160" y2="100" stroke="rgba(190,40,255,0.4)" stroke-dasharray="4 4" stroke-width="1.5"/>
-            <line x1="100" y1="100" x2="100" y2="140" stroke="rgba(190,40,255,0.4)" stroke-width="1.5"/>
-            <!-- The Coin -->
-            <circle cx="100" cy="65" r="16" fill="rgba(20,5,30,0.9)" stroke="rgba(220,100,255,1)" stroke-width="2"/>
-            <circle cx="100" cy="65" r="4" class="core-pulse"/>
+            <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(190,40,255,0.3)" stroke-width="2" stroke-dasharray="12 12" class="spin-slow"/>
+            <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(160,30,255,0.5)" stroke-width="1.5" stroke-dasharray="4 8" class="spin-rev"/>
+            <circle cx="100" cy="100" r="50" fill="rgba(20,5,30,0.9)" stroke="rgba(220,100,255,0.9)" stroke-width="3"/>
+            <circle cx="100" cy="100" r="42" fill="none" stroke="rgba(190,40,255,0.6)" stroke-width="1"/>
+            <text x="100" y="118" font-family="'Cinzel', serif" font-weight="700" font-size="52" fill="rgba(255,255,255,0.95)" text-anchor="middle" class="core-pulse">$</text>
           </svg>
         </div>
         <div class="m-info">
@@ -225,21 +217,26 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);paddi
       </div>
     </div>
 
-    <!-- Sitra (Relationships - Cyber Heart) -->
     <div class="model-card glass rev">
       <div class="model-header">
         <div class="sigil">
           <svg viewBox="0 0 200 200">
-            <!-- Rotating structural ring -->
-            <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(190,40,255,0.3)" stroke-width="1.5" stroke-dasharray="2 6 12 6" class="spin-rev"/>
-            <!-- Cyber Heart Base -->
-            <path d="M 100,60 C 100,20 30,20 30,70 C 30,120 100,165 100,165 C 100,165 170,120 170,70 C 170,20 100,20 100,60 Z" fill="rgba(20,5,30,0.6)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
-            <!-- Inner geometric network -->
-            <path d="M 100,165 L 100,60" fill="none" stroke="rgba(160,30,255,0.6)" stroke-width="1.5"/>
-            <polyline points="50,60 100,95 150,60" fill="none" stroke="rgba(160,30,255,0.6)" stroke-width="1.5"/>
-            <polyline points="60,110 100,80 140,110" fill="none" stroke="rgba(160,30,255,0.4)" stroke-width="1.5"/>
-            <!-- Core -->
-            <circle cx="100" cy="95" r="4" class="core-pulse"/>
+            <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(190,40,255,0.2)" stroke-width="1.5" class="spin-slow"/>
+            <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(160,30,255,0.4)" stroke-width="1.5" stroke-dasharray="2 8" class="spin-rev"/>
+
+            <path d="M100,160 C 100,160 20,100 20,50 C 20,20 75,10 100,45 C 125,10 180,20 180,50 C 180,100 100,160 100,160 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
+            
+            <path d="M100,160 C 80,120 40,90 40,50 C 40,35 60,25 80,35 C 90,40 100,60 100,60 C 100,60 110,40 120,35 C 140,25 160,35 160,50 C 160,90 120,120 100,160 Z" fill="rgba(160,30,255,0.15)" stroke="rgba(190,40,255,0.7)" stroke-width="1.5"/>
+            
+            <path d="M100,60 L70,80 L100,130 L130,80 Z" fill="none" stroke="rgba(220,100,255,0.6)" stroke-width="1.5"/>
+            <line x1="100" y1="45" x2="100" y2="160" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+            <line x1="70" y1="80" x2="130" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+
+            <circle cx="70" cy="80" r="2.5" fill="rgba(220,100,255,0.9)"/>
+            <circle cx="130" cy="80" r="2.5" fill="rgba(220,100,255,0.9)"/>
+            <circle cx="100" cy="130" r="2.5" fill="rgba(220,100,255,0.9)"/>
+
+            <circle cx="100" cy="80" r="4" fill="#fff" class="core-pulse"/>
           </svg>
         </div>
         <div class="m-info">
@@ -255,33 +252,26 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);paddi
       </div>
     </div>
 
-    <!-- Berith (Legal - Scales of Justice) -->
     <div class="model-card glass rev">
       <div class="model-header">
         <div class="sigil">
           <svg viewBox="0 0 200 200">
-            <!-- Double rotating rings -->
             <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(190,40,255,0.4)" stroke-width="1.5" stroke-dasharray="1 4" class="spin-slow"/>
             <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(160,30,255,0.2)" stroke-width="1" class="spin-rev"/>
             
-            <!-- Central Pillar & Base -->
             <line x1="100" y1="30" x2="100" y2="160" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
             <polygon points="70,170 130,170 100,140" fill="rgba(20,5,30,0.8)" stroke="rgba(160,30,255,0.8)" stroke-width="1.5"/>
             
-            <!-- Balance Beam -->
             <line x1="40" y1="60" x2="160" y2="60" stroke="rgba(220,100,255,0.9)" stroke-width="2.5"/>
             <polygon points="100,45 110,60 90,60" fill="rgba(220,100,255,1)" stroke="none"/>
             
-            <!-- Left Scale -->
             <polyline points="40,60 20,110 60,110 40,60" fill="none" stroke="rgba(160,30,255,0.6)" stroke-width="1.5"/>
-            <path d="M 20,110 Q 40,125 60,110 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="1.5"/>
+            <path d="M 10,110 Q 40,130 70,110 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="1.5"/>
             
-            <!-- Right Scale -->
             <polyline points="160,60 140,110 180,110 160,60" fill="none" stroke="rgba(160,30,255,0.6)" stroke-width="1.5"/>
-            <path d="M 140,110 Q 160,125 180,110 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="1.5"/>
+            <path d="M 130,110 Q 160,130 190,110 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="1.5"/>
             
-            <!-- Core -->
-            <circle cx="100" cy="52" r="4" class="core-pulse"/>
+            <circle cx="100" cy="52" r="5" fill="#fff" class="core-pulse"/>
           </svg>
         </div>
         <div class="m-info">
@@ -297,31 +287,20 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);paddi
       </div>
     </div>
 
-    <!-- Stolas (UAV - Geometric Wings) -->
     <div class="model-card glass rev">
       <div class="model-header">
         <div class="sigil">
           <svg viewBox="0 0 200 200">
-            <!-- Radar HUD ring -->
             <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(190,40,255,0.4)" stroke-width="2" stroke-dasharray="10 20 40 20" class="spin-rev"/>
             
-            <!-- Central Drone Chassis -->
-            <polygon points="100,40 120,100 100,160 80,100" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
+            <path d="M100,80 L20,30 L10,60 L70,110 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
+            <path d="M100,80 L180,30 L190,60 L130,110 Z" fill="rgba(20,5,30,0.8)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
             
-            <!-- Left Wing -->
-            <polyline points="85,80 15,30 25,80 85,120" fill="rgba(20,5,30,0.6)" stroke="rgba(160,30,255,0.8)" stroke-width="2"/>
-            <polyline points="75,90 10,70 15,100 75,130" fill="none" stroke="rgba(160,30,255,0.5)" stroke-width="1.5"/>
+            <path d="M100,110 L40,70 L30,90 L80,140 Z" fill="rgba(160,30,255,0.15)" stroke="rgba(160,30,255,0.7)" stroke-width="1.5"/>
+            <path d="M100,110 L160,70 L170,90 L120,140 Z" fill="rgba(160,30,255,0.15)" stroke="rgba(160,30,255,0.7)" stroke-width="1.5"/>
             
-            <!-- Right Wing -->
-            <polyline points="115,80 185,30 175,80 115,120" fill="rgba(20,5,30,0.6)" stroke="rgba(220,100,255,0.9)" stroke-width="2"/>
-            <polyline points="125,90 190,70 185,100 125,130" fill="none" stroke="rgba(160,30,255,0.5)" stroke-width="1.5"/>
-            
-            <!-- Target Lock HUD Lines -->
-            <line x1="100" y1="10" x2="100" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-            <line x1="100" y1="170" x2="100" y2="190" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-            
-            <!-- Core -->
-            <circle cx="100" cy="100" r="4" class="core-pulse"/>
+            <circle cx="100" cy="100" r="14" fill="rgba(20,5,30,1)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+            <circle cx="100" cy="100" r="5" fill="#fff" class="core-pulse"/>
           </svg>
         </div>
         <div class="m-info">
@@ -372,7 +351,7 @@ function closeMenu(){const h=document.getElementById('hamburger'),m=document.get
 const T={
 en:{
   nav_home:'Home', nav_plat:'Platforms', nav_sol:'Solutions', nav_apps:'Apps', nav_con:'Contact', nav_models:'Models',
-  m_tag:'The Pantheon', m_title:'Specialized Intelligence Core', m_sub:'Our proprietary on-device AI models. Named after the Goetia, built for absolute privacy and domain mastery.',
+  m_tag:'The Vanguard', m_title:'Specialized AI Models', m_sub:'Exclusive, highly specialized artificial intelligence running locally on your devices, which we can train for your specific needs.',
   m_cl_role:'Finance & Economy', m_cl_desc:'Specialist in finance, economy, budget, and accounting. Processes sensitive transactions and receipts directly on your device, providing deep financial insights without ever communicating with external servers.',
   t_finance:'Accounting', t_budget:'Budgets', t_ocr:'Financial OCR',
   m_si_role:'Interpersonal Dynamics', m_si_desc:'Specializes in relationships, intimate life, and human psychology. Acts as a strictly private confidant and advisor, ensuring the most personal aspects of human life remain completely localized.',
@@ -385,7 +364,7 @@ en:{
 },
 uk:{
   nav_home:'Головна', nav_plat:'Платформи', nav_sol:'Рішення', nav_apps:'Додатки', nav_con:'Контакт', nav_models:'Моделі',
-  m_tag:'Пантеон', m_title:'Спеціалізований Інтелект', m_sub:'Наші власні AI-моделі для локального виконання. Названі на честь Гоетії, створені для абсолютної приватності та майстерності.',
+  m_tag:'Авангард', m_title:'Спеціалізовані ШІ моделі', m_sub:'Ексклюзивний, вузькоспеціалізований штучний інтелект локально на ваших пристроях, який можемо навчити під ваші потреби.',
   m_cl_role:'Фінанси та Економіка', m_cl_desc:'Спеціаліст з фінансів, економіки, бюджету та бухгалтерії. Обробляє чутливі транзакції та чеки прямо на пристрої, надаючи глибоку аналітику без підключення до серверів.',
   t_finance:'Бухгалтерія', t_budget:'Бюджет', t_ocr:'Фінансовий OCR',
   m_si_role:'Взаємовідносини', m_si_desc:'Спеціалізується на взаємовідносинах, інтимному житті та психології. Діє як суворо приватний радник, гарантуючи, що найособистіше залишається на вашому пристрої.',
@@ -398,7 +377,7 @@ uk:{
 },
 es:{
   nav_home:'Inicio', nav_plat:'Plataformas', nav_sol:'Soluciones', nav_apps:'Apps', nav_con:'Contacto', nav_models:'Modelos',
-  m_tag:'El Panteón', m_title:'Inteligencia Especializada', m_sub:'Nuestros modelos de IA locales. Nombrados en honor a la Goecia, construidos para privacidad absoluta.',
+  m_tag:'La Vanguardia', m_title:'Modelos de IA Especializados', m_sub:'Inteligencia artificial exclusiva y altamente especializada localmente en sus dispositivos, que podemos entrenar para sus necesidades.',
   m_cl_role:'Finanzas y Economía', m_cl_desc:'Especialista en finanzas, economía, presupuestos y contabilidad. Procesa transacciones sensibles y recibos directamente en su dispositivo.',
   t_finance:'Contabilidad', t_budget:'Presupuestos', t_ocr:'OCR Financiero',
   m_si_role:'Dinámicas Interpersonales', m_si_desc:'Se especializa en relaciones, vida íntima y psicología humana. Actúa como confidente estrictamente privado.',
@@ -411,7 +390,7 @@ es:{
 },
 pt:{
   nav_home:'Início', nav_plat:'Plataformas', nav_sol:'Soluções', nav_apps:'Apps', nav_con:'Contato', nav_models:'Modelos',
-  m_tag:'O Panteão', m_title:'Inteligência Especializada', m_sub:'Nossos modelos proprietários de IA local. Nomeados em homenagem à Goécia, construídos para privacidade absoluta.',
+  m_tag:'A Vanguarda', m_title:'Modelos de IA Especializados', m_sub:'Inteligência artificial exclusiva e altamente especializada localmente em seus dispositivos, que podemos treinar para suas necessidades.',
   m_cl_role:'Finanças e Economia', m_cl_desc:'Especialista em finanças, economia, orçamento e contabilidade. Processa transações sensíveis diretamente no dispositivo.',
   t_finance:'Contabilidade', t_budget:'Orçamentos', t_ocr:'OCR Financeiro',
   m_si_role:'Dinâmicas Interpessoais', m_si_desc:'Especializado em relacionamentos, vida íntima e psicologia humana. Atua como um conselheiro estritamente privado.',
@@ -424,7 +403,7 @@ pt:{
 },
 de:{
   nav_home:'Start', nav_plat:'Plattformen', nav_sol:'Lösungen', nav_apps:'Apps', nav_con:'Kontakt', nav_models:'Modelle',
-  m_tag:'Das Pantheon', m_title:'Spezialisierte Intelligenz', m_sub:'Unsere lokalen KI-Modelle. Benannt nach der Goetia, gebaut für absolute Privatsphäre.',
+  m_tag:'Die Avantgarde', m_title:'Spezialisierte KI-Modelle', m_sub:'Exklusive, hochspezialisierte künstliche Intelligenz lokal auf Ihren Geräten, die wir für Ihre Bedürfnisse trainieren können.',
   m_cl_role:'Finanzen & Wirtschaft', m_cl_desc:'Spezialist für Finanzen, Wirtschaft, Budget und Buchhaltung. Verarbeitet sensible Transaktionen direkt auf Ihrem Gerät.',
   t_finance:'Buchhaltung', t_budget:'Budgets', t_ocr:'Finanz-OCR',
   m_si_role:'Zwischenmenschliche Dynamik', m_si_desc:'Spezialisiert auf Beziehungen, Intimleben und Psychologie. Agiert als streng privater Berater.',
@@ -437,7 +416,7 @@ de:{
 },
 fr:{
   nav_home:'Accueil', nav_plat:'Plateformes', nav_sol:'Solutions', nav_apps:'Applications', nav_con:'Contact', nav_models:'Modèles',
-  m_tag:'Le Panthéon', m_title:'Intelligence Spécialisée', m_sub:'Nos modèles IA propriétaires sur appareil. Nommés d\'après la Goétie, conçus pour une confidentialité absolue.',
+  m_tag:'L\'Avant-garde', m_title:'Modèles d\'IA spécialisés', m_sub:'Intelligence artificielle exclusive et hautement spécialisée localement sur vos appareils, que nous pouvons entraîner selon vos besoins.',
   m_cl_role:'Finances et Économie', m_cl_desc:'Spécialiste en finances, économie, budget et comptabilité. Traite les transactions sensibles directement sur votre appareil.',
   t_finance:'Comptabilité', t_budget:'Budgets', t_ocr:'OCR Financier',
   m_si_role:'Dynamiques Interpersonnelles', m_si_desc:'Spécialisé dans les relations, la vie intime et la psychologie. Agit comme un conseiller strictement privé.',
@@ -450,7 +429,7 @@ fr:{
 },
 it:{
   nav_home:'Home', nav_plat:'Piattaforme', nav_sol:'Soluzioni', nav_apps:'Applicazioni', nav_con:'Contatti', nav_models:'Modelli',
-  m_tag:'Il Pantheon', m_title:'Intelligenza Specializzata', m_sub:'I nostri modelli IA locali. Chiamati come i demoni della Goetia, costruiti per la privacy assoluta.',
+  m_tag:'L\'Avanguardia', m_title:'Modelli IA specializzati', m_sub:'Intelligenza artificiale esclusiva e altamente specializzata localmente sui tuoi dispositivi, che possiamo addestrare per le tue esigenze.',
   m_cl_role:'Finanza ed Economia', m_cl_desc:'Specialista in finanza, economia, bilancio e contabilità. Elabora transazioni sensibili direttamente sul tuo dispositivo.',
   t_finance:'Contabilità', t_budget:'Budget', t_ocr:'OCR Finanziario',
   m_si_role:'Dinamiche Interpersonali', m_si_desc:'Specializzato in relazioni, vita intima e psicologia. Agisce come consulente strettamente privato.',
@@ -463,7 +442,7 @@ it:{
 },
 nl:{
   nav_home:'Home', nav_plat:'Platforms', nav_sol:'Oplossingen', nav_apps:'Apps', nav_con:'Contact', nav_models:'Modellen',
-  m_tag:'Het Pantheon', m_title:'Gespecialiseerde Intelligentie', m_sub:'Onze eigen lokale AI-modellen. Vernoemd naar de Goetia, gebouwd voor absolute privacy.',
+  m_tag:'De Voorhoede', m_title:'Gespecialiseerde AI-modellen', m_sub:'Exclusieve, zeer gespecialiseerde kunstmatige intelligentie lokaal op uw apparaten, die we kunnen trainen voor uw behoeften.',
   m_cl_role:'Financiën & Economie', m_cl_desc:'Specialist in financiën, economie, budget en boekhouding. Verwerkt gevoelige transacties direct op uw apparaat.',
   t_finance:'Boekhouding', t_budget:'Budgetten', t_ocr:'Financiële OCR',
   m_si_role:'Interpersoonlijke Dynamiek', m_si_desc:'Gespecialiseerd in relaties, intiem leven en psychologie. Fungeert als een strikt persoonlijke adviseur.',
@@ -476,7 +455,7 @@ nl:{
 },
 pl:{
   nav_home:'Główna', nav_plat:'Platformy', nav_sol:'Rozwiązania', nav_apps:'Aplikacje', nav_con:'Kontakt', nav_models:'Modele',
-  m_tag:'Panteon', m_title:'Wyspecjalizowana Inteligencja', m_sub:'Nasze autorskie, lokalne modele AI. Nazwane na cześć Goecji, zbudowane dla absolutnej prywatności.',
+  m_tag:'Awangarda', m_title:'Specjalistyczne modele AI', m_sub:'Ekskluzywna, wysoce wyspecjalizowana sztuczna inteligencja lokalnie na Twoich urządzeniach, którą możemy wytrenować pod Twoje potrzeby.',
   m_cl_role:'Finanse i Gospodarka', m_cl_desc:'Specjalista ds. finansów, budżetu i księgowości. Przetwarza wrażliwe transakcje bezpośrednio na urządzeniu.',
   t_finance:'Księgowość', t_budget:'Budżety', t_ocr:'Finansowy OCR',
   m_si_role:'Relacje Interpersonalne', m_si_desc:'Specjalizuje się w relacjach, życiu intymnym i psychologii. Działa jako ściśle prywatny doradca.',
@@ -489,7 +468,7 @@ pl:{
 },
 tr:{
   nav_home:'Ana Sayfa', nav_plat:'Platformlar', nav_sol:'Çözümler', nav_apps:'Uygulamalar', nav_con:'İletişim', nav_models:'Modeller',
-  m_tag:'Panteon', m_title:'Uzmanlaşmış Zeka', m_sub:'Cihazda çalışan özel yapay zeka modellerimiz. Mutlak gizlilik için Goetia iblislerinin adını almıştır.',
+  m_tag:'Öncü Birlik', m_title:'Uzmanlaşmış YZ Modelleri', m_sub:'Cihazlarınızda yerel olarak çalışan, ihtiyaçlarınıza göre eğitebileceğimiz özel, son derece uzmanlaşmış yapay zeka.',
   m_cl_role:'Finans ve Ekonomi', m_cl_desc:'Finans, ekonomi, bütçe ve muhasebe uzmanı. Hassas işlemleri doğrudan cihazınızda işler.',
   t_finance:'Muhasebe', t_budget:'Bütçe', t_ocr:'Finansal OCR',
   m_si_role:'Kişilerarası İlişkiler', m_si_desc:'İlişkiler, özel hayat ve insan psikolojisi üzerine uzmanlaşmıştır. Kesinlikle özel bir danışman gibi hareket eder.',
