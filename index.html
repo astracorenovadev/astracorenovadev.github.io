@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,61 +10,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --void:#020202;--abyss:#050505;--deep:#0a0a0a;--panel:#111111;
-  --purple:#4a4a4a;--glow:#666666;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
-  --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.55);--white:#e5e5e5;
-  --line:rgba(255,255,255,.08);--line-bright:rgba(255,255,255,.25);
-  /* Dark-black-purple Catholic Glassmorphism */
-  --glass:rgba(14, 6, 22, 0.65);
-  --glass-edge:rgba(100, 50, 150, 0.3);
+  /* Faded, dead blacks for the old dark Catholic photo vibe */
+  --void:#111111;--abyss:#151515;--deep:#1a1a1a;--panel:#1e1e1e;
+  --purple:#7a22ff;--glow:#555555;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
+  --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.6);--white:#e5e5e5;
+  --line:rgba(255,255,255,.06);--line-bright:rgba(255,255,255,.2);
+  
+  /* Highly saturated deep purple glass */
+  --glass:rgba(20, 5, 30, 0.65);
+  --glass-edge:rgba(160, 30, 255, 0.4);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--void);color:var(--silver);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
 
-/* ── base atmosphere: desaturated dark void, maximized dark ── */
+/* ── base atmosphere: crushed cold blacks ── */
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
-  radial-gradient(ellipse 70% 50% at 50% 38%,rgba(30,25,35,.5),transparent 60%),
-  radial-gradient(ellipse 90% 60% at 80% 70%,rgba(15,15,20,.3),transparent 65%),
-  radial-gradient(circle at 18% 80%,rgba(10,10,15,.4),transparent 55%),
-  linear-gradient(160deg,#050505 0%,#010101 45%,#000 100%);}
-.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite;}
-.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(60,60,60,.2),rgba(30,30,30,.1) 45%,transparent 70%);filter:blur(70px);top:-200px;left:50%;transform:translateX(-50%);opacity:.6;}
-.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(80,80,80,.1),transparent 68%);filter:blur(90px);top:38%;left:-180px;animation-delay:-10s;opacity:.5;}
-.neb3{width:620px;height:680px;background:radial-gradient(ellipse,rgba(50,50,50,.15),transparent 70%);filter:blur(100px);bottom:-200px;right:-160px;animation-delay:-18s;opacity:.45;}
-@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-26px) scale(1.1);}}
-#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.5;}
+  radial-gradient(ellipse 80% 60% at 50% 40%, #222222 0%, #121212 70%, #080808 100%);}
 
-/* ── vignette: heavy black corners ── */
+/* ── old photo fine grain & dirt (STATIC for performance, higher opacity) ── */
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.55;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");}
+
+/* ── vignette: muddy/faded edges ── */
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
-  radial-gradient(ellipse 110% 80% at 50% 42%,transparent 28%,rgba(2,2,2,.7) 68%,rgba(0,0,0,1) 100%); backdrop-filter: blur(0.5px); /* bad lens effect */}
+  radial-gradient(ellipse 120% 100% at 50% 50%,transparent 35%,rgba(10,10,10,0.85) 80%,rgba(4,4,4,1) 100%);}
 
-/* ── CRT scanlines for extra dirt ── */
-.scanlines{position:fixed;inset:0;z-index:9989;pointer-events:none;background:repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,0.25) 3px, rgba(0,0,0,0.25) 4px); opacity: 0.6;}
-
-/* ── film grain: MAXIMUM AWFUL QUALITY (More noise, faster, rougher) ── */
-.grain{position:fixed;inset:-150%;width:400%;height:400%;z-index:9990;pointer-events:none;opacity:0.98;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 0.08s steps(2) infinite; filter: contrast(180%) brightness(30%);}
-@keyframes grain{0%{transform:translate(0,0);}50%{transform:translate(-1%,2.5%);}100%{transform:translate(1.5%,-1%);}}
+/* Ambient nebulae - cold dead purple tones */
+.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite;}
+.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(80,20,150,.1),transparent 70%);filter:blur(80px);top:-200px;left:50%;transform:translateX(-50%);opacity:.5;}
+.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(50,50,60,.15),transparent 68%);filter:blur(90px);top:38%;left:-180px;animation-delay:-10s;opacity:.4;}
+.neb3{width:620px;height:680px;background:radial-gradient(ellipse,rgba(60,30,80,.15),transparent 70%);filter:blur(100px);bottom:-200px;right:-160px;animation-delay:-18s;opacity:.5;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-26px) scale(1.1);}}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.2;}
 
 /* ── cursor ── */
 #cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--lum);}
 #cur2{position:fixed;width:30px;height:30px;border:1px solid rgba(170,170,170,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
 
 /* ── lang bar ── */
-.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
+.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,18,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
 .lb{background:none;border:1px solid transparent;color:var(--silver-dim);font-family:'Syne',sans-serif;font-size:.66rem;letter-spacing:.12em;padding:.2rem .55rem;cursor:none;transition:all .2s;border-radius:2px;}
-.lb:hover{color:var(--silver);border-color:var(--line-bright);}
-.lb.on{color:var(--lum);border-color:var(--line-bright);background:rgba(255,255,255,.05);}
+.lb:hover{color:var(--silver);border-color:rgba(190,40,255,.5);}
+.lb.on{color:#fff;border-color:rgba(190,40,255,.8);background:rgba(160,30,255,.15);text-shadow:0 0 8px rgba(190,40,255,.5);}
 
 /* ── nav ── */
-nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(8,8,8,.9),transparent);}
+nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(18,18,18,.9),transparent);}
 .nlogo{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
-.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 12px rgba(170,170,170,.4));transition:filter .3s;}
-.nlogo:hover img{filter:drop-shadow(0 0 20px rgba(200,200,200,.8));}
-.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 18px rgba(170,170,170,.3);}
+.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 12px rgba(190,40,255,.4));transition:filter .3s;}
+.nlogo:hover img{filter:drop-shadow(0 0 20px rgba(200,50,255,.8));}
+.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 18px rgba(190,40,255,.4);}
 .nlinks{display:flex;gap:2.3rem;list-style:none;}
 .nlinks a{color:var(--silver);text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
-.nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--lum);transition:width .3s;box-shadow:0 0 8px var(--lum);}
+.nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:rgba(190,40,255,.8);transition:width .3s;box-shadow:0 0 8px rgba(190,40,255,.6);}
 .nlinks a:hover,.nlinks a.active{color:var(--white);}
 .nlinks a:hover::after,.nlinks a.active::after{width:100%;}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;}
@@ -71,36 +69,223 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(18,18,18,.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{color:var(--silver);text-decoration:none;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
-.mobile-menu a:hover{color:var(--lum);}
+.mobile-menu a:hover{color:#fff; text-shadow:0 0 15px rgba(190,40,255,.6);}
 
 /* ── hero ── */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3;}
-/* hero-stage is centered correctly from provided file */
 .hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;pointer-events:none;z-index:0;}
 
-/* Degraded Geometric Spires Background (Blurred & degraded layer) */
-.gothic-spires{position:absolute;inset:0;width:100%;height:100%;opacity:0.35;z-index:0; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)) blur(1px); overflow: visible;}
+/* HIGH VISIBILITY Faded Gothic Cathedral Background */
+.gothic-spires{position:absolute;inset:0;width:100%;height:100%;opacity:0.9;z-index:0; filter: drop-shadow(0 0 4px rgba(0,0,0,0.5)); overflow: visible;}
 
-/* Glass Mosaic Cross (Rotating) */
-.cross-cluster{position:absolute;top:50%;left:50%;width:500px;height:500px;margin-top:-250px;margin-left:-250px;animation:spin-cross 60s linear infinite;z-index:1;}
-@keyframes spin-cross{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+/* ── AI Neural Web Overlay inside the Cross (PALE VERSION) ── */
+.neural-core {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none;
+}
+.neural-link{fill:none; stroke:rgba(180, 160, 220, 0.25); stroke-width:1px;}
+.neural-flow{
+  fill:none;
+  stroke:rgba(210, 190, 240, 0.85);
+  stroke-width:1.5px;
+  stroke-dasharray: 4 25;
+  animation: data-flow 4s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(210, 190, 240, 0.6));
+}
+.neural-node{
+  fill:rgba(220, 200, 250, 0.85);
+  animation: node-pulse 2s ease-in-out infinite alternate;
+}
+.neural-core-processor {
+  fill:rgba(255, 255, 255, 0.8);
+  animation: core-pulse 1.5s ease-in-out infinite alternate;
+}
+@keyframes data-flow{
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -100; }
+}
+@keyframes node-pulse{
+  0% { r: 1.5; filter: drop-shadow(0 0 2px rgba(180,160,220,0.4)); opacity: 0.5; }
+  100% { r: 3; filter: drop-shadow(0 0 8px rgba(220,200,250,0.9)); opacity: 0.9; }
+}
+@keyframes core-pulse{
+  0% { r: 3; filter: drop-shadow(0 0 5px rgba(180,160,220,0.5)); }
+  100% { r: 5; filter: drop-shadow(0 0 15px rgba(230,210,255,0.8)); }
+}
 
-/* Brutalist Mosaic Shards: Maximally stained glass mosaic style */
-.shard{position:absolute;
-  border-radius:2px;
-  /* Thick lead frames */
-  border: 2px solid rgba(10, 5, 20, 0.9);
-  /* Light refraction/reflection on beveled edge */
-  border-top: 2px solid rgba(160, 160, 160, 0.8);
-  border-bottom: 2px solid rgba(160, 160, 160, 0.4);
-  
-  /* Heavy glass distortion & shadow */
-  backdrop-filter: blur(12px) contrast(150%);
-  box-shadow:inset 0 0 25px rgba(0,0,0,1), 0 10px 40px rgba(40,10,60,0.8), 0 0 5px rgba(100,50,150,0.4);
-  
+/* The Solid Geometric Mosaic Cross (Smaller, rotating) */
+.cross-cluster{position:absolute;top:50%;left:50%;width:180px;height:260px;transform:translate(-50%, -50%);animation:spin-cross 120s linear infinite;z-index:1;}
+@keyframes spin-cross{from{transform:translate(-50%,-50%) rotate(0);}to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+/* Exact interlocking shards, PALE & GHOSTLY colors */
+.shard{
+  position:absolute;
+  transform: scale(0.92); /* Creates perfect gaps between pieces */
+  transform-origin: center;
+  backdrop-filter: blur(10px);
+  background-size: cover;
+  transition: all 0.3s ease;
+}
+
+/* Base Colors for depth - PALE, ETHEREAL GHOST GLASS */
+.c-dark { background-color: rgba(35, 30, 45, 0.5); box-shadow: inset 0 0 15px rgba(0,0,0,0.6); border: 1px solid rgba(140,120,160,0.3); }
+.c-mid  { background-color: rgba(60, 50, 75, 0.45); box-shadow: inset 0 0 10px rgba(0,0,0,0.4); border: 1px solid rgba(160,140,180,0.35); }
+.c-glow { background-color: rgba(120, 100, 150, 0.55); box-shadow: 0 0 25px rgba(160, 140, 190, 0.4), inset 0 0 15px rgba(255,255,255,0.3); border: 1px solid rgba(180,160,210,0.5); z-index: 2;}
+.c-light{ background-color: rgba(90, 75, 110, 0.4); box-shadow: inset 0 0 8px rgba(255,255,255,0.1); border: 1px solid rgba(170,150,190,0.4); }
+
+/* Center Intersections (4 pieces forming a diamond/rhombus) */
+.c-top    { top: 95px; left: 65px; width: 50px; height: 25px; clip-path: polygon(50% 100%, 0 0, 100% 0); }
+.c-bottom { top: 120px; left: 65px; width: 50px; height: 25px; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.c-left   { top: 95px; left: 65px; width: 25px; height: 50px; clip-path: polygon(100% 50%, 0 0, 0 100%); }
+.c-right  { top: 95px; left: 90px; width: 25px; height: 50px; clip-path: polygon(0 50%, 100% 100%, 100% 0); }
+
+/* Vertical Beam (Top & Bottom halves) - BLUNT/FLAT ENDS */
+.t-left   { top: 0; left: 65px; width: 25px; height: 95px; clip-path: polygon(100% 100%, 0 100%, 0 12%, 100% 0); }
+.t-right  { top: 0; left: 90px; width: 25px; height: 95px; clip-path: polygon(0 100%, 100% 100%, 100% 12%, 0 0); }
+.b-left   { top: 145px; left: 65px; width: 25px; height: 115px; clip-path: polygon(100% 0, 0 0, 0 88%, 100% 100%); }
+.b-right  { top: 145px; left: 90px; width: 25px; height: 115px; clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+
+/* Horizontal Beam (Left & Right halves) - BLUNT/FLAT ENDS */
+.l-top    { top: 95px; left: 0; width: 65px; height: 25px; clip-path: polygon(100% 100%, 100% 0, 15% 0, 0 100%); }
+.l-bottom { top: 120px; left: 0; width: 65px; height: 25px; clip-path: polygon(100% 0, 100% 100%, 15% 100%, 0 0); }
+.r-top    { top: 95px; left: 115px; width: 65px; height: 25px; clip-path: polygon(0 100%, 0 0, 85% 0, 100% 100%); }
+.r-bottom { top: 120px; left: 115px; width: 65px; height: 25px; clip-path: polygon(0 0, 0 100%, 85% 100%, 100% 0); }
+
+/* Pulsing Divine Logo */
+.hero-logo-wrap { position: relative; z-index: 3; margin-bottom: 2.2rem; display: inline-flex; align-items: center; justify-content: center; }
+.hero-logo-wrap::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 140px; height: 140px; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(160,140,200,0.2) 0%, rgba(140,120,180,0.05) 30%, transparent 70%);
+  border-radius: 50%; z-index: -1; pointer-events: none;
+  animation: holy-glare 2s ease-in-out infinite alternate;
+}
+@keyframes holy-glare {
+  0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); filter: blur(15px); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); filter: blur(30px); }
+}
+.hero-logo{height:160px;width:auto; position:relative; z-index:2; filter:drop-shadow(0 0 20px rgba(0,0,0,0.9)); animation:rise 1.1s .1s both;}
+
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:#fff;border:1px solid rgba(190,40,255,.5);padding:.4rem 1.2rem;border-radius:2rem;margin-bottom:2.4rem;background:rgba(160,30,255,.05);backdrop-filter:blur(6px);animation:rise 1.1s .3s both;position:relative;z-index:2;}
+.hero-badge .dot{width:5px;height:5px;border-radius:50%;background:rgba(200,50,255,1);box-shadow:0 0 10px rgba(200,50,255,1);}
+.hero-h{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2.3rem,6vw,4.7rem);line-height:1.08;margin-bottom:1.6rem;color:var(--white);animation:rise 1.1s .5s both;position:relative;z-index:2;text-wrap:balance;}
+.hero-h .em{background:linear-gradient(135deg,#fff,rgba(190,40,255,.8));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{max-width:600px;color:var(--silver);font-size:1.02rem;line-height:1.9;font-weight:400;margin-bottom:3rem;animation:rise 1.1s .7s both;position:relative;z-index:2;}
+.hero-cta{display:flex;gap:1rem;animation:rise 1.1s .9s both;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;}
+@keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+
+/* ── buttons: saturated purple glass ── */
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 2.1rem;font-family:'Cinzel',serif;font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;border-radius:6px;text-decoration:none;cursor:none;transition:all .3s;}
+.btn-p{background:linear-gradient(135deg,rgba(90,15,160,.95),rgba(40,5,80,.95));color:#fff;border:1px solid rgba(190,40,255,.6);box-shadow:0 0 30px rgba(160,30,255,.4);}
+.btn-p:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(110,20,190,.95),rgba(60,10,110,.95));box-shadow:0 0 50px rgba(190,40,255,.6);border-color:rgba(220,80,255,.8);}
+.btn-g{border:1px solid rgba(160,30,255,.4);color:var(--white);background:rgba(40,10,60,.5);backdrop-filter:blur(6px);}
+.btn-g:hover{border-color:rgba(190,40,255,.7);color:#fff;background:rgba(70,15,110,.7);box-shadow:0 0 20px rgba(160,30,255,.3);}
+
+/* ── section frame ── */
+.div{width:100%;max-width:1180px;margin:0 auto;height:1px;background:linear-gradient(to right,transparent,rgba(160,30,255,.3),transparent);position:relative;z-index:2;}
+section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 auto;}
+.eyebrow{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(200,80,255,1);margin-bottom:1.1rem;display:block;}
+.stitle{font-family:'Cinzel',serif;font-size:clamp(1.7rem,3vw,2.7rem);font-weight:600;margin-bottom:1.4rem;color:var(--white);line-height:1.2;text-wrap:balance;}
+.slead{max-width:620px;color:var(--silver);font-size:.96rem;line-height:1.85;font-weight:400;}
+
+/* ── intense purple glass card primitive ── */
+.glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:8px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.8),inset 0 0 15px rgba(160,30,255,.1);}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(190,40,255,.5),transparent);}
+.glass::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(160,30,255,.12),transparent 60%);pointer-events:none;}
+
+/* ── platforms ── */
+.pf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem;}
+.pf{padding:2.2rem 1.6rem;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;}
+.pf:hover{transform:translateY(-6px);border-color:rgba(200,50,255,.7);box-shadow:0 12px 40px rgba(0,0,0,.9),inset 0 0 25px rgba(160,30,255,.25);}
+.pf svg{width:42px;height:42px;margin-bottom:1.2rem;fill:#fff;filter:drop-shadow(0 0 12px rgba(190,40,255,.6));}
+.pf .emoji-icon{font-size:38px;line-height:1;margin-bottom:1.2rem;display:inline-block;filter:grayscale(100%) contrast(150%) brightness(120%) drop-shadow(0 0 12px rgba(190,40,255,.6));text-shadow:0 0 10px rgba(170,170,170,.3);}
+.pf-name{font-family:'Cinzel',serif;font-size:.92rem;letter-spacing:.1em;color:var(--white);margin-bottom:.45rem;}
+.pf-meta{font-size:.74rem;color:var(--silver-dim);letter-spacing:.05em;}
+.pf-note{text-align:center;margin-top:2.2rem;color:var(--silver-dim);font-size:.85rem;letter-spacing:.04em;}
+.pf-note b{color:#fff;font-weight:600;text-shadow:0 0 8px rgba(190,40,255,.4);}
+
+/* ── solutions split ── */
+.sol-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:3.5rem;}
+.sol{padding:2.8rem;transition:border-color .35s;}
+.sol:hover{border-color:rgba(200,50,255,.7);box-shadow:0 12px 40px rgba(0,0,0,.9),inset 0 0 25px rgba(160,30,255,.15);}
+.sol-tag{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(200,80,255,1);margin-bottom:1rem;display:block;}
+.sol-h{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--white);margin-bottom:1rem;}
+.sol-d{color:var(--silver);font-size:.9rem;line-height:1.8;font-weight:400;margin-bottom:1.6rem;}
+.sol-list{list-style:none;}
+.sol-list li{color:var(--silver);font-size:.85rem;padding:.4rem 0 .4rem 1.4rem;position:relative;font-weight:400;}
+.sol-list li::before{content:'◆';position:absolute;left:0;top:.5rem;color:rgba(190,40,255,1);font-size:.5rem;}
+
+/* ── Complex AI Core ── */
+.ai-band{position:relative;z-index:2;margin:0 auto;max-width:1180px;padding:5.5rem 3rem;}
+.ai-inner{padding:3.4rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;}
+.ai-points{list-style:none;margin-top:1.8rem;}
+.ai-points li{color:var(--silver);font-size:.9rem;padding:.55rem 0 .55rem 1.8rem;position:relative;font-weight:400;line-height:1.5;}
+.ai-points li::before{content:'';position:absolute;left:0;top:.62rem;width:9px;height:9px;border:1px solid rgba(190,40,255,1);border-radius:50%;box-shadow:0 0 10px rgba(190,40,255,.5);}
+.ai-visual{display:flex;align-items:center;justify-content:center; position: relative;}
+
+.ai-orb-container {
+  width: 280px; height: 280px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.ai-orb-ring-1 {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(190, 40, 255, 0.5);
+  animation: spin-slow 30s linear infinite;
+}
+
+/* Replaced Square with SVG Pentagram */
+.ai-orb-ring-2 {
+  position: absolute; top: 22px; left: 22px; width: 236px; height: 236px;
+  animation: spin-slow-reverse 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(160, 30, 255, 0.4));
+}
+.ai-orb-ring-2 polygon {
+  fill: none;
+  stroke: rgba(180, 80, 255, 0.5);
+  stroke-width: 1.5px;
+}
+
+.ai-orb-ring-3 {
+  position: absolute; inset: 40px;
+  border: 1px solid rgba(200, 50, 255, 0.2);
+  border-radius: 50%;
+  border-left-color: rgba(220, 80, 255, 0.9);
+  animation: spin-slow 10s linear infinite;
+}
+.ai-orb-core {
+  background: radial-gradient(circle at 40% 40%, rgba(90, 10, 160, 0.9), rgba(20, 5, 40, 0.95));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(200, 50, 255, 0.7);
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 60px rgba(160, 30, 255, 0.6), inset 0 0 25px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+  animation: pulse-core 4s ease-in-out infinite alternate;
+}
+.ai-orb-core span {
+  font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 900;
+  color: var(--white);
+  text-shadow: 0 0 15px rgba(255,255,255,0.9), 0 0 10px rgba(200,50,255,1);
+  letter-spacing: 0.2em; text-align: center; line-height: 1.5;
+  text-transform: uppercase;
+}
+@keyframes spin-slow { 100% { transform: rotate(360deg); } }
+@keyframes spin-slow-reverse { 100% { transform: rotate(-360deg); } }
+@keyframes pulse-core {
+  0% { box-shadow: 0 0 40px rgba(160, 30, 255, 0.5), inset 0 0 25px rgba(0, 0, 0, 0.9); }
+  100% { box-shadow: 0 0 80px rgba(190, 40, 255, 0.8), inset 0 0 15px rgba(0, 0, 0, 0.7); }
+}
+
+/* ── values ── */
+.vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:3.5rem;}
+.vcard{padding:2.4rem;transition:transform .35s,border-color .35s;}
+.vcard:hover{transform:translateY(-4px);border-color:rgba(200,50,255,.7);box-shadow:0 12px 40px rgba(0,0,0,.9),inset 0 0 25px rgba(160,30,255,.15);}
+.vicon{wid  
   /* Stained glass micro-cracks texture via SVG */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M10,0 L0,10 L0,0 Z' fill='rgba(0,0,0,0.05)'/%3E%3Cpath d='M20,10 L10,20 L10,10 Z' fill='rgba(0,0,0,0.05)'/%3E%3Cpath d='M0,30 L10,40 L0,40 Z' fill='rgba(0,0,0,0.03)'/%3E%3Cpath d='M30,30 L40,40 L30,40 L20,30 Z' fill='rgba(0,0,0,0.03)'/%3E%3Cpath d='M50,0 Q60,10 50,20' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M70,80 Q90,90 80,100' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3Cpath d='M0,80 L10,90' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3C path d='M90,20 L100,30' stroke='rgba(0,0,0,0.1)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
 }
