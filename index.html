@@ -75,36 +75,28 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 
 /* ── hero ── */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;z-index:3;}
-.hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;pointer-events:none;z-index:0;}
+/* Smart scaling container for background elements */
+.hero-stage{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);width:100%;max-width:700px;aspect-ratio:1;pointer-events:none;z-index:0;}
 
 /* HIGH VISIBILITY Faded Gothic Cathedral Background */
 .gothic-spires{position:absolute;inset:0;width:100%;height:100%;opacity:0.9;z-index:0; filter: drop-shadow(0 0 4px rgba(0,0,0,0.5)); overflow: visible;}
 
-/* ── AI Neural Web Overlay inside the Cross (PALE VERSION) ── */
-.neural-core {
-  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none;
-}
+/* The Solid Geometric Mosaic Cross Container (Handles scaling & position) */
+.cross-container{position:absolute;top:50%;left:50%;width:180px;height:260px;transform:translate(-50%, -50%);z-index:1;}
+/* The rotating element itself */
+.cross-cluster{position:relative;width:100%;height:100%;animation:spin-cross 120s linear infinite;}
+@keyframes spin-cross{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+
+/* AI Neural Web Overlay inside the Cross bounds (Pale/Ghostly) */
+.neural-core { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
 .neural-link{fill:none; stroke:rgba(180, 160, 220, 0.25); stroke-width:1px;}
 .neural-flow{
-  fill:none;
-  stroke:rgba(210, 190, 240, 0.85);
-  stroke-width:1.5px;
-  stroke-dasharray: 4 25;
-  animation: data-flow 4s linear infinite;
-  filter: drop-shadow(0 0 4px rgba(210, 190, 240, 0.6));
+  fill:none; stroke:rgba(210, 190, 240, 0.85); stroke-width:1.5px;
+  stroke-dasharray: 4 25; animation: data-flow 4s linear infinite; filter: drop-shadow(0 0 4px rgba(210, 190, 240, 0.6));
 }
-.neural-node{
-  fill:rgba(220, 200, 250, 0.85);
-  animation: node-pulse 2s ease-in-out infinite alternate;
-}
-.neural-core-processor {
-  fill:rgba(255, 255, 255, 0.8);
-  animation: core-pulse 1.5s ease-in-out infinite alternate;
-}
-@keyframes data-flow{
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: -100; }
-}
+.neural-node{fill:rgba(220, 200, 250, 0.85); animation: node-pulse 2s ease-in-out infinite alternate;}
+.neural-core-processor {fill:rgba(255, 255, 255, 0.8); animation: core-pulse 1.5s ease-in-out infinite alternate;}
+@keyframes data-flow{from { stroke-dashoffset: 0; } to { stroke-dashoffset: -100; }}
 @keyframes node-pulse{
   0% { r: 1.5; filter: drop-shadow(0 0 2px rgba(180,160,220,0.4)); opacity: 0.5; }
   100% { r: 3; filter: drop-shadow(0 0 8px rgba(220,200,250,0.9)); opacity: 0.9; }
@@ -114,18 +106,10 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
   100% { r: 5; filter: drop-shadow(0 0 15px rgba(230,210,255,0.8)); }
 }
 
-/* The Solid Geometric Mosaic Cross (Smaller, rotating) */
-.cross-cluster{position:absolute;top:50%;left:50%;width:180px;height:260px;transform:translate(-50%, -50%);animation:spin-cross 120s linear infinite;z-index:1;}
-@keyframes spin-cross{from{transform:translate(-50%,-50%) rotate(0);}to{transform:translate(-50%,-50%) rotate(360deg);}}
-
 /* Exact interlocking shards, PALE & GHOSTLY colors */
 .shard{
-  position:absolute;
-  transform: scale(0.92); /* Creates perfect gaps between pieces */
-  transform-origin: center;
-  backdrop-filter: blur(10px);
-  background-size: cover;
-  transition: all 0.3s ease;
+  position:absolute; transform: scale(0.92); transform-origin: center;
+  backdrop-filter: blur(10px); background-size: cover; transition: all 0.3s ease;
 }
 
 /* Base Colors for depth - PALE, ETHEREAL GHOST GLASS */
@@ -134,19 +118,19 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 .c-glow { background-color: rgba(120, 100, 150, 0.55); box-shadow: 0 0 25px rgba(160, 140, 190, 0.4), inset 0 0 15px rgba(255,255,255,0.3); border: 1px solid rgba(180,160,210,0.5); z-index: 2;}
 .c-light{ background-color: rgba(90, 75, 110, 0.4); box-shadow: inset 0 0 8px rgba(255,255,255,0.1); border: 1px solid rgba(170,150,190,0.4); }
 
-/* Center Intersections (4 pieces forming a diamond/rhombus) */
+/* Center Intersections */
 .c-top    { top: 95px; left: 65px; width: 50px; height: 25px; clip-path: polygon(50% 100%, 0 0, 100% 0); }
 .c-bottom { top: 120px; left: 65px; width: 50px; height: 25px; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 .c-left   { top: 95px; left: 65px; width: 25px; height: 50px; clip-path: polygon(100% 50%, 0 0, 0 100%); }
 .c-right  { top: 95px; left: 90px; width: 25px; height: 50px; clip-path: polygon(0 50%, 100% 100%, 100% 0); }
 
-/* Vertical Beam (Top & Bottom halves) - BLUNT/FLAT ENDS */
+/* Vertical Beam */
 .t-left   { top: 0; left: 65px; width: 25px; height: 95px; clip-path: polygon(100% 100%, 0 100%, 0 12%, 100% 0); }
 .t-right  { top: 0; left: 90px; width: 25px; height: 95px; clip-path: polygon(0 100%, 100% 100%, 100% 12%, 0 0); }
 .b-left   { top: 145px; left: 65px; width: 25px; height: 115px; clip-path: polygon(100% 0, 0 0, 0 88%, 100% 100%); }
 .b-right  { top: 145px; left: 90px; width: 25px; height: 115px; clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
 
-/* Horizontal Beam (Left & Right halves) - BLUNT/FLAT ENDS */
+/* Horizontal Beam */
 .l-top    { top: 95px; left: 0; width: 65px; height: 25px; clip-path: polygon(100% 100%, 100% 0, 15% 0, 0 100%); }
 .l-bottom { top: 120px; left: 0; width: 65px; height: 25px; clip-path: polygon(100% 0, 100% 100%, 15% 100%, 0 0); }
 .r-top    { top: 95px; left: 115px; width: 65px; height: 25px; clip-path: polygon(0 100%, 0 0, 85% 0, 100% 100%); }
@@ -155,11 +139,9 @@ nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;displ
 /* Pulsing White Halo Logo */
 .hero-logo-wrap { position: relative; z-index: 3; margin-bottom: 2.2rem; display: inline-flex; align-items: center; justify-content: center; }
 .hero-logo-wrap::after {
-  content: ''; position: absolute; top: 50%; left: 50%;
-  width: 150px; height: 150px; transform: translate(-50%, -50%);
+  content: ''; position: absolute; top: 50%; left: 50%; width: 150px; height: 150px; transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.15) 35%, transparent 70%);
-  border-radius: 50%; z-index: -1; pointer-events: none;
-  animation: white-halo 4s ease-in-out infinite alternate;
+  border-radius: 50%; z-index: -1; pointer-events: none; animation: white-halo 4s ease-in-out infinite alternate;
 }
 @keyframes white-halo {
   0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.9); filter: blur(15px); }
@@ -235,8 +217,6 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
   border: 1px dashed rgba(190, 40, 255, 0.5);
   animation: spin-slow 30s linear infinite;
 }
-
-/* Replaced Square with SVG Pentagram */
 .ai-orb-ring-2 {
   position: absolute; top: 22px; left: 22px; width: 236px; height: 236px;
   animation: spin-slow-reverse 20s linear infinite;
@@ -247,7 +227,6 @@ section{position:relative;z-index:2;padding:7rem 3rem;max-width:1180px;margin:0 
   stroke: rgba(180, 80, 255, 0.5);
   stroke-width: 1.5px;
 }
-
 .ai-orb-ring-3 {
   position: absolute; inset: 40px;
   border: 1px solid rgba(200, 50, 255, 0.2);
@@ -330,14 +309,19 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   *{animation:none!important;}
   .rev{opacity:1;transform:none;}
 }
+
+/* ── Mobile & Responsive Tweaks ── */
 @media(max-width:980px){
   .pf-grid{grid-template-columns:repeat(2,1fr);}
   .ai-inner{grid-template-columns:1fr;gap:2rem;}
   .ai-visual{order:-1;}
 }
+
 @media(max-width:860px){
   body{cursor:auto;}
   #cur,#cur2{display:none;}
+  
+  /* Lbar & Nav */
   .lbar{padding:.3rem .7rem;gap:.12rem;justify-content:center;}
   .lb{font-size:.58rem;padding:.18rem .4rem;}
   nav{padding:.8rem 1.2rem;top:46px;}
@@ -345,16 +329,26 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
   .hamburger{display:flex;}
   .nlogo-t{font-size:.9rem;}
   .nlogo img{height:30px;}
-  .hero{padding:6rem 1.3rem 3.5rem;min-height:100svh;}
+  
+  /* Hero & Cross scaling */
+  .hero{padding:7.5rem 1.3rem 3.5rem;min-height:100svh;}
+  /* Shrink cross and background slightly on smaller screens */
+  .cross-container{ transform: translate(-50%, -50%) scale(0.65); }
+  .hero-logo-wrap{margin-top: 15vh;}
   .hero-logo{height:108px;}
   .hero-h{font-size:clamp(1.9rem,8vw,3rem);}
   .hero-sub{font-size:.92rem;margin-bottom:2.2rem;}
   .hero-cta{flex-direction:column;align-items:center;gap:.75rem;width:100%;}
   .btn{width:100%;max-width:300px;justify-content:center;}
+  
+  /* Layout shifts */
   section{padding:4.5rem 1.3rem;}
   .sol-grid,.vgrid,.cwrap{grid-template-columns:1fr;gap:1.2rem;}
   .ai-band{padding:3rem 1.3rem;}
   .ai-inner{padding:2rem 1.5rem;}
+  /* Shrink Orb slightly */
+  .ai-orb-container{transform: scale(0.85); margin: 0 auto;}
+  
   .ppillars{gap:2.4rem;}
   .pnum{font-size:2.1rem;}
   .cwrap{gap:2.2rem;}
@@ -407,7 +401,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 <div class="hero">
   <div class="hero-stage">
     
-    <!-- Deep Geometric Gothic Cathedral (Visible, faded photo styling) -->
+    <!-- Deep Geometric Gothic Cathedral (Responsive scaling wrapper) -->
     <svg class="gothic-spires" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
       <g fill="none">
         <!-- Chaotic background grid vectors -->
@@ -440,13 +434,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
 
         <!-- Twin Spires & Central Spire -->
         <g stroke="#404040" stroke-width="2.5">
-          <!-- Left Spire -->
           <polygon points="250,600 300,150 350,600" />
           <line x1="300" y1="150" x2="300" y2="600" />
-          <!-- Right Spire -->
           <polygon points="650,600 700,150 750,600" />
           <line x1="700" y1="150" x2="700" y2="600" />
-          <!-- Central Tower/Spire -->
           <polygon points="430,400 500,50 570,400" />
           <line x1="500" y1="50" x2="500" y2="400" />
         </g>
@@ -475,65 +466,51 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
       </g>
     </svg>
 
-    <!-- The Cross - Pale, Ethereal Geometric Mosaic -->
-    <div class="cross-cluster">
-      
-      <!-- AI Neural Web Overlay inside the Cross bounds (Pale/Ghostly) -->
-      <svg class="neural-core" viewBox="0 0 180 260">
-        <g class="neural-link">
-           <line x1="90" y1="10" x2="90" y2="250" />
-           <line x1="10" y1="120.5" x2="170" y2="120.5" />
-           <polyline points="90,20 70,60 90,95" />
-           <polyline points="90,240 110,200 90,145" />
-           <!-- Inner Diamond Links -->
-           <polyline points="65,120.5 90,95 115,120.5 90,145 65,120.5" />
-           <polyline points="20,120.5 65,100 90,120.5" />
-           <polyline points="160,120.5 115,140 90,120.5" />
-        </g>
+    <!-- The Cross - Responsive Container -->
+    <div class="cross-container">
+      <div class="cross-cluster">
         
-        <g>
-           <!-- Animated Data Flows -->
-           <line x1="90" y1="10" x2="90" y2="250" class="neural-flow" style="animation-duration: 3s;" />
-           <line x1="10" y1="120.5" x2="170" y2="120.5" class="neural-flow" style="animation-duration: 4s;" />
-           <polyline points="65,120.5 90,95 115,120.5 90,145 65,120.5" class="neural-flow" style="animation-duration: 5s;" />
-           
-           <!-- Neural Nodes at Seams -->
-           <circle cx="90" cy="120.5" r="4" class="neural-core-processor" />
-           
-           <circle cx="90" cy="95" r="2" class="neural-node" style="animation-delay: 0.1s;" />
-           <circle cx="90" cy="145" r="2" class="neural-node" style="animation-delay: 0.3s;" />
-           <circle cx="65" cy="120.5" r="2" class="neural-node" style="animation-delay: 0.5s;" />
-           <circle cx="115" cy="120.5" r="2" class="neural-node" style="animation-delay: 0.7s;" />
-           
-           <circle cx="90" cy="20" r="2" class="neural-node" style="animation-delay: 0.9s;" />
-           <circle cx="90" cy="240" r="2" class="neural-node" style="animation-delay: 1.1s;" />
-           <circle cx="20" cy="120.5" r="2" class="neural-node" style="animation-delay: 1.3s;" />
-           <circle cx="160" cy="120.5" r="2" class="neural-node" style="animation-delay: 1.5s;" />
-        </g>
-      </svg>
+        <!-- AI Neural Web Overlay inside the Cross bounds (Pale/Ghostly) -->
+        <svg class="neural-core" viewBox="0 0 180 260">
+          <g class="neural-link">
+             <line x1="90" y1="10" x2="90" y2="250" />
+             <line x1="10" y1="120.5" x2="170" y2="120.5" />
+             <polyline points="90,20 70,60 90,95" />
+             <polyline points="90,240 110,200 90,145" />
+             <polyline points="65,120.5 90,95 115,120.5 90,145 65,120.5" />
+             <polyline points="20,120.5 65,100 90,120.5" />
+             <polyline points="160,120.5 115,140 90,120.5" />
+          </g>
+          <g>
+             <line x1="90" y1="10" x2="90" y2="250" class="neural-flow" style="animation-duration: 3s;" />
+             <line x1="10" y1="120.5" x2="170" y2="120.5" class="neural-flow" style="animation-duration: 4s;" />
+             <polyline points="65,120.5 90,95 115,120.5 90,145 65,120.5" class="neural-flow" style="animation-duration: 5s;" />
+             <circle cx="90" cy="120.5" r="4" class="neural-core-processor" />
+             <circle cx="90" cy="95" r="2" class="neural-node" style="animation-delay: 0.1s;" />
+             <circle cx="90" cy="145" r="2" class="neural-node" style="animation-delay: 0.3s;" />
+             <circle cx="65" cy="120.5" r="2" class="neural-node" style="animation-delay: 0.5s;" />
+             <circle cx="115" cy="120.5" r="2" class="neural-node" style="animation-delay: 0.7s;" />
+             <circle cx="90" cy="20" r="2" class="neural-node" style="animation-delay: 0.9s;" />
+             <circle cx="90" cy="240" r="2" class="neural-node" style="animation-delay: 1.1s;" />
+             <circle cx="20" cy="120.5" r="2" class="neural-node" style="animation-delay: 1.3s;" />
+             <circle cx="160" cy="120.5" r="2" class="neural-node" style="animation-delay: 1.5s;" />
+          </g>
+        </svg>
 
-      <!-- Central Interlocking Diamond (4 facets) -->
-      <div class="shard c-glow c-top"></div>
-      <div class="shard c-dark c-bottom"></div>
-      <div class="shard c-mid c-left"></div>
-      <div class="shard c-light c-right"></div>
-      
-      <!-- Vertical Beam (Top half) - Blunt ends -->
-      <div class="shard c-dark t-left"></div>
-      <div class="shard c-mid t-right"></div>
-      
-      <!-- Vertical Beam (Bottom half) - Blunt ends -->
-      <div class="shard c-mid b-left"></div>
-      <div class="shard c-light b-right"></div>
-      
-      <!-- Horizontal Beam (Left half) - Blunt ends -->
-      <div class="shard c-light l-top"></div>
-      <div class="shard c-dark l-bottom"></div>
-      
-      <!-- Horizontal Beam (Right half) - Blunt ends -->
-      <div class="shard c-dark r-top"></div>
-      <div class="shard c-mid r-bottom"></div>
-
+        <!-- Shards -->
+        <div class="shard c-glow c-top"></div>
+        <div class="shard c-dark c-bottom"></div>
+        <div class="shard c-mid c-left"></div>
+        <div class="shard c-light c-right"></div>
+        <div class="shard c-dark t-left"></div>
+        <div class="shard c-mid t-right"></div>
+        <div class="shard c-mid b-left"></div>
+        <div class="shard c-light b-right"></div>
+        <div class="shard c-light l-top"></div>
+        <div class="shard c-dark l-bottom"></div>
+        <div class="shard c-dark r-top"></div>
+        <div class="shard c-mid r-bottom"></div>
+      </div>
     </div>
   </div>
 
@@ -625,12 +602,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.4r
       
       <div class="ai-orb-container">
         <div class="ai-orb-ring-1"></div>
-        
         <!-- SVG Pentacle -->
         <svg class="ai-orb-ring-2" viewBox="0 0 100 100">
           <polygon points="50,2.5 77.9,88.4 4.8,35.3 95.2,35.3 22.1,88.4" />
         </svg>
-
         <div class="ai-orb-ring-3"></div>
         <div class="ai-orb-core">
           <span data-i="ai_orb">Local<br>AI<br>Core</span>
