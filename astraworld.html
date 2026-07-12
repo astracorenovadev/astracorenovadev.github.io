@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstraWorld — AstraCoreNova</title>
+<meta name="description" content="AstraWorld — a role-playing game played with your feet. Real places, real walks, AI-built quests from your own photos.">
+<link rel="icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#111111;--abyss:#151515;--deep:#1a1a1a;--panel:#1e1e1e;
+  --purple:#7a22ff;--glow:#555555;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
+  --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.6);--white:#e5e5e5;
+  --line:rgba(255,255,255,.06);--line-bright:rgba(255,255,255,.2);
+  --glass:rgba(20, 5, 30, 0.65);
+  --glass-edge:rgba(160, 30, 255, 0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--silver);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;min-height:100vh;}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(ellipse 80% 60% at 50% 40%, #222222 0%, #121212 70%, #080808 100%);}
+
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.55;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");}
+
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
+  radial-gradient(ellipse 120% 100% at 50% 50%,transparent 35%,rgba(10,10,10,0.85) 80%,rgba(4,4,4,1) 100%);}
+
+.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite;}
+.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(80,20,150,.1),transparent 70%);filter:blur(80px);top:-200px;left:50%;transform:translateX(-50%);opacity:.5;}
+.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(50,50,60,.15),transparent 68%);filter:blur(90px);top:38%;left:-180px;animation-delay:-10s;opacity:.4;}
+.neb3{width:620px;height:680px;background:radial-gradient(ellipse,rgba(60,30,80,.15),transparent 70%);filter:blur(100px);bottom:-200px;right:-160px;animation-delay:-18s;opacity:.5;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-26px) scale(1.1);}}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.2;}
+
+#cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--lum);}
+#cur2{position:fixed;width:30px;height:30px;border:1px solid rgba(170,170,170,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+
+.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,18,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
+.lb{background:none;border:1px solid transparent;color:var(--silver-dim);font-family:'Syne',sans-serif;font-size:.66rem;letter-spacing:.12em;padding:.2rem .55rem;cursor:none;transition:all .2s;border-radius:2px;}
+.lb:hover{color:var(--silver);border-color:rgba(190,40,255,.5);}
+.lb.on{color:#fff;border-color:rgba(190,40,255,.8);background:rgba(160,30,255,.15);text-shadow:0 0 8px rgba(190,40,255,.5);}
+
+nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(18,18,18,.9),transparent);}
+.nlogo{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
+.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 12px rgba(190,40,255,.4));transition:filter .3s;}
+.nlogo:hover img{filter:drop-shadow(0 0 20px rgba(200,50,255,.8));}
+.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 18px rgba(190,40,255,.4);}
+.nlinks{display:flex;gap:2.3rem;list-style:none;}
+.nlinks a{color:var(--silver);text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
+.nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:rgba(190,40,255,.8);transition:width .3s;box-shadow:0 0 8px rgba(190,40,255,.6);}
+.nlinks a:hover,.nlinks a.active{color:var(--white);}
+.nlinks a:hover::after,.nlinks a.active::after{width:100%;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--silver);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(18,18,18,.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--silver);text-decoration:none;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
+.mobile-menu a:hover{color:#fff; text-shadow:0 0 15px rgba(190,40,255,.6);}
+
+.wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:12rem 3rem 6rem;}
+
+.glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:12px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.8),inset 0 0 15px rgba(160,30,255,.1);}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(190,40,255,.5),transparent);}
+.glass::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(160,30,255,.12),transparent 60%);pointer-events:none;}
+
+.app-status{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:.2rem .65rem;border-radius:2rem;display:inline-block;font-weight:500;}
+.st-live{color:#fff;background:rgba(160,30,255,.15);border:1px solid rgba(190,40,255,.5);box-shadow:0 0 10px rgba(160,30,255,.2);}
+
+/* ── Hero ── */
+.hero-top{display:flex;gap:1.6rem;align-items:center;padding:2.4rem;margin-bottom:2.2rem;}
+.hero-logo{width:84px;height:84px;object-fit:contain;border-radius:18px;filter:drop-shadow(0 0 18px rgba(160,30,255,.5));flex-shrink:0;}
+.hero-name{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--white);font-weight:700;margin-bottom:.5rem;}
+.hero-desc{font-size:.98rem;line-height:1.95;color:var(--silver);margin-bottom:1.4rem;white-space:pre-line;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:5rem;}
+.btn-primary{background:rgba(160,30,255,.18);border:1px solid rgba(190,40,255,.65);color:#fff;padding:.85rem 1.7rem;border-radius:8px;text-decoration:none;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;transition:all .3s;cursor:none;}
+.btn-primary:hover{background:rgba(160,30,255,.32);box-shadow:0 0 20px rgba(160,30,255,.4);}
+.btn-ghost{border:1px solid var(--line-bright);color:var(--silver);padding:.85rem 1.7rem;border-radius:8px;text-decoration:none;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;transition:all .3s;cursor:none;}
+.btn-ghost:hover{color:#fff;border-color:rgba(190,40,255,.6);}
+
+/* ── Legal sections ── */
+.legal-section{margin-top:5rem;padding-top:2.6rem;border-top:1px solid var(--line-bright);}
+.legal-section h2{font-family:'Cinzel',serif;font-size:1.9rem;color:var(--white);margin-bottom:.4rem;}
+.legal-eff{color:var(--silver-dim);font-size:.78rem;margin-bottom:2.4rem;letter-spacing:.05em;}
+.legal h3{font-family:'Cinzel',serif;font-size:1.08rem;color:var(--white);margin:2.4rem 0 1rem;font-weight:600;}
+.legal p{font-size:.9rem;line-height:1.9;color:var(--silver);margin-bottom:1rem;}
+.legal ul{padding-left:1.3rem;margin:.8rem 0 1.2rem;}
+.legal li{font-size:.9rem;line-height:1.85;color:var(--silver);margin-bottom:.55rem;}
+.legal a{color:rgba(200,80,255,1);text-decoration:underline;}
+.legal b{color:var(--white);}
+.box{border-radius:10px;padding:1.5rem 1.7rem;margin:1.8rem 0;border-left:3px solid rgba(190,40,255,.75);background:rgba(160,30,255,.07);}
+.box p:last-child{margin-bottom:0;}
+.box-danger{border-left-color:#e2504f;background:rgba(226,80,79,.07);}
+.box-warn{border-left-color:#d9a441;background:rgba(217,164,65,.07);}
+.legal table{width:100%;border-collapse:collapse;margin:1.6rem 0 2rem;font-size:.83rem;}
+.legal th{text-align:left;color:rgba(200,80,255,1);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem .7rem;border-bottom:1px solid var(--line-bright);}
+.legal td{padding:.85rem .7rem;border-bottom:1px solid var(--line);color:var(--silver);vertical-align:top;font-size:.85rem;line-height:1.6;}
+.legal-foot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);color:var(--silver-dim);font-size:.76rem;line-height:1.8;}
+
+.lang-uk{display:none;}
+body.lang-is-uk .lang-en{display:none;}
+body.lang-is-uk .lang-uk{display:block;}
+
+/* ── Footer ── */
+footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);padding:2.4rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;max-width:1180px;margin:0 auto;}
+.flogo{display:flex;align-items:center;gap:.55rem;text-decoration:none;}
+.flogo img{height:28px;width:auto;filter:drop-shadow(0 0 10px rgba(190,40,255,.5));}
+.flogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:.9rem;letter-spacing:.13em;color:var(--white);}
+.flinks{display:flex;gap:2rem;list-style:none;flex-wrap:wrap;}
+.flinks a{color:var(--silver-dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;cursor:none;}
+.flinks a:hover{color:#fff;text-shadow:0 0 10px rgba(190,40,255,.5);}
+.flegal{width:100%;text-align:center;color:#888;font-size:11px;margin-top:2rem;line-height:1.6;letter-spacing:0.05em;font-family:'Syne', sans-serif;}
+
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
+.rev.on{opacity:1;transform:none;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--void);}::-webkit-scrollbar-thumb{background:rgba(160,30,255,.5);}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;}.rev{opacity:1;transform:none;}}
+@media(max-width:860px){
+  body{cursor:auto;}#cur,#cur2{display:none;}
+  .lbar{padding:.3rem .7rem;gap:.12rem;justify-content:center;}.lb{font-size:.58rem;padding:.18rem .4rem;}
+  nav{padding:.8rem 1.2rem;top:46px;}.nlinks{display:none;}.hamburger{display:flex;}.nlogo-t{font-size:.9rem;}.nlogo img{height:30px;}
+  .wrap{padding:8.5rem 1.3rem 4rem;}
+  .hero-top{flex-direction:column;align-items:flex-start;padding:1.8rem;}
+  footer{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.8rem 1.3rem;}
+  .flegal{margin-top:1rem;text-align:left;}
+  .legal table,.legal thead,.legal tbody,.legal th,.legal td,.legal tr{display:block;}
+  .legal th{display:none;}
+  .legal tr{margin-bottom:1.4rem;border-bottom:1px solid var(--line-bright);padding-bottom:1rem;}
+  .legal td{border-bottom:none;padding:.3rem 0;}
+  .legal td::before{content:attr(data-label);display:block;color:rgba(200,80,255,1);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
+}
+</style>
+</head>
+<body>
+<div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
+<canvas id="cv"></canvas>
+<div class="vignette"></div>
+<div class="grain"></div>
+<div id="cur"></div><div id="cur2"></div>
+
+<div class="lbar">
+  <button class="lb on" onclick="setLang('en')">EN</button>
+  <button class="lb" onclick="setLang('uk')">UA</button>
+</div>
+
+<nav>
+  <a href="index.html" class="nlogo">
+    <img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'">
+    <span class="nlogo-t">AstraCoreNova</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html" data-i="nav_home">Home</a></li>
+    <li><a href="index.html#platforms" data-i="nav_plat">Platforms</a></li>
+    <li><a href="index.html#solutions" data-i="nav_sol">Solutions</a></li>
+    <li><a href="apps.html" class="active" data-i="nav_apps">Apps</a></li>
+    <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-i="nav_home" onclick="closeMenu()">Home</a>
+  <a href="index.html#platforms" data-i="nav_plat" onclick="closeMenu()">Platforms</a>
+  <a href="index.html#solutions" data-i="nav_sol" onclick="closeMenu()">Solutions</a>
+  <a href="apps.html" data-i="nav_apps" onclick="closeMenu()">Apps</a>
+  <a href="index.html#contact" data-i="nav_con" onclick="closeMenu()">Contact</a>
+</div>
+
+<div class="wrap">
+
+  <div class="hero-top glass rev">
+    <img src="logo.AstraWorld.png" alt="AstraWorld" class="hero-logo" onerror="this.style.display='none'">
+    <div>
+      <div class="hero-name">AstraWorld</div>
+      <span class="app-status st-live" data-i="ap_live">Available · Android</span>
+    </div>
+  </div>
+
+  <p class="hero-desc rev lang-en">AstraWorld is a role-playing game played with your feet.
+
+Your city is already full of stories. The café on the corner, the park behind your building, the old train station — we just don't see what they could be. AstraWorld shows you.
+
+Pick a world — mystery, fantasy, noir, cyberpunk, or one of eleven others — and the map of your city puts on its colors. Real places nearby become points of power, each growing its own legend with every visit.
+
+But you have to actually get there. The game won't take your word for it: until GPS brings you to the spot, the quest won't open. And when you arrive, photograph what you see. It's from your exact shot that the Game Master builds the adventure: from this wall, this fountain, this corner. No one else gets the same quest, because no one else has your photo.
+
+Then come three steps: tell, shoot, prove. And here the game gets serious. The judge is strict. Photograph the wrong thing — lose health. Too slow — lose a life. Stuck — ask your companion for a hint, but there are only three.
+
+Form guilds, trade on the marketplace, build your own saga of locations that remembers every visit.
+
+AstraWorld doesn't invent a world for you. It shows you the one you already live in.</p>
+
+  <p class="hero-desc rev lang-uk">AstraWorld — це рольова гра, у яку грають ногами.
+
+Твоє місто вже повне історій. Кав'ярня на розі, парк за будинком, старий вокзал — ми просто не бачимо, чим вони можуть бути. AstraWorld показує.
+
+Обери світ — містику, фентезі, нуар, кіберпанк чи ще один із одинадцяти — і мапа твого міста перевдягнеться в його барви. Реальні місця поруч стануть точками сили, у кожної з'явиться власна легенда, що росте з кожним візитом.
+
+Але дійти треба по-справжньому. Гра не вірить на слово: поки GPS не приведе тебе на місце, квест не відкриється. А коли дійдеш — сфотографуй те, що бачиш. Саме з твого кадру Гейм-майстер збудує пригоду: з цієї стіни, цього фонтана, цього кутка. Ні в кого не буде такого самого квесту, бо ні в кого немає твого фото.
+
+Далі — три кроки: розкажи, зніми, доведи. І тут гра стає серйозною. Суддя прискіпливий. Сфотографував не те — втратиш здоров'я. Не встиг — втратиш життя. Загруз — попроси підказку в помічника, але їх лише три.
+
+Збирай гільдії, торгуй на ринку, веди власну сагу локацій, що пам'ятає кожен твій візит.
+
+AstraWorld не вигадує тобі світ. Він показує той, у якому ти вже живеш.</p>
+
+  <div class="hero-ctas rev">
+    <a href="#" class="btn-primary lang-en">Get it on Google Play →</a>
+    <a href="#" class="btn-primary lang-uk">Google Play →</a>
+    <a href="#privacy-policy" class="btn-ghost lang-en">Privacy Policy</a>
+    <a href="#privacy-policy" class="btn-ghost lang-uk">Політика конфіденційності</a>
+    <a href="#terms" class="btn-ghost lang-en">Terms of Use</a>
+    <a href="#terms" class="btn-ghost lang-uk">Умови використання</a>
+  </div>
+
+  <!-- ══════════════ PRIVACY POLICY ══════════════ -->
+  <div class="legal-section rev" id="privacy-policy">
+
+    <!-- EN -->
+    <div class="legal lang-en">
+      <h2>Privacy Policy</h2>
+      <p class="legal-eff">Effective 12 July 2026. Version 1.0.</p>
+
+      <div class="box">
+        <p><b>In short:</b> to work, the game needs your <b>location</b> (to find real places near you and confirm you actually walked there) and the <b>photos</b> you take for quests. Photos are <b>never stored on our servers</b> — they are passed to the model that builds your quest and then discarded. We <b>do not sell</b> your data. You can <b>delete your account</b> and all data from inside the app.</p>
+      </div>
+
+      <h3>1. Who we are</h3>
+      <p><b>AstraWorld</b> is developed by the digital studio <b>AstraCoreNov</b>.</p>
+      <p>Official representative and data controller: <b>Individual Entrepreneur (FOP) Bakuridze Tymur Ruslanovych</b> (Ukraine)<br>
+      DUNS: 66-766-8526<br>
+      Email: <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a><br>
+      Website: <a href="https://astracorenovadev.github.io" target="_blank" rel="noopener">astracorenovadev.github.io</a></p>
+
+      <h3>2. What data we process</h3>
+      <table>
+        <thead><tr><th>Data</th><th>Why</th><th>Stored?</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Data"><b>Google account</b> (identifier, email, name)</td><td data-label="Why">Signing in. Without it, your progress and purchases would vanish when you reinstall the app.</td><td data-label="Stored?">Yes — in Firebase Authentication, until you delete your account.</td></tr>
+          <tr><td data-label="Data"><b>Nickname</b></td><td data-label="Why">Your public name in guilds, the marketplace and leaderboards.</td><td data-label="Stored?">Yes. It is <b>visible to other players</b>.</td></tr>
+          <tr><td data-label="Data"><b>Location</b> (precise and approximate)</td><td data-label="Why">To show places near you, to confirm you physically reached a quest location, and to pin the photo-places you create onto the map.</td><td data-label="Stored?">Coordinates of <b>photo-places you create</b>: yes. We do <b>not</b> build a continuous history of your movements.</td></tr>
+          <tr><td data-label="Data"><b>Photos</b></td><td data-label="Why">A generative model builds your quest from a photo of a place.</td><td data-label="Stored?"><b>NO.</b> Photos are not stored on our servers. They are sent to the model, processed, and discarded. A copy remains <b>only locally on your phone</b>.</td></tr>
+          <tr><td data-label="Data"><b>Text you write</b> (reports proving quest steps)</td><td data-label="Why">The model judges whether the step was completed.</td><td data-label="Stored?">No, not retained in our database.</td></tr>
+          <tr><td data-label="Data"><b>Game data:</b> XP, level, currencies, items, guild, progress</td><td data-label="Why">The game itself.</td><td data-label="Stored?">Yes.</td></tr>
+          <tr><td data-label="Data"><b>Technical data:</b> language, country, usage analytics, crash reports</td><td data-label="Why">Keeping the game stable and seeing what breaks.</td><td data-label="Stored?">Yes (Firebase Analytics, Firebase Crashlytics).</td></tr>
+          <tr><td data-label="Data"><b>Mock-location flag</b></td><td data-label="Why">Anti-cheat: the game is about real movement, and faked coordinates destroy it.</td><td data-label="Stored?">No, handled on the device.</td></tr>
+          <tr><td data-label="Data"><b>Purchase history, advertising ID</b></td><td data-label="Why">Subscriptions and advertising.</td><td data-label="Stored?">Only once those features are enabled. They are inactive as of this version.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3. Legal bases (GDPR Art. 6)</h3>
+      <ul>
+        <li><b>Performance of a contract</b> — account, game data, purchases.</li>
+        <li><b>Consent</b> — location, camera, analytics, personalised advertising. You may withdraw consent at any time (in system settings, or by deleting your account).</li>
+        <li><b>Legitimate interests</b> — security, fraud prevention (including spoofed location), service reliability.</li>
+      </ul>
+
+      <h3>4. Generative artificial intelligence</h3>
+      <div class="box box-warn">
+        <p>Quests, place descriptions and the Game Master's lines are <b>generated by artificial intelligence</b> — Google's <b>Gemini</b> model, via <b>Google Vertex AI</b>.</p>
+        <p>Your photos and text are sent to that model to generate game content. Processing takes place in the <b>European Union</b> (region <code>europe-west4</code>).</p>
+        <p>Under Google Cloud's terms, customer data is <b>not used to train</b> Google's models.</p>
+        <p>We apply <b>our own safety constraints</b> when instructing the model, so that it does not propose dangerous, unlawful or offensive actions. No system is perfect: generated content <b>may be inaccurate or unexpected</b>. It is <b>fictional game narrative</b> and is <b>not advice</b> — medical, legal, financial or otherwise.</p>
+        <p><b>The final judgement is always yours.</b> Never do anything dangerous or unsafe, even if the game suggests it. If you encounter offensive or unsafe generated content, report it using the in-app report button or by email.</p>
+      </div>
+
+      <h3>5. Who we share data with</h3>
+      <p>We do <b>not sell</b> your data. We use Google services as processors acting on our instructions: Firebase (Authentication, Firestore, Cloud Functions, Analytics, Crashlytics); Google Vertex AI (Gemini); Google Maps Platform; Google Play (purchases, when enabled); Google AdMob (advertising, when enabled).</p>
+      <p>We may also disclose data where required by law.</p>
+
+      <h3>6. Where data is processed</h3>
+      <p>Our server functions run in the <b>European Union</b> (<code>europe-west1</code>) and AI processing also takes place in the EU (<code>europe-west4</code>). Some ancillary Google services may process data outside the EEA; where they do, transfers rely on the European Commission's Standard Contractual Clauses (SCCs) that Google applies to its services.</p>
+
+      <h3>7. Retention</h3>
+      <ul>
+        <li><b>Account and progress</b> — for as long as the account exists.</li>
+        <li><b>Photos</b> — never stored on servers.</li>
+        <li><b>Shared location lore</b> — fictional text about a place, not about you; it contains no personal data, belongs to all players, and is <b>not deleted</b> when you delete your account.</li>
+        <li><b>Crash reports and analytics</b> — per Google's retention periods (typically up to 14 months).</li>
+      </ul>
+
+      <h3>8. Your rights</h3>
+      <p>You have the right to access, rectify, erase, restrict, object to, and port your data, and to withdraw consent. We extend these rights to all users, not only those in the EU/EEA.</p>
+      <div class="box">
+        <p><b>You can delete your account and all data inside the app:</b><br><i>Profile → Danger zone → "Delete my account and data".</i></p>
+        <p>This erases your account, progress, nickname, created photo-places, guild membership and your marketplace listings. It is <b>irreversible</b>. You may also email <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      </div>
+      <p>You have the right to lodge a complaint with your national data protection authority.</p>
+
+      <h3>10. Security</h3>
+      <p>Data is transmitted over encrypted connections (TLS). Most server-side collections are entirely closed to clients and reachable only by our server functions.</p>
+
+      <h3>11. Changes</h3>
+      <p>If we change this policy materially, you will be shown the consent screen again on next launch.</p>
+
+      <h3>12. Contact</h3>
+      <p><a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNov · FOP Bakuridze Tymur Ruslanovych · DUNS 66-766-8526<br>
+        <a href="#terms">Terms of Use</a>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="legal lang-uk">
+      <h2>Політика конфіденційності</h2>
+      <p class="legal-eff">Чинна з 12 липня 2026. Версія 1.0.</p>
+
+      <div class="box">
+        <p><b>Коротко:</b> щоб гра працювала, їй потрібні ваша <b>геолокація</b> (щоб знаходити реальні місця поруч і підтверджувати, що ви туди дійшли) і <b>фото</b>, які ви робите для завдань. Фото <b>ніколи не зберігаються на наших серверах</b> — вони передаються моделі, яка будує ваш квест, і потім видаляються. Ми <b>не продаємо</b> ваші дані. Ви можете <b>видалити свій акаунт</b> і всі дані з додатку.</p>
+      </div>
+
+      <h3>1. Хто ми</h3>
+      <p><b>AstraWorld</b> розробляє цифрова студія <b>AstraCoreNov</b>.</p>
+      <p>Офіційний представник і контролер даних: <b>Фізична особа-підприємець (ФОП) Бакурідзе Тимур Русланович</b> (Україна)<br>
+      DUNS: 66-766-8526<br>
+      Email: <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a><br>
+      Сайт: <a href="https://astracorenovadev.github.io" target="_blank" rel="noopener">astracorenovadev.github.io</a></p>
+
+      <h3>2. Які дані ми обробляємо</h3>
+      <table>
+        <thead><tr><th>Дані</th><th>Навіщо</th><th>Зберігається?</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Дані"><b>Google-акаунт</b> (ідентифікатор, email, ім'я)</td><td data-label="Навіщо">Вхід у гру. Без нього прогрес і покупки зникали б при перевстановленні додатку.</td><td data-label="Зберігається?">Так — у Firebase Authentication, поки ви не видалите акаунт.</td></tr>
+          <tr><td data-label="Дані"><b>Нікнейм</b></td><td data-label="Навіщо">Ваше публічне ім'я в гільдіях, на маркетплейсі й у рейтингах.</td><td data-label="Зберігається?">Так. <b>Видимий іншим гравцям.</b></td></tr>
+          <tr><td data-label="Дані"><b>Геолокація</b> (точна й приблизна)</td><td data-label="Навіщо">Щоб показувати місця поруч, підтверджувати, що ви фізично дійшли до локації квесту, і наносити на карту створені вами фото-локації.</td><td data-label="Зберігається?">Координати <b>створених вами фото-локацій</b>: так. Ми <b>не</b> будуємо безперервну історію ваших переміщень.</td></tr>
+          <tr><td data-label="Дані"><b>Фото</b></td><td data-label="Навіщо">Генеративна модель будує ваш квест на основі фото місця.</td><td data-label="Зберігається?"><b>НІ.</b> Фото не зберігаються на наших серверах. Вони надсилаються моделі, обробляються й видаляються. Копія лишається <b>лише локально на вашому телефоні</b>.</td></tr>
+          <tr><td data-label="Дані"><b>Текст, який ви пишете</b> (звіти про виконання кроків квесту)</td><td data-label="Навіщо">Модель оцінює, чи виконано крок.</td><td data-label="Зберігається?">Ні, не зберігається в нашій базі даних.</td></tr>
+          <tr><td data-label="Дані"><b>Ігрові дані:</b> XP, рівень, валюти, предмети, гільдія, прогрес</td><td data-label="Навіщо">Сама гра.</td><td data-label="Зберігається?">Так.</td></tr>
+          <tr><td data-label="Дані"><b>Технічні дані:</b> мова, країна, аналітика використання, звіти про збої</td><td data-label="Навіщо">Підтримка стабільності гри, виявлення проблем.</td><td data-label="Зберігається?">Так (Firebase Analytics, Firebase Crashlytics).</td></tr>
+          <tr><td data-label="Дані"><b>Прапорець підробленої геолокації</b></td><td data-label="Навіщо">Античит: гра побудована на реальному русі, підроблені координати руйнують її суть.</td><td data-label="Зберігається?">Ні, обробляється на пристрої.</td></tr>
+          <tr><td data-label="Дані"><b>Історія покупок, рекламний ідентифікатор</b></td><td data-label="Навіщо">Підписки й реклама.</td><td data-label="Зберігається?">Лише після увімкнення цих функцій. Неактивні у поточній версії.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3. Правові підстави (GDPR, ст. 6)</h3>
+      <ul>
+        <li><b>Виконання договору</b> — акаунт, ігрові дані, покупки.</li>
+        <li><b>Згода</b> — геолокація, камера, аналітика, персоналізована реклама. Ви можете відкликати згоду будь-коли (в налаштуваннях системи або видаливши акаунт).</li>
+        <li><b>Законні інтереси</b> — безпека, запобігання шахрайству (зокрема підробленій геолокації), надійність сервісу.</li>
+      </ul>
+
+      <h3>4. Генеративний штучний інтелект</h3>
+      <div class="box box-warn">
+        <p>Квести, описи локацій та репліки Гейм-майстра <b>генеруються штучним інтелектом</b> — моделлю <b>Gemini</b> від Google через <b>Google Vertex AI</b>.</p>
+        <p>Ваші фото й текст надсилаються цій моделі для генерації ігрового контенту. Обробка відбувається в <b>Європейському Союзі</b> (регіон <code>europe-west4</code>).</p>
+        <p>Згідно з умовами Google Cloud, дані клієнтів <b>не використовуються для навчання</b> моделей Google.</p>
+        <p>Ми задаємо моделі <b>власні обмеження безпеки</b>, щоб вона не пропонувала небезпечні, незаконні або образливі дії. Жодна система не досконала: згенерований контент <b>може бути неточним або несподіваним</b>. Це <b>художня ігрова оповідь</b>, і вона <b>не є порадою</b> — медичною, юридичною, фінансовою чи будь-якою іншою.</p>
+        <p><b>Останнє рішення завжди за вами.</b> Ніколи не робіть нічого небезпечного чи незаконного, навіть якщо гра це пропонує. Якщо ви зустріли образливий або небезпечний згенерований контент — повідомте про це через кнопку скарги в додатку або на email.</p>
+      </div>
+
+      <h3>5. З ким ми ділимося даними</h3>
+      <p>Ми <b>не продаємо</b> ваші дані. Ми використовуємо сервіси Google як обробників, що діють за нашими інструкціями: Firebase (Authentication, Firestore, Cloud Functions, Analytics, Crashlytics); Google Vertex AI (Gemini); Google Maps Platform; Google Play (покупки, якщо увімкнено); Google AdMob (реклама, якщо увімкнено).</p>
+      <p>Ми можемо розкривати дані, якщо цього вимагає закон.</p>
+
+      <h3>6. Де обробляються дані</h3>
+      <p>Наші серверні функції працюють у <b>Європейському Союзі</b> (<code>europe-west1</code>), обробка ШІ також відбувається в ЄС (<code>europe-west4</code>). Деякі допоміжні сервіси Google можуть обробляти дані за межами ЄЕЗ; у таких випадках передача даних спирається на Стандартні договірні положення (SCC) Європейської комісії, які застосовує Google.</p>
+
+      <h3>7. Зберігання даних</h3>
+      <ul>
+        <li><b>Акаунт і прогрес</b> — доки існує акаунт.</li>
+        <li><b>Фото</b> — ніколи не зберігаються на серверах.</li>
+        <li><b>Спільні описи локацій</b> — художній текст про місце, не про вас; не містить персональних даних, належить усім гравцям і <b>не видаляється</b> при видаленні вашого акаунта.</li>
+        <li><b>Звіти про збої й аналітика</b> — відповідно до термінів зберігання Google (зазвичай до 14 місяців).</li>
+      </ul>
+
+      <h3>8. Ваші права</h3>
+      <p>Ви маєте право на доступ, виправлення, видалення, обмеження обробки, заперечення та перенесення своїх даних, а також на відкликання згоди. Ми поширюємо ці права на всіх користувачів, а не лише на мешканців ЄС/ЄЕЗ.</p>
+      <div class="box">
+        <p><b>Ви можете видалити свій акаунт і всі дані з додатку:</b><br><i>Профіль → Небезпечна зона → «Видалити мій акаунт і дані».</i></p>
+        <p>Це видаляє акаунт, прогрес, нікнейм, створені фото-локації, членство в гільдії та лістинги на маркетплейсі. Дія <b>незворотна</b>. Ви також можете написати на <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      </div>
+      <p>Ви маєте право подати скаргу до вашого національного органу захисту даних.</p>
+
+      <h3>10. Безпека</h3>
+      <p>Дані передаються зашифрованим з'єднанням (TLS). Більшість серверних колекцій повністю закриті для клієнтів і доступні лише через наші серверні функції.</p>
+
+      <h3>11. Зміни</h3>
+      <p>Якщо ми суттєво змінимо цю політику, вам знову буде показано екран згоди при наступному запуску.</p>
+
+      <h3>12. Контакти</h3>
+      <p><a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNov · ФОП Бакурідзе Тимур Русланович · DUNS 66-766-8526<br>
+        <a href="#terms">Умови використання</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TERMS OF USE ══════════════ -->
+  <div class="legal-section rev" id="terms">
+
+    <!-- EN -->
+    <div class="legal lang-en">
+      <h2>Terms of Use</h2>
+      <p class="legal-eff">Effective 12 July 2026. Version 1.0.</p>
+
+      <h3>1. Who we are</h3>
+      <p>AstraWorld is a mobile game developed by the digital studio <b>AstraCoreNov</b>. Official representative: <b>Individual Entrepreneur (FOP) Bakuridze Tymur Ruslanovych</b> (Ukraine), DUNS 66-766-8526, <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      <p>By installing the app and accepting these Terms you enter into an agreement with us. If you do not agree, do not use the app.</p>
+
+      <h3>2. Age</h3>
+      <p>The game is intended for people aged <b>18 and over</b>. By using AstraWorld you confirm you are at least 18.</p>
+
+      <h3>3. 🔴 Real-world safety — read this</h3>
+      <div class="box box-danger">
+        <p><b>AstraWorld sends you into the real world.</b> It asks you to travel to real places, walk streets, take photographs and interact with your surroundings. That is the point of the game — and it is also its greatest risk.</p>
+        <p><b>You, and only you, are responsible for your own safety.</b> In particular:</p>
+        <ul>
+          <li><b>Watch your surroundings, not your screen.</b> Never play while driving, cycling, or crossing a road.</li>
+          <li><b>Obey traffic rules</b> and all applicable laws.</li>
+          <li><b>Do not trespass</b> on private property or enter places you are not permitted to enter.</li>
+          <li><b>Stay out of dangerous places:</b> abandoned buildings, rooftops, construction sites, railway tracks, bodies of water, conflict areas, or areas with mine danger.</li>
+          <li><b>Respect other people.</b> Do not photograph people without their consent.</li>
+          <li><b>Do not play during air-raid alerts</b> or in any circumstances that threaten your life or health.</li>
+          <li>Consider the weather, the time of day, your own physical condition and how safe the area is.</li>
+        </ul>
+        <p><b>No task in this game is worth your health.</b> Any quest can be abandoned at no cost to your real-world safety. If a task looks dangerous, unlawful or simply inappropriate — <b>do not do it</b>. In-game consequences (losing points, lives or a wager) are meaningless next to real life.</p>
+        <p>To the fullest extent permitted by law, we are <b>not liable</b> for injury, harm, loss or any consequences arising from your actions in the physical world while playing.</p>
+      </div>
+
+      <h3>4. Your account</h3>
+      <p>Sign-in is via a Google account. You are responsible for keeping access to it. One player, one account. Your nickname must be decent and must not infringe the rights of others.</p>
+
+      <h3>5. AI-generated content</h3>
+      <p>Quests, descriptions, hints and the Game Master's lines are <b>generated by artificial intelligence</b> (Google's Gemini model via Google Vertex AI) from your photographs, your location and the world style you choose.</p>
+      <p>We apply <b>our own safety constraints</b> when instructing the model so that it does not propose dangerous, unlawful or offensive actions. Nevertheless:</p>
+      <ul>
+        <li>generated content <b>may be inaccurate, odd or unexpected</b>;</li>
+        <li>it is <b>fictional game narrative</b> and is <b>not advice</b> — medical, legal, financial or otherwise;</li>
+        <li>we do <b>not warrant</b> that generated content will always be appropriate or error-free.</li>
+      </ul>
+      <p><b>The final judgement is always yours.</b> You must use your own common sense and must not do anything dangerous or unlawful, even if the game suggests it.</p>
+      <p>If you encounter offensive, unsafe or otherwise unacceptable generated content, <b>report it</b> using the in-app report button or at <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>. We will review it.</p>
+
+      <h3>6. Virtual currencies and items</h3>
+      <p>The game contains virtual currencies (gold, silver, onyx, amethyst, gems) and items. They:</p>
+      <ul>
+        <li>have <b>no real-world monetary value</b> and are not your property — you receive a limited licence to use them within the game;</li>
+        <li><b>cannot be exchanged for money</b>, cashed out, or transferred outside the game;</li>
+        <li>are <b>non-refundable</b> once spent;</li>
+        <li>may be modified or discontinued by us as the game evolves.</li>
+      </ul>
+
+      <h3>7. In-game wagers</h3>
+      <p>The game includes a wager mechanic: a player may stake in-game currency and win or lose it.</p>
+      <p><b>This is not gambling.</b> Wagers use in-game currency only. There is no real money involved, no monetary prize, and no way to cash out or exchange winnings for real money or anything of monetary value outside the game.</p>
+
+      <h3>8. Purchases and subscriptions</h3>
+      <p>Purchases and subscriptions are made through Google Play and are also governed by Google's terms. Subscriptions <b>renew automatically</b> until cancelled. You can cancel in your Google Play settings; cancellation takes effect at the end of the paid period. Refunds are handled under Google Play's policy.</p>
+      <p><b>For EU/EEA consumers:</b> you have a 14-day right of withdrawal. However, by ordering digital content with immediate performance you consent to immediate supply and thereby <b>lose the right of withdrawal</b> in respect of content already supplied.</p>
+
+      <h3>9. Prohibited conduct</h3>
+      <ul>
+        <li>Spoofing your location or otherwise faking movement (we detect this).</li>
+        <li>Using bots, automation, modified clients, or exploiting vulnerabilities.</li>
+        <li>Submitting someone else's photographs as your own proof.</li>
+        <li>Posting offensive or unlawful nicknames, guide names, guild names or any other text that infringes the rights of others.</li>
+        <li>Harassing or abusing other players, or abusing the guild and marketplace mechanics.</li>
+        <li>Decompiling or reverse-engineering the app, or circumventing technical restrictions.</li>
+      </ul>
+      <p>We may restrict access or <b>ban accounts</b> for violations — including loss of game progress and unused content.</p>
+
+      <h3>10. User content</h3>
+      <p>Nicknames, custom guide names and guild names are visible to other players. We may remove such content and ban accounts where it breaches these Terms.</p>
+
+      <h3>11. Termination</h3>
+      <p>You may stop using the game at any time by deleting your account in the app (Profile → Danger zone). We may suspend or terminate the service for legitimate reasons, including breach of these Terms.</p>
+
+      <h3>12. Disclaimers and limitation of liability</h3>
+      <p>The service is provided "as is". To the fullest extent permitted by law, we do not warrant uninterrupted or error-free operation, or fitness for a particular purpose.</p>
+      <p>To the fullest extent permitted by law, we are not liable for indirect or consequential loss. Nothing in these Terms limits liability that cannot be limited by law — including for death or personal injury caused by our negligence, or for wilful misconduct.</p>
+
+      <h3>13. Governing law</h3>
+      <p>These Terms are governed by the <b>laws of Ukraine</b>.</p>
+      <p><b>If you are a consumer in the EU/EEA</b>, this choice of law does not deprive you of the mandatory protections of the law of your country of habitual residence, and you may bring proceedings in the courts of your own country.</p>
+
+      <h3>14. Changes</h3>
+      <p>We may change these Terms. For material changes, you will be shown the consent screen again on next launch.</p>
+
+      <h3>15. Contact</h3>
+      <p><a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNov · FOP Bakuridze Tymur Ruslanovych · DUNS 66-766-8526<br>
+        <a href="#privacy-policy">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="legal lang-uk">
+      <h2>Умови використання</h2>
+      <p class="legal-eff">Чинні з 12 липня 2026. Версія 1.0.</p>
+
+      <h3>1. Хто ми</h3>
+      <p>AstraWorld — мобільна гра, яку розробляє цифрова студія <b>AstraCoreNov</b>. Офіційний представник: <b>Фізична особа-підприємець (ФОП) Бакурідзе Тимур Русланович</b> (Україна), DUNS 66-766-8526, <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      <p>Встановлюючи додаток і приймаючи ці Умови, ви укладаєте з нами угоду. Якщо ви не погоджуєтесь — не використовуйте додаток.</p>
+
+      <h3>2. Вік</h3>
+      <p>Гра призначена для осіб віком від <b>18 років</b>. Використовуючи AstraWorld, ви підтверджуєте, що вам є щонайменше 18 років.</p>
+
+      <h3>3. 🔴 Безпека в реальному світі — прочитайте це</h3>
+      <div class="box box-danger">
+        <p><b>AstraWorld відправляє вас у реальний світ.</b> Вона просить вас відвідувати реальні місця, ходити вулицями, фотографувати й взаємодіяти з навколишнім середовищем. У цьому суть гри — і водночас її найбільший ризик.</p>
+        <p><b>Ви, і тільки ви, відповідаєте за власну безпеку.</b> Зокрема:</p>
+        <ul>
+          <li><b>Дивіться на навколишнє середовище, а не на екран.</b> Ніколи не грайте під час керування автомобілем, їзди на велосипеді чи переходу дороги.</li>
+          <li><b>Дотримуйтесь правил дорожнього руху</b> та чинного законодавства.</li>
+          <li><b>Не заходьте</b> на приватну територію та в місця, куди вам заборонено входити.</li>
+          <li><b>Тримайтесь подалі від небезпечних місць:</b> покинутих будівель, дахів, будівельних майданчиків, залізничних колій, водойм, зон конфлікту чи мінної небезпеки.</li>
+          <li><b>Поважайте інших людей.</b> Не фотографуйте людей без їхньої згоди.</li>
+          <li><b>Не грайте під час повітряної тривоги</b> або в будь-яких обставинах, що загрожують вашому життю чи здоров'ю.</li>
+          <li>Враховуйте погоду, час доби, свій фізичний стан і безпечність місцевості.</li>
+        </ul>
+        <p><b>Жодне завдання в цій грі не варте вашого здоров'я.</b> Будь-який квест можна скасувати без жодних наслідків для вашої реальної безпеки. Якщо завдання видається небезпечним, незаконним або просто недоречним — <b>не виконуйте його</b>. Ігрові наслідки (втрата очок, життів чи ставки) не мають жодного значення порівняно з реальним життям.</p>
+        <p>У максимально можливому за законом обсязі ми <b>не несемо відповідальності</b> за травми, шкоду, збитки чи будь-які інші наслідки ваших дій у фізичному світі під час гри.</p>
+      </div>
+
+      <h3>4. Ваш акаунт</h3>
+      <p>Вхід здійснюється через Google-акаунт. Ви несете відповідальність за збереження доступу до нього. Один гравець — один акаунт. Ваш нікнейм має бути пристойним і не порушувати права інших осіб.</p>
+
+      <h3>5. Контент, згенерований ШІ</h3>
+      <p>Квести, описи, підказки й репліки Гейм-майстра <b>генеруються штучним інтелектом</b> (моделлю Gemini від Google через Google Vertex AI) на основі ваших фото, геолокації та обраного стилю світу.</p>
+      <p>Ми задаємо моделі <b>власні обмеження безпеки</b>, щоб вона не пропонувала небезпечні, незаконні чи образливі дії. Тим не менш:</p>
+      <ul>
+        <li>згенерований контент <b>може бути неточним, дивним або несподіваним</b>;</li>
+        <li>це <b>художня ігрова оповідь</b>, а не порада — медична, юридична, фінансова чи будь-яка інша;</li>
+        <li>ми <b>не гарантуємо</b>, що контент завжди буде доречним або без помилок.</li>
+      </ul>
+      <p><b>Останнє рішення завжди за вами.</b> Керуйтесь власним здоровим глуздом і не робіть нічого небезпечного чи незаконного, навіть якщо гра це пропонує.</p>
+      <p>Якщо ви зустріли образливий, небезпечний або неприйнятний контент — <b>повідомте про це</b> через кнопку скарги в додатку або на <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>. Ми розглянемо звернення.</p>
+
+      <h3>6. Внутрішньоігрові валюти й предмети</h3>
+      <p>Гра містить внутрішньоігрові валюти (золото, срібло, онікс, аметист, кристали) та предмети. Вони:</p>
+      <ul>
+        <li><b>не мають реальної грошової вартості</b> і не є вашою власністю — ви отримуєте обмежену ліцензію на їх використання в межах гри;</li>
+        <li><b>не можуть бути обміняні на гроші</b>, виведені чи передані поза межі гри;</li>
+        <li><b>не підлягають поверненню</b> після використання;</li>
+        <li>можуть бути змінені або скасовані нами в процесі розвитку гри.</li>
+      </ul>
+
+      <h3>7. Внутрішньоігрові ставки</h3>
+      <p>Гра містить механіку ставок: гравець може поставити внутрішньоігрову валюту та виграти або програти її.</p>
+      <p><b>Це не азартна гра.</b> Ставки використовують виключно внутрішньоігрову валюту. Реальні гроші не залучені, реальний грошовий приз відсутній, і немає жодного способу вивести чи обміняти виграш на реальні гроші або будь-що, що має грошову цінність поза грою.</p>
+
+      <h3>8. Покупки й підписки</h3>
+      <p>Покупки та підписки здійснюються через Google Play і регулюються умовами Google. Підписки <b>автоматично поновлюються</b>, доки їх не скасовано. Ви можете скасувати підписку в налаштуваннях Google Play; скасування набуває чинності по завершенні оплаченого періоду. Повернення коштів здійснюється відповідно до політики Google Play.</p>
+      <p><b>Для споживачів з ЄС/ЄЕЗ:</b> у вас є 14 днів на відмову від покупки. Однак, замовляючи цифровий контент з негайним наданням, ви погоджуєтесь на негайне надання і тим самим <b>втрачаєте право на відмову</b> щодо вже наданого контенту.</p>
+
+      <h3>9. Заборонена поведінка</h3>
+      <ul>
+        <li>Підробка геолокації або імітація руху (ми це виявляємо).</li>
+        <li>Використання ботів, автоматизації, модифікованих клієнтів, експлуатація вразливостей.</li>
+        <li>Подання чужих фотографій як власного доказу.</li>
+        <li>Розміщення образливих чи незаконних нікнеймів, назв гідів, назв гільдій або тексту, що порушує права інших осіб.</li>
+        <li>Переслідування чи образи інших гравців, зловживання механіками гільдій і маркетплейсу.</li>
+        <li>Декомпіляція чи реверс-інжиніринг додатку, обхід технічних обмежень.</li>
+      </ul>
+      <p>Ми можемо обмежити доступ або <b>заблокувати акаунти</b> за порушення — включно з втратою ігрового прогресу й невикористаного контенту.</p>
+
+      <h3>10. Контент користувачів</h3>
+      <p>Нікнейми, власні назви гідів і гільдій видимі іншим гравцям. Ми можемо видаляти такий контент і блокувати акаунти, які порушують ці Умови.</p>
+
+      <h3>11. Припинення користування</h3>
+      <p>Ви можете будь-коли припинити користування грою, видаливши акаунт у додатку (Профіль → Небезпечна зона). Ми можемо призупинити або припинити надання послуги з обґрунтованих причин, включно з порушенням цих Умов.</p>
+
+      <h3>12. Відмова від гарантій та обмеження відповідальності</h3>
+      <p>Сервіс надається «як є». У максимально можливому за законом обсязі ми не гарантуємо безперебійної чи безпомилкової роботи або придатності для конкретної мети.</p>
+      <p>У максимально можливому за законом обсязі ми не несемо відповідальності за непрямі чи опосередковані збитки. Ніщо в цих Умовах не обмежує відповідальність, яку не можна обмежити за законом, — включно зі смертю чи травмою через нашу недбалість або умисне порушення.</p>
+
+      <h3>13. Застосовне право</h3>
+      <p>Ці Умови регулюються законодавством <b>України</b>.</p>
+      <p><b>Якщо ви є споживачем у ЄС/ЄЕЗ</b>, цей вибір права не позбавляє вас обов'язкового захисту, передбаченого законодавством країни вашого постійного проживання, і ви можете звертатися до судів своєї країни.</p>
+
+      <h3>14. Зміни</h3>
+      <p>Ми можемо змінювати ці Умови. Про суттєві зміни вам буде повідомлено повторним показом екрана згоди при наступному запуску.</p>
+
+      <h3>15. Контакти</h3>
+      <p><a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNov · ФОП Бакурідзе Тимур Русланович · DUNS 66-766-8526<br>
+        <a href="#privacy-policy">Політика конфіденційності</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="index.html" class="flogo"><img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'"><span class="flogo-t">AstraCoreNova</span></a>
+  <ul class="flinks">
+    <li><a href="index.html" data-i="nav_home">Home</a></li>
+    <li><a href="astraworld.html#privacy-policy" data-i="f_pp">Privacy Policy</a></li>
+    <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
+  </ul>
+  <div class="flegal" data-i="f_legal"></div>
+</footer>
+
+<script>
+// cursor
+const C=document.getElementById('cur'),C2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;C2.style.left=rx+'px';C2.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.lb').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C2.style.width='46px';C2.style.height='46px';C2.style.borderColor='rgba(200,50,255,.8)';});
+  el.addEventListener('mouseleave',()=>{C2.style.width='30px';C2.style.height='30px';C2.style.borderColor='rgba(170,170,170,.4)';});
+});
+
+// optimized starfield
+const cv=document.getElementById('cv'),cx=cv.getContext('2d');
+let W,H,stars=[];
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+function initStars(){stars=[];const n=Math.min(100,Math.floor(W*H/12000));for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,a:Math.random(),sp:Math.random()*.012+.003,vy:Math.random()*.06+.01});}
+function draw(){cx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.sp;const tw=.4+.6*Math.abs(Math.sin(s.a));s.y+=s.vy;if(s.y>H){s.y=0;s.x=Math.random()*W;}cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);cx.fillStyle=`rgba(190,150,255,${tw*.6})`;cx.fill();});requestAnimationFrame(draw);}
+resize();initStars();draw();
+window.addEventListener('resize',()=>{resize();initStars();});
+
+// reveal
+document.querySelectorAll('.rev').forEach(el=>{new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.08}).observe(el);});
+
+// menu
+function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+
+// i18n — nav/footer share the same keys as the rest of the site; the legal text
+// below is shown/hidden via the lang-en / lang-uk classes and falls back to EN
+// for every language other than Ukrainian.
+const T={
+en:{nav_home:'Home',nav_plat:'Platforms',nav_sol:'Solutions',nav_apps:'Apps',nav_con:'Contact',ap_live:'Available · Android',f_pp:'Privacy Policy',f_legal:'© 2026 AstraCoreNova. All rights reserved.<br>Official representative: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+uk:{nav_home:'Головна',nav_plat:'Платформи',nav_sol:'Рішення',nav_apps:'Додатки',nav_con:'Контакт',ap_live:'Доступно · Android',f_pp:'Політика конфіденційності',f_legal:'© 2026 AstraCoreNova. Усі права захищено.<br>Офіційний представник: ФОП Бакурідзе Т.Р. 66-766-8526 FOP Bakuridze Timur'}
+};
+let lang=localStorage.getItem('acn_lang')||'en';
+if(lang!=='en'&&lang!=='uk')lang='en';
+function setLang(l){lang=l;localStorage.setItem('acn_lang',l);document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));applyLang();}
+function applyLang(){const t=T[lang];if(!t)return;document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(t[k]!==undefined)el.innerHTML=t[k];});document.documentElement.lang=lang;document.body.classList.toggle('lang-is-uk',lang==='uk');}
+document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===lang.toUpperCase()));
+applyLang();
+</script>
+</body>
+</html>
