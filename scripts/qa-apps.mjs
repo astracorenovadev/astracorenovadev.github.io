@@ -8,7 +8,26 @@ try{
    const response=await p.goto(base+file,{waitUntil:'networkidle'});if(response.status()!==200)errors.push(`HTTP${response.status()} ${file}`);
    await p.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){scrollTo(0,y);await new Promise(r=>setTimeout(r,40));}await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));scrollTo(0,0);});await p.waitForTimeout(100);
    const state=await p.evaluate(()=>({language:document.documentElement.lang,languages:[...document.querySelectorAll('.lb')].map(b=>b.textContent),overflow:document.documentElement.scrollWidth>innerWidth,broken:[...document.images].filter(i=>!i.naturalWidth).map(i=>i.src),menu:getComputedStyle(document.getElementById('mobileMenu')).display,visibleCanvas:[...document.querySelectorAll('canvas')].some(c=>c.getBoundingClientRect().width&&getComputedStyle(c).display!=='none')}));
-   if(state.overflow||state.broken.length||state.menu!=='none'||state.visibleCanvas)errors.push(`${label}/${file}: ${JSON.stringify(state)}`);results.push({label,file,...state});
+   const purple=await p.evaluate(()=>{
+    const found=[];
+    for(const el of document.querySelectorAll('body *')){
+     if(!el.getClientRects().length||getComputedStyle(el).visibility==='hidden')continue;
+     for(const pseudo of [null,'::before','::after']){
+      const style=getComputedStyle(el,pseudo);if(pseudo&&(style.content==='none'||style.content==='normal'))continue;
+      for(const property of ['color','backgroundColor','backgroundImage','borderTopColor','borderLeftColor','boxShadow','textShadow','fill','stroke']){
+       const value=style[property]||'';
+       for(const m of value.matchAll(/rgba?\(\s*([\d.]+)[, ]+([\d.]+)[, ]+([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)/g)){
+        const [,r,g,b,a]=m;if(a==='0')continue;
+        if(+b>+g*1.15&&+r>+g*1.15&&+b>+r*.9)found.push(`${el.tagName}.${el.classList.value}${pseudo||''} ${property}: ${value}`);
+       }
+      }
+     }
+    }
+    return [...new Set(found)];
+   });
+   if(purple.length)errors.push(`${label}/${file} violet accents: ${purple.join('; ')}`);
+   if(file==='index.html'&&await p.locator('.hero-logo-wrap').isVisible())errors.push('Decorative hero emblem must be hidden');
+   if(state.overflow||state.broken.length||state.menu!=='none'||state.visibleCanvas)errors.push(`${label}/${file}: ${JSON.stringify(state)}`);results.push({label,file,...state,purple});
    if(['index.html','apps.html','astrabudget.html'].includes(file))await p.screenshot({path:path.join(out,`${label}-${file.replace('.html','')}.png`),fullPage:file==='apps.html'});
    if(width===390){await p.locator('#hamburger').click();if(!await p.locator('#mobileMenu').evaluate(el=>el.classList.contains('open')&&getComputedStyle(el).display==='flex'))errors.push(`Menu ${file}`);await p.keyboard.press('Escape');if(await p.locator('#mobileMenu').evaluate(el=>el.classList.contains('open')))errors.push(`Escape ${file}`);}
   }

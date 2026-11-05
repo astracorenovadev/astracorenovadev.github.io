@@ -4,6 +4,8 @@ The branch starts at main `f2e20f4da0dcaacbfb723e071ebb319820ac8236`. Publishing
 
 Six existing pages receive only a stylesheet link and a small presentation script. Removing those two tags restores the exact original HTML bytes, including translations, links, scripts, anchors, legal text and contacts. Existing logo files remain unchanged. No new WebGL, 3D library or business-site links are introduced.
 
+The approved follow-up removes the large decorative hero emblem and renders original logo images with an antique-gold CSS filter. Remaining legacy violet accents are mapped to gold in `site-style/legacy-gold.css`; original image bytes are preserved. Browser checks also verify that rendered HTML styles contain no violet accents and the hero emblem stays hidden.
+
 Run from the repository root:
 
 ```powershell

@@ -19,7 +19,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "desktop",
@@ -40,7 +41,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "desktop",
@@ -61,7 +63,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "desktop",
@@ -82,7 +85,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "desktop",
@@ -95,7 +99,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "desktop",
@@ -108,7 +113,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "phone",
@@ -129,7 +135,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "phone",
@@ -150,7 +157,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "phone",
@@ -171,7 +179,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "phone",
@@ -192,7 +201,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "phone",
@@ -205,7 +215,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "label": "phone",
@@ -218,7 +229,8 @@
       "overflow": false,
       "broken": [],
       "menu": "none",
-      "visibleCanvas": false
+      "visibleCanvas": false,
+      "purple": []
     },
     {
       "servedFile": "1212",
