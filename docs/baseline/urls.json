@@ -1,0 +1,120 @@
+{
+  "html": {
+    "apps.html": [
+      "cv",
+      "cur",
+      "cur2",
+      "hamburger",
+      "mobileMenu"
+    ],
+    "astrabudget.html": [
+      "cv",
+      "cur",
+      "cur2",
+      "hamburger",
+      "mobileMenu",
+      "docs-section",
+      "tab-pp",
+      "tab-tos",
+      "panel-pp",
+      "pp-download",
+      "pp-frame",
+      "pp-fallback",
+      "pp-fallback-link",
+      "panel-tos",
+      "tos-download",
+      "tos-frame",
+      "tos-fallback",
+      "tos-fallback-link"
+    ],
+    "astraworld.html": [
+      "cv",
+      "cur",
+      "cur2",
+      "hamburger",
+      "mobileMenu",
+      "privacy-policy",
+      "terms"
+    ],
+    "googleadf0c7b70ebab5f4.html": [],
+    "hydrascan.html": [
+      "cv",
+      "cur",
+      "cur2",
+      "hamburger",
+      "mobileMenu",
+      "privacy-policy",
+      "terms"
+    ],
+    "index.html": [
+      "cv",
+      "cur",
+      "cur2",
+      "hamburger",
+      "mobileMenu",
+      "platforms",
+      "solutions",
+      "values",
+      "privacy",
+      "contact"
+    ],
+    "models.html": [
+      "cur",
+      "cur2",
+      "hamburger",
+      "mobileMenu"
+    ]
+  },
+  "legal": [
+    {
+      "file": "astrabudget.html",
+      "id": "panel-pp",
+      "copy": "astrabudget--panel-pp.html",
+      "sha256": "15ddc74d3e7ad28c0e69137eb17b23c88859d2150baf0a9ef4297f9493e2b0c5"
+    },
+    {
+      "file": "astrabudget.html",
+      "id": "panel-tos",
+      "copy": "astrabudget--panel-tos.html",
+      "sha256": "5ca5e1f69f0cd7d111b84211f3e4ea66e89bbbdea711bcfa72c03c09033a29e7"
+    },
+    {
+      "file": "astraworld.html",
+      "id": "privacy-policy",
+      "copy": "astraworld--privacy-policy.html",
+      "sha256": "3274fcac2403ec2ebce60a9f8ceb5b0a20f751be85f3334dc2830d20f2f39482"
+    },
+    {
+      "file": "astraworld.html",
+      "id": "terms",
+      "copy": "astraworld--terms.html",
+      "sha256": "c3ce72413664594a0f4131395f47f8f54ffa22296dd1f6a75a8c0222b55c98e1"
+    },
+    {
+      "file": "hydrascan.html",
+      "id": "privacy-policy",
+      "copy": "hydrascan--privacy-policy.html",
+      "sha256": "cedfbe1d01e2fca8450d5456a8ce1bd2dd4473e71fcc5761fea081e964d9057e"
+    },
+    {
+      "file": "hydrascan.html",
+      "id": "terms",
+      "copy": "hydrascan--terms.html",
+      "sha256": "063b43681181e5aadaac0c584919bbabb75b0e8b90a545ed2545d5c896bdb71c"
+    },
+    {
+      "file": "index.html",
+      "id": "privacy",
+      "copy": "index--privacy.html",
+      "sha256": "c41102bcf46d6fce94f10102bfb9e954db238fdae11347f32e486363077f855f"
+    }
+  ],
+  "pdf": {
+    "privacy-policy/hydrascan-pp-en.pdf": "1d3aeb4091bed97eb536bf531357d270ba23fa59ebbac6753a6fafe9767416cc",
+    "privacy-policy/pp-en.pdf": "0c738280ad03b449f90d3e04e3954e7bdcbc315e48678c6844bd0afb750d89e4",
+    "privacy-policy/pp-uk.pdf": "01c364e429486cf353a320ede3ba760969d818266aca9df9dda18a1e9fa319a8",
+    "tos/hydrascan-tos-en.pdf": "46cad48cf970eb2d08c39f301bdaa4e28daef661082eadfed4f1526b623ff347",
+    "tos/tos-en.pdf": "0679eb169976f2f931fedb1d6a0341fefe03473502630b980536d1927a753278",
+    "tos/tos-uk.pdf": "a7bc491626e624f4eff620aa9da428bfcda6b33a33081e872aeca3f7f88e9637"
+  }
+}

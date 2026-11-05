@@ -144,7 +144,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);paddi
   footer{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.8rem 1.3rem;}
 }
 </style>
-</head>
+<link rel="stylesheet" href="site-style/style.css"></head>
 <body>
 <div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
 <div class="vignette"></div>
@@ -486,5 +486,5 @@ function applyLang(){const t=T[lang];if(!t)return;document.querySelectorAll('[da
 document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===lang.toUpperCase()));
 applyLang();
 </script>
-</body>
+<script src="site-style/enhance.js"></script></body>
 </html>

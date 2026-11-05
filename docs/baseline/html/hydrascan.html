@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HydraScan — AstraCoreNova</title>
+<meta name="description" content="HydraScan — find hidden cameras and tracker tags in hotel rooms and rentals. Network, Wi-Fi, Bluetooth, optics and magnetic scans, all on your phone.">
+<link rel="icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#111111;--abyss:#151515;--deep:#1a1a1a;--panel:#1e1e1e;
+  --purple:#7a22ff;--glow:#555555;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
+  --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.6);--white:#e5e5e5;
+  --line:rgba(255,255,255,.06);--line-bright:rgba(255,255,255,.2);
+  --glass:rgba(20, 5, 30, 0.65);
+  --glass-edge:rgba(160, 30, 255, 0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--silver);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;min-height:100vh;}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(ellipse 80% 60% at 50% 40%, #222222 0%, #121212 70%, #080808 100%);}
+
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.55;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");}
+
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
+  radial-gradient(ellipse 120% 100% at 50% 50%,transparent 35%,rgba(10,10,10,0.85) 80%,rgba(4,4,4,1) 100%);}
+
+.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite;}
+.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(80,20,150,.1),transparent 70%);filter:blur(80px);top:-200px;left:50%;transform:translateX(-50%);opacity:.5;}
+.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(50,50,60,.15),transparent 68%);filter:blur(90px);top:38%;left:-180px;animation-delay:-10s;opacity:.4;}
+.neb3{width:620px;height:680px;background:radial-gradient(ellipse,rgba(60,30,80,.15),transparent 70%);filter:blur(100px);bottom:-200px;right:-160px;animation-delay:-18s;opacity:.5;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-26px) scale(1.1);}}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.2;}
+
+#cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--lum);}
+#cur2{position:fixed;width:30px;height:30px;border:1px solid rgba(170,170,170,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+
+.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,18,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
+.lb{background:none;border:1px solid transparent;color:var(--silver-dim);font-family:'Syne',sans-serif;font-size:.66rem;letter-spacing:.12em;padding:.2rem .55rem;cursor:none;transition:all .2s;border-radius:2px;}
+.lb:hover{color:var(--silver);border-color:rgba(190,40,255,.5);}
+.lb.on{color:#fff;border-color:rgba(190,40,255,.8);background:rgba(160,30,255,.15);text-shadow:0 0 8px rgba(190,40,255,.5);}
+
+nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(18,18,18,.9),transparent);}
+.nlogo{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
+.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 12px rgba(190,40,255,.4));transition:filter .3s;}
+.nlogo:hover img{filter:drop-shadow(0 0 20px rgba(200,50,255,.8));}
+.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 18px rgba(190,40,255,.4);}
+.nlinks{display:flex;gap:2.3rem;list-style:none;}
+.nlinks a{color:var(--silver);text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
+.nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:rgba(190,40,255,.8);transition:width .3s;box-shadow:0 0 8px rgba(190,40,255,.6);}
+.nlinks a:hover,.nlinks a.active{color:var(--white);}
+.nlinks a:hover::after,.nlinks a.active::after{width:100%;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--silver);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(18,18,18,.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--silver);text-decoration:none;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
+.mobile-menu a:hover{color:#fff; text-shadow:0 0 15px rgba(190,40,255,.6);}
+
+.wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:12rem 3rem 6rem;}
+
+.glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:12px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.8),inset 0 0 15px rgba(160,30,255,.1);}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(190,40,255,.5),transparent);}
+.glass::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(160,30,255,.12),transparent 60%);pointer-events:none;}
+
+.app-status{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:.2rem .65rem;border-radius:2rem;display:inline-block;font-weight:500;}
+.st-live{color:#fff;background:rgba(160,30,255,.15);border:1px solid rgba(190,40,255,.5);box-shadow:0 0 10px rgba(160,30,255,.2);}
+
+/* ── Hero ── */
+.hero-top{display:flex;gap:1.6rem;align-items:center;padding:2.4rem;margin-bottom:2.2rem;}
+.hero-logo{width:84px;height:84px;object-fit:contain;border-radius:18px;filter:drop-shadow(0 0 18px rgba(160,30,255,.5));flex-shrink:0;}
+.hero-name{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--white);font-weight:700;margin-bottom:.5rem;}
+.hero-desc{font-size:.98rem;line-height:1.95;color:var(--silver);margin-bottom:1.4rem;white-space:pre-line;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:5rem;}
+.btn-primary{background:rgba(160,30,255,.18);border:1px solid rgba(190,40,255,.65);color:#fff;padding:.85rem 1.7rem;border-radius:8px;text-decoration:none;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;transition:all .3s;cursor:none;}
+.btn-primary:hover{background:rgba(160,30,255,.32);box-shadow:0 0 20px rgba(160,30,255,.4);}
+.btn-ghost{border:1px solid var(--line-bright);color:var(--silver);padding:.85rem 1.7rem;border-radius:8px;text-decoration:none;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;transition:all .3s;cursor:none;}
+.btn-ghost:hover{color:#fff;border-color:rgba(190,40,255,.6);}
+
+/* ── Legal sections ── */
+.legal-section{margin-top:5rem;padding-top:2.6rem;border-top:1px solid var(--line-bright);}
+.legal-section h2{font-family:'Cinzel',serif;font-size:1.9rem;color:var(--white);margin-bottom:.4rem;}
+.legal-eff{color:var(--silver-dim);font-size:.78rem;margin-bottom:2.4rem;letter-spacing:.05em;}
+.legal h3{font-family:'Cinzel',serif;font-size:1.08rem;color:var(--white);margin:2.4rem 0 1rem;font-weight:600;}
+.legal p{font-size:.9rem;line-height:1.9;color:var(--silver);margin-bottom:1rem;}
+.legal ul{padding-left:1.3rem;margin:.8rem 0 1.2rem;}
+.legal li{font-size:.9rem;line-height:1.85;color:var(--silver);margin-bottom:.55rem;}
+.legal a{color:rgba(200,80,255,1);text-decoration:underline;}
+.legal b{color:var(--white);}
+.box{border-radius:10px;padding:1.5rem 1.7rem;margin:1.8rem 0;border-left:3px solid rgba(190,40,255,.75);background:rgba(160,30,255,.07);}
+.box p:last-child{margin-bottom:0;}
+.box-danger{border-left-color:#e2504f;background:rgba(226,80,79,.07);}
+.box-warn{border-left-color:#d9a441;background:rgba(217,164,65,.07);}
+.legal table{width:100%;border-collapse:collapse;margin:1.6rem 0 2rem;font-size:.83rem;}
+.legal th{text-align:left;color:rgba(200,80,255,1);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem .7rem;border-bottom:1px solid var(--line-bright);}
+.legal td{padding:.85rem .7rem;border-bottom:1px solid var(--line);color:var(--silver);vertical-align:top;font-size:.85rem;line-height:1.6;}
+.legal-foot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);color:var(--silver-dim);font-size:.76rem;line-height:1.8;}
+
+.lang-uk{display:none;}
+body.lang-is-uk .lang-en{display:none;}
+body.lang-is-uk .lang-uk{display:block;}
+
+/* ── Footer ── */
+footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);padding:2.4rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;max-width:1180px;margin:0 auto;}
+.flogo{display:flex;align-items:center;gap:.55rem;text-decoration:none;}
+.flogo img{height:28px;width:auto;filter:drop-shadow(0 0 10px rgba(190,40,255,.5));}
+.flogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:.9rem;letter-spacing:.13em;color:var(--white);}
+.flinks{display:flex;gap:2rem;list-style:none;flex-wrap:wrap;}
+.flinks a{color:var(--silver-dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;cursor:none;}
+.flinks a:hover{color:#fff;text-shadow:0 0 10px rgba(190,40,255,.5);}
+.flegal{width:100%;text-align:center;color:#888;font-size:11px;margin-top:2rem;line-height:1.6;letter-spacing:0.05em;font-family:'Syne', sans-serif;}
+
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
+.rev.on{opacity:1;transform:none;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--void);}::-webkit-scrollbar-thumb{background:rgba(160,30,255,.5);}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;}.rev{opacity:1;transform:none;}}
+@media(max-width:860px){
+  body{cursor:auto;}#cur,#cur2{display:none;}
+  .lbar{padding:.3rem .7rem;gap:.12rem;justify-content:center;}.lb{font-size:.58rem;padding:.18rem .4rem;}
+  nav{padding:.8rem 1.2rem;top:46px;}.nlinks{display:none;}.hamburger{display:flex;}.nlogo-t{font-size:.9rem;}.nlogo img{height:30px;}
+  .wrap{padding:8.5rem 1.3rem 4rem;}
+  .hero-top{flex-direction:column;align-items:flex-start;padding:1.8rem;}
+  footer{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.8rem 1.3rem;}
+  .flegal{margin-top:1rem;text-align:left;}
+  .legal table,.legal thead,.legal tbody,.legal th,.legal td,.legal tr{display:block;}
+  .legal th{display:none;}
+  .legal tr{margin-bottom:1.4rem;border-bottom:1px solid var(--line-bright);padding-bottom:1rem;}
+  .legal td{border-bottom:none;padding:.3rem 0;}
+  .legal td::before{content:attr(data-label);display:block;color:rgba(200,80,255,1);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
+}
+.st-soon{color:var(--silver-dim);background:rgba(255,255,255,.03);border:1px solid var(--line-bright);}
+</style>
+</head>
+<body>
+<div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
+<canvas id="cv"></canvas>
+<div class="vignette"></div>
+<div class="grain"></div>
+<div id="cur"></div><div id="cur2"></div>
+
+<div class="lbar">
+  <button class="lb on" onclick="setLang('en')">EN</button>
+  <button class="lb" onclick="setLang('uk')">UA</button>
+</div>
+
+<nav>
+  <a href="index.html" class="nlogo">
+    <img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'">
+    <span class="nlogo-t">AstraCoreNova</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html" data-i="nav_home">Home</a></li>
+    <li><a href="index.html#platforms" data-i="nav_plat">Platforms</a></li>
+    <li><a href="index.html#solutions" data-i="nav_sol">Solutions</a></li>
+    <li><a href="apps.html" class="active" data-i="nav_apps">Apps</a></li>
+    <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-i="nav_home" onclick="closeMenu()">Home</a>
+  <a href="index.html#platforms" data-i="nav_plat" onclick="closeMenu()">Platforms</a>
+  <a href="index.html#solutions" data-i="nav_sol" onclick="closeMenu()">Solutions</a>
+  <a href="apps.html" data-i="nav_apps" onclick="closeMenu()">Apps</a>
+  <a href="index.html#contact" data-i="nav_con" onclick="closeMenu()">Contact</a>
+</div>
+
+<div class="wrap">
+
+  <div class="hero-top glass rev">
+    <img src="logo.HydraScan.png" alt="HydraScan" class="hero-logo" onerror="this.style.display='none'">
+    <div>
+      <div class="hero-name">HydraScan</div>
+      <span class="app-status st-live" data-i="ap_live">Available · Android</span>
+    </div>
+  </div>
+
+  <p class="hero-desc rev lang-en">HydraScan checks the room you are staying in for hidden cameras and unknown tracking tags.
+A camera the size of a shirt button costs less than dinner. It fits inside a smoke detector, a phone charger, an alarm clock — and a hotel room or a rental is exactly the place where you cannot know what someone left behind.
+HydraScan turns your phone into five instruments, each watching a different physical channel. The network audit sweeps the Wi-Fi you are on and reads what every device says about itself: open video ports, camera firmware, ONVIF announcements. The Wi-Fi air scan lists every network in range, because a camera does not have to be on yours. The BLE radar hears tracker tags and battery cameras and walks you to them with a hot-and-cold signal. The optics finder catches a lens by its glint under a strobe and sees infrared night-vision LEDs through the front camera. The magnetic detector feels the magnet inside a hidden microphone or speaker.
+To be worth anything to whoever placed it, a camera has to either transmit or look at you. Every module covers one of those ways — and the room guide shows where to look.
+Everything runs on your phone. No account, no ads, no analytics, nothing uploaded.
+Each module works once for free, so you can see it in action. After that, HydraScan Pro unlocks everything — monthly or yearly.</p>
+  <p class="hero-desc rev lang-uk">HydraScan перевіряє кімнату, у якій ви зупинились, на приховані камери й невідомі мітки стеження.
+Камера завбільшки з ґудзик коштує дешевше за вечерю. Вона вміщується в датчик диму, зарядку, будильник — а номер у готелі чи орендована квартира якраз і є тим місцем, де ви не можете знати, що хтось залишив.
+HydraScan перетворює телефон на п&#x27;ять приладів, і кожен стежить за своїм фізичним каналом. Аудит мережі проходить Wi-Fi, до якого ви підключені, і читає, що кожен пристрій каже про себе: відкриті відеопорти, прошивку камери, оголошення ONVIF. Перепис ефіру Wi-Fi показує всі мережі поблизу, бо камера не зобов&#x27;язана бути у вашій. BLE-радар чує мітки стеження й камери на батареях і веде до них шкалою «гаряче — холодно». Пошук оптики ловить об&#x27;єктив за відблиском під стробоскопом і бачить інфрачервоне нічне підсвічування через фронтальну камеру. Магнітний детектор відчуває магніт усередині прихованого мікрофона чи динаміка.
+Щоб бути корисною тому, хто її поставив, камера мусить або передавати, або дивитися на вас. Кожен модуль перекриває один із цих шляхів — а гід по кімнаті підказує, куди дивитися.
+Усе працює на вашому телефоні. Без облікового запису, без реклами, без аналітики, нічого не вивантажується.
+Кожен модуль працює один раз безкоштовно — щоб ви побачили його в дії. Далі HydraScan Pro відкриває все: підписка на місяць або на рік.</p>
+
+  <div class="hero-ctas rev">
+    <a href="https://play.google.com/store/apps/details?id=com.hydrascan.app" class="btn-primary lang-en" target="_blank" rel="noopener">Get it on Google Play →</a>
+    <a href="#privacy-policy" class="btn-ghost lang-en">Privacy Policy</a>
+    <a href="#terms" class="btn-ghost lang-en">Terms of Service</a>
+    <a href="https://play.google.com/store/apps/details?id=com.hydrascan.app" class="btn-primary lang-uk" target="_blank" rel="noopener">Google Play →</a>
+    <a href="#privacy-policy" class="btn-ghost lang-uk">Політика конфіденційності</a>
+    <a href="#terms" class="btn-ghost lang-uk">Умови користування</a>
+  </div>
+
+  <!-- ══════════════ PRIVACY POLICY ══════════════ -->
+  <div class="legal-section rev" id="privacy-policy">
+
+    <div class="legal lang-en">
+      <h2>Privacy Policy</h2>
+      <p class="legal-eff">Effective 13 September 2026. Version 1.0. <a href="privacy-policy/hydrascan-pp-en.pdf" target="_blank" rel="noopener">Download PDF</a></p>
+      <div class="box"><p><b>In short:</b> HydraScan collects nothing, sends nothing and has no servers. Everything it finds stays on your phone and disappears when you uninstall it.</p></div><h3>1. Who we are</h3><p><b>HydraScan</b> is developed by the digital studio <b>AstraCoreNova</b>.</p><p>Official representative and data controller: <b>Individual Entrepreneur (FOP) Bakuridze Tymur Ruslanovych</b> (Ukraine)<br>DUNS: 66-766-8526<br>Email: <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a><br>Website: <a href="https://AstraCoreNovadev.github.io" target="_blank" rel="noopener">AstraCoreNovadev.github.io</a></p>
+      <h3>2. No account, no analytics</h3>
+      <p>There is no sign-up, no profile and no advertising identifier. The app contains no analytics SDK and no crash reporter, so no usage data is generated in the first place.</p>
+      <h3>3. The camera</h3>
+      <p>The optics finder shows a live preview and looks for bright spots in it. Frames are analysed in memory and discarded immediately. Nothing is saved to storage, and nothing is transmitted anywhere.</p>
+      <h3>4. Bluetooth</h3>
+      <p>The radar only listens to advertising packets that nearby devices broadcast publicly. HydraScan never pairs with a device, never connects to one and never sends anything over Bluetooth. On Android 12 and newer it uses the scan permission with the neverForLocation flag, so it cannot derive your location.</p>
+      <h3>5. The network</h3>
+      <p>The audit opens short local connections to addresses inside the network your phone is already on, purely to see which ports answer and what banner they return. No traffic leaves that local network, and no credentials are ever submitted.</p>
+      <h3>6. Wi-Fi and the location permission</h3>
+      <p>The Wi-Fi air scan lists the access points in range, because a camera does not have to be on the network your phone is joined to. Android hands that list out only to apps holding the location permission — the set of networks around you identifies a place almost as precisely as coordinates do. HydraScan asks for it on that one screen and nowhere else, and never reads your position: the app contains no call for coordinates at all. The scan is passive; it reads the beacons access points broadcast publicly and never connects to any of them.</p>
+      <h3>7. What is stored on the device</h3>
+      <p>Your settings, which modules you have already tried, and a short history of your own scans — date, network name, how many devices were found and which were flagged. Settings are part of your ordinary Android backup, so reinstalling the app does not reset them; the scan history is excluded from backup on purpose and can be erased at any time in Settings.</p>
+      <h3>8. Purchases</h3>
+      <p>Payments are handled entirely by Google Play. HydraScan never sees your card, name or address; it only asks Google whether a purchase is active on this device.</p>
+      <h3>9. Children</h3>
+      <p>HydraScan is a security utility intended for adults and is not directed at children under 13.</p>
+      <h3>10. Changes and contact</h3>
+      <p>If this policy changes, the updated version will ship with the app and the date above will change. Questions go to <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNova · FOP Bakuridze Tymur Ruslanovych · DUNS 66-766-8526<br>
+        <a href="#terms">Terms of Service</a>
+      </div>
+    </div>
+
+    <div class="legal lang-uk">
+      <h2>Політика конфіденційності</h2>
+      <p class="legal-eff">Чинна з 13 вересня 2026. Версія 1.0. <a href="privacy-policy/hydrascan-pp-en.pdf" target="_blank" rel="noopener">Завантажити PDF (англійською)</a></p>
+      <div class="box"><p><b>Коротко:</b> HydraScan нічого не збирає, нічого не надсилає й не має серверів. Усе знайдене лишається на вашому телефоні й зникає разом із застосунком.</p></div><h3>1. Хто ми</h3><p><b>HydraScan</b> розробляє цифрова студія <b>AstraCoreNova</b>.</p><p>Офіційний представник і контролер даних: <b>Фізична особа-підприємець (ФОП) Бакурідзе Тимур Русланович</b> (Україна)<br>DUNS: 66-766-8526<br>Email: <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a><br>Сайт: <a href="https://AstraCoreNovadev.github.io" target="_blank" rel="noopener">AstraCoreNovadev.github.io</a></p>
+      <h3>2. Ні акаунта, ні аналітики</h3>
+      <p>Немає реєстрації, профілю й рекламного ідентифікатора. У застосунку немає ні SDK аналітики, ні збирача збоїв, тож дані про використання не виникають узагалі.</p>
+      <h3>3. Камера</h3>
+      <p>Оптичний модуль показує живе зображення й шукає в ньому яскраві плями. Кадри аналізуються в пам&#x27;яті й одразу відкидаються. Нічого не зберігається у файли й нікуди не передається.</p>
+      <h3>4. Bluetooth</h3>
+      <p>Радар лише слухає рекламні пакети, які пристрої поруч транслюють публічно. HydraScan ніколи не парується з пристроєм, не підключається до нього й нічого не надсилає через Bluetooth. На Android 12 і новіших він використовує дозвіл на скан із прапорцем neverForLocation, тож не може вивести ваше місцеположення.</p>
+      <h3>5. Мережа</h3>
+      <p>Аудит відкриває короткі локальні з&#x27;єднання до адрес усередині мережі, у якій ваш телефон уже перебуває, — виключно щоб побачити, які порти відповідають і який банер повертають. Жоден трафік не виходить за межі цієї локальної мережі, і жодні паролі ніколи не надсилаються.</p>
+      <h3>6. Wi-Fi і дозвіл на геолокацію</h3>
+      <p>Перепис ефіру Wi-Fi перелічує точки доступу в радіусі, бо камера не зобов&#x27;язана бути в тій мережі, до якої підключений ваш телефон. Android віддає цей список лише застосункам із дозволом на геолокацію — набір мереж навколо визначає місце майже так само точно, як координати. HydraScan просить його рівно на цьому екрані й ніде більше, а місцеположення не читає ніколи: у застосунку взагалі немає звернень по координати. Скан пасивний: він читає маячки, які точки доступу передають відкрито, і до жодної з них не підключається.</p>
+      <h3>7. Що зберігається на пристрої</h3>
+      <p>Ваші налаштування, перелік модулів, які ви вже спробували, і коротка історія ваших власних сканувань — дата, назва мережі, скільки пристроїв знайдено й які позначено. Налаштування входять у звичайну резервну копію Android, тож перевстановлення застосунку їх не скидає; історія сканувань із копії виключена навмисно, і її можна стерти будь-коли в налаштуваннях.</p>
+      <h3>8. Покупки</h3>
+      <p>Платежі повністю обробляє Google Play. HydraScan ніколи не бачить вашої картки, імені чи адреси; він лише питає Google, чи активна покупка на цьому пристрої.</p>
+      <h3>9. Діти</h3>
+      <p>HydraScan — це утиліта безпеки для дорослих; вона не призначена для дітей до 13 років.</p>
+      <h3>10. Зміни й контакти</h3>
+      <p>Якщо ця політика зміниться, оновлена редакція прийде разом з оновленням застосунку, а дата вгорі зміниться. Питання — на <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNova · ФОП Бакурідзе Тимур Русланович · DUNS 66-766-8526<br>
+        <a href="#terms">Умови користування</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TERMS OF SERVICE ══════════════ -->
+  <div class="legal-section rev" id="terms">
+
+    <div class="legal lang-en">
+      <h2>Terms of Service</h2>
+      <p class="legal-eff">Effective 13 September 2026. Version 1.0. <a href="tos/hydrascan-tos-en.pdf" target="_blank" rel="noopener">Download PDF</a></p>
+      <h3>1. Who we are</h3><p>HydraScan is a mobile app developed by the digital studio <b>AstraCoreNova</b>. Official representative: <b>Individual Entrepreneur (FOP) Bakuridze Tymur Ruslanovych</b> (Ukraine), DUNS 66-766-8526, <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      <h3>2. Accepting these terms</h3>
+      <p>Installing and using HydraScan means you accept these terms. If you do not, uninstall the app.</p>
+      <h3>3. What HydraScan is</h3>
+      <p>A diagnostic instrument. It reports what it can observe from where you are standing: devices on your current network, Wi-Fi access points and Bluetooth transmitters in range, bright reflections and infrared light in the camera view, and changes in the magnetic field. It interprets those observations and explains its reasoning.</p>
+      <h3>4. What it is not</h3>
+      <p>It is not a guarantee. A device that emits nothing, shows no lens and is switched off cannot be found by any phone app, including this one; nor can a camera that is only a client on someone else&#x27;s closed network. A clean result means nothing was detected — not that nothing is there.</p>
+      <h3>5. Lawful use</h3>
+      <p>Scanning a network you have no right to inspect is illegal in many countries. HydraScan connects only to devices on the network your phone is already joined to; other networks nearby are only listed from the beacons they broadcast publicly and are never connected to. You are responsible for having the right to be on the network you scan. Use the app in your own home, your hotel room, your rental or your workplace — not against other people.</p>
+      <h3>6. Free tries</h3>
+      <p>Each of the five scanning modules — network audit, Wi-Fi air scan, BLE radar, optics finder and magnetic detector — can be used once free of charge. A try lasts until you leave that module&#x27;s screen; for the network audit it is one full scan. A try counts as used only once the module has actually started working. The room guide is always free.</p>
+      <h3>7. Subscription and payment</h3>
+      <p>Continued use of the scanning modules requires HydraScan Pro, sold through Google Play as a monthly or yearly auto-renewing subscription. It renews until cancelled; you can cancel any time in the Play Store, and cancelling keeps access until the paid period ends. The price is shown in the app and in Google Play before you pay.</p>
+      <h3>8. Refunds</h3>
+      <p>Refunds follow Google Play policy and are requested through Google Play, not through us.</p>
+      <h3>9. Liability</h3>
+      <p>HydraScan is provided as is. To the extent the law allows, we are not liable for anything that follows from relying on a scan result — including a device the app failed to detect, or a false alarm on harmless hardware.</p>
+      <h3>10. Changes and contact</h3>
+      <p>Updated terms ship with app updates and the date above changes. Questions go to <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNova · FOP Bakuridze Tymur Ruslanovych · DUNS 66-766-8526<br>
+        <a href="#privacy-policy">Privacy Policy</a>
+      </div>
+    </div>
+
+    <div class="legal lang-uk">
+      <h2>Умови користування</h2>
+      <p class="legal-eff">Чинна з 13 вересня 2026. Версія 1.0. <a href="tos/hydrascan-tos-en.pdf" target="_blank" rel="noopener">Завантажити PDF (англійською)</a></p>
+      <h3>1. Хто ми</h3><p>HydraScan — мобільний застосунок, який розробляє цифрова студія <b>AstraCoreNova</b>. Офіційний представник: <b>Фізична особа-підприємець (ФОП) Бакурідзе Тимур Русланович</b> (Україна), DUNS 66-766-8526, <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      <h3>2. Прийняття умов</h3>
+      <p>Встановлення й використання HydraScan означає, що ви приймаєте ці умови. Якщо ні — видаліть застосунок.</p>
+      <h3>3. Що таке HydraScan</h3>
+      <p>Діагностичний прилад. Він повідомляє те, що можна зафіксувати з місця, де ви стоїте: пристрої у вашій поточній мережі, точки доступу Wi-Fi і Bluetooth-передавачі поблизу, яскраві відблиски та інфрачервоне світло в кадрі камери, а також зміни магнітного поля. Він тлумачить ці спостереження й пояснює свої висновки.</p>
+      <h3>4. Чим він не є</h3>
+      <p>Це не гарантія. Пристрій, який нічого не випромінює, не має видимого об&#x27;єктива й вимкнений, не знайде жоден застосунок на телефоні, зокрема й цей; так само як і камеру, що лише підключена клієнтом до чужої закритої мережі. Чистий результат означає, що нічого не виявлено, — а не що нічого немає.</p>
+      <h3>5. Законне використання</h3>
+      <p>Сканування мережі, яку ви не маєте права перевіряти, у багатьох країнах незаконне. HydraScan підключається лише до пристроїв у мережі, до якої вже приєднано ваш телефон; інші мережі поблизу лише перелічуються за маячками, які вони відкрито передають, і до них застосунок ніколи не підключається. Ви відповідаєте за те, що маєте право перебувати в мережі, яку скануєте. Користуйтеся застосунком у своєму домі, номері готелю, орендованому житлі чи на роботі — а не проти інших людей.</p>
+      <h3>6. Безкоштовні проби</h3>
+      <p>Кожен із п&#x27;яти модулів сканування — аудит мережі, перепис ефіру Wi-Fi, BLE-радар, пошук оптики й магнітний детектор — можна використати один раз безкоштовно. Проба триває, доки ви не вийдете з екрана модуля; для аудиту мережі це одне повне сканування. Пробу вважають використаною лише тоді, коли модуль справді почав працювати. Гід по кімнаті безкоштовний завжди.</p>
+      <h3>7. Підписка й оплата</h3>
+      <p>Для подальшого користування модулями сканування потрібен HydraScan Pro, який продається через Google Play як місячна або річна підписка з автоматичним поновленням. Вона поновлюється, доки її не скасовано; скасувати можна будь-коли в Play Маркеті, і після скасування доступ зберігається до кінця оплаченого періоду. Ціна показується в застосунку й у Google Play до оплати.</p>
+      <h3>8. Повернення коштів</h3>
+      <p>Повернення коштів відбувається за правилами Google Play і запитується через Google Play, а не через нас.</p>
+      <h3>9. Відповідальність</h3>
+      <p>HydraScan надається «як є». У межах, дозволених законом, ми не відповідаємо за наслідки покладання на результат сканування — зокрема за пристрій, який застосунок не виявив, або за хибну тривогу на нешкідливому обладнанні.</p>
+      <h3>10. Зміни й контакти</h3>
+      <p>Оновлені умови приходять з оновленнями застосунку, і дата вгорі змінюється. Питання — на <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNova · ФОП Бакурідзе Тимур Русланович · DUNS 66-766-8526<br>
+        <a href="#privacy-policy">Політика конфіденційності</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="index.html" class="flogo"><img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'"><span class="flogo-t">AstraCoreNova</span></a>
+  <ul class="flinks">
+    <li><a href="index.html" data-i="nav_home">Home</a></li>
+    <li><a href="hydrascan.html#privacy-policy" data-i="f_pp">Privacy Policy</a></li>
+    <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
+  </ul>
+  <div class="flegal" data-i="f_legal"></div>
+</footer>
+
+<script>
+// cursor
+const C=document.getElementById('cur'),C2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;C2.style.left=rx+'px';C2.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.lb').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C2.style.width='46px';C2.style.height='46px';C2.style.borderColor='rgba(200,50,255,.8)';});
+  el.addEventListener('mouseleave',()=>{C2.style.width='30px';C2.style.height='30px';C2.style.borderColor='rgba(170,170,170,.4)';});
+});
+
+// optimized starfield
+const cv=document.getElementById('cv'),cx=cv.getContext('2d');
+let W,H,stars=[];
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+function initStars(){stars=[];const n=Math.min(100,Math.floor(W*H/12000));for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,a:Math.random(),sp:Math.random()*.012+.003,vy:Math.random()*.06+.01});}
+function draw(){cx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.sp;const tw=.4+.6*Math.abs(Math.sin(s.a));s.y+=s.vy;if(s.y>H){s.y=0;s.x=Math.random()*W;}cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);cx.fillStyle=`rgba(190,150,255,${tw*.6})`;cx.fill();});requestAnimationFrame(draw);}
+resize();initStars();draw();
+window.addEventListener('resize',()=>{resize();initStars();});
+
+// reveal
+document.querySelectorAll('.rev').forEach(el=>{new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.08}).observe(el);});
+
+// menu
+function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+
+// i18n — nav/footer share the same keys as the rest of the site; the legal text
+// below is shown/hidden via the lang-en / lang-uk classes and falls back to EN
+// for every language other than Ukrainian.
+const T={
+en:{nav_home:'Home',nav_plat:'Platforms',nav_sol:'Solutions',nav_apps:'Apps',nav_con:'Contact',ap_live:'Available · Android',f_pp:'Privacy Policy',f_legal:'© 2026 AstraCoreNova. All rights reserved.<br>Official representative: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+uk:{nav_home:'Головна',nav_plat:'Платформи',nav_sol:'Рішення',nav_apps:'Додатки',nav_con:'Контакт',ap_live:'Доступно · Android',f_pp:'Політика конфіденційності',f_legal:'© 2026 AstraCoreNova. Усі права захищено.<br>Офіційний представник: ФОП Бакурідзе Т.Р. 66-766-8526 FOP Bakuridze Timur'}
+};
+let lang=localStorage.getItem('acn_lang')||'en';
+if(lang!=='en'&&lang!=='uk')lang='en';
+function setLang(l){lang=l;localStorage.setItem('acn_lang',l);document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));applyLang();}
+function applyLang(){const t=T[lang];if(!t)return;document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(t[k]!==undefined)el.innerHTML=t[k];});document.documentElement.lang=lang;document.body.classList.toggle('lang-is-uk',lang==='uk');}
+document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===lang.toUpperCase()));
+applyLang();
+</script>
+</body>
+</html>

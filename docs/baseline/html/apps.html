@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps — AstraCoreNova</title>
+<meta name="description" content="AI-powered, privacy-first apps by AstraCoreNova.">
+<link rel="icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Faded, dead blacks for the old dark Catholic photo vibe */
+  --void:#111111;--abyss:#151515;--deep:#1a1a1a;--panel:#1e1e1e;
+  --purple:#7a22ff;--glow:#555555;--lum:#aaaaaa;--lum-soft:rgba(170,170,170,.5);
+  --silver:#9e9e9e;--silver-dim:rgba(158,158,158,.6);--white:#e5e5e5;
+  --line:rgba(255,255,255,.06);--line-bright:rgba(255,255,255,.2);
+  
+  /* Highly saturated deep purple glass */
+  --glass:rgba(20, 5, 30, 0.65);
+  --glass-edge:rgba(160, 30, 255, 0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--silver);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;min-height:100vh;}
+
+/* ── base atmosphere: crushed cold blacks ── */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(ellipse 80% 60% at 50% 40%, #222222 0%, #121212 70%, #080808 100%);}
+
+/* ── old photo fine grain & dirt (STATIC for performance) ── */
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.55;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");}
+
+/* ── vignette: muddy/faded edges ── */
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:
+  radial-gradient(ellipse 120% 100% at 50% 50%,transparent 35%,rgba(10,10,10,0.85) 80%,rgba(4,4,4,1) 100%);}
+
+/* Ambient nebulae - cold dead purple tones */
+.neb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 30s ease-in-out infinite;}
+.neb1{width:760px;height:760px;background:radial-gradient(circle,rgba(80,20,150,.1),transparent 70%);filter:blur(80px);top:-200px;left:50%;transform:translateX(-50%);opacity:.5;}
+.neb2{width:560px;height:620px;background:radial-gradient(ellipse,rgba(50,50,60,.15),transparent 68%);filter:blur(90px);top:38%;left:-180px;animation-delay:-10s;opacity:.4;}
+.neb3{width:620px;height:680px;background:radial-gradient(ellipse,rgba(60,30,80,.15),transparent 70%);filter:blur(100px);bottom:-200px;right:-160px;animation-delay:-18s;opacity:.5;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-26px) scale(1.1);}}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.2;}
+
+/* ── cursor ── */
+#cur{position:fixed;width:8px;height:8px;background:var(--lum);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--lum);}
+#cur2{position:fixed;width:30px;height:30px;border:1px solid rgba(170,170,170,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+
+/* ── lang bar ── */
+.lbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,18,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:.35rem 3rem;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:.25rem;}
+.lb{background:none;border:1px solid transparent;color:var(--silver-dim);font-family:'Syne',sans-serif;font-size:.66rem;letter-spacing:.12em;padding:.2rem .55rem;cursor:none;transition:all .2s;border-radius:2px;}
+.lb:hover{color:var(--silver);border-color:rgba(190,40,255,.5);}
+.lb.on{color:#fff;border-color:rgba(190,40,255,.8);background:rgba(160,30,255,.15);text-shadow:0 0 8px rgba(190,40,255,.5);}
+
+/* ── nav ── */
+nav{position:fixed;top:30px;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(18,18,18,.9),transparent);}
+.nlogo{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
+.nlogo img{height:40px;width:auto;filter:drop-shadow(0 0 12px rgba(190,40,255,.4));transition:filter .3s;}
+.nlogo:hover img{filter:drop-shadow(0 0 20px rgba(200,50,255,.8));}
+.nlogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;letter-spacing:.14em;color:var(--white);text-shadow:0 0 18px rgba(190,40,255,.4);}
+.nlinks{display:flex;gap:2.3rem;list-style:none;}
+.nlinks a{color:var(--silver);text-decoration:none;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;position:relative;cursor:none;}
+.nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:rgba(190,40,255,.8);transition:width .3s;box-shadow:0 0 8px rgba(190,40,255,.6);}
+.nlinks a:hover,.nlinks a.active{color:var(--white);}
+.nlinks a:hover::after,.nlinks a.active::after{width:100%;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--silver);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(18,18,18,.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--silver);text-decoration:none;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
+.mobile-menu a:hover{color:#fff; text-shadow:0 0 15px rgba(190,40,255,.6);}
+
+/* ── Content Layout ── */
+.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:12rem 3rem 5rem;}
+.eyebrow{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(200,80,255,1);margin-bottom:1.1rem;display:block;text-align:center;}
+.ptitle{font-family:'Cinzel',serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:700;color:var(--white);text-align:center;margin-bottom:1.2rem;text-wrap:balance;}
+.psub{text-align:center;color:var(--silver);font-size:1.02rem;line-height:1.9;max-width:600px;margin:0 auto 5rem; font-weight:400;}
+
+/* ── Intense purple glass card primitive ── */
+.glass{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-edge);border-radius:12px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.8),inset 0 0 15px rgba(160,30,255,.1);}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(190,40,255,.5),transparent);}
+.glass::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(160,30,255,.12),transparent 60%);pointer-events:none;}
+
+/* ── App Grid & Cards ── */
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.6rem;}
+.app-card{padding:2.8rem;display:flex;flex-direction:column;transition:transform .35s,border-color .35s,box-shadow .35s;text-decoration:none; cursor: none;}
+.app-card.live:hover{transform:translateY(-6px);border-color:rgba(200,50,255,.7);box-shadow:0 12px 40px rgba(0,0,0,.9),inset 0 0 25px rgba(160,30,255,.25);}
+.app-top{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.8rem;}
+
+.app-logo{width:68px;height:68px;object-fit:contain;border-radius:16px;filter:drop-shadow(0 0 15px rgba(160,30,255,.4));}
+.app-card.live:hover .app-logo{filter:drop-shadow(0 0 20px rgba(200,50,255,.7));}
+.app-logo-ph{width:68px;height:68px;border-radius:16px;border:1px dashed rgba(190,40,255,.5);display:flex;align-items:center;justify-content:center;color:rgba(190,40,255,.8);font-family:'Cinzel',serif;font-size:1.5rem;box-shadow:inset 0 0 10px rgba(160,30,255,.1);}
+
+.app-name{font-family:'Cinzel',serif;font-size:1.35rem;color:var(--white);margin-bottom:.4rem;font-weight:600;}
+.app-status{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:.2rem .65rem;border-radius:2rem;display:inline-block; font-weight: 500;}
+
+/* Dark cyber status colors */
+.st-live{color:#fff;background:rgba(160,30,255,.15);border:1px solid rgba(190,40,255,.5);box-shadow: 0 0 10px rgba(160,30,255,.2);}
+.st-soon{color:var(--silver-dim);background:rgba(255,255,255,.03);border:1px solid var(--line-bright);}
+
+.app-desc{color:var(--silver);font-size:.9rem;line-height:1.85;font-weight:400;margin-bottom:1.8rem;flex:1;}
+.app-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem;}
+.app-tag{font-size:.66rem;letter-spacing:.08em;color:var(--silver);border:1px solid rgba(190,40,255,.3);padding:.25rem .7rem;border-radius:2rem;}
+
+.app-go{display:inline-flex;align-items:center;gap:.5rem;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,80,255,1);transition:gap .25s;}
+.app-card.live:hover .app-go{gap:.85rem; text-shadow: 0 0 8px rgba(190,40,255,.6);}
+
+/* ── Footer ── */
+footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);padding:2.4rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;max-width:1180px;margin:0 auto;}
+.flogo{display:flex;align-items:center;gap:.55rem;text-decoration:none;}
+.flogo img{height:28px;width:auto;filter:drop-shadow(0 0 10px rgba(190,40,255,.5));}
+.flogo-t{font-family:'Cinzel',serif;font-weight:700;font-size:.9rem;letter-spacing:.13em;color:var(--white);}
+.flinks{display:flex;gap:2rem;list-style:none;flex-wrap:wrap;}
+.flinks a{color:var(--silver-dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;cursor:none;}
+.flinks a:hover{color:#fff;text-shadow:0 0 10px rgba(190,40,255,.5);}
+.flegal{width:100%; text-align:center; color:#888; font-size:11px; margin-top:2rem; line-height:1.6; letter-spacing:0.05em; font-family:'Syne', sans-serif;}
+
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
+.rev.on{opacity:1;transform:none;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--void);}::-webkit-scrollbar-thumb{background:rgba(160,30,255,.5);}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;}.rev{opacity:1;transform:none;}}
+@media(max-width:860px){
+  body{cursor:auto;}#cur,#cur2{display:none;}
+  .lbar{padding:.3rem .7rem;gap:.12rem;justify-content:center;}.lb{font-size:.58rem;padding:.18rem .4rem;}
+  nav{padding:.8rem 1.2rem;top:46px;}.nlinks{display:none;}.hamburger{display:flex;}.nlogo-t{font-size:.9rem;}.nlogo img{height:30px;}
+  .wrap{padding:8.5rem 1.3rem 4rem;}
+  .app-grid{grid-template-columns:1fr;}
+  .app-card{padding:2.2rem;}
+  footer{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.8rem 1.3rem;}
+  .flegal{margin-top: 1rem; text-align: left;}
+}
+</style>
+</head>
+<body>
+<div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
+<canvas id="cv"></canvas>
+<div class="vignette"></div>
+<div class="grain"></div>
+<div id="cur"></div><div id="cur2"></div>
+
+<div class="lbar">
+  <button class="lb on" onclick="setLang('en')">EN</button>
+  <button class="lb" onclick="setLang('uk')">UA</button>
+  <button class="lb" onclick="setLang('es')">ES</button>
+  <button class="lb" onclick="setLang('pt')">PT</button>
+  <button class="lb" onclick="setLang('de')">DE</button>
+  <button class="lb" onclick="setLang('fr')">FR</button>
+  <button class="lb" onclick="setLang('it')">IT</button>
+  <button class="lb" onclick="setLang('nl')">NL</button>
+  <button class="lb" onclick="setLang('pl')">PL</button>
+  <button class="lb" onclick="setLang('tr')">TR</button>
+</div>
+
+<nav>
+  <a href="index.html" class="nlogo">
+    <img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'">
+    <span class="nlogo-t">AstraCoreNova</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="index.html" data-i="nav_home">Home</a></li>
+    <li><a href="index.html#platforms" data-i="nav_plat">Platforms</a></li>
+    <li><a href="index.html#solutions" data-i="nav_sol">Solutions</a></li>
+    <li><a href="apps.html" class="active" data-i="nav_apps">Apps</a></li>
+    <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-i="nav_home" onclick="closeMenu()">Home</a>
+  <a href="index.html#platforms" data-i="nav_plat" onclick="closeMenu()">Platforms</a>
+  <a href="index.html#solutions" data-i="nav_sol" onclick="closeMenu()">Solutions</a>
+  <a href="apps.html" data-i="nav_apps" onclick="closeMenu()">Apps</a>
+  <a href="index.html#contact" data-i="nav_con" onclick="closeMenu()">Contact</a>
+</div>
+
+<div class="wrap">
+  <span class="eyebrow rev" data-i="ap_tag">Our products</span>
+  <h1 class="ptitle rev" data-i="ap_title">Apps built around you</h1>
+  <p class="psub rev" data-i="ap_sub">Every app we ship runs on the same principle: powerful AI, private by default, yours to control.</p>
+
+  <div class="app-grid">
+    <!-- AstraBudget — LIVE -->
+    <a href="astrabudget.html" class="app-card glass live rev">
+      <div class="app-top">
+        <img src="logo.AstraBudget.png" alt="AstraBudget" class="app-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="app-name">AstraBudget</div>
+          <span class="app-status st-live" data-i="ap_live">Available · Android</span>
+        </div>
+      </div>
+      <p class="app-desc" data-i="ab_desc">Automatic expense tracking that reads your banking push notifications — fully on-device. Private finance with on-device AI insight.</p>
+      <div class="app-tags">
+        <span class="app-tag" data-i="ab_t1">Finance</span>
+        <span class="app-tag" data-i="ab_t2">On-device AI</span>
+        <span class="app-tag" data-i="ab_t3">25+ countries</span>
+      </div>
+      <span class="app-go"><span data-i="ap_open">Open app page</span> →</span>
+    </a>
+
+    <!-- AstraWorld — LIVE -->
+    <a href="astraworld.html" class="app-card glass live rev">
+      <div class="app-top">
+        <img src="logo.AstraWorld.png" alt="AstraWorld" class="app-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="app-name">AstraWorld</div>
+          <span class="app-status st-live" data-i="ap_live">Available · Android</span>
+        </div>
+      </div>
+      <p class="app-desc" data-i="aw_desc">A role-playing game played with your feet: pick a world, walk to a real place via GPS, snap a photo — and an AI Game Master builds a quest from your exact shot.</p>
+      <div class="app-tags">
+        <span class="app-tag" data-i="aw_t1">Location-based</span>
+        <span class="app-tag" data-i="aw_t2">AI Game Master</span>
+        <span class="app-tag" data-i="aw_t3">Real-world quests</span>
+      </div>
+      <span class="app-go"><span data-i="ap_open">Open app page</span> →</span>
+    </a>
+
+    <!-- HydraScan — LIVE -->
+    <a href="hydrascan.html" class="app-card glass live rev">
+      <div class="app-top">
+        <img src="logo.HydraScan.png" alt="HydraScan" class="app-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="app-name">HydraScan</div>
+          <span class="app-status st-live" data-i="ap_live">Available · Android</span>
+        </div>
+      </div>
+      <p class="app-desc" data-i="hs_desc">Checks hotel rooms and rentals for hidden cameras and tracker tags — network, Wi-Fi, Bluetooth, optics and magnetic scans, all on-device. No account, no ads.</p>
+      <div class="app-tags">
+        <span class="app-tag" data-i="hs_t1">Privacy</span>
+        <span class="app-tag" data-i="hs_t2">Hidden cameras</span>
+        <span class="app-tag" data-i="hs_t3">On-device</span>
+      </div>
+      <span class="app-go"><span data-i="ap_open">Open app page</span> →</span>
+    </a>
+
+    <!-- Coming soon teaser -->
+    <div class="app-card glass rev" style="cursor: default;">
+      <div class="app-top">
+        <div class="app-logo-ph">✦</div>
+        <div>
+          <div class="app-name" data-i="cs_name">More on the way</div>
+          <span class="app-status st-soon" data-i="ap_soon">In development</span>
+        </div>
+      </div>
+      <p class="app-desc" data-i="cs_desc">New AI-powered apps and business tools are in the workshop — same privacy-first craft, new ground. Want to know first? Reach out.</p>
+      <div class="app-tags">
+        <span class="app-tag" data-i="cs_t1">AI companions</span>
+        <span class="app-tag" data-i="cs_t2">Productivity</span>
+        <span class="app-tag" data-i="cs_t3">Business</span>
+      </div>
+      <a href="index.html#contact" class="app-go" style="cursor:none; margin-top: auto;"><span data-i="cs_go">Get in touch</span> →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="flogo"><img src="logo.png" alt="AstraCoreNova" onerror="this.style.display='none'"><span class="flogo-t">AstraCoreNova</span></a>
+  <ul class="flinks">
+    <li><a href="index.html" data-i="nav_home">Home</a></li>
+    <li><a href="astrabudget.html#privacy-policy" data-i="f_pp">Privacy Policy</a></li>
+    <li><a href="index.html#contact" data-i="nav_con">Contact</a></li>
+  </ul>
+  <div class="flegal" data-i="f_legal"></div>
+</footer>
+
+<script>
+// cursor
+const C=document.getElementById('cur'),C2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;C2.style.left=rx+'px';C2.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.lb').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C2.style.width='46px';C2.style.height='46px';C2.style.borderColor='rgba(200,50,255,.8)';});
+  el.addEventListener('mouseleave',()=>{C2.style.width='30px';C2.style.height='30px';C2.style.borderColor='rgba(170,170,170,.4)';});
+});
+
+// optimized starfield
+const cv=document.getElementById('cv'),cx=cv.getContext('2d');
+let W,H,stars=[];
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+function initStars(){stars=[];const n=Math.min(100,Math.floor(W*H/12000));for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,a:Math.random(),sp:Math.random()*.012+.003,vy:Math.random()*.06+.01});}
+function draw(){cx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.sp;const tw=.4+.6*Math.abs(Math.sin(s.a));s.y+=s.vy;if(s.y>H){s.y=0;s.x=Math.random()*W;}cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);cx.fillStyle=`rgba(190,150,255,${tw*.6})`;cx.fill();});requestAnimationFrame(draw);}
+resize();initStars();draw();
+window.addEventListener('resize',()=>{resize();initStars();});
+
+// reveal
+document.querySelectorAll('.rev').forEach(el=>{new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.12}).observe(el);});
+
+// menu
+function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+
+// i18n
+const T={
+en:{hs_desc:'Checks hotel rooms and rentals for hidden cameras and tracker tags — network, Wi-Fi, Bluetooth, optics and magnetic scans, all on-device. No account, no ads.',hs_t1:'Privacy',hs_t2:'Hidden cameras',hs_t3:'On-device',nav_home:'Home',nav_plat:'Platforms',nav_sol:'Solutions',nav_apps:'Apps',nav_con:'Contact',ap_tag:'Our products',ap_title:'Apps built around you',ap_sub:'Every app we ship runs on the same principle: powerful AI, private by default, yours to control.',ap_live:'Available · Android',ap_soon:'In development',ap_open:'Open app page',cs_go:'Get in touch',ab_desc:'Automatic expense tracking that reads your banking push notifications — fully on-device. Private finance with on-device AI insight.',ab_t1:'Finance',ab_t2:'On-device AI',ab_t3:'25+ countries',aw_desc:'A role-playing game played with your feet: pick a world, walk to a real place via GPS, snap a photo — and an AI Game Master builds a quest from your exact shot.',aw_t1:'Location-based',aw_t2:'AI Game Master',aw_t3:'Real-world quests',cs_name:'More on the way',cs_desc:'New AI-powered apps and business tools are in the workshop — same privacy-first craft, new ground. Want to know first? Reach out.',cs_t1:'AI companions',cs_t2:'Productivity',cs_t3:'Business',f_pp:'Privacy Policy',f_legal:'© 2026 AstraCoreNova. All rights reserved.<br>Official representative: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+uk:{hs_desc:'Перевіряє номери в готелях і орендоване житло на приховані камери та мітки стеження — мережа, Wi-Fi, Bluetooth, оптика й магнітометр, усе на пристрої. Без акаунта й реклами.',hs_t1:'Приватність',hs_t2:'Приховані камери',hs_t3:'На пристрої',nav_home:'Головна',nav_plat:'Платформи',nav_sol:'Рішення',nav_apps:'Додатки',nav_con:'Контакт',ap_tag:'Наші продукти',ap_title:'Додатки навколо вас',ap_sub:'Кожен наш додаток працює за одним принципом: потужний AI, приватність за замовчуванням, повний контроль у вас.',ap_live:'Доступно · Android',ap_soon:'У розробці',ap_open:'Відкрити сторінку',cs_go:"Зв'язатися",ab_desc:'Автоматичне відстеження витрат: читає банківські push-сповіщення — повністю на пристрої. Приватні фінанси з AI-аналітикою на пристрої.',ab_t1:'Фінанси',ab_t2:'AI на пристрої',ab_t3:'25+ країн',aw_desc:"Рольова гра, у яку грають ногами: обери світ, дійди до реального місця по GPS, сфотографуй — і ШІ Гейм-майстер збудує квест саме з твого кадру.",aw_t1:'На локації',aw_t2:'ШІ Гейм-майстер',aw_t3:'Квести в реальності',cs_name:'Скоро більше',cs_desc:'Нові AI-додатки та бізнес-інструменти вже в роботі — та сама privacy-first майстерність, нові напрямки. Хочеш дізнатися першим? Напиши.',cs_t1:'AI-компаньйони',cs_t2:'Продуктивність',cs_t3:'Бізнес',f_pp:'Політика конфіденційності',f_legal:'© 2026 AstraCoreNova. Усі права захищено.<br>Офіційний представник: ФОП Бакурідзе Т.Р. 66-766-8526 FOP Bakuridze Timur'},
+es:{hs_desc:'Revisa habitaciones de hotel y alquileres en busca de cámaras ocultas y etiquetas de rastreo: red, Wi-Fi, Bluetooth, óptica y magnetismo, todo en el dispositivo. Sin cuenta ni anuncios.',hs_t1:'Privacidad',hs_t2:'Cámaras ocultas',hs_t3:'En el dispositivo',nav_home:'Inicio',nav_plat:'Plataformas',nav_sol:'Soluciones',nav_apps:'Apps',nav_con:'Contacto',ap_tag:'Nuestros productos',ap_title:'Apps hechas para ti',ap_sub:'Cada app sigue el mismo principio: IA potente, privada por defecto, bajo tu control.',ap_live:'Disponible · Android',ap_soon:'En desarrollo',ap_open:'Abrir página',cs_go:'Contactar',ab_desc:'Seguimiento automático de gastos que lee tus notificaciones bancarias — todo en el dispositivo. Finanzas privadas con IA local.',ab_t1:'Finanzas',ab_t2:'IA local',ab_t3:'25+ países',cs_name:'Pronto más',cs_desc:'Nuevas apps con IA y herramientas de negocio en el taller — misma filosofía privacy-first, nuevo terreno. ¿Quieres saberlo primero? Escríbenos.',cs_t1:'Compañeros IA',cs_t2:'Productividad',cs_t3:'Negocios',f_pp:'Privacidad',f_legal:'© 2026 AstraCoreNova. Todos los derechos reservados.<br>Representante oficial: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+pt:{hs_desc:'Verifica quartos de hotel e alojamentos em busca de câmaras ocultas e etiquetas de rastreio — rede, Wi-Fi, Bluetooth, ótica e magnetismo, tudo no dispositivo. Sem conta nem anúncios.',hs_t1:'Privacidade',hs_t2:'Câmaras ocultas',hs_t3:'No dispositivo',nav_home:'Início',nav_plat:'Plataformas',nav_sol:'Soluções',nav_apps:'Apps',nav_con:'Contato',ap_tag:'Nossos produtos',ap_title:'Apps feitos para você',ap_sub:'Cada app segue o mesmo princípio: IA poderosa, privada por padrão, sob seu controle.',ap_live:'Disponível · Android',ap_soon:'Em desenvolvimento',ap_open:'Abrir página',cs_go:'Fale conosco',ab_desc:'Rastreamento automático de despesas que lê suas notificações bancárias — tudo no dispositivo. Finanças privadas com IA local.',ab_t1:'Finanças',ab_t2:'IA local',ab_t3:'25+ países',cs_name:'Em breve mais',cs_desc:'Novos apps com IA e ferramentas de negócio na oficina — mesma filosofia privacy-first, novo terreno. Quer saber primeiro? Fale conosco.',cs_t1:'Companheiros IA',cs_t2:'Produtividade',cs_t3:'Negócios',f_pp:'Privacidade',f_legal:'© 2026 AstraCoreNova. Todos os direitos reservados.<br>Representante oficial: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+de:{hs_desc:'Prüft Hotelzimmer und Ferienwohnungen auf versteckte Kameras und Tracker — Netzwerk, Wi-Fi, Bluetooth, Optik und Magnetfeld, alles auf dem Gerät. Ohne Konto, ohne Werbung.',hs_t1:'Privatsphäre',hs_t2:'Versteckte Kameras',hs_t3:'Auf dem Gerät',nav_home:'Start',nav_plat:'Plattformen',nav_sol:'Lösungen',nav_apps:'Apps',nav_con:'Kontakt',ap_tag:'Unsere Produkte',ap_title:'Apps, gebaut um Sie herum',ap_sub:'Jede App folgt demselben Prinzip: starke KI, privat von Haus aus, in Ihrer Kontrolle.',ap_live:'Verfügbar · Android',ap_soon:'In Entwicklung',ap_open:'Seite öffnen',cs_go:'Kontakt',ab_desc:'Automatische Ausgabenverfolgung, die Ihre Bank-Push-Nachrichten liest — komplett auf dem Gerät. Private Finanzen mit lokaler KI.',ab_t1:'Finanzen',ab_t2:'Lokale KI',ab_t3:'25+ Länder',cs_name:'Mehr in Arbeit',cs_desc:'Neue KI-Apps und Business-Tools sind in der Werkstatt — dieselbe Privacy-First-Handwerkskunst, neues Terrain. Zuerst erfahren? Melden Sie sich.',cs_t1:'KI-Begleiter',cs_t2:'Produktivität',cs_t3:'Business',f_pp:'Datenschutz',f_legal:'© 2026 AstraCoreNova. Alle Rechte vorbehalten.<br>Offizieller Vertreter: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+fr:{hs_desc:'Vérifie chambres d\'hôtel et locations à la recherche de caméras cachées et de balises de suivi — réseau, Wi-Fi, Bluetooth, optique et magnétisme, tout sur l\'appareil. Sans compte ni publicité.',hs_t1:'Confidentialité',hs_t2:'Caméras cachées',hs_t3:'Sur l\'appareil',nav_home:'Accueil',nav_plat:'Plateformes',nav_sol:'Solutions',nav_apps:'Applications',nav_con:'Contact',ap_tag:'Nos produits',ap_title:'Des apps conçues pour vous',ap_sub:'Chaque app suit le même principe : une IA puissante, privée par défaut, sous votre contrôle.',ap_live:'Disponible · Android',ap_soon:'En développement',ap_open:'Ouvrir la page',cs_go:'Nous contacter',ab_desc:'Suivi automatique des dépenses qui lit vos notifications bancaires — entièrement sur l\'appareil. Finances privées avec IA locale.',ab_t1:'Finances',ab_t2:'IA locale',ab_t3:'25+ pays',cs_name:'Bientôt plus',cs_desc:'De nouvelles apps IA et outils pro sont en atelier — même savoir-faire privacy-first, nouveau terrain. Être informé en premier ? Écrivez-nous.',cs_t1:'Compagnons IA',cs_t2:'Productivité',cs_t3:'Entreprise',f_pp:'Confidentialité',f_legal:'© 2026 AstraCoreNova. Tous droits réservés.<br>Représentant officiel: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+it:{hs_desc:'Controlla camere d\'albergo e alloggi in affitto alla ricerca di telecamere nascoste e tag di tracciamento — rete, Wi-Fi, Bluetooth, ottica e magnetismo, tutto sul dispositivo. Senza account né pubblicità.',hs_t1:'Privacy',hs_t2:'Telecamere nascoste',hs_t3:'Sul dispositivo',nav_home:'Home',nav_plat:'Piattaforme',nav_sol:'Soluzioni',nav_apps:'Applicazioni',nav_con:'Contatti',ap_tag:'I nostri prodotti',ap_title:'App pensate per te',ap_sub:'Ogni app segue lo stesso principio: IA potente, privata di default, sotto il tuo controllo.',ap_live:'Disponibile · Android',ap_soon:'In sviluppo',ap_open:'Apri la pagina',cs_go:'Contattaci',ab_desc:'Monitoraggio automatico delle spese che legge le notifiche bancarie — tutto sul dispositivo. Finanza privata con IA locale.',ab_t1:'Finanza',ab_t2:'IA locale',ab_t3:'25+ paesi',cs_name:'Presto altro',cs_desc:'Nuove app IA e strumenti business sono in officina — stessa cura privacy-first, nuovo terreno. Vuoi saperlo per primo? Scrivici.',cs_t1:'Compagni IA',cs_t2:'Produttività',cs_t3:'Business',f_pp:'Privacy',f_legal:'© 2026 AstraCoreNova. Tutti i diritti riservati.<br>Rappresentante ufficiale: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+nl:{hs_desc:'Controleert hotelkamers en huurwoningen op verborgen camera\'s en volgtags — netwerk, Wi-Fi, Bluetooth, optiek en magnetisme, alles op het apparaat. Geen account, geen advertenties.',hs_t1:'Privacy',hs_t2:'Verborgen camera\'s',hs_t3:'Op het apparaat',nav_home:'Home',nav_plat:'Platforms',nav_sol:'Oplossingen',nav_apps:'Apps',nav_con:'Contact',ap_tag:'Onze producten',ap_title:'Apps gebouwd rond u',ap_sub:'Elke app volgt hetzelfde principe: krachtige AI, privé als standaard, onder uw controle.',ap_live:'Beschikbaar · Android',ap_soon:'In ontwikkeling',ap_open:'Pagina openen',cs_go:'Neem contact op',ab_desc:'Automatische uitgavenregistratie die uw bankmeldingen leest — volledig op het toestel. Privéfinanciën met lokale AI.',ab_t1:'Financiën',ab_t2:'Lokale AI',ab_t3:'25+ landen',cs_name:'Meer op komst',cs_desc:'Nieuwe AI-apps en zakelijke tools liggen op de werkbank — dezelfde privacy-first ambacht, nieuw terrein. Als eerste weten? Neem contact op.',cs_t1:'AI-metgezellen',cs_t2:'Productiviteit',cs_t3:'Zakelijk',f_pp:'Privacybeleid',f_legal:'© 2026 AstraCoreNova. Alle rechten voorbehouden.<br>Officiële vertegenwoordiger: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+pl:{hs_desc:'Sprawdza pokoje hotelowe i mieszkania na wynajem pod kątem ukrytych kamer i lokalizatorów — sieć, Wi-Fi, Bluetooth, optyka i magnetyzm, wszystko na urządzeniu. Bez konta i reklam.',hs_t1:'Prywatność',hs_t2:'Ukryte kamery',hs_t3:'Na urządzeniu',nav_home:'Główna',nav_plat:'Platformy',nav_sol:'Rozwiązania',nav_apps:'Aplikacje',nav_con:'Kontakt',ap_tag:'Nasze produkty',ap_title:'Aplikacje stworzone dla Ciebie',ap_sub:'Każda aplikacja działa według tej samej zasady: potężne AI, prywatne domyślnie, pod Twoją kontrolą.',ap_live:'Dostępne · Android',ap_soon:'W rozwoju',ap_open:'Otwórz stronę',cs_go:'Kontakt',ab_desc:'Automatyczne śledzenie wydatków odczytujące powiadomienia bankowe — w pełni na urządzeniu. Prywatne finanse z lokalnym AI.',ab_t1:'Finanse',ab_t2:'Lokalne AI',ab_t3:'25+ krajów',cs_name:'Wkrótce więcej',cs_desc:'Nowe aplikacje AI i narzędzia biznesowe są w warsztacie — to samo rzemiosło privacy-first, nowy grunt. Chcesz wiedzieć pierwszy? Napisz.',cs_t1:'Towarzysze AI',cs_t2:'Produktywność',cs_t3:'Biznes',f_pp:'Polityka prywatności',f_legal:'© 2026 AstraCoreNova. Wszelkie prawa zastrzeżone.<br>Oficjalny przedstawiciel: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'},
+tr:{hs_desc:'Otel odalarını ve kiralık evleri gizli kameralar ve takip etiketleri için tarar — ağ, Wi-Fi, Bluetooth, optik ve manyetik tarama, hepsi cihazda. Hesap yok, reklam yok.',hs_t1:'Gizlilik',hs_t2:'Gizli kameralar',hs_t3:'Cihazda',nav_home:'Ana Sayfa',nav_plat:'Platformlar',nav_sol:'Çözümler',nav_apps:'Uygulamalar',nav_con:'İletişim',ap_tag:'Ürünlerimiz',ap_title:'Sizin için tasarlanmış uygulamalar',ap_sub:'Her uygulama aynı ilkeyle çalışır: güçlü yapay zeka, varsayılan olarak özel, sizin kontrolünüzde.',ap_live:'Mevcut · Android',ap_soon:'Geliştiriliyor',ap_open:'Sayfayı aç',cs_go:'İletişime geç',ab_desc:'Banka bildirimlerinizi okuyan otomatik gider takibi — tamamen cihazda. Cihazda yapay zeka ile özel finans.',ab_t1:'Finans',ab_t2:'Cihazda YZ',ab_t3:'25+ ülke',cs_name:'Daha fazlası yolda',cs_desc:'Yeni yapay zeka uygulamaları ve işletme araçları atölyede — aynı gizlilik-öncelikli ustalık, yeni alan. İlk siz öğrenmek ister misiniz? Yazın.',cs_t1:'YZ dostları',cs_t2:'Üretkenlik',cs_t3:'İşletme',f_pp:'Gizlilik Politikası',f_legal:'© 2026 AstraCoreNova. Tüm hakları saklıdır.<br>Resmi temsilci: FOP Bakuridze T.R. 66-766-8526 FOP Bakuridze Timur'}
+};
+let lang=localStorage.getItem('acn_lang')||'en';
+function setLang(l){lang=l;localStorage.setItem('acn_lang',l);document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));applyLang();}
+function applyLang(){const t=T[lang];if(!t)return;document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(t[k]!==undefined)el.innerHTML=t[k];});document.documentElement.lang=lang;}
+document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===lang.toUpperCase()));
+applyLang();
+</script>
+</body>
+</html>

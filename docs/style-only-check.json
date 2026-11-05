@@ -1,0 +1,122 @@
+[
+  {
+    "file": "1212",
+    "before": "126b91dc97e9cf9a229b041a7c45796a9f0e9da25af7c083d618ced508477f4b",
+    "after": "126b91dc97e9cf9a229b041a7c45796a9f0e9da25af7c083d618ced508477f4b",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "app-ads.txt",
+    "before": "6e87ca1c549ee249febf396609a4b4ee07f4d8305cf6f0734b878b486df9d3d4",
+    "after": "6e87ca1c549ee249febf396609a4b4ee07f4d8305cf6f0734b878b486df9d3d4",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "apps.html",
+    "before": "5f74e871a09703c9b3fde822a61ef54210ca56f8f0f9d347023ff76a7bb3406a",
+    "after": "2f0e5da518dbbb478747ee0b056342ad925dafcb83d636d1ae7962da077c3726",
+    "result": "Original HTML byte-identical after removing 2 resource tags"
+  },
+  {
+    "file": "astrabudget.html",
+    "before": "cba64f62724d0657457e027a6471f373966cc56b018708dc03d779b440ff3593",
+    "after": "941f923d262fbf5926842b1672d0578d3f727a653c3710ec4d98910c8106d24e",
+    "result": "Original HTML byte-identical after removing 2 resource tags"
+  },
+  {
+    "file": "astraworld.html",
+    "before": "670855530a0ee756252757ad07552f3af217d896f9949f593f3d968f04d9489e",
+    "after": "28b9d19a4de2f28d5d313bdafb3c43470106052cd44c1a0ad1bf00480c0dd47e",
+    "result": "Original HTML byte-identical after removing 2 resource tags"
+  },
+  {
+    "file": "googleadf0c7b70ebab5f4.html",
+    "before": "9d1c0827396fd79243efbabfefbd7b751ac2b2135ac598ba4c41180e0b2afd47",
+    "after": "9d1c0827396fd79243efbabfefbd7b751ac2b2135ac598ba4c41180e0b2afd47",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "hydrascan.html",
+    "before": "02061c6d190e3c00374dc0a67fd823e3fe08d3c3543d7d7a7aa799f5ff5eb6d9",
+    "after": "1bf6928f188ffa454daec65b60cef2a364aae2b34c1ef63cf9820700fe033371",
+    "result": "Original HTML byte-identical after removing 2 resource tags"
+  },
+  {
+    "file": "index.html",
+    "before": "9d42eed5779df7118fb854aca32a36e08a7fd49ce89009ad4f0a8423b4537324",
+    "after": "8bd595ec951746d47b8fde000478ccebdb3203b077fe8baea6133b289504f54d",
+    "result": "Original HTML byte-identical after removing 2 resource tags"
+  },
+  {
+    "file": "logo.AstraBudget.png",
+    "before": "dac02f05aff265888c216ee8e177677be77cb470fe95fab71fa47de36a2a74fb",
+    "after": "dac02f05aff265888c216ee8e177677be77cb470fe95fab71fa47de36a2a74fb",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "logo.AstraWorld.png",
+    "before": "a176a732c9ccece1761daf9973acc6838d8e82f9d95b0f314c06bed309003392",
+    "after": "a176a732c9ccece1761daf9973acc6838d8e82f9d95b0f314c06bed309003392",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "logo.HydraScan.png",
+    "before": "d25e087c22e3de3e905efd17f8e446d4d684241fa21452e41af1a1b56db1e60b",
+    "after": "d25e087c22e3de3e905efd17f8e446d4d684241fa21452e41af1a1b56db1e60b",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "logo.png",
+    "before": "126b91dc97e9cf9a229b041a7c45796a9f0e9da25af7c083d618ced508477f4b",
+    "after": "126b91dc97e9cf9a229b041a7c45796a9f0e9da25af7c083d618ced508477f4b",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "logo11111.png",
+    "before": "eb9a7c9184bbdefb471f534836be457d753203a43727beff3aa7d1c76aa34f58",
+    "after": "eb9a7c9184bbdefb471f534836be457d753203a43727beff3aa7d1c76aa34f58",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "models.html",
+    "before": "a7355a78fc2de46ff8d1369dead6d5aa00455596fa336d783f8cfb299db9b5de",
+    "after": "f4f6c68c182090c108b11bcff314dcafdd5bb6a66e37ad7cf59bd9ecfc6309fc",
+    "result": "Original HTML byte-identical after removing 2 resource tags"
+  },
+  {
+    "file": "privacy-policy/hydrascan-pp-en.pdf",
+    "before": "1d3aeb4091bed97eb536bf531357d270ba23fa59ebbac6753a6fafe9767416cc",
+    "after": "1d3aeb4091bed97eb536bf531357d270ba23fa59ebbac6753a6fafe9767416cc",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "privacy-policy/pp-en.pdf",
+    "before": "0c738280ad03b449f90d3e04e3954e7bdcbc315e48678c6844bd0afb750d89e4",
+    "after": "0c738280ad03b449f90d3e04e3954e7bdcbc315e48678c6844bd0afb750d89e4",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "privacy-policy/pp-uk.pdf",
+    "before": "01c364e429486cf353a320ede3ba760969d818266aca9df9dda18a1e9fa319a8",
+    "after": "01c364e429486cf353a320ede3ba760969d818266aca9df9dda18a1e9fa319a8",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "tos/hydrascan-tos-en.pdf",
+    "before": "46cad48cf970eb2d08c39f301bdaa4e28daef661082eadfed4f1526b623ff347",
+    "after": "46cad48cf970eb2d08c39f301bdaa4e28daef661082eadfed4f1526b623ff347",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "tos/tos-en.pdf",
+    "before": "0679eb169976f2f931fedb1d6a0341fefe03473502630b980536d1927a753278",
+    "after": "0679eb169976f2f931fedb1d6a0341fefe03473502630b980536d1927a753278",
+    "result": "BYTE-IDENTICAL"
+  },
+  {
+    "file": "tos/tos-uk.pdf",
+    "before": "a7bc491626e624f4eff620aa9da428bfcda6b33a33081e872aeca3f7f88e9637",
+    "after": "a7bc491626e624f4eff620aa9da428bfcda6b33a33081e872aeca3f7f88e9637",
+    "result": "BYTE-IDENTICAL"
+  }
+]

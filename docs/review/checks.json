@@ -1,0 +1,309 @@
+{
+  "results": [
+    {
+      "label": "desktop",
+      "file": "index.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "desktop",
+      "file": "apps.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "desktop",
+      "file": "models.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "desktop",
+      "file": "astrabudget.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "desktop",
+      "file": "astraworld.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "desktop",
+      "file": "hydrascan.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "phone",
+      "file": "index.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "phone",
+      "file": "apps.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "phone",
+      "file": "models.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "phone",
+      "file": "astrabudget.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA",
+        "ES",
+        "PT",
+        "DE",
+        "FR",
+        "IT",
+        "NL",
+        "PL",
+        "TR"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "phone",
+      "file": "astraworld.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "label": "phone",
+      "file": "hydrascan.html",
+      "language": "en",
+      "languages": [
+        "EN",
+        "UA"
+      ],
+      "overflow": false,
+      "broken": [],
+      "menu": "none",
+      "visibleCanvas": false
+    },
+    {
+      "servedFile": "1212",
+      "status": 200,
+      "sha256": "126b91dc97e9cf9a229b041a7c45796a9f0e9da25af7c083d618ced508477f4b",
+      "match": true
+    },
+    {
+      "servedFile": "app-ads.txt",
+      "status": 200,
+      "sha256": "6e87ca1c549ee249febf396609a4b4ee07f4d8305cf6f0734b878b486df9d3d4",
+      "match": true
+    },
+    {
+      "servedFile": "googleadf0c7b70ebab5f4.html",
+      "status": 200,
+      "sha256": "9d1c0827396fd79243efbabfefbd7b751ac2b2135ac598ba4c41180e0b2afd47",
+      "match": true
+    },
+    {
+      "servedFile": "logo.AstraBudget.png",
+      "status": 200,
+      "sha256": "dac02f05aff265888c216ee8e177677be77cb470fe95fab71fa47de36a2a74fb",
+      "match": true
+    },
+    {
+      "servedFile": "logo.AstraWorld.png",
+      "status": 200,
+      "sha256": "a176a732c9ccece1761daf9973acc6838d8e82f9d95b0f314c06bed309003392",
+      "match": true
+    },
+    {
+      "servedFile": "logo.HydraScan.png",
+      "status": 200,
+      "sha256": "d25e087c22e3de3e905efd17f8e446d4d684241fa21452e41af1a1b56db1e60b",
+      "match": true
+    },
+    {
+      "servedFile": "logo.png",
+      "status": 200,
+      "sha256": "126b91dc97e9cf9a229b041a7c45796a9f0e9da25af7c083d618ced508477f4b",
+      "match": true
+    },
+    {
+      "servedFile": "logo11111.png",
+      "status": 200,
+      "sha256": "eb9a7c9184bbdefb471f534836be457d753203a43727beff3aa7d1c76aa34f58",
+      "match": true
+    },
+    {
+      "servedFile": "privacy-policy/hydrascan-pp-en.pdf",
+      "status": 200,
+      "sha256": "1d3aeb4091bed97eb536bf531357d270ba23fa59ebbac6753a6fafe9767416cc",
+      "match": true
+    },
+    {
+      "servedFile": "privacy-policy/pp-en.pdf",
+      "status": 200,
+      "sha256": "0c738280ad03b449f90d3e04e3954e7bdcbc315e48678c6844bd0afb750d89e4",
+      "match": true
+    },
+    {
+      "servedFile": "privacy-policy/pp-uk.pdf",
+      "status": 200,
+      "sha256": "01c364e429486cf353a320ede3ba760969d818266aca9df9dda18a1e9fa319a8",
+      "match": true
+    },
+    {
+      "servedFile": "tos/hydrascan-tos-en.pdf",
+      "status": 200,
+      "sha256": "46cad48cf970eb2d08c39f301bdaa4e28daef661082eadfed4f1526b623ff347",
+      "match": true
+    },
+    {
+      "servedFile": "tos/tos-en.pdf",
+      "status": 200,
+      "sha256": "0679eb169976f2f931fedb1d6a0341fefe03473502630b980536d1927a753278",
+      "match": true
+    },
+    {
+      "servedFile": "tos/tos-uk.pdf",
+      "status": 200,
+      "sha256": "a7bc491626e624f4eff620aa9da428bfcda6b33a33081e872aeca3f7f88e9637",
+      "match": true
+    }
+  ],
+  "errors": []
+}

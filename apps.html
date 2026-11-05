@@ -134,7 +134,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-bright);paddi
   .flegal{margin-top: 1rem; text-align: left;}
 }
 </style>
-</head>
+<link rel="stylesheet" href="site-style/style.css"></head>
 <body>
 <div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
 <canvas id="cv"></canvas>
@@ -313,5 +313,5 @@ function applyLang(){const t=T[lang];if(!t)return;document.querySelectorAll('[da
 document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===lang.toUpperCase()));
 applyLang();
 </script>
-</body>
+<script src="site-style/enhance.js"></script></body>
 </html>

@@ -1,0 +1,190 @@
+<div class="legal-section rev" id="privacy-policy">
+
+    <!-- EN -->
+    <div class="legal lang-en">
+      <h2>Privacy Policy</h2>
+      <p class="legal-eff">Effective 12 July 2026. Version 1.1.</p>
+
+      <div class="box">
+        <p><b>In short:</b> to work, the game needs your <b>location</b> (to find real places near you and confirm you actually walked there) and the <b>photos</b> you take for quests. Photos are <b>never stored on our servers</b> — they are passed to the model that builds your quest and then discarded. We <b>do not sell</b> your data. You can <b>delete your account</b> and all data from inside the app.</p>
+      </div>
+
+      <h3>1. Who we are</h3>
+      <p><b>AstraWorld</b> is developed by the digital studio <b>AstraCoreNova</b>.</p>
+      <p>Official representative and data controller: <b>Individual Entrepreneur (FOP) Bakuridze Tymur Ruslanovych</b> (Ukraine)<br>
+      DUNS: 66-766-8526<br>
+      Email: <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a><br>
+      Website: <a href="https://AstraCoreNovadev.github.io" target="_blank" rel="noopener">AstraCoreNovadev.github.io</a></p>
+
+      <h3>2. What data we process</h3>
+      <table>
+        <thead><tr><th>Data</th><th>Why</th><th>Stored?</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Data"><b>Google account</b> (identifier, email, name)</td><td data-label="Why">Signing in. Without it, your progress and purchases would vanish when you reinstall the app.</td><td data-label="Stored?">Yes — in Firebase Authentication, until you delete your account.</td></tr>
+          <tr><td data-label="Data"><b>Nickname</b></td><td data-label="Why">Your public name in guilds, the marketplace and leaderboards.</td><td data-label="Stored?">Yes. It is <b>visible to other players</b>.</td></tr>
+          <tr><td data-label="Data"><b>Location</b> (precise and approximate)</td><td data-label="Why">To show places near you, to confirm you physically reached a quest location, and to pin the photo-places you create onto the map.</td><td data-label="Stored?">Coordinates of <b>photo-places you create</b>: yes. We do <b>not</b> build a continuous history of your movements.</td></tr>
+          <tr><td data-label="Data"><b>Photos</b></td><td data-label="Why">A generative model builds your quest from a photo of a place.</td><td data-label="Stored?"><b>NO.</b> Photos are not stored on our servers. They are sent to the model, processed, and discarded. A copy remains <b>only locally on your phone</b>.</td></tr>
+          <tr><td data-label="Data"><b>Text you write</b> (reports proving quest steps)</td><td data-label="Why">The model judges whether the step was completed.</td><td data-label="Stored?">No, not retained in our database.</td></tr>
+          <tr><td data-label="Data"><b>Game data:</b> XP, level, currencies, items, guild, progress</td><td data-label="Why">The game itself.</td><td data-label="Stored?">Yes.</td></tr>
+          <tr><td data-label="Data"><b>Progress backup</b> (cloud save)</td><td data-label="Why">So your progress survives a lost phone or reinstall, and can sync across devices.</td><td data-label="Stored?">Yes — a snapshot of your progress on our servers (Firestore, EU), until you delete your account. This used to live only on your phone; it is now also backed up on our side.</td></tr>
+          <tr><td data-label="Data"><b>Technical data:</b> language, country, usage analytics, crash reports</td><td data-label="Why">Keeping the game stable and seeing what breaks.</td><td data-label="Stored?">Yes (Firebase Analytics, Firebase Crashlytics).</td></tr>
+          <tr><td data-label="Data"><b>Mock-location flag</b></td><td data-label="Why">Anti-cheat: the game is about real movement, and faked coordinates destroy it.</td><td data-label="Stored?">No, handled on the device.</td></tr>
+          <tr><td data-label="Data"><b>Device integrity signal</b> (Play Integrity API)</td><td data-label="Why">Confirms the app hasn't been tampered with or modified — anti-cheat and security.</td><td data-label="Stored?">A generic integrity token only. It does not identify you personally and is never used for advertising.</td></tr>
+          <tr><td data-label="Data"><b>Purchase history, advertising ID</b></td><td data-label="Why">Subscriptions and advertising.</td><td data-label="Stored?">Only once those features are enabled. They are inactive as of this version.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3. Legal bases (GDPR Art. 6)</h3>
+      <ul>
+        <li><b>Performance of a contract</b> — account, game data, purchases.</li>
+        <li><b>Consent</b> — location, camera, analytics, personalised advertising. You may withdraw consent at any time (in system settings, or by deleting your account).</li>
+        <li><b>Legitimate interests</b> — security, fraud prevention (including spoofed location), service reliability.</li>
+      </ul>
+
+      <h3>4. Generative artificial intelligence</h3>
+      <div class="box box-warn">
+        <p>Quests, place descriptions and the Game Master's lines are <b>generated by artificial intelligence</b> — Google's <b>Gemini</b> model, via <b>Google Vertex AI</b>.</p>
+        <p>Your photos and text are sent to that model to generate game content. This processing runs on Google's <b>global Vertex AI infrastructure</b> and <b>may take place outside the EEA, including in the United States</b> — see section 6 below for details.</p>
+        <p>Under Google Cloud's terms, customer data is <b>not used to train</b> Google's models.</p>
+        <p>We apply <b>our own safety constraints</b> when instructing the model, so that it does not propose dangerous, unlawful or offensive actions. No system is perfect: generated content <b>may be inaccurate or unexpected</b>. It is <b>fictional game narrative</b> and is <b>not advice</b> — medical, legal, financial or otherwise.</p>
+        <p><b>The final judgement is always yours.</b> Never do anything dangerous or unsafe, even if the game suggests it. If you encounter offensive or unsafe generated content, report it using the in-app report button or by email.</p>
+      </div>
+
+      <h3>5. Who we share data with</h3>
+      <p>We do <b>not sell</b> your data. We use Google services as processors acting on our instructions: Firebase (Authentication, Firestore, Cloud Functions, Analytics, Crashlytics); Google Vertex AI (Gemini); Google Maps Platform; Google Play Integrity (app authenticity checks); Google Play (purchases, when enabled); Google AdMob (advertising, when enabled).</p>
+      <p>We may also disclose data where required by law.</p>
+
+      <h3>6. Where data is processed — international transfers</h3>
+      <div class="box box-warn">
+        <p><b>Our own servers stay in the EU.</b> The backend we operate ourselves — Cloud Functions and Firestore, including your account, game data and progress backup — runs in the <b>European Union</b> (<code>europe-west1</code>, Belgium), as before.</p>
+        <p><b>AI processing is now global.</b> To generate your quests, your photos and text are sent to Google's <b>Vertex AI</b> service, which runs on Google's global infrastructure. This means processing <b>may take place outside the European Economic Area, including in the United States</b>, rather than being confined to the EU as previously described.</p>
+        <p>What has <b>not</b> changed: your photos are still <b>never stored</b> on our servers or Google's — they are sent to the model, used to generate your quest, and discarded. Only a copy on your own phone remains.</p>
+        <p>Where this processing happens outside the EEA, the transfer is covered by the <b>Standard Contractual Clauses (SCCs)</b> that form part of our agreement with Google Cloud — the standard EU-approved mechanism for this kind of international transfer.</p>
+      </div>
+      <p>Some ancillary Google services (Analytics, Crashlytics, Play services) may likewise process data outside the EEA; where they do, those transfers also rely on Google's SCCs.</p>
+
+      <h3>7. Retention</h3>
+      <ul>
+        <li><b>Account and progress</b> — for as long as the account exists.</li>
+        <li><b>Photos</b> — never stored on servers.</li>
+        <li><b>Shared location lore</b> — fictional text about a place, not about you; it contains no personal data, belongs to all players, and is <b>not deleted</b> when you delete your account.</li>
+        <li><b>Crash reports and analytics</b> — per Google's retention periods (typically up to 14 months).</li>
+      </ul>
+
+      <h3>8. Your rights</h3>
+      <p>You have the right to access, rectify, erase, restrict, object to, and port your data, and to withdraw consent. We extend these rights to all users, not only those in the EU/EEA.</p>
+      <div class="box">
+        <p><b>You can delete your account and all data inside the app:</b><br><i>Profile → Danger zone → "Delete my account and data".</i></p>
+        <p>This erases your account, progress, nickname, created photo-places, guild membership and your marketplace listings. It is <b>irreversible</b>. You may also email <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      </div>
+      <p>You have the right to lodge a complaint with your national data protection authority.</p>
+
+      <h3>10. Security</h3>
+      <p>Data is transmitted over encrypted connections (TLS). Most server-side collections are entirely closed to clients and reachable only by our server functions.</p>
+
+      <h3>11. Changes</h3>
+      <p>If we change this policy materially, you will be shown the consent screen again on next launch.</p>
+
+      <h3>12. Contact</h3>
+      <p><a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNova · FOP Bakuridze Tymur Ruslanovych · DUNS 66-766-8526<br>
+        <a href="#terms">Terms of Use</a>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="legal lang-uk">
+      <h2>Політика конфіденційності</h2>
+      <p class="legal-eff">Чинна з 12 липня 2026. Версія 1.1.</p>
+
+      <div class="box">
+        <p><b>Коротко:</b> щоб гра працювала, їй потрібні ваша <b>геолокація</b> (щоб знаходити реальні місця поруч і підтверджувати, що ви туди дійшли) і <b>фото</b>, які ви робите для завдань. Фото <b>ніколи не зберігаються на наших серверах</b> — вони передаються моделі, яка будує ваш квест, і потім видаляються. Ми <b>не продаємо</b> ваші дані. Ви можете <b>видалити свій акаунт</b> і всі дані з додатку.</p>
+      </div>
+
+      <h3>1. Хто ми</h3>
+      <p><b>AstraWorld</b> розробляє цифрова студія <b>AstraCoreNova</b>.</p>
+      <p>Офіційний представник і контролер даних: <b>Фізична особа-підприємець (ФОП) Бакурідзе Тимур Русланович</b> (Україна)<br>
+      DUNS: 66-766-8526<br>
+      Email: <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a><br>
+      Сайт: <a href="https://AstraCoreNovadev.github.io" target="_blank" rel="noopener">AstraCoreNovadev.github.io</a></p>
+
+      <h3>2. Які дані ми обробляємо</h3>
+      <table>
+        <thead><tr><th>Дані</th><th>Навіщо</th><th>Зберігається?</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Дані"><b>Google-акаунт</b> (ідентифікатор, email, ім'я)</td><td data-label="Навіщо">Вхід у гру. Без нього прогрес і покупки зникали б при перевстановленні додатку.</td><td data-label="Зберігається?">Так — у Firebase Authentication, поки ви не видалите акаунт.</td></tr>
+          <tr><td data-label="Дані"><b>Нікнейм</b></td><td data-label="Навіщо">Ваше публічне ім'я в гільдіях, на маркетплейсі й у рейтингах.</td><td data-label="Зберігається?">Так. <b>Видимий іншим гравцям.</b></td></tr>
+          <tr><td data-label="Дані"><b>Геолокація</b> (точна й приблизна)</td><td data-label="Навіщо">Щоб показувати місця поруч, підтверджувати, що ви фізично дійшли до локації квесту, і наносити на карту створені вами фото-локації.</td><td data-label="Зберігається?">Координати <b>створених вами фото-локацій</b>: так. Ми <b>не</b> будуємо безперервну історію ваших переміщень.</td></tr>
+          <tr><td data-label="Дані"><b>Фото</b></td><td data-label="Навіщо">Генеративна модель будує ваш квест на основі фото місця.</td><td data-label="Зберігається?"><b>НІ.</b> Фото не зберігаються на наших серверах. Вони надсилаються моделі, обробляються й видаляються. Копія лишається <b>лише локально на вашому телефоні</b>.</td></tr>
+          <tr><td data-label="Дані"><b>Текст, який ви пишете</b> (звіти про виконання кроків квесту)</td><td data-label="Навіщо">Модель оцінює, чи виконано крок.</td><td data-label="Зберігається?">Ні, не зберігається в нашій базі даних.</td></tr>
+          <tr><td data-label="Дані"><b>Ігрові дані:</b> XP, рівень, валюти, предмети, гільдія, прогрес</td><td data-label="Навіщо">Сама гра.</td><td data-label="Зберігається?">Так.</td></tr>
+          <tr><td data-label="Дані"><b>Резервна копія прогресу</b> (хмарне збереження)</td><td data-label="Навіщо">Щоб прогрес не зникав при втраті телефону чи перевстановленні, і щоб його можна було синхронізувати між пристроями.</td><td data-label="Зберігається?">Так — знімок вашого прогресу на наших серверах (Firestore, ЄС), поки ви не видалите акаунт. Раніше він жив лише на телефоні; тепер додатково резервується і в нас.</td></tr>
+          <tr><td data-label="Дані"><b>Технічні дані:</b> мова, країна, аналітика використання, звіти про збої</td><td data-label="Навіщо">Підтримка стабільності гри, виявлення проблем.</td><td data-label="Зберігається?">Так (Firebase Analytics, Firebase Crashlytics).</td></tr>
+          <tr><td data-label="Дані"><b>Прапорець підробленої геолокації</b></td><td data-label="Навіщо">Античит: гра побудована на реальному русі, підроблені координати руйнують її суть.</td><td data-label="Зберігається?">Ні, обробляється на пристрої.</td></tr>
+          <tr><td data-label="Дані"><b>Сигнал цілісності пристрою</b> (Play Integrity API)</td><td data-label="Навіщо">Підтверджує, що додаток не було модифіковано чи втручано в нього — античит і безпека.</td><td data-label="Зберігається?">Лише узагальнений токен цілісності. Він не ідентифікує вас особисто і ніколи не використовується для реклами.</td></tr>
+          <tr><td data-label="Дані"><b>Історія покупок, рекламний ідентифікатор</b></td><td data-label="Навіщо">Підписки й реклама.</td><td data-label="Зберігається?">Лише після увімкнення цих функцій. Неактивні у поточній версії.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3. Правові підстави (GDPR, ст. 6)</h3>
+      <ul>
+        <li><b>Виконання договору</b> — акаунт, ігрові дані, покупки.</li>
+        <li><b>Згода</b> — геолокація, камера, аналітика, персоналізована реклама. Ви можете відкликати згоду будь-коли (в налаштуваннях системи або видаливши акаунт).</li>
+        <li><b>Законні інтереси</b> — безпека, запобігання шахрайству (зокрема підробленій геолокації), надійність сервісу.</li>
+      </ul>
+
+      <h3>4. Генеративний штучний інтелект</h3>
+      <div class="box box-warn">
+        <p>Квести, описи локацій та репліки Гейм-майстра <b>генеруються штучним інтелектом</b> — моделлю <b>Gemini</b> від Google через <b>Google Vertex AI</b>.</p>
+        <p>Ваші фото й текст надсилаються цій моделі для генерації ігрового контенту. Ця обробка відбувається на <b>глобальній інфраструктурі Google Vertex AI</b> і <b>може відбуватися за межами ЄЕЗ, зокрема в США</b> — деталі в розділі 6 нижче.</p>
+        <p>Згідно з умовами Google Cloud, дані клієнтів <b>не використовуються для навчання</b> моделей Google.</p>
+        <p>Ми задаємо моделі <b>власні обмеження безпеки</b>, щоб вона не пропонувала небезпечні, незаконні або образливі дії. Жодна система не досконала: згенерований контент <b>може бути неточним або несподіваним</b>. Це <b>художня ігрова оповідь</b>, і вона <b>не є порадою</b> — медичною, юридичною, фінансовою чи будь-якою іншою.</p>
+        <p><b>Останнє рішення завжди за вами.</b> Ніколи не робіть нічого небезпечного чи незаконного, навіть якщо гра це пропонує. Якщо ви зустріли образливий або небезпечний згенерований контент — повідомте про це через кнопку скарги в додатку або на email.</p>
+      </div>
+
+      <h3>5. З ким ми ділимося даними</h3>
+      <p>Ми <b>не продаємо</b> ваші дані. Ми використовуємо сервіси Google як обробників, що діють за нашими інструкціями: Firebase (Authentication, Firestore, Cloud Functions, Analytics, Crashlytics); Google Vertex AI (Gemini); Google Maps Platform; Google Play Integrity (перевірка автентичності додатку); Google Play (покупки, якщо увімкнено); Google AdMob (реклама, якщо увімкнено).</p>
+      <p>Ми можемо розкривати дані, якщо цього вимагає закон.</p>
+
+      <h3>6. Де обробляються дані — міжнародна передача</h3>
+      <div class="box box-warn">
+        <p><b>Наші власні сервери лишаються в ЄС.</b> Бекенд, який ми самі експлуатуємо, — Cloud Functions і Firestore, включно з вашим акаунтом, ігровими даними та резервною копією прогресу, — працює у <b>Європейському Союзі</b> (<code>europe-west1</code>, Бельгія), як і раніше.</p>
+        <p><b>Обробка ШІ тепер глобальна.</b> Для генерації ваших квестів фото й текст надсилаються до сервісу Google <b>Vertex AI</b>, який працює на глобальній інфраструктурі Google. Це означає, що обробка <b>може відбуватися за межами Європейської економічної зони, зокрема в США</b>, а не лише в ЄС, як зазначалося раніше.</p>
+        <p>Що <b>не</b> змінилося: ваші фото, як і раніше, <b>ніколи не зберігаються</b> на наших серверах чи серверах Google — вони надсилаються моделі, використовуються для генерації квесту й видаляються. Лишається лише копія на вашому власному телефоні.</p>
+        <p>Там, де ця обробка відбувається за межами ЄЕЗ, передача даних покрита <b>Стандартними договірними положеннями (SCC)</b>, які є частиною нашої угоди з Google Cloud, — стандартним затвердженим ЄС механізмом для такого роду міжнародної передачі.</p>
+      </div>
+      <p>Деякі допоміжні сервіси Google (Analytics, Crashlytics, Play services) також можуть обробляти дані за межами ЄЕЗ; у таких випадках ця передача теж спирається на SCC від Google.</p>
+
+      <h3>7. Зберігання даних</h3>
+      <ul>
+        <li><b>Акаунт і прогрес</b> — доки існує акаунт.</li>
+        <li><b>Фото</b> — ніколи не зберігаються на серверах.</li>
+        <li><b>Спільні описи локацій</b> — художній текст про місце, не про вас; не містить персональних даних, належить усім гравцям і <b>не видаляється</b> при видаленні вашого акаунта.</li>
+        <li><b>Звіти про збої й аналітика</b> — відповідно до термінів зберігання Google (зазвичай до 14 місяців).</li>
+      </ul>
+
+      <h3>8. Ваші права</h3>
+      <p>Ви маєте право на доступ, виправлення, видалення, обмеження обробки, заперечення та перенесення своїх даних, а також на відкликання згоди. Ми поширюємо ці права на всіх користувачів, а не лише на мешканців ЄС/ЄЕЗ.</p>
+      <div class="box">
+        <p><b>Ви можете видалити свій акаунт і всі дані з додатку:</b><br><i>Профіль → Небезпечна зона → «Видалити мій акаунт і дані».</i></p>
+        <p>Це видаляє акаунт, прогрес, нікнейм, створені фото-локації, членство в гільдії та лістинги на маркетплейсі. Дія <b>незворотна</b>. Ви також можете написати на <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>.</p>
+      </div>
+      <p>Ви маєте право подати скаргу до вашого національного органу захисту даних.</p>
+
+      <h3>10. Безпека</h3>
+      <p>Дані передаються зашифрованим з'єднанням (TLS). Більшість серверних колекцій повністю закриті для клієнтів і доступні лише через наші серверні функції.</p>
+
+      <h3>11. Зміни</h3>
+      <p>Якщо ми суттєво змінимо цю політику, вам знову буде показано екран згоди при наступному запуску.</p>
+
+      <h3>12. Контакти</h3>
+      <p><a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+
+      <div class="legal-foot">
+        © 2026 AstraCoreNova · ФОП Бакурідзе Тимур Русланович · DUNS 66-766-8526<br>
+        <a href="#terms">Умови використання</a>
+      </div>
+    </div>
+  </div>
