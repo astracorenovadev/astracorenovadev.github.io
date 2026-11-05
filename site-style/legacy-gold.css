@@ -1,0 +1,93 @@
+/* Generated from original styles: color overrides only. Original files and legal content stay unchanged. */
+:root{--purple:#d4a84b!important;--glass:rgba(212, 168, 75, 0.65)!important;--glass-edge:rgba(212, 168, 75, 0.4)!important}
+.neb1{background-image:radial-gradient(circle, rgba(212, 168, 75, 0.1), transparent 70%)!important}
+.neb3{background-image:radial-gradient(rgba(212, 168, 75, 0.15), transparent 70%)!important}
+.lb:hover{border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important}
+.lb.on{border-top-color:rgba(212, 168, 75, 0.8)!important;border-right-color:rgba(212, 168, 75, 0.8)!important;border-bottom-color:rgba(212, 168, 75, 0.8)!important;border-left-color:rgba(212, 168, 75, 0.8)!important;background-color:rgba(212, 168, 75, 0.15)!important;text-shadow:rgba(212, 168, 75, 0.5) 0px 0px 8px!important}
+.nlogo img{filter:drop-shadow(rgba(212, 168, 75, 0.4) 0px 0px 12px)!important}
+.nlogo:hover img{filter:drop-shadow(rgba(212, 168, 75, 0.8) 0px 0px 20px)!important}
+.nlogo-t{text-shadow:rgba(212, 168, 75, 0.4) 0px 0px 18px!important}
+.nlinks a::after{background-color:rgba(212, 168, 75, 0.8)!important;box-shadow:rgba(212, 168, 75, 0.6) 0px 0px 8px!important}
+.mobile-menu a:hover{text-shadow:rgba(212, 168, 75, 0.6) 0px 0px 15px!important}
+.c-dark{background-color:rgba(212, 168, 75, 0.5)!important;border-top-color:rgba(212, 168, 75, 0.3)!important;border-right-color:rgba(212, 168, 75, 0.3)!important;border-bottom-color:rgba(212, 168, 75, 0.3)!important;border-left-color:rgba(212, 168, 75, 0.3)!important}
+.c-mid{background-color:rgba(212, 168, 75, 0.45)!important}
+.c-glow{background-color:rgba(212, 168, 75, 0.55)!important}
+.c-light{background-color:rgba(212, 168, 75, 0.4)!important}
+.hero-badge{border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;background-color:rgba(212, 168, 75, 0.05)!important}
+.hero-badge .dot{background-color:rgba(212, 168, 75, 1)!important;box-shadow:rgba(212, 168, 75, 1) 0px 0px 10px!important}
+.hero-h .em{background-image:linear-gradient(135deg, rgb(255, 255, 255), rgba(212, 168, 75, 0.8))!important}
+.btn-p{background-image:linear-gradient(135deg, rgba(212, 168, 75, 0.95), rgba(212, 168, 75, 0.95))!important;border-top-color:rgba(212, 168, 75, 0.6)!important;border-right-color:rgba(212, 168, 75, 0.6)!important;border-bottom-color:rgba(212, 168, 75, 0.6)!important;border-left-color:rgba(212, 168, 75, 0.6)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 30px!important}
+.btn-p:hover{background-image:linear-gradient(135deg, rgba(212, 168, 75, 0.95), rgba(212, 168, 75, 0.95))!important;box-shadow:rgba(212, 168, 75, 0.6) 0px 0px 50px!important;border-top-color:rgba(212, 168, 75, 0.8)!important;border-right-color:rgba(212, 168, 75, 0.8)!important;border-bottom-color:rgba(212, 168, 75, 0.8)!important;border-left-color:rgba(212, 168, 75, 0.8)!important}
+.btn-g{border-top-color:rgba(212, 168, 75, 0.4)!important;border-right-color:rgba(212, 168, 75, 0.4)!important;border-bottom-color:rgba(212, 168, 75, 0.4)!important;border-left-color:rgba(212, 168, 75, 0.4)!important;background-color:rgba(212, 168, 75, 0.5)!important}
+.btn-g:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;background-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(212, 168, 75, 0.3) 0px 0px 20px!important}
+.div{background-image:linear-gradient(to right, transparent, rgba(212, 168, 75, 0.3), transparent)!important}
+.eyebrow{color:rgba(212, 168, 75, 1)!important}
+.glass{box-shadow:rgba(0, 0, 0, 0.8) 0px 8px 32px, rgba(212, 168, 75, 0.1) 0px 0px 15px inset!important}
+.glass::before{background-image:linear-gradient(to right, transparent, rgba(212, 168, 75, 0.5), transparent)!important}
+.glass::after{background-image:radial-gradient(circle at 50% -10%, rgba(212, 168, 75, 0.12), transparent 60%)!important}
+.pf:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.9) 0px 12px 40px, rgba(212, 168, 75, 0.25) 0px 0px 25px inset!important}
+.pf svg{filter:drop-shadow(rgba(212, 168, 75, 0.6) 0px 0px 12px)!important}
+.pf .emoji-icon{filter:grayscale(100%) contrast(150%) brightness(120%) drop-shadow(rgba(212, 168, 75, 0.6) 0px 0px 12px)!important}
+.pf-note b{text-shadow:rgba(212, 168, 75, 0.4) 0px 0px 8px!important}
+.sol:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.9) 0px 12px 40px, rgba(212, 168, 75, 0.15) 0px 0px 25px inset!important}
+.sol-tag{color:rgba(212, 168, 75, 1)!important}
+.sol-list li::before{color:rgba(212, 168, 75, 1)!important}
+.ai-points li::before{border-top-color:rgba(212, 168, 75, 1)!important;border-right-color:rgba(212, 168, 75, 1)!important;border-bottom-color:rgba(212, 168, 75, 1)!important;border-left-color:rgba(212, 168, 75, 1)!important;box-shadow:rgba(212, 168, 75, 0.5) 0px 0px 10px!important}
+.ai-orb-ring-1{border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important}
+.ai-orb-ring-2{filter:drop-shadow(rgba(212, 168, 75, 0.4) 0px 0px 10px)!important}
+.ai-orb-ring-2 polygon{stroke:rgba(212, 168, 75, 0.5)!important}
+.ai-orb-ring-3{border-top-color:rgba(212, 168, 75, 0.2)!important;border-right-color:rgba(212, 168, 75, 0.2)!important;border-bottom-color:rgba(212, 168, 75, 0.2)!important;border-left-color:rgba(212, 168, 75, 0.9)!important}
+.ai-orb-core{background-image:radial-gradient(circle at 40% 40%, rgba(212, 168, 75, 0.9), rgba(212, 168, 75, 0.95))!important;border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(212, 168, 75, 0.6) 0px 0px 60px, rgba(0, 0, 0, 0.9) 0px 0px 25px inset!important}
+.ai-orb-core span{text-shadow:rgba(255, 255, 255, 0.9) 0px 0px 15px, rgba(212, 168, 75, 1) 0px 0px 10px!important}
+.vcard:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.9) 0px 12px 40px, rgba(212, 168, 75, 0.15) 0px 0px 25px inset!important}
+.vicon{stroke:rgba(212, 168, 75, 1)!important;filter:drop-shadow(rgba(212, 168, 75, 0.4) 0px 0px 8px)!important}
+.pnum{color:rgba(212, 168, 75, 1)!important;text-shadow:rgba(212, 168, 75, 0.5) 0px 0px 28px!important}
+.cemail{border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;background-color:rgba(212, 168, 75, 0.4)!important;box-shadow:rgba(212, 168, 75, 0.2) 0px 0px 15px!important}
+.cemail:hover{background-color:rgba(212, 168, 75, 0.6)!important;border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 25px!important}
+.inp{background-color:rgba(212, 168, 75, 0.5)!important;border-top-color:rgba(212, 168, 75, 0.4)!important;border-right-color:rgba(212, 168, 75, 0.4)!important;border-bottom-color:rgba(212, 168, 75, 0.4)!important;border-left-color:rgba(212, 168, 75, 0.4)!important}
+.inp:focus{border-top-color:rgba(212, 168, 75, 0.8)!important;border-right-color:rgba(212, 168, 75, 0.8)!important;border-bottom-color:rgba(212, 168, 75, 0.8)!important;border-left-color:rgba(212, 168, 75, 0.8)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 20px, rgba(0, 0, 0, 0.5) 0px 2px 10px inset!important}
+.flogo img{filter:drop-shadow(rgba(212, 168, 75, 0.5) 0px 0px 10px)!important}
+.flinks a:hover{text-shadow:rgba(212, 168, 75, 0.5) 0px 0px 10px!important}
+::-webkit-scrollbar-thumb{background-color:rgba(212, 168, 75, 0.5)!important}
+.app-card.live:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.9) 0px 12px 40px, rgba(212, 168, 75, 0.25) 0px 0px 25px inset!important}
+.app-logo{filter:drop-shadow(rgba(212, 168, 75, 0.4) 0px 0px 15px)!important}
+.app-card.live:hover .app-logo{filter:drop-shadow(rgba(212, 168, 75, 0.7) 0px 0px 20px)!important}
+.app-logo-ph{border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;color:rgba(212, 168, 75, 0.8)!important;box-shadow:rgba(212, 168, 75, 0.1) 0px 0px 10px inset!important}
+.st-live{background-color:rgba(212, 168, 75, 0.15)!important;border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;box-shadow:rgba(212, 168, 75, 0.2) 0px 0px 10px!important}
+.app-tag{border-top-color:rgba(212, 168, 75, 0.3)!important;border-right-color:rgba(212, 168, 75, 0.3)!important;border-bottom-color:rgba(212, 168, 75, 0.3)!important;border-left-color:rgba(212, 168, 75, 0.3)!important}
+.app-go{color:rgba(212, 168, 75, 1)!important}
+.app-card.live:hover .app-go{text-shadow:rgba(212, 168, 75, 0.6) 0px 0px 8px!important}
+.model-card:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.9) 0px 12px 40px, rgba(212, 168, 75, 0.2) 0px 0px 35px inset!important}
+.sigil svg{filter:drop-shadow(rgba(212, 168, 75, 0.4) 0px 0px 10px)!important}
+.model-card:hover .sigil svg{filter:drop-shadow(rgba(212, 168, 75, 0.8) 0px 0px 20px)!important}
+.m-role{color:rgba(212, 168, 75, 1)!important}
+.m-tag{border-top-color:rgba(212, 168, 75, 0.3)!important;border-right-color:rgba(212, 168, 75, 0.3)!important;border-bottom-color:rgba(212, 168, 75, 0.3)!important;border-left-color:rgba(212, 168, 75, 0.3)!important}
+.breadcrumb a{color:rgba(212, 168, 75, 1)!important}
+.breadcrumb a:hover{text-shadow:rgba(212, 168, 75, 0.6) 0px 0px 8px!important}
+.ab-vis:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.9) 0px 12px 40px, rgba(212, 168, 75, 0.25) 0px 0px 25px inset!important}
+.ab-vis::after{background-image:radial-gradient(circle at 50% 0%, rgba(212, 168, 75, 0.12), transparent 60%)!important}
+.ab-logo{filter:drop-shadow(rgba(212, 168, 75, 0.6) 0px 0px 32px)!important}
+.ab-vis:hover .ab-logo{filter:drop-shadow(rgba(212, 168, 75, 0.9) 0px 0px 50px)!important}
+.ab-badge{border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;background-color:rgba(212, 168, 75, 0.05)!important;box-shadow:rgba(212, 168, 75, 0.3) 0px 0px 10px!important}
+.ab-feats li::before{color:rgba(212, 168, 75, 1)!important;text-shadow:rgba(212, 168, 75, 0.5) 0px 0px 5px!important}
+.play-btn{background-image:linear-gradient(135deg, rgba(212, 168, 75, 0.95), rgba(212, 168, 75, 0.95))!important;border-top-color:rgba(212, 168, 75, 0.6)!important;border-right-color:rgba(212, 168, 75, 0.6)!important;border-bottom-color:rgba(212, 168, 75, 0.6)!important;border-left-color:rgba(212, 168, 75, 0.6)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 30px!important}
+.play-btn:hover{background-image:linear-gradient(135deg, rgba(212, 168, 75, 0.95), rgba(212, 168, 75, 0.95))!important;box-shadow:rgba(212, 168, 75, 0.6) 0px 0px 50px!important;border-top-color:rgba(212, 168, 75, 0.8)!important;border-right-color:rgba(212, 168, 75, 0.8)!important;border-bottom-color:rgba(212, 168, 75, 0.8)!important;border-left-color:rgba(212, 168, 75, 0.8)!important}
+.doc-link{color:rgba(212, 168, 75, 1)!important;border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;background-color:rgba(212, 168, 75, 0.4)!important}
+.doc-link:hover{background-color:rgba(212, 168, 75, 0.6)!important;border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 15px!important}
+.countries-wrap{background-color:rgba(212, 168, 75, 0.2)!important;border-top-color:rgba(212, 168, 75, 0.2)!important;border-bottom-color:rgba(212, 168, 75, 0.2)!important}
+.ci:hover{border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(0, 0, 0, 0.6) 0px 8px 25px, rgba(212, 168, 75, 0.2) 0px 0px 15px inset!important}
+.docs-tabs{border-top-color:rgba(212, 168, 75, 0.4)!important;border-right-color:rgba(212, 168, 75, 0.4)!important;border-bottom-color:rgba(212, 168, 75, 0.4)!important;border-left-color:rgba(212, 168, 75, 0.4)!important}
+.docs-tab:not(:last-child){border-right-color:rgba(212, 168, 75, 0.4)!important}
+.docs-tab:hover{background-color:rgba(212, 168, 75, 0.15)!important;text-shadow:rgba(212, 168, 75, 0.5) 0px 0px 10px!important}
+.docs-tab.active{background-color:rgba(212, 168, 75, 0.2)!important;border-bottom-color:rgba(212, 168, 75, 1)!important;text-shadow:rgba(212, 168, 75, 0.5) 0px 0px 10px!important}
+.pdf-toolbar{border-bottom-color:rgba(212, 168, 75, 0.4)!important}
+.pdf-download{color:rgba(212, 168, 75, 1)!important;border-top-color:rgba(212, 168, 75, 0.5)!important;border-right-color:rgba(212, 168, 75, 0.5)!important;border-bottom-color:rgba(212, 168, 75, 0.5)!important;border-left-color:rgba(212, 168, 75, 0.5)!important;background-color:rgba(212, 168, 75, 0.4)!important}
+.pdf-download:hover{background-color:rgba(212, 168, 75, 0.6)!important;border-top-color:rgba(212, 168, 75, 0.7)!important;border-right-color:rgba(212, 168, 75, 0.7)!important;border-bottom-color:rgba(212, 168, 75, 0.7)!important;border-left-color:rgba(212, 168, 75, 0.7)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 15px!important}
+.hero-logo{filter:drop-shadow(rgba(212, 168, 75, 0.5) 0px 0px 18px)!important}
+.btn-primary{background-color:rgba(212, 168, 75, 0.18)!important;border-top-color:rgba(212, 168, 75, 0.65)!important;border-right-color:rgba(212, 168, 75, 0.65)!important;border-bottom-color:rgba(212, 168, 75, 0.65)!important;border-left-color:rgba(212, 168, 75, 0.65)!important}
+.btn-primary:hover{background-color:rgba(212, 168, 75, 0.32)!important;box-shadow:rgba(212, 168, 75, 0.4) 0px 0px 20px!important}
+.btn-ghost:hover{border-top-color:rgba(212, 168, 75, 0.6)!important;border-right-color:rgba(212, 168, 75, 0.6)!important;border-bottom-color:rgba(212, 168, 75, 0.6)!important;border-left-color:rgba(212, 168, 75, 0.6)!important}
+.legal a{color:rgba(212, 168, 75, 1)!important}
+.box{border-left-color:rgba(212, 168, 75, 0.75)!important;background-color:rgba(212, 168, 75, 0.07)!important}
+.legal th{color:rgba(212, 168, 75, 1)!important}
+@media (max-width: 860px){.legal td::before{color:rgba(212, 168, 75, 1)!important}}

@@ -1,0 +1,1 @@
+Self-hosted Google Fonts: Inter (Rasmus Andersson), Cormorant Garamond (Christian Thalmann), Cinzel (Natanael Gama). All distributed under the SIL Open Font License 1.1. See the accompanying license files.
