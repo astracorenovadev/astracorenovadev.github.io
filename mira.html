@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mira — your photo has a soundtrack</title>
+<meta name="description" content="Mira turns your photo or your moment into a soundtrack of real songs, then into AI art in 20 styles and a ready-made Story. Android app by AstraCoreNova.">
+<meta property="og:title" content="Mira — your photo has a soundtrack">
+<meta property="og:description" content="Snap a photo, answer five quick questions and get a soundtrack of real songs for this exact moment.">
+<meta property="og:image" content="https://astracorenovadev.github.io/mira/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="logo.Mira.png">
+<style>
+@font-face{font-family:Inter;src:url('site-style/fonts/inter-latin.woff2') format('woff2');font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+0100-024F,U+2000-206F,U+20AC,U+2122}
+@font-face{font-family:Inter;src:url('site-style/fonts/inter-cyrillic.woff2') format('woff2');font-weight:100 900;font-display:swap;unicode-range:U+0400-052F,U+1C80-1C8A,U+2DE0-2DFF,U+A640-A69F}
+@font-face{font-family:Cormorant;src:url('site-style/fonts/cormorant-latin.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:Cormorant;src:url('site-style/fonts/cormorant-cyrillic.woff2') format('woff2');font-weight:400 700;font-display:swap;unicode-range:U+0400-052F,U+1C80-1C8A,U+2DE0-2DFF,U+A640-A69F}
+@font-face{font-family:Cinzel;src:url('site-style/fonts/cinzel-latin.woff2') format('woff2');font-weight:400 700;font-display:swap}
+:root{
+  --bg:#07070a;--panel:#121014;--panel2:#18151a;--line:#d4a84b24;--line2:#d4a84b55;
+  --gold:#d4a84b;--gold-hi:#f1d48a;--text:#ece6d8;--text2:#c9c1b2;--muted:#9b9385;
+  --teal:#7db8b3;--navy:#0f1a2e;--r:18px;--max:1160px;--lang:44px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{background:var(--bg);color:var(--text2);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(ellipse 70% 50% at 85% -5%,#1d3a5a55,transparent 60%),
+  radial-gradient(ellipse 60% 40% at 0% 35%,#7db8b30f,transparent 60%),var(--bg)}
+a{color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#0b0905}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+.lbar{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--lang);display:flex;justify-content:flex-end;align-items:center;gap:2px;padding:0 20px;background:#09080a;border-bottom:1px solid var(--line);overflow-x:auto}
+.lb{background:none;border:0;color:var(--muted);font:600 11px/1 Inter,sans-serif;letter-spacing:.08em;min-width:36px;height:44px;cursor:pointer}
+.lb:hover,.lb.on{color:var(--gold-hi)}
+.lb.on{box-shadow:inset 0 -2px 0 var(--gold)}
+nav{position:fixed;top:var(--lang);left:0;right:0;z-index:50;background:#07070acc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:34px;width:auto}
+.brand b{font:700 15px/1 Cinzel,serif;letter-spacing:.16em;color:var(--text)}
+.brand small{display:block;font:500 10px/1 Inter,sans-serif;letter-spacing:.32em;color:var(--gold);margin-top:5px}
+.nlinks{display:flex;gap:26px;list-style:none;align-items:center}
+.nlinks a{text-decoration:none;font-size:13px;letter-spacing:.06em;color:var(--text2)}
+.nlinks a:hover{color:var(--gold-hi)}
+.nlinks .ext{border:1px solid var(--line2);padding:8px 14px;border-radius:999px;color:var(--gold-hi)}
+
+/* hero */
+.hero{padding:calc(var(--lang) + 120px) 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.idrow{display:flex;gap:16px;align-items:center;margin-bottom:26px}
+.idrow img{width:72px;height:72px;border-radius:18px;border:1px solid var(--line)}
+.idrow b{display:block;font:600 26px/1.1 Inter,sans-serif;color:var(--text)}
+.st{display:inline-block;margin-top:8px;font:600 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:6px 9px;border-radius:999px;color:var(--gold-hi);background:#d4a84b1a;border:1px solid var(--line2)}
+.eyebrow{font:600 11px/1 Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--teal)}
+h1{font:500 clamp(40px,5.6vw,68px)/1.04 Cormorant,Georgia,serif;color:var(--text);margin:16px 0 20px;letter-spacing:-.01em}
+.lead{font-size:18px;color:var(--text2);max-width:560px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 14px/1 Inter,sans-serif;letter-spacing:.04em;padding:16px 26px;border-radius:999px;transition:transform .2s,box-shadow .2s}
+.btn-gold{background:linear-gradient(135deg,var(--gold-hi),var(--gold));color:#140f06;box-shadow:0 8px 30px #d4a84b33}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-line{border:1px solid var(--line2);color:var(--text)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold-hi)}
+.phones{position:relative;height:560px}
+.phone{position:absolute;width:270px;aspect-ratio:9/16;border-radius:30px;overflow:hidden;border:1px solid #ffffff22;background:var(--navy);box-shadow:0 30px 80px #000a,0 0 0 6px #0b0d14}
+.phone img{width:100%;height:100%;object-fit:cover}
+.phones .p1{left:50%;top:0;transform:translateX(-12%) rotate(3deg);z-index:2}
+.phones .p2{left:50%;top:60px;transform:translateX(-92%) rotate(-6deg);opacity:.92}
+
+/* sections */
+section{padding:96px 0;border-top:1px solid var(--line)}
+.sh{max-width:720px;margin-bottom:44px}
+.sh .tag{font:600 11px/1 Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+h2{font:500 clamp(32px,4.4vw,52px)/1.08 Cormorant,Georgia,serif;color:var(--text);margin:14px 0 12px}
+.sh p{font-size:17px}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.gal figure{margin:0}
+.gal .phone{position:relative;width:100%;border-radius:22px;box-shadow:0 18px 50px #0008,0 0 0 4px #0b0d14}
+.gal figcaption{margin-top:14px;font-size:14px;color:var(--text2);line-height:1.45}
+
+/* steps + cards */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+.step{border-top:1px solid var(--line2);padding-top:18px}
+.step::before{counter-increment:s;content:"0" counter(s);font:500 32px/1 Cormorant,serif;color:var(--gold)}
+.step h3{font:600 18px/1.3 Inter,sans-serif;color:var(--text);margin:10px 0 6px}
+.step p{font-size:15px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;border:1px solid #7db8b355;color:var(--teal);font-size:19px;margin-bottom:16px}
+.card h3{font:600 18px/1.3 Inter,sans-serif;color:var(--text);margin-bottom:8px}
+.card p{font-size:15px}
+
+/* plans */
+.plans{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.plans th,.plans td{padding:15px 18px;border-bottom:1px solid var(--line);font-size:15px;text-align:center}
+.plans th:first-child,.plans td:first-child{text-align:left;color:var(--text)}
+.plans thead th{font:600 13px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.plans thead th.pro{color:var(--gold-hi)}
+.plans td.pro{background:#d4a84b0a}
+.plans tr:last-child td{border-bottom:0}
+.note{margin-top:18px;font-size:14px;color:var(--muted);max-width:820px}
+
+/* privacy */
+.pv{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.pv .card p{font-size:16px;color:var(--text2)}
+.pv .card p::before{content:"✓";color:var(--teal);font-weight:700;margin-right:10px}
+.langs{margin-top:18px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;padding:26px 28px;border-radius:var(--r);border:1px solid var(--line2);background:radial-gradient(ellipse at 0% 50%,#7db8b314,transparent 60%),var(--panel)}
+.langs b{font:500 40px/1 Cormorant,serif;color:var(--gold-hi)}
+.langs p{flex:1;min-width:240px;font-size:15px}
+
+/* docs + contact */
+.docs{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.docs a{font:600 14px/1 Inter,sans-serif;text-decoration:none;padding:14px 18px;border-radius:999px;border:1px solid var(--line2);color:var(--text)}
+.docs a:hover{border-color:var(--gold);color:var(--gold-hi)}
+.co{margin-top:30px;font-size:16px}
+.co a{color:var(--gold-hi)}
+footer{border-top:1px solid var(--line);padding:40px 0 52px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--gold-hi)}
+
+.rev{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+.no-js .rev{opacity:1;transform:none}
+
+@media (max-width:1000px){
+  .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin:0 -24px;padding-left:24px;padding-right:24px}
+  .gal figure{flex:0 0 220px;scroll-snap-align:start}
+  .grid3{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .nlinks li.opt{display:none}
+  .hero .wrap{grid-template-columns:1fr}
+  .phones{height:470px}
+  .phone{width:225px}
+  .steps{grid-template-columns:1fr}
+  section{padding:72px 0}
+  .lbar{justify-content:flex-start}
+}
+@media (max-width:600px){
+  .grid3,.pv{grid-template-columns:1fr}
+  .lead{font-size:16px}
+  .phones{height:400px}.phone{width:190px}
+  .plans th,.plans td{padding:12px 8px;font-size:13px}
+  .plans thead th{font-size:11px;letter-spacing:.08em}
+  .brand small{display:none}
+  .nlinks .ext{white-space:nowrap;font-size:12px;padding:8px 12px}
+}
+@media (max-width:480px){.brand span{display:none}}
+</style>
+</head>
+<body class="no-js">
+
+<div class="lbar" role="group" aria-label="Language">
+  <button class="lb" data-l="en">EN</button><button class="lb" data-l="uk">UA</button><button class="lb" data-l="es">ES</button>
+  <button class="lb" data-l="pt">PT</button><button class="lb" data-l="de">DE</button><button class="lb" data-l="fr">FR</button>
+  <button class="lb" data-l="it">IT</button><button class="lb" data-l="nl">NL</button><button class="lb" data-l="pl">PL</button>
+  <button class="lb" data-l="tr">TR</button>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="logo.png" alt=""><span><b>AstraCoreNova</b><small>Mobile apps</small></span></a>
+    <ul class="nlinks">
+      <li class="opt"><a href="#features" data-i="nav_feat">Features</a></li>
+      <li class="opt"><a href="#plans" data-i="nav_plans">Plans</a></li>
+      <li class="opt"><a href="#privacy" data-i="nav_priv">Privacy</a></li>
+      <li><a href="index.html#apps" class="ext" data-i="nav_back">← All apps</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="idrow rev"><img src="logo.Mira.png" alt=""><div><b>Mira</b><span class="st" data-i="st_soon">Coming soon to Google Play</span></div></div>
+      <span class="eyebrow rev" data-i="eyebrow">AI soundtrack for your moments</span>
+      <h1 class="rev" data-i="h1">Your photo has a soundtrack</h1>
+      <p class="lead rev" data-i="lead"></p>
+      <div class="ctas rev">
+        <a href="#how" class="btn btn-gold" data-i="cta_how">See how it works</a>
+        <a href="mira/privacy.html" class="btn btn-line" data-i="cta_pp">Privacy policy</a>
+      </div>
+    </div>
+    <div class="phones rev" aria-hidden="true">
+      <div class="phone p2"><img data-shot="5" src="mira/shots/en/05.webp" alt=""></div>
+      <div class="phone p1"><img data-shot="1" src="mira/shots/en/01.webp" alt=""></div>
+    </div>
+  </div>
+</header>
+
+<section id="screens">
+  <div class="wrap">
+    <div class="sh rev"><span class="tag" data-i="g_tag">Inside the app</span><h2 data-i="g_h">What Mira looks like</h2><p data-i="g_p">Real screens from the app.</p></div>
+    <div class="gal">
+      <figure class="rev"><div class="phone"><img data-shot="1" data-cap="c1" src="mira/shots/en/01.webp" alt="" loading="lazy"></div><figcaption data-i="c1"></figcaption></figure>
+      <figure class="rev"><div class="phone"><img data-shot="2" data-cap="c2" src="mira/shots/en/02.webp" alt="" loading="lazy"></div><figcaption data-i="c2"></figcaption></figure>
+      <figure class="rev"><div class="phone"><img data-shot="3" data-cap="c3" src="mira/shots/en/03.webp" alt="" loading="lazy"></div><figcaption data-i="c3"></figcaption></figure>
+      <figure class="rev"><div class="phone"><img data-shot="4" data-cap="c4" src="mira/shots/en/04.webp" alt="" loading="lazy"></div><figcaption data-i="c4"></figcaption></figure>
+      <figure class="rev"><div class="phone"><img data-shot="5" data-cap="c5" src="mira/shots/en/05.webp" alt="" loading="lazy"></div><figcaption data-i="c5"></figcaption></figure>
+      <figure class="rev"><div class="phone"><img data-shot="6" data-cap="c6" src="mira/shots/en/06.webp" alt="" loading="lazy"></div><figcaption data-i="c6"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sh rev"><span class="tag" data-i="how_tag">How it works</span><h2 data-i="how_h"></h2></div>
+    <div class="steps">
+      <div class="step rev"><h3 data-i="s1_h"></h3><p data-i="s1_p"></p></div>
+      <div class="step rev"><h3 data-i="s2_h"></h3><p data-i="s2_p"></p></div>
+      <div class="step rev"><h3 data-i="s3_h"></h3><p data-i="s3_p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sh rev"><span class="tag" data-i="f_tag">Features</span><h2 data-i="f_h"></h2></div>
+    <div class="grid3">
+      <div class="card rev"><div class="ic">♫</div><h3 data-i="f1_h"></h3><p data-i="f1_p"></p></div>
+      <div class="card rev"><div class="ic">✦</div><h3 data-i="f2_h"></h3><p data-i="f2_p"></p></div>
+      <div class="card rev"><div class="ic">▢</div><h3 data-i="f3_h"></h3><p data-i="f3_p"></p></div>
+      <div class="card rev"><div class="ic">☾</div><h3 data-i="f4_h"></h3><p data-i="f4_p"></p></div>
+      <div class="card rev"><div class="ic">◎</div><h3 data-i="f5_h"></h3><p data-i="f5_p"></p></div>
+      <div class="card rev"><div class="ic">☀</div><h3 data-i="f6_h"></h3><p data-i="f6_p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap">
+    <div class="sh rev"><span class="tag" data-i="p_tag">Plans</span><h2 data-i="p_h"></h2><p data-i="p_p"></p></div>
+    <table class="plans rev">
+      <thead><tr><th></th><th>Free</th><th class="pro">Pro</th><th class="pro">Pro+</th></tr></thead>
+      <tbody>
+        <tr><td data-i="r_snd"></td><td data-i="v_day"></td><td class="pro" data-i="v_100"></td><td class="pro" data-i="v_150"></td></tr>
+        <tr><td data-i="r_trk"></td><td>4</td><td class="pro">12</td><td class="pro">12</td></tr>
+        <tr><td data-i="r_art"></td><td>—</td><td class="pro" data-i="v_a20"></td><td class="pro" data-i="v_a40"></td></tr>
+        <tr><td data-i="r_swap"></td><td data-i="v_swf"></td><td class="pro" data-i="v_s30"></td><td class="pro" data-i="v_s60"></td></tr>
+        <tr><td data-i="r_ads"></td><td data-i="v_yes"></td><td class="pro" data-i="v_no"></td><td class="pro" data-i="v_no"></td></tr>
+        <tr><td data-i="r_morn"></td><td>—</td><td class="pro">✓</td><td class="pro">✓</td></tr>
+      </tbody>
+    </table>
+    <p class="note rev" data-i="p_note"></p>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <div class="sh rev"><span class="tag" data-i="pv_tag">Privacy</span><h2 data-i="pv_h"></h2></div>
+    <div class="pv">
+      <div class="card rev"><p data-i="pv1"></p></div>
+      <div class="card rev"><p data-i="pv2"></p></div>
+      <div class="card rev"><p data-i="pv3"></p></div>
+      <div class="card rev"><p data-i="pv4"></p></div>
+    </div>
+    <div class="langs rev"><b data-i="lg_h">22 languages</b><p data-i="lg_p"></p></div>
+  </div>
+</section>
+
+<section id="docs">
+  <div class="wrap">
+    <div class="sh rev"><h2 data-i="doc_h">Documents</h2></div>
+    <div class="docs rev"><a href="mira/privacy.html" data-i="lk_pp">Privacy policy</a><a href="mira/terms.html" data-i="lk_tos">Terms of service</a></div>
+    <p class="co rev"><span data-i="co">Questions or ideas? Write to us:</span> <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 AstraCoreNova · FOP Bakuridze T.R.</div>
+    <div><a href="index.html#apps" data-i="nav_back">← All apps</a></div>
+  </div>
+</footer>
+
+<script src="site-style/i18n-mira.js"></script>
+<script>
+document.body.classList.remove('no-js');
+// Мова — спільна з рештою сайту (localStorage 'acn_lang'); екрани — тією ж мовою.
+let lang = 'en';
+try { lang = localStorage.getItem('acn_lang') || (navigator.language || 'en').slice(0, 2); } catch (e) {}
+if (lang === 'ua') lang = 'uk';
+function applyLang(l) {
+  const t = MIRA_T[l] || MIRA_T.en; lang = MIRA_T[l] ? l : 'en';
+  document.querySelectorAll('[data-i]').forEach(el => { const k = el.getAttribute('data-i'); if (t[k] !== undefined) el.textContent = t[k]; });
+  document.querySelectorAll('img[data-shot]').forEach(img => {
+    img.src = 'mira/shots/' + lang + '/0' + img.dataset.shot + '.webp';
+    if (img.dataset.cap) img.alt = t[img.dataset.cap];
+  });
+  document.documentElement.lang = lang;
+  document.title = 'Mira — ' + t.h1;
+  document.querySelectorAll('.lb').forEach(b => { const on = b.dataset.l === lang; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  try { localStorage.setItem('acn_lang', lang); } catch (e) {}
+}
+document.querySelectorAll('.lb').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
+applyLang(lang);
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' }) : null;
+document.querySelectorAll('.rev').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+</script>
+</body>
+</html>
