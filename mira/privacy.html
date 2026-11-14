@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mira Privacy Policy</title>
+  <style>
+    body { margin: 0; background: #0A1220; color: #EDE7DA; font: 16px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
+    h1 { color: #D8B878; font-size: 30px; margin: 0 0 4px; }
+    .meta { color: #8C97A8; font-size: 14px; margin-bottom: 28px; }
+    section { background: #172833; border: 1px solid #243847; border-radius: 16px; padding: 18px 20px; margin: 12px 0; }
+    h2 { color: #EBD19C; font-size: 18px; margin: 0 0 6px; }
+    p { margin: 0; }
+    a { color: #7DB8B3; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Mira Privacy Policy</h1>
+    <div class="meta">Last updated: 14 November 2026 · AstraCoreNova · <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a> · <a href="https://astracorenovadev.github.io/">https://astracorenovadev.github.io/</a></div>
+    <section>
+      <h2>In short</h2>
+      <p>Mira turns a photo or a few words into a soundtrack. There is no sign-up, we do not keep your photos, and your soundtracks live on your phone. To create a soundtrack, the photo or description is analysed by AI on our servers and then discarded. The free plan shows ads; Mira Pro and Pro+ do not.</p>
+    </section>
+    <section>
+      <h2>Who we are</h2>
+      <p>Mira is made by AstraCoreNova ("we"). We are responsible for the processing described here. Contact: astra.core.nova.dev@gmail.com.</p>
+    </section>
+    <section>
+      <h2>Photos and descriptions</h2>
+      <p>When you create a soundtrack, a reduced copy of your photo (or your text description), your answers to the questions, the time of day, the weather if you added it, your music taste and recently suggested track names are sent to our backend (Cloudflare Workers, EU) and, through Cloudflare AI Gateway with logging disabled, to OpenAI's AI models. They are used only to write the soundtrack, the questions or the AI art you request. We do not store photos or descriptions on our servers and never use them to train AI. OpenAI processes this data as our service provider under its API terms: API data is not used to train its models, our requests ask it not to store responses, and it may keep data for up to 30 days for security and abuse monitoring before deleting it. Please do not upload photos of other people without their permission.</p>
+    </section>
+    <section>
+      <h2>Your anonymous account</h2>
+      <p>The first time you use AI features, Firebase Authentication creates an anonymous ID for this installation — no name, email or phone number. On our server this ID is linked only to usage counters (how many soundtracks, questions, track swaps and AI art credits were used in the current day or subscription period, used to enforce plan limits and prevent abuse) and, if you subscribe, to your subscription status. For subscriptions, counters are linked to a one-way hash of the Google Play purchase token rather than to the anonymous ID, so limits stay the same after reinstalling. Usage counters contain no personal content and are deleted automatically after 90 days. For the free plan, counters and the date you first opened the app are linked to a one-way hash of this app's Android device identifier, so reinstalling does not reset free limits. The hash cannot be turned back into the identifier, is not used for ads or tracking and is deleted 180 days after your last visit.</p>
+    </section>
+    <section>
+      <h2>Sky features</h2>
+      <p>Your sky, music constellation, streak, moon phases, sky events and the real star map are calculated on your phone from your saved soundtracks. For the weekly star forecast (Pro), we send your constellation, average mood numbers, streak, the moon phase, upcoming sky events, the titles of your latest three soundtracks and your language to our backend and OpenAI, only to write the forecast. Nothing of it is stored on our server. The zodiac sign is optional. On the free plan the horoscope of the day is unlocked by watching a rewarded video, once a week. For the horoscope of the day, we send only the sign, the voice style (picked from your favourite genres or by you), whether sharp-tongue mode is on and your language — never your identity or soundtracks. The horoscope text is the same for everyone with those settings and is kept on our server for up to 3 days so it can be shown again without another AI request.</p>
+    </section>
+    <section>
+      <h2>Star compatibility links</h2>
+      <p>When you share your vibe code, the link or QR contains your music constellation, mood numbers, favourite genres, up to five top artists and, if you add it, a name. You decide whom to send it to. The code sits after the # in the link, so our website never receives it; the compatibility is calculated on the recipient's phone.</p>
+    </section>
+    <section>
+      <h2>Vibe radar (optional, 18+)</h2>
+      <p>Vibe radar is off until you turn it on, confirm you are 18 or older and agree to share. When you share, our server stores for 24 hours: your nickname, your social username if you add one, the name of your city, your country code, a map area of about 30 km (a 4-character geohash, never your exact location), who may see your card (your city, your country or the whole world — you choose), today's soundtrack title, aesthetic, colours, mood numbers, weather, main (first) track, artists and track list, your constellation and your language. Only other people who also share can see your card, and only within the area you allowed; they can open your social profile. Your full track list is never shown to anyone: it is used only to find a shared vibe, and other people see just the tracks they also have. You can see people only as widely as you show your own card. The card is deleted after 24 hours, when you remove it, or with "Delete all my data". If someone reports a card, we keep the report (reason, anonymous IDs of both people and the date) for up to 90 days to fight abuse; cards with several reports are hidden. Blocks are kept until you delete your data. There is no chat and we never share your location with anyone.</p>
+    </section>
+    <section>
+      <h2>Location and weather</h2>
+      <p>Location is optional and only requested when you tap "Add weather". Mira uses approximate location on your device, sends rounded coordinates to the Norwegian Meteorological Institute (api.met.no) to get the forecast, and uses Android's geocoder to show your city name. Your last city is remembered on the phone for the morning vibe and the star map. We do not store your location on our servers, except the approximate area, city name and country of a Vibe radar card you choose to share.</p>
+    </section>
+    <section>
+      <h2>Music catalogs and services</h2>
+      <p>To confirm that suggested songs exist and to play 30-second previews, the app sends artist and song names to the Deezer API and Apple's iTunes Search API and streams previews from them. When you open a full song, the app hands the search over to the music app you choose (for example YouTube Music or Spotify); their own privacy policies apply there.</p>
+    </section>
+    <section>
+      <h2>Ads on the free plan</h2>
+      <p>The free plan shows full-screen ads from Google AdMob and, only when you choose to watch one, rewarded videos that unlock a bonus soundtrack or a track swap. Google may collect device identifiers such as the advertising ID, IP address and ad interaction data to show, measure and limit ads. In the EEA, the UK and Switzerland we ask for your consent through Google's consent tool before ads are loaded, and you can change your choice any time in Profile. Mira Pro contains no ads. See policies.google.com/technologies/ads.</p>
+    </section>
+    <section>
+      <h2>Purchases</h2>
+      <p>Subscriptions (Pro and Pro+) are sold by Google Play. We never see your card, name or address. We receive a purchase token, store it on our server and check it with the Google Play Developer API to unlock your plan and keep it active after renewals — this is also how your plan comes back automatically on a new phone signed in to the same Google account. "Delete all my data" removes the stored token and your plan record.</p>
+    </section>
+    <section>
+      <h2>Crash reports and app integrity</h2>
+      <p>If the app crashes, Firebase Crashlytics sends a crash report with the stack trace, device model, Android version, app version and a random installation ID, so we can fix the problem. Firebase App Check with Google Play Integrity confirms that requests come from a genuine copy of the app. Neither contains your photos, descriptions or soundtracks.</p>
+    </section>
+    <section>
+      <h2>What stays on your phone</h2>
+      <p>Soundtracks, photos, AI art, your music taste and settings are stored only on your device. If Android backup is on, your soundtracks and settings (without photos) are included in your encrypted Google backup, and a phone-to-phone transfer can move everything to a new device. Backup files you export in Profile are yours — we never receive them.</p>
+    </section>
+    <section>
+      <h2>Why we process data</h2>
+      <p>To provide the service you ask for (creating soundtracks, questions, AI art and Pro), for our legitimate interests in keeping the service secure, preventing abuse and fixing crashes, and on the basis of your consent for personalised ads and location.</p>
+    </section>
+    <section>
+      <h2>Your choices and rights</h2>
+      <p>You can delete your photos from any soundtrack, delete soundtracks, turn off location, change ad consent, and use "Delete all my data" in Profile, which erases everything on the phone and your anonymous account with its counters, Vibe radar card and blocks on our server. Depending on where you live you may have rights to access, correct, delete or object to processing and to complain to your data protection authority. Write to astra.core.nova.dev@gmail.com. We do not sell your personal information.</p>
+    </section>
+    <section>
+      <h2>International transfers</h2>
+      <p>Our providers (Google, Deezer, Apple) may process data outside your country, including in the United States, under safeguards such as the EU Standard Contractual Clauses.</p>
+    </section>
+    <section>
+      <h2>Children</h2>
+      <p>Mira is not directed to children under 13, or under 16 where local law requires parental consent for online services. Vibe radar is only for people aged 18 or older.</p>
+    </section>
+    <section>
+      <h2>Changes and contact</h2>
+      <p>If this policy changes, the new version will ship with the app, the date above will change, and for important changes we will ask you to review it again. Questions: astra.core.nova.dev@gmail.com.</p>
+    </section>
+  </main>
+</body>
+</html>
