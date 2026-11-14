@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.astracorenova.mira",
+      "sha256_cert_fingerprints": [
+        "5E:81:D4:F5:C1:F8:8A:EF:64:22:F4:55:D3:F8:15:58:4E:EA:84:32:01:58:39:CF:CE:0F:5A:33:E1:AC:E1:47"
+      ]
+    }
+  }
+]
