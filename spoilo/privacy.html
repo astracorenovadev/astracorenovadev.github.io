@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spoilo Privacy Policy</title>
+  <style>
+    body { margin: 0; background: #FFF8EE; color: #2A2230; font: 16px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+    h1 { color: #E0452C; font-size: 30px; margin: 0 0 4px; }
+    .meta { color: #7A6E7E; font-size: 14px; margin-bottom: 28px; }
+    section { background: #fff; border: 2px solid #F1E4D0; border-radius: 20px; padding: 18px 20px; margin: 12px 0; }
+    h2 { font-size: 18px; margin: 0 0 6px; }
+    p { margin: 0 0 8px; } p:last-child { margin: 0; }
+    a { color: #C23A22; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #1E1626; color: #F3EAF5; }
+      section { background: #2A2033; border-color: #3B2E47; }
+      .meta { color: #B5A8BC; } a { color: #FF8A6E; } h1 { color: #FF6A4D; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Spoilo Privacy Policy</h1>
+    <div class="meta">Last updated: 22 November 2026 · AstraCoreNova · <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a> · <a href="https://astracorenovadev.github.io/">astracorenovadev.github.io</a></div>
+
+    <section>
+      <h2>In short</h2>
+      <p>Spoilo helps you track the expiry dates of food, medicine and household items and reminds you before they go off. There is no sign-up and no ads. Your list lives on your phone. When you use AI scanning, the photo is read by AI on our servers and then thrown away. We do not sell your data or use it for advertising.</p>
+    </section>
+
+    <section>
+      <h2>Who we are</h2>
+      <p>Spoilo is made by AstraCoreNova ("we"), a sole proprietor registered in Ukraine. We are responsible for the processing described here. Contact: astra.core.nova.dev@gmail.com.</p>
+    </section>
+
+    <section>
+      <h2>Data that stays on your phone</h2>
+      <p>Your items, expiry dates, categories, shopping list, statistics, streaks and badges, and settings are stored only on your device. Barcode and on-device text recognition (Google ML Kit) run locally, so the camera images used for them never leave your phone. Reminders are scheduled locally by Android.</p>
+      <p>If you export a backup, the app writes a JSON file to a location you choose. We never receive it.</p>
+    </section>
+
+    <section>
+      <h2>AI scanning (packages, receipts, fridge photos)</h2>
+      <p>When you use AI scanning, a reduced copy of your photo (or up to four photos) and the list of the app's category names are sent to our backend (Cloudflare Workers). From there they go through Cloudflare AI Gateway, with logging turned off, to OpenAI's AI models, which read the name, dates and storage conditions. For "Rescue dinner" recipes, only the names of the products that are about to expire are sent.</p>
+      <p>We do not store your photos on our servers and never use them to train AI. OpenAI processes this data as our service provider under its API terms. API data is not used to train its models, our requests ask it not to store responses, and it may keep data for up to 30 days for security and abuse monitoring before deleting it. Recipes are cached on our server for up to 120 days under a one-way hash of the product list, without any link to you, so that the same list does not need another AI request.</p>
+      <p>Please do not photograph documents, people or anything else that is not a product.</p>
+    </section>
+
+    <section>
+      <h2>Anonymous ID and usage limits</h2>
+      <p>The first time you use AI features, Firebase Authentication (Google) creates an anonymous ID for this installation. It contains no name, email or phone number. Firebase App Check (Google Play Integrity) confirms that requests come from the real app. On our server, the anonymous ID is linked only to usage counters (how many AI scans and recipes were used today or this month, and when the last fridge scan was made) and, if you subscribe, to your subscription status. Counters contain no content and are deleted automatically after the period ends (at most 40 days).</p>
+    </section>
+
+    <section>
+      <h2>Barcode product lookup</h2>
+      <p>When you scan a barcode, the app may look up the barcode number in the public Open Food Facts database (openfoodfacts.org) to fill in the product name. Only the barcode number is sent.</p>
+    </section>
+
+    <section>
+      <h2>Subscriptions</h2>
+      <p>Spoilo Pro is sold through Google Play. We never see your payment details. To activate Pro, the app sends the Google Play purchase token to our server, which checks it with Google Play and links it to your anonymous ID. We keep the token while the subscription exists so that it can be restored after reinstalling.</p>
+    </section>
+
+    <section>
+      <h2>Medicines</h2>
+      <p>Spoilo can store expiry dates and the dosage printed on medicine packages. This stays on your phone, apart from the photo processed as described above. Spoilo is not a medical device and gives no medical advice. Always check the date on the package itself.</p>
+    </section>
+
+    <section>
+      <h2>Legal basis, retention and your rights</h2>
+      <p>We process data to provide the features you ask for (performance of a contract) and to prevent abuse of the AI service (legitimate interest). Your rights depend on where you live (for example GDPR in the EU/UK): you can ask for access, correction or deletion, object to processing, or complain to your data protection authority. Because we do not know who you are, we usually cannot link a request to a person. Server-side counters contain no content and expire automatically. You can delete all local data by clearing the app's data or uninstalling it.</p>
+      <p>Our service providers (Cloudflare, Google Firebase, OpenAI) may process data outside your country, including in the United States, under standard contractual clauses or equivalent safeguards.</p>
+    </section>
+
+    <section>
+      <h2>Children</h2>
+      <p>Spoilo is not directed at children under 13, and we do not knowingly collect data from them.</p>
+    </section>
+
+    <section>
+      <h2>Changes</h2>
+      <p>If we change this policy, we will update the date above and, for important changes, tell you in the app.</p>
+    </section>
+  </main>
+</body>
+</html>

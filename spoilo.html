@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spoilo — eat it before it beats you</title>
+<meta name="description" content="Spoilo tracks expiry dates of food, medicine and household items. Scan a package, a receipt or your fridge with AI, get reminders and rescue recipes. No ads, no sign-up. Android app by AstraCoreNova.">
+<meta property="og:title" content="Spoilo — eat it before it beats you">
+<meta property="og:description" content="Scan the date, get a heads-up before food goes off, and a rescue recipe from what's about to expire.">
+<meta property="og:image" content="https://astracorenovadev.github.io/spoilo/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="logo.Spoilo.png">
+<style>
+@font-face{font-family:Nunito;src:url('spoilo/nunito.ttf') format('truetype');font-weight:200 1000;font-display:swap}
+:root{--bg:#FFF8EE;--card:#FFFFFF;--ink:#2D202B;--ink2:#5E4E5C;--line:#F1E4D0;--tomato:#FF5A3C;--lime:#7ED957;--banana:#FFC93C;--berry:#E0457B;--tang:#FF8A3C}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 Nunito,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px}
+.top a.home{font-weight:800;text-decoration:none;color:var(--ink2);font-size:14px}
+.langs{display:flex;gap:4px}
+.langs button{font:800 13px Nunito,sans-serif;border:2px solid var(--ink);background:var(--card);border-radius:999px;padding:4px 12px;cursor:pointer;color:var(--ink)}
+.langs button.on{background:var(--ink);color:var(--bg)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:32px 0 48px}
+.id{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.id img{width:72px;height:72px;border-radius:20px;border:3px solid var(--ink);box-shadow:0 5px 0 var(--ink)}
+.id b{font-size:30px;font-weight:900;display:block;line-height:1}
+.badge{display:inline-block;margin-top:6px;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;background:var(--banana);border:2px solid var(--ink);border-radius:999px;padding:3px 10px}
+h1{font-size:clamp(40px,6vw,66px);line-height:1.02;font-weight:900;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--tomato)}
+.lead{font-size:19px;color:var(--ink2);margin:18px 0 26px;max-width:520px}
+.btn{display:inline-block;font-weight:900;font-size:18px;text-decoration:none;background:var(--tomato);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:12px 28px;box-shadow:0 6px 0 var(--ink);transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:var(--card);color:var(--ink)}
+.acts{display:flex;gap:12px;flex-wrap:wrap}
+.video{position:relative;aspect-ratio:16/9;border:4px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:0 10px 0 var(--ink);background:#000;transform:rotate(1.2deg)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+h2{font-size:clamp(30px,4vw,42px);font-weight:900;margin:56px 0 22px;line-height:1.1}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.f{background:var(--card);border:3px solid var(--ink);border-radius:26px;padding:22px;box-shadow:0 6px 0 var(--ink)}
+.f:nth-child(odd){transform:rotate(-.6deg)}.f:nth-child(even){transform:rotate(.6deg)}
+.f .dot{width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);margin-bottom:12px;display:grid;place-items:center;font-size:22px}
+.f h3{font-size:20px;font-weight:900;margin-bottom:6px}
+.f p{color:var(--ink2);font-size:16px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.plan{background:var(--card);border:3px solid var(--ink);border-radius:26px;padding:24px;box-shadow:0 6px 0 var(--ink)}
+.plan.pro{background:#FFF1E9}
+.plan h3{font-size:24px;font-weight:900}
+.plan ul{list-style:none;margin-top:12px}
+.plan li{padding:5px 0 5px 28px;position:relative;color:var(--ink2)}
+.plan li::before{content:"";position:absolute;left:0;top:10px;width:16px;height:16px;border-radius:50%;background:var(--lime);border:2px solid var(--ink)}
+.legal{margin:56px 0 0;padding:28px 0 40px;border-top:3px dashed var(--line);display:flex;gap:18px;flex-wrap:wrap;font-weight:800;color:var(--ink2);font-size:15px}
+@media (max-width:820px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.video{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="home" href="index.html">← AstraCoreNova</a>
+    <div class="langs"><button data-l="en">EN</button><button data-l="uk">UA</button></div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="id"><img src="logo.Spoilo.png" alt="Spoilo"><div><b>Spoilo</b><span class="badge" data-i="soon">Coming soon to Google Play</span></div></div>
+      <h1 data-i="h1">Eat it <em>before it beats you.</em></h1>
+      <p class="lead" data-i="lead">Spoilo keeps track of expiry dates for you. Scan a package, a receipt or your whole fridge, get a heads-up before food goes off, and a rescue recipe from what's about to expire.</p>
+      <div class="acts">
+        <a class="btn" href="#features" data-i="cta">See what it does</a>
+        <a class="btn ghost" href="https://youtu.be/B5NcKrisE6U" target="_blank" rel="noopener" data-i="yt">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/B5NcKrisE6U?rel=0" title="Spoilo promo video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <h2 id="features" data-i="fh">Less waste, zero effort</h2>
+  <div class="grid">
+    <div class="f"><div class="dot" style="background:var(--tomato)">📷</div><h3 data-i="f1h">Scan the date</h3><p data-i="f1p">AI reads the expiry date on a package, the items on a receipt, or everything on your fridge shelves. No typing.</p></div>
+    <div class="f"><div class="dot" style="background:var(--banana)">🔔</div><h3 data-i="f2h">A heads-up in time</h3><p data-i="f2p">Friendly reminders before things go off — with a little avocado who gets nervous when your yogurt does.</p></div>
+    <div class="f"><div class="dot" style="background:var(--lime)">🍳</div><h3 data-i="f3h">Rescue recipes</h3><p data-i="f3p">Three things about to expire? Spoilo suggests one real dish that uses them all.</p></div>
+    <div class="f"><div class="dot" style="background:var(--berry)">💊</div><h3 data-i="f4h">Not just food</h3><p data-i="f4p">Medicines, cosmetics, baby food, pet food, household chemicals and documents with an expiry date.</p></div>
+    <div class="f"><div class="dot" style="background:var(--tang)">🔥</div><h3 data-i="f5h">Streaks &amp; badges</h3><p data-i="f5p">Count your days without waste, the food and money you saved, and unlock badges along the way.</p></div>
+    <div class="f"><div class="dot" style="background:#8FD3F4">🔒</div><h3 data-i="f6h">Private by design</h3><p data-i="f6p">No ads, no sign-up. Your list lives on your phone; scan photos are processed and discarded.</p></div>
+  </div>
+
+  <h2 data-i="ph">Free, with Pro when you want more</h2>
+  <div class="plans">
+    <div class="plan"><h3 data-i="p1h">Free</h3><ul>
+      <li data-i="p1a">Unlimited manual items, barcode and on-device scanning</li>
+      <li data-i="p1b">2 AI scans a day</li>
+      <li data-i="p1c">AI fridge scan once a week</li>
+      <li data-i="p1d">Reminders, shopping list, widget</li></ul></div>
+    <div class="plan pro"><h3>Spoilo Pro</h3><ul>
+      <li data-i="p2a">Up to 300 AI scans a month</li>
+      <li data-i="p2b">Fridge scan any time</li>
+      <li data-i="p2c">Rescue recipes</li>
+      <li data-i="p2d">7-day free trial on the yearly plan</li></ul></div>
+  </div>
+
+  <div class="legal">
+    <a href="spoilo/privacy.html" data-i="pp">Privacy policy</a>
+    <a href="spoilo/terms.html" data-i="tos">Terms of use</a>
+    <a href="mailto:astra.core.nova.dev@gmail.com">astra.core.nova.dev@gmail.com</a>
+    <span>© 2026 AstraCoreNova</span>
+  </div>
+</div>
+<script>
+const T={uk:{
+soon:'Скоро в Google Play',h1:'З’їж, <em>поки не зіпсувалось.</em>',
+lead:'Spoilo пам’ятає строки придатності за тебе. Скануй упаковку, чек або весь холодильник — отримуй нагадування до того, як щось зіпсується, і рецепт-порятунок із того, що ось-ось пропаде.',
+cta:'Що він уміє',yt:'Дивитись на YouTube',fh:'Менше викидати — без зусиль',
+f1h:'Скануй дату',f1p:'ШІ читає дату на упаковці, позиції в чеку або все, що стоїть на полицях холодильника. Без набору.',
+f2h:'Нагадування вчасно',f2p:'Дружні нагадування до того, як щось зіпсується, — від авокадо, який нервує разом із твоїм йогуртом.',
+f3h:'Рецепти-порятунки',f3p:'Три продукти ось-ось зіпсуються? Spoilo запропонує одну справжню страву з усіх трьох.',
+f4h:'Не лише їжа',f4p:'Ліки, косметика, дитяче харчування, корм для тварин, побутова хімія і документи зі строком дії.',
+f5h:'Серії й бейджі',f5p:'Рахуй дні без викинутого, врятовану їжу й гроші та відкривай бейджі.',
+f6h:'Приватність',f6p:'Без реклами й реєстрації. Список живе на твоєму телефоні, а фото для скану обробляються й видаляються.',
+ph:'Безкоштовно, а з Pro — більше',p1h:'Безкоштовно',
+p1a:'Скільки завгодно продуктів вручну, штрихкод і скан на телефоні',p1b:'2 ШІ-скани на день',p1c:'ШІ-скан холодильника раз на тиждень',p1d:'Нагадування, список покупок, віджет',
+p2a:'До 300 ШІ-сканів на місяць',p2b:'Скан холодильника будь-коли',p2c:'Рецепти-порятунки',p2d:'7 днів безкоштовно на річному плані',
+pp:'Політика конфіденційності',tos:'Умови використання'}};
+const EN={};document.querySelectorAll('[data-i]').forEach(e=>EN[e.dataset.i]=e.innerHTML);
+function apply(l){const t=T[l]||EN;document.querySelectorAll('[data-i]').forEach(e=>{const v=t[e.dataset.i];e.innerHTML=v!==undefined?v:EN[e.dataset.i]});
+document.documentElement.lang=T[l]?l:'en';document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===(T[l]?l:'en')));
+try{localStorage.setItem('acn_lang',l)}catch(e){}}
+let lang='en';try{lang=localStorage.getItem('acn_lang')||(navigator.language||'en').slice(0,2)}catch(e){}
+if(lang==='ua')lang='uk';
+document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>apply(b.dataset.l)));
+apply(lang);
+</script>
+</body>
+</html>
